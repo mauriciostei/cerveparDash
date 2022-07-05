@@ -1,0 +1,26 @@
+{
+    "name": "Cervepar Dash",
+    "short_name": "Dash",
+    "start_url": "/index.php",
+    "background_color": "#040021",
+    "description": "Dashboard web desarrollado para el comand center de cervepar",
+    "display": "fullscreen",
+    "theme_color": "#040021",
+    "icons": [
+        {
+            "src": "./assets/img/icono-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "./assets/img/icono-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "./assets/img/icono-96.PNG",
+            "type": "image/png",
+            "sizes": "96x96"
+        }
+    ]
+}
