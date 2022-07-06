@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Config;
+namespace App\Http\Livewire\config;
 
 use App\Models\Alertas;
 use Livewire\Component;

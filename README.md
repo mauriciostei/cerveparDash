@@ -12,7 +12,7 @@
 
 Para correr la aplicación es necesario contar con:
 
- - PHP corriendo en su version 7 como mínimo
+ - PHP corriendo en su version 8 como mínimo
  - PostgreSQL corriendo en cualquier version
  - Cámaras con registro ANPR
 
