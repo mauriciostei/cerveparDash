@@ -19,22 +19,22 @@ class PerfilesSeeder extends Seeder
         $p1 = new Perfiles();
         $p1->nombre = 'SuperAdmin';
         $p1->save();
-        $p1->users()->sync(1,2);
+        $p1->users()->attach([1,2]);
 
         $p2 = new Perfiles();
         $p2->nombre = 'admin';
         $p2->save();
-        $p2->users()->sync(3,4,5);
+        $p2->users()->attach([3,4,5]);
 
         $p3 = new Perfiles();
         $p3->nombre = 'Logístico';
         $p3->save();
-        $p3->users()->sync(6,7,8,9);
+        $p3->users()->attach([6,7,8,9]);
 
         $p4 = new Perfiles();
         $p4->nombre = 'Warehouse';
         $p4->save();
-        $p4->users()->sync(10,11,12,13);
+        $p4->users()->attach([10,11,12,13]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Inicio';
