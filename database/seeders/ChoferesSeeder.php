@@ -20,19 +20,19 @@ class ChoferesSeeder extends Seeder
         $c->documento = 0;
         $c->save();
 
-        $c = new Choferes();
-        $c->nombre = 'Rob Halford';
-        $c->documento = 3674839;
-        $c->save();
+        // $c = new Choferes();
+        // $c->nombre = 'Rob Halford';
+        // $c->documento = 3674839;
+        // $c->save();
 
-        $c = new Choferes();
-        $c->nombre = 'James Simons';
-        $c->documento = 932857;
-        $c->save();
+        // $c = new Choferes();
+        // $c->nombre = 'James Simons';
+        // $c->documento = 932857;
+        // $c->save();
 
-        $c = new Choferes();
-        $c->nombre = 'Bad Bunny';
-        $c->documento = 329857;
-        $c->save();
+        // $c = new Choferes();
+        // $c->nombre = 'Bad Bunny';
+        // $c->documento = 329857;
+        // $c->save();
     }
 }

@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             PuntosSeeder::class,
             SensoresSeeder::class,
             MovilesSeeder::class,
-                //ChoferesSeeder::class,
+            ChoferesSeeder::class,
             PlanesSeeder::class,
                 //RecorridosSeeder::class,
             HorariosSeeder::class,
