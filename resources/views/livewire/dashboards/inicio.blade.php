@@ -63,14 +63,28 @@
 
             <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                 <div class="card z-index-2 ">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                    {{-- <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                         <div class="bg-gradient-grafica shadow border-radius-lg py-3 pe-1">
                             <div class="chart">
                                 <canvas id="accuracy-chart" class="chart-canvas" height="80"></canvas>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="card-body">
+
+                        <div class="progress-wrapper">
+                            <div class="progress-info">
+                              <div class="progress-percentage">
+                                <span class="text-sm font-weight-normal">{{round($acuraccy[0]->porcentaje,2)}}%</span>
+                              </div>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;"></div>
+                            </div>
+                        </div>
+
+                        <br/>
+
                         <h6 class="mb-0 ">Accuracy de Camaras</h6>
                         <p class="text-sm ">Moviles captados segun planificacion</p>
                         <p class="text-sm ">Planificado: {{$acuraccy[0]->plan}}, Pendiente: {{$acuraccy[0]->plan -$acuraccy[0]->ejecutado}}</p>

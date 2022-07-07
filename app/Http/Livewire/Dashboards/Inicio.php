@@ -36,15 +36,15 @@ class Inicio extends Component
     }
 
     public function historial(){
-        $recorridos = Recorridos::all();
+        $recorridos = Recorridos::orderBy('id', 'DESC')->take(2000)->get();
 
         $fileName = 'Historial.xls';
 
         $headers = array(
-            "Content-type"        => "vnd.ms-excel",
+            "Content-type"        => "application/vnd.ms-excel;",
             "Content-Disposition" => "attachment; filename=$fileName",
             "Pragma"              => "no-cache",
-            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            //"Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
             "Expires"             => "0"
         );
 
@@ -84,7 +84,7 @@ class Inicio extends Component
 
         $this->acuraccy = DB::table('acuraccy')->whereDate('fecha', date('Y-m-d'))->get();
 
-        $this->emit('accuracyGrap', $this->acuraccy[0]->porcentaje);
+        //$this->emit('accuracyGrap', $this->acuraccy[0]->porcentaje);
     }
 
     public function difTime($time){
