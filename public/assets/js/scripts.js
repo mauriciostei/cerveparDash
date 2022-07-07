@@ -23,11 +23,10 @@ Livewire.on('nuevaAlerta', (param) => {
 });
 
 // Accuracy grafica del inicio
-let myChart = null;
-var ctx = document.getElementById("accuracy-chart");
-// if(ctx !==null){ ctx = document.getElementById("accuracy-chart").getContext("2d"); }
+// let myChart = null;
+// var ctx = document.getElementById("accuracy-chart");
 
-Livewire.on('accuracyGrap', (porcentaje) => {
+/* Livewire.on('accuracyGrap', (porcentaje) => {
 
     if (myChart !== null) {
         myChart.destroy();
@@ -74,7 +73,7 @@ Livewire.on('accuracyGrap', (porcentaje) => {
 
     }
     });
-})
+}) */
 
 
 // Grafico en pantalla de metricas
@@ -84,13 +83,9 @@ let top_desvios = null;
 let cantidad_desvios = null;
 
 let ctx1 = document.getElementById("ingreso_moviles");
-// if(ctx !== null){ ctx = ctx.getContext("2d"); }
 let ctx2 = document.getElementById("desvio_medio");
-// if(ctx !== null){ ctx = ctx.getContext("2d"); }
 let ctx3 = document.getElementById("top_desvios");
-// if(ctx !== null){ ctx = ctx.getContext("2d"); }
 let ctx4 = document.getElementById("cantidad_desvios");
-// if(ctx !== null){ ctx = ctx.getContext("2d"); }
 
 
 Livewire.on('updateGraph', (grafica1, grafica2, grafica3, grafica4) => {
