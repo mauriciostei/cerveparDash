@@ -58,8 +58,8 @@ class Metricas extends Component
             }
         }
         $this->ingresoHora = Array('labels' => $labels, 'datasets' => [
-            Array('label' => 'Tier 1', 'data' => $t1, 'backgroundColor' => '#4EADEB'),
-            Array('label' => 'Tier 2', 'data' => $t2, 'backgroundColor' => '#3F86CB')
+            Array('label' => 'Tier 1', 'data' => $t1, 'backgroundColor' => '#37CBFF'),
+            Array('label' => 'Tier 2', 'data' => $t2, 'backgroundColor' => '#F6AB16')
         ]);
 
         $labels = [];
@@ -76,8 +76,8 @@ class Metricas extends Component
             }
         }
         $this->desvioMedio = Array('labels' => $labels, 'datasets' => [
-            Array('label' => 'Tier 1', 'data' => $t1, 'backgroundColor' => '#4EADEB'),
-            Array('label' => 'Tier 2', 'data' => $t2, 'backgroundColor' => '#3F86CB')
+            Array('label' => 'Tier 1', 'data' => $t1, 'backgroundColor' => '#37CBFF'),
+            Array('label' => 'Tier 2', 'data' => $t2, 'backgroundColor' => '#F6AB16')
         ]);
 
         $labels = [];
@@ -94,8 +94,8 @@ class Metricas extends Component
             }
         }
         $this->topDesvios = Array('labels' => $labels, 'datasets' => [
-            Array('label' => 'Tier 1', 'data' => $t1, 'backgroundColor' => '#4EADEB'),
-            Array('label' => 'Tier 2', 'data' => $t2, 'backgroundColor' => '#3F86CB')
+            Array('label' => 'Tier 1', 'data' => $t1, 'backgroundColor' => '#37CBFF'),
+            Array('label' => 'Tier 2', 'data' => $t2, 'backgroundColor' => '#F6AB16')
         ]);
 
         $labels = [];
@@ -115,8 +115,8 @@ class Metricas extends Component
             }
         }
         $this->cantidadAnomalias = Array('labels' => $labels, 'datasets' => [
-            Array('label' => 'Tier 1', 'data' => $t1, 'backgroundColor' => '#4EADEB'),
-            Array('label' => 'Tier 2', 'data' => $t2, 'backgroundColor' => '#3F86CB')
+            Array('label' => 'Tier 1', 'data' => $t1, 'backgroundColor' => '#37CBFF'),
+            Array('label' => 'Tier 2', 'data' => $t2, 'backgroundColor' => '#F6AB16')
         ]);
 
         $this->emit('updateGraph', $this->ingresoHora, $this->desvioMedio, $this->topDesvios, $this->cantidadAnomalias);

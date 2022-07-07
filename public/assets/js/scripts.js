@@ -22,7 +22,6 @@ Livewire.on('nuevaAlerta', (param) => {
     myToast.show();
 });
 
-
 // Accuracy grafica del inicio
 let myChart = null;
 var ctx = document.getElementById("accuracy-chart");
@@ -42,11 +41,10 @@ Livewire.on('accuracyGrap', (porcentaje) => {
         datasets: [{
             data: [ porcentaje, 100 - porcentaje ],
             backgroundColor: [
-            "#C765BB",
-            "#36BC4C",
+                "#37CBFF",
+                "#F6AB16",
             ],
             hoverOffset: 4,
-            color: '#FFF',
         }],
     };
 
@@ -59,9 +57,9 @@ Livewire.on('accuracyGrap', (porcentaje) => {
             datalabels: {
                 anchor: "center",
                 formatter: (dato) => dato + "%",
-                color: "white",
             }
         },
+        color: '#FFF',
         responsive: true,
         rotation: 270,
         circumference: 180,
@@ -94,12 +92,6 @@ let ctx3 = document.getElementById("top_desvios");
 let ctx4 = document.getElementById("cantidad_desvios");
 // if(ctx !== null){ ctx = ctx.getContext("2d"); }
 
-const colors = {
-    "Tier 1": "#C765BB",
-    "Tier 2": "#36BC4C",
-    "Tier 3": "#110D2B",
-    "Tier 4": "#040021"
-};
 
 Livewire.on('updateGraph', (grafica1, grafica2, grafica3, grafica4) => {
 
@@ -127,8 +119,9 @@ Livewire.on('updateGraph', (grafica1, grafica2, grafica3, grafica4) => {
             maintainAspectRatio: false,
             scales: {
                 xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
-                yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Cantidad' } }]
-            }
+                yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Cantidad' } }],
+            },
+            color: '#FFF',
         }
     });
 
@@ -143,7 +136,8 @@ Livewire.on('updateGraph', (grafica1, grafica2, grafica3, grafica4) => {
             scales: {
                 xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
                 yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Cantidad' } }]
-            }
+            },
+            color: '#FFF',
         }
     });
 
@@ -158,7 +152,8 @@ Livewire.on('updateGraph', (grafica1, grafica2, grafica3, grafica4) => {
             scales: {
                 xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
                 yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Cantidad' } }]
-            }
+            },
+            color: '#FFF',
         }
     });
 
@@ -173,7 +168,8 @@ Livewire.on('updateGraph', (grafica1, grafica2, grafica3, grafica4) => {
             scales: {
                 xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
                 yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Cantidad' } }]
-            }
+            },
+            color: '#FFF',
         }
     });
 

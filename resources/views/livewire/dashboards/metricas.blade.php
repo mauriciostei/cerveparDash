@@ -57,7 +57,7 @@
             <div class="col-12 col-lg-6 mt-4 mb-3">
                 <div class="card z-index-2 ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+                        <div class="bg-gradient-grafica shadow border-radius-lg py-3 pe-1">
                             <div class="chart">
                                 <canvas id="ingreso_moviles" class="chart-canvas" height="140"></canvas>
                             </div>
@@ -78,7 +78,7 @@
             <div class="col-12 col-lg-6 mt-4 mb-3">
                 <div class="card z-index-2 ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+                        <div class="bg-gradient-grafica shadow border-radius-lg py-3 pe-1">
                             <div class="chart">
                                 <canvas id="desvio_medio" class="chart-canvas" height="140"></canvas>
                             </div>
@@ -103,7 +103,7 @@
             <div class="col-12 col-lg-6 mt-4 mb-3">
                 <div class="card z-index-2 ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+                        <div class="bg-gradient-grafica shadow border-radius-lg py-3 pe-1">
                             <div class="chart">
                                 <canvas id="top_desvios" class="chart-canvas" height="140"></canvas>
                             </div>
@@ -124,7 +124,7 @@
             <div class="col-12 col-lg-6 mt-4 mb-3">
                 <div class="card z-index-2 ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+                        <div class="bg-gradient-grafica shadow border-radius-lg py-3 pe-1">
                             <div class="chart">
                                 <canvas id="cantidad_desvios" class="chart-canvas" height="140"></canvas>
                             </div>
