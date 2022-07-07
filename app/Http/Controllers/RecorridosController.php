@@ -63,7 +63,7 @@ class RecorridosController extends Controller
 
     public function ingresarMovil(Request $request){
 
-        $file =  $request->file('anpr');
+        $file =  $request->file('anpr_xml');
 
         $fo = fopen($file, 'r');
         $contenido = fread($fo, filesize($file));
