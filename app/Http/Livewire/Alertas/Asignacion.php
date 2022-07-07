@@ -24,6 +24,7 @@ class Asignacion extends Component
     public function mount($id){
         $this->alerta = Alertas::find($id);
         $this->problemas = Problemas::all();
+        $this->alerta->problemas_id = 1;
     }
 
     public function save(){

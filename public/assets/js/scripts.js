@@ -42,10 +42,11 @@ Livewire.on('accuracyGrap', (porcentaje) => {
         datasets: [{
             data: [ porcentaje, 100 - porcentaje ],
             backgroundColor: [
-            "#4EADEB",
-            "#3F86CB",
+            "#C765BB",
+            "#36BC4C",
             ],
             hoverOffset: 4,
+            color: '#FFF',
         }],
     };
 
@@ -55,11 +56,11 @@ Livewire.on('accuracyGrap', (porcentaje) => {
     options: {
         animation: false,
         plugins: {
-        datalabels: {
-            anchor: "center",
-            formatter: (dato) => dato + "%",
-            color: "black",
-        }
+            datalabels: {
+                anchor: "center",
+                formatter: (dato) => dato + "%",
+                color: "white",
+            }
         },
         responsive: true,
         rotation: 270,
@@ -94,8 +95,8 @@ let ctx4 = document.getElementById("cantidad_desvios");
 // if(ctx !== null){ ctx = ctx.getContext("2d"); }
 
 const colors = {
-    "Tier 1": "#A1B6DA",
-    "Tier 2": "#1C2F76",
+    "Tier 1": "#C765BB",
+    "Tier 2": "#36BC4C",
     "Tier 3": "#110D2B",
     "Tier 4": "#040021"
 };

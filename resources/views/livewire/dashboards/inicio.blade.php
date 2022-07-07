@@ -64,7 +64,7 @@
             <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                 <div class="card z-index-2 ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+                        <div class="bg-gradient-grafica shadow border-radius-lg py-3 pe-1">
                             <div class="chart">
                                 <canvas id="accuracy-chart" class="chart-canvas" height="80"></canvas>
                             </div>

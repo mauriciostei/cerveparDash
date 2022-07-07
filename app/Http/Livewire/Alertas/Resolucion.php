@@ -33,6 +33,7 @@ class Resolucion extends Component
         $this->soluciones = $this->problema->soluciones;
 
         $this->authUser = Auth::user();
+        $this->alerta->soluciones_id = 1;
     }
 
     public function save(){

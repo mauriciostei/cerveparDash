@@ -121,14 +121,16 @@ class RecorridosController extends Controller
                     $ultimoRecorrido->fin = $fechaHoraAct;
                     $ultimoRecorrido->save();
 
-                    // if($ultimoRecorrido->estado == 'OutOfTime'){
-                    //     $a = Alertas::where('recorridos_id', $ultimoRecorrido->id)->first();
-                    //     $a->visible = false;
-                    //     $a->inicio = $a->inicio ? $a->inicio : $fechaHoraAct;
-                    //     $a->fin = $fechaHoraAct;
-                    //     $a->observaciones = 'Alerta eliminada por Punto de control alcanzado';
-                    //     $a->save();
-                    // }
+                    if($ultimoRecorrido->estado == 'OutOfTime'){
+                        $a = Alertas::where('recorridos_id', $ultimoRecorrido->id)->first();
+                        if($a->users_id == null && $a->inicio == null){
+                            $a->visible = false;
+                            $a->inicio = $a->inicio ? $a->inicio : $fechaHoraAct;
+                            $a->fin = $fechaHoraAct;
+                            $a->observaciones = 'Alerta eliminada por Punto de control alcanzado';
+                            $a->save();
+                        }
+                    }
                 }
 
                 $recorrido->save();
