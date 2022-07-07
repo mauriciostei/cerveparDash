@@ -75,18 +75,19 @@ class RecorridosController extends Controller
         $sensor = Sensores::where('codigo', $xml->channelName)->where('activo', true)->first();
         $movil = Moviles::where('chapa', $xml->ANPR->licensePlate)->where('activo', true)->first();
         $fechaHoraAct = now();
-        $ultimoRecorrido = Recorridos::where('created_at', '>=', date('Y-m-d').' 00:00:00')->where('moviles_id', $movil->id)->where('fin', null)->first();
-        $conteoRecorridos = Recorridos::where('created_at', '>=', date('Y-m-d').' 00:00:00')->where('moviles_id', $movil->id)->count();
-        $viaje = 1;
-        if($conteoRecorridos){
-            if($ultimoRecorrido){
-                $viaje = $ultimoRecorrido->viaje;
-            }else{
-                $viaje = 2;
-            }
-        }
 
         if($movil && $sensor){
+            $ultimoRecorrido = Recorridos::where('created_at', '>=', date('Y-m-d').' 00:00:00')->where('moviles_id', $movil->id)->where('fin', null)->first();
+            $conteoRecorridos = Recorridos::where('created_at', '>=', date('Y-m-d').' 00:00:00')->where('moviles_id', $movil->id)->count();
+            $viaje = 1;
+            if($conteoRecorridos){
+                if($ultimoRecorrido){
+                    $viaje = $ultimoRecorrido->viaje;
+                }else{
+                    $viaje = 2;
+                }
+            }
+            
             $plan = Planes::where('fecha', now())->first();
             $planMovil = DB::table('choferes_moviles_planes')->where('moviles_id', $movil->id)->where('planes_id', $plan->id)->where('viaje', $viaje)->first();
 
