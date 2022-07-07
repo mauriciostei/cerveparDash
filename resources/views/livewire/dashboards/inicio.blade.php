@@ -15,7 +15,6 @@
                             <h4 class="mb-0"> {{$t1['total'] }} </h4>
                         </div>
                     </div>
-                    <hr class="dark horizontal my-0">
                     <div class="card-body">
                         <div>
                             On Time: <span class="text-success text-sm font-weight-bolder"> {{$t1['OnTime'] }} </span>
@@ -25,7 +24,6 @@
                         </div>
                     </div>
 
-                    <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
                         <p class="mb-0"><span class="text-success text-sm font-weight-bolder"> {{$t1['%'] }}% </span>de cumplimiento</p>
                     </div>
@@ -45,7 +43,6 @@
                             <h4 class="mb-0"> {{$t2['total'] }} </h4>
                         </div>
                     </div>
-                    <hr class="dark horizontal my-0">
                     <div class="card-body">
                         <div>
                             On Time: <span class="text-success text-sm font-weight-bolder"> {{$t2['OnTime'] }} </span>
@@ -54,7 +51,6 @@
                             Out of Time: <span class="text-danger text-sm font-weight-bolder"> {{$t2['OutOfTime'] }} </span>
                         </div>
                     </div>
-                    <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
                         <p class="mb-0"><span class="text-success text-sm font-weight-bolder"> {{$t2['%'] }}% </span>de cumplimiento</p>
                     </div>
@@ -87,12 +83,15 @@
 
                         <h6 class="mb-0 ">Accuracy de Camaras</h6>
                         <p class="text-sm ">Moviles captados segun planificacion</p>
-                        <p class="text-sm ">Planificado: {{$acuraccy[0]->plan}}, Pendiente: {{$acuraccy[0]->plan -$acuraccy[0]->ejecutado}}</p>
+                        
                         {{-- <hr class="dark horizontal">
                         <div class="d-flex ">
                             <i class="material-icons text-sm my-auto me-1">schedule</i>
                             <p class="mb-0 text-sm">Recien actualizada</p>
                         </div> --}}
+                    </div>
+                    <div class="card-footer pr-3 pt-0 pb-1">
+                        <p class="text-sm ">Planificado: {{$acuraccy[0]->plan}}, Pendiente: {{$acuraccy[0]->plan -$acuraccy[0]->ejecutado}}</p>
                     </div>
                 </div>
             </div>
