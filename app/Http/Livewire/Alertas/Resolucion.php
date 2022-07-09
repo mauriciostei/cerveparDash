@@ -43,6 +43,10 @@ class Resolucion extends Component
         $this->alerta->visible = false;
         $this->alerta->save();
 
+        $r = $this->alerta->recorridos;
+        $r->estado = 'Dismiss';
+        $r->save();
+
         session()->flash('message', 'Alerta resuelta!');
         return redirect()->to('/inicio');
     }
