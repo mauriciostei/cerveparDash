@@ -31,6 +31,11 @@ class Kernel extends ConsoleKernel
             $r->OutTime();
             $r->Dismiss();
         })->everyMinute();
+
+        $schedule->call(function(){
+            $r = new RecorridosController();
+            $r->validarAlertas();
+        })->daily();
     }
 
     /**

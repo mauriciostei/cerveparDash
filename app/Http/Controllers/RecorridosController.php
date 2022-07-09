@@ -61,6 +61,21 @@ class RecorridosController extends Controller
         }
     }
 
+    public function validarAlertas(){
+        $alertas = Alertas::where('created_at', '<', date('Y-m-d').' 00:00:00')->whereNull('users_id')->whereNull('fin')->get();
+        foreach($alertas as $a){
+            $a->visible = false;
+            $a->inicio = now();
+            $a->fin = now();
+            $a->observaciones = 'Alerta eliminada por cambio de dia';
+            $a->save();
+
+            $r = $a->recorridos;
+            $r->estado = 'Dismiss';
+            $r->save();
+        }
+    }
+
     public function ingresarMovil(Request $request){
 
         $file =  $request->file('anpr_xml');
