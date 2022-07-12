@@ -26,14 +26,14 @@
                     <br/>
 
                     <div class="d-flex flex-column p-2">
-                        <h6>Problemas de la Solucion</h6>
+                        <h6>Problemas de la Solución</h6>
                         @forelse($problemas as $problema)
                             <div class="form-check form-switch">
                                 <input wire:model="selectedP.{{ $problema->id }}" class="form-check-input" type="checkbox">
                                 <label class="form-check-label">{{$problema->nombre}}</label>
                             </div>
                         @empty
-                            <div class="">Lista Vacia!</div>
+                            <div class="">Lista Vacía!</div>
                         @endforelse
                     </div>
 

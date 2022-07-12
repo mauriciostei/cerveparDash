@@ -27,7 +27,7 @@
                             <td> {{$alerta->recorridos->target}}</td>
                         </tr>
                         <tr>
-                            <td>Ponderaccion:</td>
+                            <td>Ponderación:</td>
                             <td> {{$alerta->recorridos->ponderacion}}</td>
                         </tr>
                     </table>

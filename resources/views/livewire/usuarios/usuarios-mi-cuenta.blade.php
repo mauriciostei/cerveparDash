@@ -13,7 +13,7 @@
 
     <div class="row mt-5">
         <div class="col-12 col-lg-4">
-            Reinicio de contraseña de su <b>Usuario</b> una vez realizado el mismo el sistema se cerrada y podra ingresar con la contraseña nueva administrada
+            Reinicio de contraseña de su <b>Usuario</b> una vez realizado el mismo el sistema se cerrada y podrá ingresar con la contraseña nueva administrada
         </div>
 
         <div class="col-12 col-lg-8">

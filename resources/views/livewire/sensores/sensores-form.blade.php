@@ -19,7 +19,7 @@
                     <br/>
 
                     <div class="input-group input-group-static mt-3">
-                        <label>Codigo</label>
+                        <label>Código</label>
                         <input type="text" wire:model="sensor.codigo" class="form-control"/>
                     </div>
                     @error('sensor.codigo')

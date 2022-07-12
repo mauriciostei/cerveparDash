@@ -33,7 +33,7 @@
                                 <label class="form-check-label">{{$solucion->nombre}}</label>
                             </div>
                         @empty
-                            <div class="">Lista Vacia!</div>
+                            <div class="">Lista Vacía!</div>
                         @endforelse
                     </div>
 

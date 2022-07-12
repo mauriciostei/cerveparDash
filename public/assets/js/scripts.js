@@ -1,3 +1,20 @@
+// Ocultar barra del menu
+
+let botonToggle = document.querySelector('#toggleMenu');
+let sidebar = document.querySelector('#sidenav-main');
+let contenido = document.querySelector('.main-content');
+
+botonToggle.addEventListener('click', (event) => {
+    sidebar.toggleAttribute('hidden');
+
+    let show = sidebar.getAttribute("hidden");
+    if(show == null){
+        contenido.style.marginLeft = "274px";
+    }else{
+        contenido.style.marginLeft = "0px";
+    }
+});
+
 // Notificaciones
 Livewire.on('nuevaAlerta', (param) => {
     let caja = document.querySelector("#apartadoParaAlertas");
@@ -21,60 +38,6 @@ Livewire.on('nuevaAlerta', (param) => {
     var myToast = new bootstrap.Toast(element, { delay: 3000 });
     myToast.show();
 });
-
-// Accuracy grafica del inicio
-// let myChart = null;
-// var ctx = document.getElementById("accuracy-chart");
-
-/* Livewire.on('accuracyGrap', (porcentaje) => {
-
-    if (myChart !== null) {
-        myChart.destroy();
-    }
-
-    const pieData = {
-        labels: [
-            "Logrado",
-            "Pendiente",
-        ],
-        datasets: [{
-            data: [ porcentaje, 100 - porcentaje ],
-            backgroundColor: [
-                "#37CBFF",
-                "#F6AB16",
-            ],
-            hoverOffset: 4,
-        }],
-    };
-
-    myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: pieData,
-    options: {
-        animation: false,
-        plugins: {
-            datalabels: {
-                anchor: "center",
-                formatter: (dato) => dato + "%",
-            }
-        },
-        color: '#FFF',
-        responsive: true,
-        rotation: 270,
-        circumference: 180,
-        maintainAspectRatio: false,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-
-    }
-    });
-}) */
-
 
 // Grafico en pantalla de metricas
 let ingreso_moviles = null;

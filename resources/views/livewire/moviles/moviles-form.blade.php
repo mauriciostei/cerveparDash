@@ -3,7 +3,7 @@
         <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
-                    <h6 class="text-white text-capitalize ps-3">Formulario de Moviles</h6>
+                    <h6 class="text-white text-capitalize ps-3">Formulario de Móviles</h6>
                 </div>
             </div>
             <div class="card-body px-4 pb-2">
@@ -28,7 +28,7 @@
 
                     <br/>
 
-                    <h6>Tier del movil</h6>
+                    <h6>Tier del móvil</h6>
                     @forelse($tiers as $tier)
                         <div class="form-check">
                             <input class="form-check-input" wire:model="movil.tiers_id" value={{$tier->id}} type="radio" name="flexRadioDefault">

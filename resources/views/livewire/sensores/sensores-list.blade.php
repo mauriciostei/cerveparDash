@@ -43,7 +43,7 @@
                                     <tr>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0"> {{$sensor->nombre}} </p>
-                                            <p class="text-xs text-secondary mb-0">Codigo: {{$sensor->codigo}}
+                                            <p class="text-xs text-secondary mb-0">Código: {{$sensor->codigo}}
                                         </td>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0"> {{$sensor->puntos->nombre}} </p>

@@ -26,13 +26,13 @@
                                             Planes</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Moviles</th>
+                                            Móviles</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Choferes</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Acuraccy</th>
+                                            Accuracy</th>
                                         <th class="text-secondary opacity-7"></th>
                                     </tr>
                                 </thead>

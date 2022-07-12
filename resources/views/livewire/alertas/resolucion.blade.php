@@ -38,12 +38,12 @@
         @enderror
 
         <div class="text-center">
-            <button type="submit" class="btn bg-gradient-success w-100 my-4 mb-2">Resolver Anomalia</button>
+            <button type="submit" class="btn bg-gradient-success w-100 my-4 mb-2">Resolver Anomalía</button>
         </div>
 
     @else
         <hr/>
-        <div class="text-warning text-center text-bold">Tarea asignada para resolucion a: {{$usuario->name}} </div>
+        <div class="text-warning text-center text-bold">Tarea asignada para resolución a: {{$usuario->name}} </div>
     @endif
 
 </form>

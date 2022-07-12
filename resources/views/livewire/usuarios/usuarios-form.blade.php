@@ -35,7 +35,7 @@
                                 <label class="form-check-label">{{$perfil->nombre}}</label>
                             </div>
                         @empty
-                            <div class="">Lista Vacia!</div>
+                            <div class="">Lista Vacía!</div>
                         @endforelse
                     </div>
 

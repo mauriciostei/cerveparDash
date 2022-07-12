@@ -1,4 +1,11 @@
 <form wire:submit.prevent="subirArchivo">
+
+    <div class="text-sm pb-2">
+        Archivo de ejemplo para la importación 
+        <a href="{{ asset('assets') }}/imports/Planificacion.txt" download>
+            aquí
+        </a>
+    </div>
         
     <div class="input-group input-group-static mt-3">
         <label>Archivo</label>

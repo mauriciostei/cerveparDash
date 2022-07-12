@@ -10,7 +10,7 @@
                             <i class="material-icons opacity-10">filter_alt</i>
                         </div>
                         <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">Filtros en <span class="font-weight-bolder"> Metricas </span> </p>
+                            <p class="text-sm mb-0 text-capitalize">Filtros en <span class="font-weight-bolder"> Métricas </span> </p>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="row mt-3">
+        <div class="row mt-2">
 
             <div class="col-12 col-lg-6 mt-4 mb-3">
                 <div class="card z-index-2 ">
@@ -64,8 +64,8 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6 class="mb-0 ">Ingreso de moviles por hora</h6>
-                        <p class="text-sm ">Moviles que ingresaron segun su rango horario</p>
+                        <h6 class="mb-0 ">Ingreso de móviles por hora</h6>
+                        <p class="text-sm ">Móviles que ingresaron según su rango horario</p>
                         {{-- <hr class="dark horizontal">
                         <div class="d-flex ">
                             <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -85,8 +85,8 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6 class="mb-0 ">Tiempo medio de desvio por punto de control</h6>
-                        <p class="text-sm ">Expresado en minutos se ve el tiempo de desvio medio de cada movil</p>
+                        <h6 class="mb-0 ">Tiempo medio de desvió por punto de control</h6>
+                        <p class="text-sm ">Expresado en minutos se ve el tiempo de desvió medio de cada Movil</p>
                         {{-- <hr class="dark horizontal">
                         <div class="d-flex ">
                             <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -98,7 +98,7 @@
 
         </div>
 
-        <div class="row mt-3">
+        <div class="row mt-1">
 
             <div class="col-12 col-lg-6 mt-4 mb-3">
                 <div class="card z-index-2 ">
@@ -110,8 +110,8 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6 class="mb-0 ">Top 5 de desvios</h6>
-                        <p class="text-sm ">Expresado en minutos se visualizan los moviles con mayor promedio de desvio</p>
+                        <h6 class="mb-0 ">Top 5 de desvíos</h6>
+                        <p class="text-sm ">Expresado en minutos se visualizan los móviles con mayor promedio de desvió</p>
                         {{-- <hr class="dark horizontal">
                         <div class="d-flex ">
                             <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -131,8 +131,8 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6 class="mb-0 ">Anomalias por hora</h6>
-                        <p class="text-sm ">Cantidad de anomalias que se visualizan en los distintos rangos horarios</p>
+                        <h6 class="mb-0 ">Anomalías por hora</h6>
+                        <p class="text-sm ">Cantidad de anomalías que se visualizan en los distintos rangos horarios</p>
                         {{-- <hr class="dark horizontal">
                         <div class="d-flex ">
                             <i class="material-icons text-sm my-auto me-1">schedule</i>

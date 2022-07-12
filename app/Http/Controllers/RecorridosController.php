@@ -87,11 +87,12 @@ class RecorridosController extends Controller
         libxml_use_internal_errors(true);
         $xml = simplexml_load_string($contenido);
 
+        $fechaHora = date_parse($xml->dateTime);
         $sensor = Sensores::where('codigo', $xml->channelName)->where('activo', true)->first();
         $movil = Moviles::where('chapa', $xml->ANPR->licensePlate)->where('activo', true)->first();
-        $fechaHoraAct = now();
+        $fechaHoraAct = now(); 
 
-        if($movil && $sensor){
+        if($movil && $sensor && $fechaHora['hour']>7 && $fechaHora['hour']<22){
             $ultimoRecorrido = Recorridos::where('created_at', '>=', date('Y-m-d').' 00:00:00')->where('moviles_id', $movil->id)->where('fin', null)->first();
             $conteoRecorridos = Recorridos::where('created_at', '>=', date('Y-m-d').' 00:00:00')->where('moviles_id', $movil->id)->count();
             $viaje = 1;

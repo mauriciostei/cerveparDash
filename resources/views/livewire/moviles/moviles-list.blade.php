@@ -9,7 +9,7 @@
                         <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
                             <div class="row">
                                 <div class="col-lg-10">
-                                    <h6 class="text-white text-capitalize ps-3 pt-2">Lista de Moviles</h6>
+                                    <h6 class="text-white text-capitalize ps-3 pt-2">Lista de Móviles</h6>
                                 </div>
                                 <div class="col-lg-2">
                                     @can('moviles_crear')

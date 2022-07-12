@@ -28,7 +28,7 @@
                                     <tr>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Problemas</th>
+                                            Solución</th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Estado</th>
@@ -50,7 +50,7 @@
                                             @can('soluciones_editar')
                                             <a href="{{ route('solucionesForm', ['id' => $solucion->id]) }}"
                                                 class="text-secondary font-weight-bold text-xs"
-                                                data-toggle="tooltip" data-original-title="Editar Solucion">
+                                                data-toggle="tooltip" data-original-title="Editar Solución">
                                                 Editar
                                             </a>
                                             @endcan
