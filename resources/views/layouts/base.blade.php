@@ -54,7 +54,7 @@
 
 @push('js')
 <script src="{{ asset('assets') }}/js/plugins/chartjs.min.js"></script>
-<script src="{{ asset('/sw.js') }}"></script>
+<script src="{{ asset('assets') }}../sw.js"></script>
 <script>
     if (!navigator.serviceWorker.controller) {
         navigator.serviceWorker.register("/sw.js").then(function (reg) {
