@@ -10,8 +10,9 @@
                         <div class="card mt-4 mt-lg-0">
                             <div class="card-header p-3 pt-2">
                                 <div
-                                    class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="material-icons opacity-10">weekend</i>
+                                    class="icon icon-lg icon-shape bg-gradient-info shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                                    {{-- <i class="material-icons opacity-10">weekend</i> --}}
+                                    <img class="pt-2 pr-1" src="{{ asset('assets') }}/img/t1.png" alt="camion de t1" width="45px"/>
                                 </div>
                                 <div class="text-end pt-1">
                                     <p class="text-lg mb-0 text-capitalize">Móviles <span class="font-weight-bolder"> T1 </span> </p>
@@ -38,7 +39,8 @@
                             <div class="card-header p-3 pt-2">
                                 <div
                                     class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="material-icons opacity-10">person</i>
+                                    {{-- <i class="material-icons opacity-10">person</i> --}}
+                                    <img class="pt-2 pr-1" src="{{ asset('assets') }}/img/t2.png" alt="camion de t2" width="45px"/>
                                 </div>
                                 <div class="text-end pt-1">
                                     <p class="text-lg mb-0 text-capitalize">Móviles <span class="font-weight-bolder"> T2 </span> </p>
