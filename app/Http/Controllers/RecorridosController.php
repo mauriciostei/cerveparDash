@@ -92,7 +92,7 @@ class RecorridosController extends Controller
         $movil = Moviles::where('chapa', $xml->ANPR->licensePlate)->where('activo', true)->first();
         $fechaHoraAct = now(); 
 
-        if($fechaHora['hour']>7 && $fechaHora['hour']<22){
+        if($fechaHora['hour']>=7 && $fechaHora['hour']<=22){
             if($movil && $sensor){
                 $ultimoRecorrido = Recorridos::where('created_at', '>=', date('Y-m-d').' 00:00:00')->where('moviles_id', $movil->id)->where('fin', null)->first();
                 $conteoRecorridos = Recorridos::where('created_at', '>=', date('Y-m-d').' 00:00:00')->where('moviles_id', $movil->id)->count();
