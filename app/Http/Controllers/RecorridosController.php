@@ -92,71 +92,74 @@ class RecorridosController extends Controller
         $movil = Moviles::where('chapa', $xml->ANPR->licensePlate)->where('activo', true)->first();
         $fechaHoraAct = now(); 
 
-        if($movil && $sensor && $fechaHora['hour']>7 && $fechaHora['hour']<22){
-            $ultimoRecorrido = Recorridos::where('created_at', '>=', date('Y-m-d').' 00:00:00')->where('moviles_id', $movil->id)->where('fin', null)->first();
-            $conteoRecorridos = Recorridos::where('created_at', '>=', date('Y-m-d').' 00:00:00')->where('moviles_id', $movil->id)->count();
-            $viaje = 1;
-            if($conteoRecorridos){
-                if($ultimoRecorrido){
-                    $viaje = $ultimoRecorrido->viaje;
-                }else{
-                    $viaje = 2;
-                }
-            }
-            
-            $plan = Planes::where('fecha', now())->first();
-            $planMovil = DB::table('choferes_moviles_planes')->where('moviles_id', $movil->id)->where('planes_id', $plan->id)->where('viaje', $viaje)->first();
-
-            if($planMovil){
-
-                $recorrido = new Recorridos();
-                $recorrido->moviles_id = $movil->id;
-                $recorrido->choferes_id = $planMovil->choferes_id;
-                $recorrido->sensores_id = $sensor->id;
-                $recorrido->puntos_id = $sensor->puntos->id;
-                $recorrido->tiers_id = $movil->tiers_id;
-                $recorrido->inicio = $fechaHoraAct;
-                $recorrido->viaje = $viaje;
-
-                $actPunto = Puntos::find($sensor->puntos_id);
-                foreach($actPunto->tiers as $tier){
-                    if($tier->id == $movil->tiers_id){
-                        $recorrido->target = $this->addTime($tier->pivot->target, $fechaHoraAct);
-                        $recorrido->ponderacion = $this->addTime($tier->pivot->ponderacion, $recorrido->target);
-                        
-                        if($recorrido->target == $recorrido->inicio && $recorrido->ponderacion == $recorrido->inicio){
-                            $recorrido->fin = $fechaHoraAct;
-                        }
-                        break;
+        if($fechaHora['hour']>7 && $fechaHora['hour']<22){
+            if($movil && $sensor){
+                $ultimoRecorrido = Recorridos::where('created_at', '>=', date('Y-m-d').' 00:00:00')->where('moviles_id', $movil->id)->where('fin', null)->first();
+                $conteoRecorridos = Recorridos::where('created_at', '>=', date('Y-m-d').' 00:00:00')->where('moviles_id', $movil->id)->count();
+                $viaje = 1;
+                if($conteoRecorridos){
+                    if($ultimoRecorrido){
+                        $viaje = $ultimoRecorrido->viaje;
+                    }else{
+                        $viaje = 2;
                     }
                 }
+                
+                $plan = Planes::where('fecha', now())->first();
+                $planMovil = DB::table('choferes_moviles_planes')->where('moviles_id', $movil->id)->where('planes_id', $plan->id)->where('viaje', $viaje)->first();
 
-                if($ultimoRecorrido){
-                    $recorrido->recorridos_id = $ultimoRecorrido->id;
+                if($planMovil){
 
-                    $ultimoRecorrido->fin = $fechaHoraAct;
-                    $ultimoRecorrido->save();
+                    $recorrido = new Recorridos();
+                    $recorrido->moviles_id = $movil->id;
+                    $recorrido->choferes_id = $planMovil->choferes_id;
+                    $recorrido->sensores_id = $sensor->id;
+                    $recorrido->puntos_id = $sensor->puntos->id;
+                    $recorrido->tiers_id = $movil->tiers_id;
+                    $recorrido->inicio = $fechaHoraAct;
+                    $recorrido->viaje = $viaje;
 
-                    if($ultimoRecorrido->estado == 'OutOfTime'){
-                        $a = Alertas::where('recorridos_id', $ultimoRecorrido->id)->first();
-                        if($a->users_id == null && $a->inicio == null){
-                            $a->visible = false;
-                            $a->inicio = $a->inicio ? $a->inicio : $fechaHoraAct;
-                            $a->fin = $fechaHoraAct;
-                            $a->observaciones = 'Alerta eliminada por Punto de control alcanzado';
-                            $a->save();
+                    $actPunto = Puntos::find($sensor->puntos_id);
+                    foreach($actPunto->tiers as $tier){
+                        if($tier->id == $movil->tiers_id){
+                            $recorrido->target = $this->addTime($tier->pivot->target, $fechaHoraAct);
+                            $recorrido->ponderacion = $this->addTime($tier->pivot->ponderacion, $recorrido->target);
+                            
+                            if($recorrido->target == $recorrido->inicio && $recorrido->ponderacion == $recorrido->inicio){
+                                $recorrido->fin = $fechaHoraAct;
+                            }
+                            break;
                         }
                     }
+
+                    if($ultimoRecorrido){
+                        $recorrido->recorridos_id = $ultimoRecorrido->id;
+
+                        $ultimoRecorrido->fin = $fechaHoraAct;
+                        $ultimoRecorrido->save();
+
+                        if($ultimoRecorrido->estado == 'OutOfTime'){
+                            $a = Alertas::where('recorridos_id', $ultimoRecorrido->id)->first();
+                            if($a->users_id == null && $a->inicio == null){
+                                $a->visible = false;
+                                $a->inicio = $a->inicio ? $a->inicio : $fechaHoraAct;
+                                $a->fin = $fechaHoraAct;
+                                $a->observaciones = 'Alerta eliminada por Punto de control alcanzado';
+                                $a->save();
+                            }
+                        }
+                    }
+
+                    $recorrido->save();
+
+                    return $recorrido;
                 }
-
-                $recorrido->save();
-
-                return $recorrido;
+                return response()->json([ 'mensaje' => 'Movil no se encuentra en la planificación de hoy' ]);
             }
-            return response()->json([ 'mensaje' => 'Movil no se encuentra en la planificación de hoy' ]);
+            return response()->json([ 'mensaje' => 'Movil o Sensor no se encuentran en la base' ]);
         }
-
-        return response()->json([ 'mensaje' => 'Movil o Sensor no se encuentran en la base' ]);
+        return response()->json([ 'mensaje' => 'Horario no permitido para la planificación' ]);
+        
     }
 
 
