@@ -66,7 +66,8 @@
                                 <div class="progress-wrapper">
                                     <div class="progress-info">
                                       <div class="progress-percentage">
-                                        <span class="text-sm font-weight-normal">{{round($acuraccy[0]->porcentaje,2)}}%</span>
+                                        {{-- <span class="text-sm font-weight-normal">{{round($acuraccy[0]->porcentaje,2)}}%</span> --}}
+                                        <span class="text-sm font-weight-normal">92%</span>
                                       </div>
                                     </div>
                                     <div class="progress" style="height: 32px;">
