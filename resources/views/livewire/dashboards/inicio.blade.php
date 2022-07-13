@@ -68,7 +68,7 @@
                                       </div>
                                     </div>
                                     <div class="progress" style="height: 32px;">
-                                        <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%; height: 32px;"></div>
+                                        <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="{{$acuraccy[0]->porcentaje}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$acuraccy[0]->porcentaje}}%; height: 32px;"></div>
                                     </div>
                                 </div>
                                 <br/>
