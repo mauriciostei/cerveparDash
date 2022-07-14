@@ -66,14 +66,12 @@
                                 <div class="progress-wrapper">
                                     <div class="progress-info">
                                       <div class="progress-percentage">
-                                        {{-- <span class="text-sm font-weight-normal">{{round($acuraccy[0]->porcentaje,2)}}%</span> --}}
-                                        <span class="text-sm font-weight-normal">92%</span>
+                                        <span class="text-sm font-weight-normal">{{round($acuraccy[0]->porcentaje,2)}}%</span>
                                       </div>
                                     </div>
                                     <div class="progress" style="height: 32px;">
-                                        {{-- <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="{{$acuraccy[0]->porcentaje}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$acuraccy[0]->porcentaje}}%; height: 32px;"></div>
-                                         --}}
-                                        <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" style="width: 92%; height: 32px;"></div>
+                                        <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="{{$acuraccy[0]->porcentaje}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$acuraccy[0]->porcentaje}}%; height: 32px;"></div>
+                                        
                                     </div>
                                 </div>
                                 <br/>
