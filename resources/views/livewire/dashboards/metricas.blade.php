@@ -13,8 +13,7 @@
                             <p class="text-sm mb-0 text-capitalize">Filtros en <span class="font-weight-bolder"> Métricas </span> </p>
                         </div>
                     </div>
-                    <hr class="dark horizontal my-0">
-                    <div class="card-body">
+                    <div class="card-body pt-2">
 
                         <div class="row">
 

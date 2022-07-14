@@ -5,6 +5,7 @@ use App\Http\Livewire\Alertas\AlertasForm;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Choferes\ChoferesForm;
 use App\Http\Livewire\Choferes\ChoferesList;
+use App\Http\Livewire\Dashboards\ControlMoviles;
 use App\Http\Livewire\Dashboards\Inicio;
 use App\Http\Livewire\Dashboards\Metricas;
 use App\Http\Livewire\Moviles\MovilesForm;
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('inicio', Inicio::class)->name('inicio');
     Route::get('metricas', Metricas::class)->name('metricas');
+    Route::get('controlMoviles', ControlMoviles::class)->name('controlMoviles');
 
     Route::get('usuarios', UsuariosList::class)->name('usuariosList');
     Route::get('usuarios/{id}', UsuariosForm::class)->name('usuariosForm');
