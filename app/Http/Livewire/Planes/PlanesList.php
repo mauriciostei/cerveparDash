@@ -4,15 +4,18 @@ namespace App\Http\Livewire\Planes;
 
 use App\Models\Planes;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PlanesList extends Component
 {
-    public $planes;
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
 
     public function render()
     {
-        //$this->planes = Planes::all();
-        $this->planes = Planes::select(['planes.*', 'acuraccy.porcentaje'])->join('acuraccy', 'acuraccy.id', 'planes.id')->get();
-        return view('livewire.planes.planes-list');
+        return view('livewire.planes.planes-list', [
+            'planes' => Planes::orderBy('planes.fecha', 'desc')->paginate(10)
+        ]);
     }
 }

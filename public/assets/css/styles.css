@@ -6,3 +6,7 @@ input, select, textarea{
     max-height: 80px !important;
     height: 80px !important;
 }
+
+option{
+    background-color: #1A2135 !important;
+}

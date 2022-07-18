@@ -101,7 +101,7 @@
                             <div class="card-body px-0 m-2">
                                 <div class="table-responsive">
         
-                                    <table class="table table-sm align-items-center mb-0">
+                                    <table class="table table-sm table-hover align-items-center mb-0">
                                         <thead>
                                             <tr>
                                                 <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 text-center"> Hora Inicio </th>

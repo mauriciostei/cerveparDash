@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Planes extends Model
 {
@@ -15,5 +16,10 @@ class Planes extends Model
 
     public function moviles(){
         return $this->belongsToMany(Moviles::class, 'choferes_moviles_planes', 'planes_id', 'moviles_id')->withPivot(['viaje', 'choferes_id'])->withTimestamps();
+    }
+
+    public function acuraccy(){
+        $res = DB::table('acuraccy')->where('fecha', $this->fecha)->first();
+        return $res->porcentaje;
     }
 }

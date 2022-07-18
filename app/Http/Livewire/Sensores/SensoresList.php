@@ -4,14 +4,17 @@ namespace App\Http\Livewire\Sensores;
 
 use App\Models\Sensores;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class SensoresList extends Component
 {
-    public $sensores;
+    use WithPagination;
 
-    public function render()
-    {
-        $this->sensores = Sensores::all();
-        return view('livewire.sensores.sensores-list');
+    protected $paginationTheme = 'bootstrap';
+
+    public function render(){
+        return view('livewire.sensores.sensores-list', [
+            'sensores' => Sensores::orderBy('id')->paginate(10)
+        ]);
     }
 }

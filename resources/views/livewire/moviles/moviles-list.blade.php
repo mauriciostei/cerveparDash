@@ -22,6 +22,14 @@
                         </div>
                     </div>
                     <div class="card-body px-4 pb-2">
+
+
+                        <div class="input-group input-group-static">
+                            <input type="text" wire:model="nombre" placeholder="Nombre móvil" class="form-control"/>
+                        </div>
+
+                        <br/>
+
                         <div class="table-responsive p-0">
                             <table class="table align-items-center mb-0">
                                 <thead>
@@ -74,12 +82,14 @@
 
                                     @empty
                                         <tr>
-                                            <td colspan="3" class="align-middle text-center">Sin datos</td>
+                                            <td colspan="5" class="align-middle text-center">Sin datos</td>
                                         </tr>
                                     @endforelse
                                     
                                 </tbody>
                             </table>
+                            <br/>
+                            {{$moviles->links()}}
                         </div>
                     </div>
                 </div>

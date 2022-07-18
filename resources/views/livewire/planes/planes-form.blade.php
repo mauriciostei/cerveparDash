@@ -55,6 +55,7 @@
                                         <th>Movil</th>
                                         <th>Chofer</th>
                                         <th>Viaje</th>
+                                        <th>Captado</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -64,6 +65,11 @@
                                             <td> {{$m->nombre}} </td>
                                             <td> {{$choferes->find($m->pivot->choferes_id)->nombre}} </td>
                                             <td> {{$m->pivot->viaje}} </td>
+                                            <td>
+                                                @if($recorridos->where('moviles_id', $m->id)->first())
+                                                    OK
+                                                @endif
+                                            </td>
                                             <td>
                                                 <button wire:click.prevent="borrar({{$m->id}}, {{$m->pivot->choferes_id}}, {{$m->pivot->viaje}})" class="btn btn-success">Eliminar</button>
                                             </td>

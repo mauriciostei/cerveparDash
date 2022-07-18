@@ -4,14 +4,18 @@ namespace App\Http\Livewire\Moviles;
 
 use App\Models\Moviles;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class MovilesList extends Component
 {
-    public $moviles;
+    use WithPagination;
 
-    public function render()
-    {
-        $this->moviles = Moviles::all();
-        return view('livewire.moviles.moviles-list');
+    protected $paginationTheme = 'bootstrap';
+
+    public $nombre;
+
+    public function render(){
+        $nom = strtoupper(trim($this->nombre));
+        return view('livewire.moviles.moviles-list', ['moviles' => Moviles::where('nombre', 'like', '%'.$nom.'%')->paginate(10)]);
     }
 }

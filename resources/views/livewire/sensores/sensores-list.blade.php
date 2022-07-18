@@ -72,6 +72,8 @@
                                     
                                 </tbody>
                             </table>
+                            <br/>
+                            {{ $sensores->links() }}
                         </div>
                     </div>
                 </div>

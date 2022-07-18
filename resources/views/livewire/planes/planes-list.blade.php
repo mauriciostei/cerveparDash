@@ -49,7 +49,7 @@
                                             <p class="text-xs font-weight-bold mb-0"> {{$plan->choferes->unique()->count()}} </p>
                                         </td>
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0"> {{round($plan->porcentaje,0)}} % </p>
+                                            <p class="text-xs font-weight-bold mb-0"> {{round($plan->acuraccy(),0)}} % </p>
                                         </td>
                                         <td class="align-middle">
                                             @if($plan->fecha >= date('Y-m-d'))
@@ -72,6 +72,8 @@
                                     
                                 </tbody>
                             </table>
+                            <br/>
+                            {{ $planes->links() }}
                         </div>
                     </div>
                 </div>
