@@ -61,7 +61,6 @@
             console.log("Service worker has been registered for scope: " + reg.scope);
         });
     }
-
 </script>
 <script src="{{ asset('assets') }}/js/scripts.js"></script>
 

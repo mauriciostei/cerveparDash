@@ -103,33 +103,28 @@
         
                                     <table class="table table-sm table-hover align-items-center mb-0">
                                         <thead>
-                                            <tr>
-                                                <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 text-center"> Hora Inicio </th>
-                                                <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 text-center"> Movil </th>
-                                                <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 text-center"> Sitio </th>
-                                                <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 text-center"> Duración </th>
-                                                <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 text-center"> Target </th>
-                                                <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 text-center"> Estado </th>
-                                            </tr>
+                                            @livewire('dashboards.statics.filters')
                                         </thead>
                                         <tbody>
                                             @forelse($recorridos  as $r)
-                                                <tr>
-                                                    <td class="text-secondary text-sm text-center"> {{explode(' ',$r->inicio)[1]}} </td>
-                                                    <td class="text-secondary text-sm text-center"> {{$r->moviles->nombre}} </td>
-                                                    <td class="text-secondary text-sm text-center"> {{$r->puntos->nombre}} </td>
-                                                    <td class="text-secondary text-sm text-center"> {{$this->difTime($r->inicio)}} </td>
-                                                    <td class="text-secondary text-sm text-center"> {{explode(' ',$r->target)[1]}} </td>
-                                                    <td class="text-secondary text-sm text-center">
-                                                        @if($r->estado == 'OnTime')
-                                                            <span class="text-success">{{$r->estado}}</span>
-                                                        @elseif($r->estado == 'OutOfTime')
-                                                            <span class="text-danger">{{$r->estado}}</span>
-                                                        @else
-                                                            <span class="text-warning">{{$r->estado}}</span>
-                                                        @endif
-                                                    </td>
-                                                </tr>
+                                                @if(in_array($r->puntos_id, $puntosSeleccionados) && in_array($r->moviles_id, $movilesSeleccionados) && in_array($r->estado, $estadosSeleccionados))
+                                                    <tr>
+                                                        <td class="text-secondary text-sm text-center"> {{explode(' ',$r->inicio)[1]}} </td>
+                                                        <td class="text-secondary text-sm text-center"> {{$r->moviles->nombre}} </td>
+                                                        <td class="text-secondary text-sm text-center"> {{$r->puntos->nombre}} </td>
+                                                        <td class="text-secondary text-sm text-center"> {{$this->difTime($r->inicio)}} </td>
+                                                        <td class="text-secondary text-sm text-center"> {{explode(' ',$r->target)[1]}} </td>
+                                                        <td class="text-secondary text-sm text-center">
+                                                            @if($r->estado == 'OnTime')
+                                                                <span class="text-success">{{$r->estado}}</span>
+                                                            @elseif($r->estado == 'OutOfTime')
+                                                                <span class="text-danger">{{$r->estado}}</span>
+                                                            @else
+                                                                <span class="text-warning">{{$r->estado}}</span>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endif
                                             @empty
                                                 <tr>
                                                     <td colspan="5">Tabla vacía, esperando datos...</td>

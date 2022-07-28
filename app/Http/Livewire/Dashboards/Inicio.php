@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Dashboards;
 
+use App\Models\Moviles;
+use App\Models\Puntos;
 use App\Models\Recorridos;
 use App\Models\Tiers;
 use DateTime;
@@ -20,6 +22,23 @@ class Inicio extends Component
 
     public $accuracy;
     public $accuracyLogrado;
+
+    public $movilesSeleccionados;
+    public $puntosSeleccionados;
+    public $estadosSeleccionados;
+    protected $listeners = ['actualizarTable'];
+
+    public function actualizarTable($datos){
+        $this->puntosSeleccionados = $datos['puntos'];
+        $this->movilesSeleccionados = $datos['moviles'];
+        $this->estadosSeleccionados = $datos['estados'];
+    }
+
+    public function mount(){
+        $this->puntosSeleccionados = Puntos::pluck('id')->toArray();
+        $this->movilesSeleccionados = Moviles::pluck('id')->toArray();
+        $this->estadosSeleccionados = Array('OnTime', 'Dismiss', 'OutOfTime');
+    }
 
     public function render()
     {
