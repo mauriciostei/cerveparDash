@@ -53,7 +53,6 @@ class RecorridosController extends Controller
 
                 $a = Alertas::where('recorridos_id', $r->id)->first();
                 $a->visible = false;
-                $a->inicio = now();
                 $a->fin = now();
                 $a->observaciones = 'Alerta eliminada por sobrepaso de Ponderación';
                 $a->save();
