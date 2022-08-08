@@ -64,7 +64,6 @@ class RecorridosController extends Controller
         $alertas = Alertas::where('created_at', '<', date('Y-m-d').' 00:00:00')->whereNull('users_id')->whereNull('fin')->get();
         foreach($alertas as $a){
             $a->visible = false;
-            $a->inicio = now();
             $a->fin = now();
             $a->observaciones = 'Alerta eliminada por cambio de dia';
             $a->save();
@@ -141,7 +140,7 @@ class RecorridosController extends Controller
                             $a = Alertas::where('recorridos_id', $ultimoRecorrido->id)->first();
                             if($a->users_id == null && $a->inicio == null){
                                 $a->visible = false;
-                                $a->inicio = $a->inicio ? $a->inicio : $fechaHoraAct;
+                                //$a->inicio = $a->inicio ? $a->inicio : $fechaHoraAct;
                                 $a->fin = $fechaHoraAct;
                                 $a->observaciones = 'Alerta eliminada por Punto de control alcanzado';
                                 $a->save();

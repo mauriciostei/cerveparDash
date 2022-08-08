@@ -54,7 +54,16 @@
        
         @livewire('dashboards.componentes.table-alertas', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
 
-        @livewire('dashboards.componentes.table-alertas-agrupado', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+        <div class="d-flex flex-column flex-lg-row justify-content-between">
+            <div class="w-100 w-lg-50 me-0 me-lg-2">
+                @livewire('dashboards.componentes.table-alertas-agrupado', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+            </div>
+            <div class="w-100 w-lg-50 ms-0 ms-lg-2">
+                @livewire('dashboards.componentes.table-alertas-top', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+            </div>
+        </div>
+
+        
 
     </div>
 </div>
