@@ -1,5 +1,9 @@
 <div wire:poll.1s class="card mt-2">
-    <div class="card-body">
+    <div class="card-header d-flex flex-row justify-content-between mb-0">
+        <h5 class="mb-0 mt-0">Alertas en curso</h5>
+        <button class="btn btn-primary shadow mb-0 mt-0" wire:click.prevent="historial">Historial</button>
+    </div>
+    <div class="card-body mt-0">
 
         <div class="table-responsive">
             <table class="table table-hover table-sm">
@@ -47,19 +51,19 @@
                             </td>
                             <td>
                                 @if($item->recorridos->estado == 'Dismiss')
-                                    <span class="text-danger">Alerta Eliminada (Dismiss)</span>
+                                    <span class="text-danger"> {{$item->getEstado()}} </span>
                                 @endif
                                 @if($item->recorridos->estado == 'OutOfTime' && !$item->visible && !$item->users_id)
-                                    <span class="text-danger">Alerta Eliminada (PDC alcanzado)</span>
+                                    <span class="text-danger"> {{$item->getEstado()}} </span>
                                 @endif
                                 @if($item->recorridos->estado == 'OutOfTime' && $item->users_id && !$item->fin)
-                                    <span class="text-warning">En curso</span>
+                                    <span class="text-warning"> {{$item->getEstado()}} </span>
                                 @endif
                                 @if($item->recorridos->estado == 'OutOfTime' && $item->soluciones_id)
-                                    <span class="text-success">Resuelto</span>
+                                    <span class="text-success"> {{$item->getEstado()}} </span>
                                 @endif
                                 @if($item->recorridos->estado == 'OutOfTime' && !$item->fin && !$item->users_id)
-                                    <span class="text-warning">Sin Asignar</span>
+                                    <span class="text-warning"> {{$item->getEstado()}} </span>
                                 @endif
                             </td>
                         </tr>

@@ -42,6 +42,56 @@ class TableAlertas extends Component
         return $elapsed;
     }
 
+    public function historial(){
+        $alertas = Alertas::orderBy('id', 'DESC')->take(2000)->get();
+
+        $fileName = 'HistorialAlertas.xls';
+
+        $headers = array(
+            "Content-type"        => "application/vnd.ms-excel;",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Expires"             => "0"
+        );
+
+        $columns = array(
+            'Movil'
+            , 'Chofer'
+            , 'Zona'
+            , 'Ultima cámara'
+            , 'Hora Detectada'
+            , 'Tiempo Retraso'
+            , 'Anomalía'
+            , 'Solución'
+            , 'Resuelto por'
+            , 'Estado'
+        );
+
+        $callback = function() use($alertas, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns,"\t");
+
+            foreach ($alertas as $m) {
+                $linea = array(
+                    $m->recorridos->moviles->nombre
+                    , '-'
+                    , $m->recorridos->puntos->nombre
+                    , $m->recorridos->sensores->nombre
+                    , $m->inicio
+                    , $m->fin ? $m->fin : $this->difTime($m->inicio)
+                    , $m->problemas_id ? $m->problemas->nombre : '-'
+                    , $m->soluciones_id ? $m->soluciones->nombre : '-'
+                    , $m->users_id ? $m->users->name : '-'
+                    , $m->getEstado()
+                );
+                fputcsv($file, $linea,"\t");
+            }
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
     public function render(){
         return view('livewire.dashboards.componentes.table-alertas', [
             'alertas' => Alertas::select('alertas.*')

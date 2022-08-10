@@ -24,4 +24,22 @@ class Alertas extends Model
     public function users(){
         return $this->belongsTo(User::class);
     }
+
+    public function getEstado(){
+        if($this->recorridos->estado == 'Dismiss'){
+            return 'Alerta Eliminada (Dismiss)';
+        }
+        if($this->recorridos->estado == 'OutOfTime' && !$this->visible && !$this->users_id && $this->fin){
+            return 'Alerta Eliminada (PDC alcanzado)';
+        }
+        if($this->recorridos->estado == 'OutOfTime' && $this->users_id && !$this->fin){
+            return 'En curso';
+        }
+        if($this->recorridos->estado == 'OutOfTime' && $this->soluciones_id){
+            return 'Resuelto';
+        }
+        if($this->recorridos->estado == 'OutOfTime' && !$this->fin && !$this->users_id){
+            return 'Sin Asignar';
+        }
+    }
 }
