@@ -60,12 +60,14 @@ class TableAlertas extends Component
             , 'Zona'
             , 'Ultima cámara'
             , 'Hora Detectada'
-            , 'Tiempo Retraso (Alerta)'
-            , 'Tiempo Retraso (Trabajos)'
+            , 'Hora Fin'
+            , 'Inicio Vs Tratamiento'
+            , 'Tratamiento Vs Fin'
             , 'Anomalía'
             , 'Solución'
             , 'Resuelto por'
             , 'Estado'
+            , 'Observaciones'
         );
 
         $callback = function() use($alertas, $columns) {
@@ -73,6 +75,11 @@ class TableAlertas extends Component
             fputcsv($file, $columns,"\t");
 
             foreach ($alertas as $m) {
+
+                $creado = new DateTime($m->created_at);
+                $inicio = new DateTime($m->inicio);
+                $fin = new DateTime($m->fin);
+
                 $linea = array(
                     $m->recorridos->moviles->nombre
                     , '-'
@@ -80,11 +87,13 @@ class TableAlertas extends Component
                     , $m->recorridos->sensores->nombre
                     , $m->created_at
                     , $m->fin ? $m->fin : $this->difTime($m->created_at)
-                    , $m->inicio ? $this->difTime($m->inicio) : ''
+                    , $m->inicio ? $creado->diff($inicio)->format('%H:%i:%s') : ''
+                    , $m->inicio && $m->fin ? $inicio->diff($fin)->format('%H:%i:%s') : ''
                     , $m->problemas_id ? $m->problemas->nombre : '-'
                     , $m->soluciones_id ? $m->soluciones->nombre : '-'
                     , $m->users_id ? $m->users->name : '-'
                     , $m->getEstado()
+                    , $m->observaciones
                 );
                 fputcsv($file, $linea,"\t");
             }
