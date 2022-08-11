@@ -60,7 +60,8 @@ class TableAlertas extends Component
             , 'Zona'
             , 'Ultima cámara'
             , 'Hora Detectada'
-            , 'Tiempo Retraso'
+            , 'Tiempo Retraso (Alerta)'
+            , 'Tiempo Retraso (Trabajos)'
             , 'Anomalía'
             , 'Solución'
             , 'Resuelto por'
@@ -77,8 +78,9 @@ class TableAlertas extends Component
                     , '-'
                     , $m->recorridos->puntos->nombre
                     , $m->recorridos->sensores->nombre
-                    , $m->inicio
-                    , $m->fin ? $m->fin : $this->difTime($m->inicio)
+                    , $m->created_at
+                    , $m->fin ? $m->fin : $this->difTime($m->created_at)
+                    , $m->inicio ? $this->difTime($m->inicio) : ''
                     , $m->problemas_id ? $m->problemas->nombre : '-'
                     , $m->soluciones_id ? $m->soluciones->nombre : '-'
                     , $m->users_id ? $m->users->name : '-'
