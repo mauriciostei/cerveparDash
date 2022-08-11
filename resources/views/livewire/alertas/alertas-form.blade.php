@@ -19,6 +19,10 @@
                             <td> {{$alerta->recorridos->sensores->puntos->nombre}}</td>
                         </tr>
                         <tr>
+                            <td>Cámara detectada:</td>
+                            <td> {{$alerta->recorridos->sensores->nombre}}</td>
+                        </tr>
+                        <tr>
                             <td>Hora de inicio:</td>
                             <td> {{$alerta->recorridos->inicio}}</td>
                         </tr>

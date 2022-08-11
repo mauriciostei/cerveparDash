@@ -66,12 +66,15 @@
                                 <div class="progress-wrapper">
                                     <div class="progress-info">
                                       <div class="progress-percentage">
-                                        <span class="text-sm font-weight-normal">{{round($acuraccy[0]->porcentaje,2)}}%</span>
-                                      </div>
+                                        @if($acuraccy[0] ?? '')
+                                            <span class="text-sm font-weight-normal">{{round($acuraccy[0]->porcentaje,2)}}%</span>
+                                        @endif
+                                        </div>
                                     </div>
                                     <div class="progress" style="height: 32px;">
-                                        <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="{{$acuraccy[0]->porcentaje}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$acuraccy[0]->porcentaje}}%; height: 32px;"></div>
-                                        
+                                        @if($acuraccy[0] ?? '')
+                                            <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="{{$acuraccy[0]->porcentaje}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$acuraccy[0]->porcentaje}}%; height: 32px;"></div>
+                                        @endif
                                     </div>
                                 </div>
                                 <br/>
@@ -79,7 +82,9 @@
                                 <p class="text-sm ">Móviles captados según planificación</p>
                             </div>
                             <div class="card-footer pr-3 pt-0 pb-1">
-                                <p class="text-sm ">Planificado: {{$acuraccy[0]->plan}}, Pendiente: {{$acuraccy[0]->plan -$acuraccy[0]->ejecutado}}</p>
+                                @if($acuraccy[0] ?? '')
+                                    <p class="text-sm ">Planificado: {{$acuraccy[0]->plan}}, Pendiente: {{$acuraccy[0]->plan -$acuraccy[0]->ejecutado}}</p>
+                                @endif
                             </div>
                         </div>
                     </div>

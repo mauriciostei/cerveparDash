@@ -20,7 +20,7 @@ class Inicio extends Component
     public $t1Viaje = 1;
     public $t2Viaje = 1;
 
-    public $accuracy;
+    public $acuraccy;
     public $accuracyLogrado;
 
     public $movilesSeleccionados;
@@ -87,6 +87,7 @@ class Inicio extends Component
         $this->recorridos = Recorridos::
             where('created_at', '>=', date('Y-m-d').' 00:00:00')
             ->where('fin', null)
+            ->orderBy('id', 'desc')
         ->get();
 
         $this->tiers = Tiers::all();

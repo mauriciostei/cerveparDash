@@ -30,7 +30,7 @@ class RecorridosController extends Controller
 
                 $a = new Alertas();
                 $a->recorridos_id = $r->id;
-                $a->inicio = now();
+                //$a->inicio = now();
                 $a->save();
                 //event(new NewAlert($a));
             }

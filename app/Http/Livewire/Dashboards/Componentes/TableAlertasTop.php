@@ -31,11 +31,11 @@ class TableAlertasTop extends Component
 
     public function render()
     {
-        $sinAsignar = Alertas::select(DB::raw("'Sin Asignar'"), DB::raw('count(*) as cantidad'), DB::raw('avg(alertas.fin - alertas.inicio) as tiempo_medio'))
+        $sinAsignar = Alertas::select(DB::raw("'Sin Asignar'"), DB::raw('count(*) as cantidad'), DB::raw('avg(alertas.fin - alertas.created_at) as tiempo_medio'))
             ->join('recorridos', 'alertas.recorridos_id', '=', 'recorridos.id')
             ->whereIn('tiers_id', $this->tiers)
-            ->whereDate('alertas.inicio', '>=', $this->desde)
-            ->whereDate('alertas.inicio', '<=', $this->hasta)
+            ->whereDate('alertas.created_at', '>=', $this->desde)
+            ->whereDate('alertas.created_at', '<=', $this->hasta)
             ->where('alertas.problemas_id', null)
         ;
 
@@ -43,8 +43,8 @@ class TableAlertasTop extends Component
             ->join('recorridos', 'alertas.recorridos_id', '=', 'recorridos.id')
             ->join('problemas', 'alertas.problemas_id', '=', 'problemas.id')
             ->whereIn('tiers_id', $this->tiers)
-            ->whereDate('alertas.inicio', '>=', $this->desde)
-            ->whereDate('alertas.inicio', '<=', $this->hasta)
+            ->whereDate('alertas.created_at', '>=', $this->desde)
+            ->whereDate('alertas.created_at', '<=', $this->hasta)
             ->groupBy('problemas.nombre')
             ->orderBy(DB::raw('count(*)'), 'desc')
             ->take(5)

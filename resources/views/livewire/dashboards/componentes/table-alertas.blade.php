@@ -27,10 +27,10 @@
                             <td> {{$item->recorridos->moviles->nombre}} </td>
                             <td> - </td>
                             <td> {{$item->recorridos->puntos->nombre}} </td>
-                            <td> {{$item->recorridos->inicio}} </td>
+                            <td> {{$item->created_at}} </td>
                             <td>
                                 @if(!$item->fin)
-                                    {{$this->difTime($item->inicio)}}
+                                    {{$this->difTime($item->created_at)}}
                                 @else
                                     {{$item->fin}}
                                 @endif

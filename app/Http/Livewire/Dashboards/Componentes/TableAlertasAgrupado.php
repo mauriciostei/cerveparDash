@@ -35,13 +35,13 @@ class TableAlertasAgrupado extends Component
 
     public function render(){
         return view('livewire.dashboards.componentes.table-alertas-agrupado', [
-            'alertas' => Alertas::select('problemas.nombre as problema_nombre', DB::raw('count(*) as cantidad') , 'puntos.nombre as punto_nombre', DB::raw('avg(alertas.fin - alertas.inicio) as tiempo_medio'))
+            'alertas' => Alertas::select('problemas.nombre as problema_nombre', DB::raw('count(*) as cantidad') , 'puntos.nombre as punto_nombre', DB::raw('avg(alertas.fin - coalesce(alertas.inicio, alertas.created_at)) as tiempo_medio'))
                 ->join('recorridos', 'alertas.recorridos_id', '=', 'recorridos.id')
                 ->join('puntos', 'recorridos.puntos_id', '=', 'puntos.id')
                 ->leftJoin('problemas', 'alertas.problemas_id', '=', 'problemas.id')
                 ->whereIn('tiers_id', $this->tiers)
-                ->whereDate('alertas.inicio', '>=', $this->desde)
-                ->whereDate('alertas.inicio', '<=', $this->hasta)
+                ->whereDate('alertas.created_at', '>=', $this->desde)
+                ->whereDate('alertas.created_at', '<=', $this->hasta)
                 ->groupBy('problemas.nombre', 'puntos.nombre')
                 ->orderBy('problemas.nombre', 'desc')
                 ->orderBy('puntos.nombre', 'desc')

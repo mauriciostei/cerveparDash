@@ -97,8 +97,8 @@ class TableAlertas extends Component
             'alertas' => Alertas::select('alertas.*')
                 ->join('recorridos', 'alertas.recorridos_id', '=', 'recorridos.id')
                 ->whereIn('tiers_id', $this->tiers)
-                ->whereDate('alertas.inicio', '>=', $this->desde)
-                ->whereDate('alertas.inicio', '<=', $this->hasta)
+                ->whereDate('alertas.created_at', '>=', $this->desde)
+                ->whereDate('alertas.created_at', '<=', $this->hasta)
                 ->orderBy('id', 'desc')
                 ->paginate(10)
         ]);
