@@ -39,15 +39,14 @@
                 </li>
                 
                 <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton"
+                    <a href="javascript:;" class="nav-link text-white p-0 position-relative" id="dropdownMenuButton"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-bell cursor-pointer"></i>
+                        @livewire('config.alertas-badge')
                     </a>
-                    <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
+                    <ul class="dropdown-menu  dropdown-menu-end px-2 py-3 me-sm-n4"
                         aria-labelledby="dropdownMenuButton">
-                        
                         <livewire:config.alertas-box/>
-
                     </ul>
                 </li>
                 <li class="nav-item px-3 d-flex align-items-center">
