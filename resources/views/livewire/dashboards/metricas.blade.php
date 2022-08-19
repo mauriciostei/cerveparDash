@@ -72,9 +72,9 @@
             <div class="col-12 col-lg-6 mt-4 mb-3">
                 <div class="card mt-4 mt-lg-0">
                     <div class="card-header p-3 pt-2">
-                        <div class="icon icon-lg icon-shape bg-gradient-info shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                        {{-- <div class="icon icon-lg icon-shape bg-gradient-info shadow-dark text-center border-radius-xl mt-n4 position-absolute">
                             <i class="material-icons opacity-10">weekend</i>
-                        </div>
+                        </div> --}}
                         <div class="text-end pt-1">
                             <p class="text-lg mb-0 text-capitalize">Tiempos <span class="font-weight-bolder"> Medios </span> </p>
                         </div>
@@ -92,16 +92,16 @@
                                 @foreach($tm as $item)
                                     <tr>
                                         <td> Tier {{$item->id}} </td>
-                                        <td> {{$item->tmi}} </td>
-                                        <td> {{$item->tmr}} </td>
+                                        <td> {{date('H:i', strtotime($item->tmi))}} </td>
+                                        <td> {{date('H:i', strtotime($item->tmr))}}  </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th>Promedio:</th>
-                                    <th> {{$GlobalTM[0]->tmi}} </th>
-                                    <th> {{$GlobalTM[0]->tmr}} </th>
+                                    <th> {{date('H:i', strtotime($GlobalTM[0]->tmi))}}  </th>
+                                    <th> {{date('H:i', strtotime($GlobalTM[0]->tmr))}}  </th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -149,7 +149,7 @@
 
         <div class="d-flex flex-column flex-lg-row justify-content-between mt-3">
 
-            <div class="card w-100 w-lg-25">
+            <div class="card w-100 w-lg-32">
                 <div class="card-body table-responsive">
                     <table class="table table-hover table-sm">
                         <thead>
@@ -177,7 +177,7 @@
                 </div>
             </div>
 
-            <div class="card w-100 w-lg-25">
+            <div class="card w-100 w-lg-32">
                 <div class="card-body table-responsive">
                     <table class="table table-hover table-sm">
                         <thead>
@@ -205,7 +205,7 @@
                 </div>
             </div>
 
-            <div class="card w-100 w-lg-25">
+            <div class="card w-100 w-lg-32">
                 <div class="card-body table-responsive">
                     <table class="table table-hover table-sm">
                         <thead>

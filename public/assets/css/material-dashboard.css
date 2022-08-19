@@ -7319,8 +7319,14 @@ textarea.form-control-lg {
 .bg-warning {
   background-color: #fb8c00 !important; }
 
+.bg-yellow {
+    background-color: var(--bs-yellow) !important; }
+
 .bg-danger {
   background-color: #F44335 !important; }
+
+.bg-red {
+    background-color: #f25c54 !important; }
 
 .bg-light {
   background-color: #f0f2f5 !important; }
@@ -9700,6 +9706,8 @@ textarea.form-control-lg {
     width: 25% !important; }
   .w-lg-30 {
     width: 30% !important; }
+  .w-lg-32 {
+      width: 32% !important; }
   .w-lg-35 {
     width: 35% !important; }
   .w-lg-40 {

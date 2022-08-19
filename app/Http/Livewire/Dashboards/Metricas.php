@@ -48,14 +48,16 @@ class Metricas extends Component
 
         $color = '';
 
-        if($valor >= 80)
-            $color = 'bg-danger';
-        if($valor <= 79 && $valor >= 50)
+        if($valor > 50)
+            $color = 'bg-red';
+        if($valor <= 50 && $valor > 25)
             $color = 'bg-warning';
-        if($valor <= 49)
+        if($valor <= 25 && $valor > 10)
+            $color = 'bg-yellow';
+        if($valor <= 10)
             $color = 'bg-success';
 
-        $res = "<td class='".$color."'><div class='text-center text-dark'>".$valor."% </div></td>";
+        $res = "<td><div class='".$color."'><div class='text-center text-dark'>".$valor."% </div></div></td>";
 
         echo $res;
     }
@@ -151,6 +153,7 @@ class Metricas extends Component
             ->whereDate('inicio', '>=', $ini)
             ->whereDate('inicio', '<=', $fin)
             ->groupBy('moviles.nombre')
+            //->orderByRaw('2 desc')
             ->get()
         ;
 
