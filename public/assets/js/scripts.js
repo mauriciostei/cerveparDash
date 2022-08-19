@@ -51,14 +51,11 @@ let ctx3 = document.getElementById("top_desvios");
 let ctx4 = document.getElementById("cantidad_desvios");
 
 
-Livewire.on('updateGraph', (grafica1, grafica2, grafica3, grafica4) => {
+Livewire.on('updateGraph', (grafica1, grafica3, grafica4) => {
 
     // Elimina los graficos ya creados
     if (ingreso_moviles !== null) {
         ingreso_moviles.destroy();
-    }
-    if (desvio_medio !== null) {
-        desvio_medio.destroy();
     }
     if (top_desvios !== null) {
         top_desvios.destroy();
@@ -78,22 +75,6 @@ Livewire.on('updateGraph', (grafica1, grafica2, grafica3, grafica4) => {
             scales: {
                 xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
                 yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Cantidad' } }],
-            },
-            color: '#FFF',
-        }
-    });
-
-    // Grafica de desvios medios
-    desvio_medio = new Chart(ctx2, {
-        type: "bar",
-        data: grafica2,
-        options: {
-            animation: false,
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
-                yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Cantidad' } }]
             },
             color: '#FFF',
         }
@@ -131,4 +112,29 @@ Livewire.on('updateGraph', (grafica1, grafica2, grafica3, grafica4) => {
         }
     });
 
+});
+
+
+
+
+Livewire.on('updateGraficoDesviosMedios', (grafica2) => {
+    if (desvio_medio !== null) {
+        desvio_medio.destroy();
+    }
+
+    // Grafica de desvios medios
+    desvio_medio = new Chart(ctx2, {
+        type: "bar",
+        data: grafica2,
+        options: {
+            animation: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
+                yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Cantidad' } }]
+            },
+            color: '#FFF',
+        }
+    });
 });

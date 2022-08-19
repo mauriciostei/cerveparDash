@@ -63,7 +63,9 @@
             </div>
         </div>
 
-        
+        <div class="d-flex mt-5">
+            @livewire('dashboards.componentes.grafica-desvios-medios', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+        </div>
 
     </div>
 </div>

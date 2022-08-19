@@ -13,8 +13,8 @@ class Asignacion extends Component
     public $problemas;
 
     protected $rules = [
-        'alerta.problemas_id' => 'required',
-        'alerta.observaciones' => 'string',
+        'alerta.problemas_id' => 'required|integer',
+        'alerta.observaciones' => 'nullable|string|max:200',
     ];
 
     protected $messages = [

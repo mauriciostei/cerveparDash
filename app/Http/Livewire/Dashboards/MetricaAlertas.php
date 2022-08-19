@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Dashboards;
 
 use App\Models\Alertas;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class MetricaAlertas extends Component

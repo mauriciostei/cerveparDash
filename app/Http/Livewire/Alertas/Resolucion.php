@@ -17,8 +17,8 @@ class Resolucion extends Component
     public User $authUser;
 
     protected $rules = [
-        'alerta.soluciones_id' => 'required',
-        'alerta.observaciones' => 'string',
+        'alerta.soluciones_id' => 'required|integer',
+        'alerta.observaciones' => 'nullable|string|max:200',
     ];
 
     protected $messages = [
