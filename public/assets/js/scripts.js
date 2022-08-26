@@ -39,35 +39,30 @@ Livewire.on('nuevaAlerta', (param) => {
     myToast.show();
 });
 
-// Grafico en pantalla de metricas
+// Grafico en pantalla
 let ingreso_moviles = null;
 let desvio_medio = null;
 let top_desvios = null;
 let cantidad_desvios = null;
+let descarga_dock = null;
+let descarga_movil = null;
 
 let ctx1 = document.getElementById("ingreso_moviles");
 let ctx2 = document.getElementById("desvio_medio");
 let ctx3 = document.getElementById("top_desvios");
 let ctx4 = document.getElementById("cantidad_desvios");
+let ctx5 = document.getElementById("descarga_dock");
+let ctx6 = document.getElementById("descarga_movil");
 
 
-Livewire.on('updateGraph', (grafica1, grafica3, grafica4) => {
-
-    // Elimina los graficos ya creados
+Livewire.on('updateGraficoIngresoMoviles', (grafica) => {
     if (ingreso_moviles !== null) {
         ingreso_moviles.destroy();
     }
-    if (top_desvios !== null) {
-        top_desvios.destroy();
-    }
-    if (cantidad_desvios !== null) {
-        cantidad_desvios.destroy();
-    }
-
-    // Grafica de ingreso de moviles
+    
     ingreso_moviles = new Chart(ctx1, {
         type: "bar",
-        data: grafica1,
+        data: grafica,
         options: {
             animation: false,
             responsive: true,
@@ -79,53 +74,17 @@ Livewire.on('updateGraph', (grafica1, grafica3, grafica4) => {
             color: '#FFF',
         }
     });
-
-    // Grafica de top desvios
-    top_desvios = new Chart(ctx3, {
-        type: "bar",
-        data: grafica3,
-        options: {
-            animation: false,
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
-                yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Cantidad' } }]
-            },
-            color: '#FFF',
-        }
-    });
-
-    // Grafica de cantidad de anomalias
-    cantidad_desvios = new Chart(ctx4, {
-        type: "bar",
-        data: grafica4,
-        options: {
-            animation: false,
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
-                yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Cantidad' } }]
-            },
-            color: '#FFF',
-        }
-    });
-
 });
 
 
-
-
-Livewire.on('updateGraficoDesviosMedios', (grafica2) => {
+Livewire.on('updateGraficoDesviosMedios', (grafica) => {
     if (desvio_medio !== null) {
         desvio_medio.destroy();
     }
 
-    // Grafica de desvios medios
     desvio_medio = new Chart(ctx2, {
         type: "bar",
-        data: grafica2,
+        data: grafica,
         options: {
             animation: false,
             responsive: true,
@@ -133,6 +92,91 @@ Livewire.on('updateGraficoDesviosMedios', (grafica2) => {
             scales: {
                 xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
                 yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Cantidad' } }]
+            },
+            color: '#FFF',
+        }
+    });
+});
+
+
+Livewire.on('updateGraficoTopDesvios', (grafica) => {
+    if (top_desvios !== null) {
+        top_desvios.destroy();
+    }
+
+    top_desvios = new Chart(ctx3, {
+        type: "bar",
+        data: grafica,
+        options: {
+            animation: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
+                yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Cantidad' } }]
+            },
+            color: '#FFF',
+        }
+    });
+});
+
+Livewire.on('updateGraficoAnomaliasHora', (grafica) => {
+    if (cantidad_desvios !== null) {
+        cantidad_desvios.destroy();
+    }
+
+    cantidad_desvios = new Chart(ctx4, {
+        type: "bar",
+        data: grafica,
+        options: {
+            animation: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
+                yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Cantidad' } }]
+            },
+            color: '#FFF',
+        }
+    });
+});
+
+Livewire.on('updateGraficoDescargaDock', (grafica) => {
+    if (descarga_dock !== null) {
+        descarga_dock.destroy();
+    }
+    
+    descarga_dock = new Chart(ctx5, {
+        type: "bar",
+        data: grafica,
+        options: {
+            animation: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Dock' } }],
+                yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
+            },
+            color: '#FFF',
+        }
+    });
+});
+
+Livewire.on('updateGraficoDescargaMovil', (grafica) => {
+    if (descarga_movil !== null) {
+        descarga_movil.destroy();
+    }
+    
+    descarga_movil = new Chart(ctx6, {
+        type: "bar",
+        data: grafica,
+        options: {
+            animation: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Dock' } }],
+                yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
             },
             color: '#FFF',
         }

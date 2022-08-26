@@ -5,12 +5,12 @@ namespace App\Http\Livewire\Dashboards\Componentes;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class GraficaDesviosMedios extends Component
+class GaficaIngresoMoviles extends Component
 {
     public $desde;
     public $hasta;
     public $tiers;
-    public $desvioMedio;
+    public $ingresoHora;
 
     protected $listeners = ['actualizarTable'];
 
@@ -35,31 +35,34 @@ class GraficaDesviosMedios extends Component
         $fin = $this->hasta;
         $tiers = implode(',', $this->tiers) ? implode(',', $this->tiers) : '0';
 
-        $desvioMedio = collect(DB::select("select * from desvio_medio(?, ?) where tier_id in (".$tiers.")", [$ini, $fin]));
+        $this->ingresoHora = collect(DB::select("select * from ingreso_x_hora(?, ?) where id in (".$tiers.")", [$ini, $fin]));
 
         $labels = [];
         $t1 = [];
         $t2 = [];
-        foreach($desvioMedio as $dm){
-            if(!in_array($dm->punto_nombre, $labels)){
-                array_push($labels, $dm->punto_nombre);
+        foreach($this->ingresoHora as $ih){
+            $ini = explode(':', $ih->ini);
+            $fin = explode(':', $ih->fin);
+            $hora = $ini[0].' a '.$fin[0];
+            if(!in_array($hora, $labels)){
+                array_push($labels, $ini[0].' a '.$fin[0]);
             }
-            if($dm->tier_id == 1){
-                array_push($t1, $dm->desvio);
+            if($ih->id == 1){
+                array_push($t1, $ih->moviles);
             }else{
-                array_push($t2, $dm->desvio);
+                array_push($t2, $ih->moviles);
             }
         }
-        $this->desvioMedio = Array('labels' => $labels, 'datasets' => [
+        $this->ingresoHora = Array('labels' => $labels, 'datasets' => [
             Array('label' => 'Tier 1', 'data' => $t1, 'backgroundColor' => '#37CBFF'),
             Array('label' => 'Tier 2', 'data' => $t2, 'backgroundColor' => '#F6AB16')
         ]);
 
-        $this->emit('updateGraficoDesviosMedios', $this->desvioMedio);
+        $this->emit('updateGraficoIngresoMoviles', $this->ingresoHora);
     }
 
     public function render(){
         $this->getInfo();
-        return view('livewire.dashboards.componentes.grafica-desvios-medios');
+        return view('livewire.dashboards.componentes.gafica-ingreso-moviles');
     }
 }

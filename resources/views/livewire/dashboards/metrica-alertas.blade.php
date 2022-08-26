@@ -1,7 +1,7 @@
 <div>
-    <div class="container-fluid py-4 mt-0 pt-0">
+    <div class="container-fluid position-relative py-4 mt-0 pt-0">
 
-        <div class="row">
+        <div class="row sticky-top">
             <div class="col">
                 <div class="card mb-2">
                     <div class="card-header p-3 pt-2">
@@ -51,6 +51,17 @@
             </div>
         </div>
 
+        <div class="d-flex flex-column flex-lg-row justify-content-between mt-5 mb-3">
+            <div class="w-32">
+                @livewire('dashboards.componentes.grafica-desvios-medios', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+            </div>
+            <div class="w-32">
+                @livewire('dashboards.componentes.gafica-top-desvios', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+            </div>
+            <div class="w-32">
+                @livewire('dashboards.componentes.gafica-anomalias-hora', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+            </div>
+        </div>
        
         @livewire('dashboards.componentes.table-alertas', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
 
@@ -61,10 +72,6 @@
             <div class="w-100 w-lg-50 ms-0 ms-lg-2">
                 @livewire('dashboards.componentes.table-alertas-top', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
             </div>
-        </div>
-
-        <div class="d-flex mt-5">
-            @livewire('dashboards.componentes.grafica-desvios-medios', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
         </div>
 
     </div>

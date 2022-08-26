@@ -5,12 +5,12 @@ namespace App\Http\Livewire\Dashboards\Componentes;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class GraficaDesviosMedios extends Component
+class GaficaTopDesvios extends Component
 {
     public $desde;
     public $hasta;
     public $tiers;
-    public $desvioMedio;
+    public $topDesvios;
 
     protected $listeners = ['actualizarTable'];
 
@@ -35,31 +35,32 @@ class GraficaDesviosMedios extends Component
         $fin = $this->hasta;
         $tiers = implode(',', $this->tiers) ? implode(',', $this->tiers) : '0';
 
-        $desvioMedio = collect(DB::select("select * from desvio_medio(?, ?) where tier_id in (".$tiers.")", [$ini, $fin]));
+        $this->topDesvios = collect(DB::select("select * from top_desvios(?, ?, 5) where tier_id in (".$tiers.")", [$ini, $fin]));
 
         $labels = [];
         $t1 = [];
         $t2 = [];
-        foreach($desvioMedio as $dm){
-            if(!in_array($dm->punto_nombre, $labels)){
-                array_push($labels, $dm->punto_nombre);
+        foreach($this->topDesvios as $td){
+            if(!in_array($td->movil_nombre, $labels)){
+                array_push($labels, $td->movil_nombre);
             }
-            if($dm->tier_id == 1){
-                array_push($t1, $dm->desvio);
+            if($td->tier_id == 1){
+                array_push($t1, $td->hora);
             }else{
-                array_push($t2, $dm->desvio);
+                array_push($t2, $td->hora);
             }
         }
-        $this->desvioMedio = Array('labels' => $labels, 'datasets' => [
+        $this->topDesvios = Array('labels' => $labels, 'datasets' => [
             Array('label' => 'Tier 1', 'data' => $t1, 'backgroundColor' => '#37CBFF'),
             Array('label' => 'Tier 2', 'data' => $t2, 'backgroundColor' => '#F6AB16')
         ]);
 
-        $this->emit('updateGraficoDesviosMedios', $this->desvioMedio);
+        $this->emit('updateGraficoTopDesvios', $this->topDesvios);
     }
+
 
     public function render(){
         $this->getInfo();
-        return view('livewire.dashboards.componentes.grafica-desvios-medios');
+        return view('livewire.dashboards.componentes.gafica-top-desvios');
     }
 }
