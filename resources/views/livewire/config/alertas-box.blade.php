@@ -2,7 +2,7 @@
 
     @forelse($alertas as $al)
 
-        <li class="mb-2 position-absolute">
+        <li class="mb-2">
             <a class="dropdown-item border-radius-md" href="{{ route('alertasForm', ['id' => $al->id]) }}">
                 <div class="d-flex py-1">
                     <div class="my-auto">
