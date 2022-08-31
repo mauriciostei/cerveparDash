@@ -72,9 +72,9 @@ class TablaTiemposDesviosMoviles extends Component
 
         $columns = array(
             'Movil'
-            ,'En Ruta', 'Control 1', 'Control 2', 'Envases', 'Fin Envases', 'Descarga', 'Espera'
-            ,'En Ruta', 'Control 1', 'Control 2', 'Envases', 'Fin Envases', 'Descarga', 'Espera'
-            ,'En Ruta', 'Control 1', 'Control 2', 'Envases', 'Fin Envases', 'Descarga', 'Espera'
+            ,'OOT En Ruta', 'OOT Control 1', 'OOT Control 2', 'OOT Envases', 'OOT Fin Envases', 'OOT Descarga', 'OOT Espera'
+            ,'CANT. En Ruta', 'CANT. Control 1', 'CANT. Control 2', 'CANT. Envases', 'CANT. Fin Envases', 'CANT. Descarga', 'CANT. Espera'
+            ,'% En Ruta', '% Control 1', '% Control 2', '% Envases', '% Fin Envases', '% Descarga', '% Espera'
             , 'Total OOT', 'Total Captados', 'Porcentaje Total OOT'
         );
 

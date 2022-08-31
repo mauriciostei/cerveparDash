@@ -48,6 +48,7 @@ class TablaTiemposPuntos extends Component
             ->whereIn('recorridos.tiers_id', $this->tiers)
             ->whereDate('inicio', '>=', $ini)
             ->whereDate('inicio', '<=', $fin)
+            ->where('puntos.id', '<>', 6)
             ->groupBy('puntos.nombre')
             ->get()
         ;
