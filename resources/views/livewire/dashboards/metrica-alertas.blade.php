@@ -1,5 +1,5 @@
 <div>
-    <div class="container-fluid position-relative py-4 mt-0 pt-0">
+    <div class="container-fluid position-relative py-4 mt-0 pt-0" style="z-index: 200;">
 
         <div class="row sticky-top">
             <div class="col">

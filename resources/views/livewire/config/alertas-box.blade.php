@@ -1,8 +1,8 @@
-<div wire:poll.1000ms>
+<div wire:poll.1000ms style="z-index: 1000;">
 
     @forelse($alertas as $al)
 
-        <li class="mb-2">
+        <li class="mb-2 position-absolute">
             <a class="dropdown-item border-radius-md" href="{{ route('alertasForm', ['id' => $al->id]) }}">
                 <div class="d-flex py-1">
                     <div class="my-auto">
@@ -24,7 +24,7 @@
         </li>
 
     @empty
-        <div class="text-success text-center"> No hay alertas pendientes </div>
+        <div class="text-success text-center"> No hay alertas pendientes</div>
     @endforelse
 
 </div>
