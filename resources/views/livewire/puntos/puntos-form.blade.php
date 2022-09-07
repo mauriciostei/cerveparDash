@@ -18,8 +18,6 @@
 
                     <br/>
 
-                    {{$punto}}
-
                     <div class="d-flex flex-row justify-content-between">
                         <div class="input-group input-group-static w-50 me-2">
                             <label>Tiempo Mínimo</label>
