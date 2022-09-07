@@ -11,6 +11,8 @@ class PuntosForm extends Component
 
     protected $rules = [
         'punto.nombre' => 'required|string|min:5',
+        'punto.minimo' => 'required|date_format:H:i:s',
+        'punto.maximo' => 'required|date_format:H:i:s|after:punto.minimo',
         'punto.activo' => ''
     ];
 

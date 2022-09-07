@@ -3,11 +3,14 @@
 namespace App\Http\Livewire\Dashboards\Componentes;
 
 use App\Models\Recorridos;
+use App\Traits\MetricasPorcentajeHTML;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class TablaTiemposDesviosTier extends Component
 {
+    use MetricasPorcentajeHTML;
+
     public $desde;
     public $hasta;
     public $tiers;
@@ -29,35 +32,6 @@ class TablaTiemposDesviosTier extends Component
                 array_push($this->tiers, $index);
             }
         endforeach;
-    }
-
-    public function getPorcentaje($oot, $cantidad){
-        $valor = 0;
-        if($cantidad > 0 && $oot > 0){
-            $valor = ($oot / $cantidad) * 100;
-        }
-        $valor = round($valor , 0);
-
-        return $valor;
-    }
-
-    public function getHTML($oot, $cantidad){
-        $valor = $this->getPorcentaje($oot, $cantidad);
-
-        $color = '';
-
-        if($valor > 50)
-            $color = 'bg-red';
-        if($valor <= 50 && $valor > 25)
-            $color = 'bg-warning';
-        if($valor <= 25 && $valor > 10)
-            $color = 'bg-yellow';
-        if($valor <= 10)
-            $color = 'bg-success';
-
-        $res = "<td><div class='".$color."'><div class='text-center text-dark'>".$valor."% </div></div></td>";
-
-        echo $res;
     }
 
     public function getInfo(){

@@ -46,6 +46,8 @@ let top_desvios = null;
 let cantidad_desvios = null;
 let descarga_dock = null;
 let descarga_movil = null;
+let vela_alerta_tiempo = null;
+let vela_alerta_cantidad = null;
 
 let ctx1 = document.getElementById("ingreso_moviles");
 let ctx2 = document.getElementById("desvio_medio");
@@ -53,6 +55,8 @@ let ctx3 = document.getElementById("top_desvios");
 let ctx4 = document.getElementById("cantidad_desvios");
 let ctx5 = document.getElementById("descarga_dock");
 let ctx6 = document.getElementById("descarga_movil");
+let ctx7 = document.getElementById("vela_alerta_tiempo");
+let ctx8 = document.getElementById("vela_alerta_cantidad");
 
 
 Livewire.on('updateGraficoIngresoMoviles', (grafica) => {
@@ -179,6 +183,50 @@ Livewire.on('updateGraficoDescargaMovil', (grafica) => {
                 yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
             },
             color: '#FFF',
+        }
+    });
+});
+
+Livewire.on('updateGraficoVelaTiempo', (grafica) => {
+    if (vela_alerta_tiempo !== null) {
+        vela_alerta_tiempo.destroy();
+    }
+
+    vela_alerta_tiempo = new Chart(ctx7, {
+        type: "bar",
+        data: grafica,
+        options: {
+            animation: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            color: '#FFF',
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            }
+        }
+    });
+});
+
+Livewire.on('updateGraficoVelaCantidad', (grafica) => {
+    if (vela_alerta_cantidad !== null) {
+        vela_alerta_cantidad.destroy();
+    }
+
+    vela_alerta_cantidad = new Chart(ctx8, {
+        type: "bar",
+        data: grafica,
+        options: {
+            animation: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            color: '#FFF',
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            }
         }
     });
 });

@@ -99,7 +99,9 @@
                                         <h6>Móviles circulantes</h6>
                                     </div>
                                     <div class="col-xl-2">
-                                        <a wire:click.prevent="historial" class="btn btn-success p-1">Historial</a>
+                                        <div class="btn-group" role="group">
+                                            <a wire:click.prevent="historial" class="btn btn-success p-2">Historial</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

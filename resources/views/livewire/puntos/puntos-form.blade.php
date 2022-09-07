@@ -18,7 +18,28 @@
 
                     <br/>
 
-                    <div class="form-check form-switch">
+                    {{$punto}}
+
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="input-group input-group-static w-50 me-2">
+                            <label>Tiempo Mínimo</label>
+                            <input type="time" wire:model="punto.minimo" class="form-control" step="1"/>
+                            @error('punto.minimo')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                            @enderror
+                        </div>
+                        <div class="input-group input-group-static w-50 ms-2">
+                            <label>Tiempo Máximo</label>
+                            <input type="time" wire:model="punto.maximo" class="form-control" step="1"/>
+                            @error('punto.maximo')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="form-check form-switch mt-3">
                         <input wire:model="punto.activo" class="form-check-input" type="checkbox" >
                         <label class="form-check-label">Activo</label>
                     </div>

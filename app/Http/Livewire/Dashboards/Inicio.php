@@ -6,12 +6,15 @@ use App\Models\Moviles;
 use App\Models\Puntos;
 use App\Models\Recorridos;
 use App\Models\Tiers;
+use App\Traits\TimeToInt;
 use DateTime;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Inicio extends Component
 {
+    use TimeToInt;
+
     public $recorridos;
     public $t1 = [];
     public $t2 = [];
@@ -55,7 +58,7 @@ class Inicio extends Component
     }
 
     public function historial(){
-        $recorridos = Recorridos::orderBy('id', 'DESC')->take(2000)->get();
+        $recorridos = Recorridos::orderBy('id', 'asc')->take(20)->get();
 
         $fileName = 'Historial.xls';
 
@@ -67,14 +70,48 @@ class Inicio extends Component
             "Expires"             => "0"
         );
 
-        $columns = array('Hora Inicio', 'Hora Fin', 'Hora Limite', 'Hora Ponderada', 'Recorrido', 'Tier', 'Movil', 'Punto de control', 'Estado');
+        $columns = array(
+            'Hora Inicio'
+            , 'Hora Fin'
+            , 'Hora Limite'
+            , 'Hora Ponderada'
+            , 'Recorrido'
+            , 'Tier'
+            , 'Movil'
+            , 'Punto de control'
+            , 'Estado'
+            , 'Aplica'
+        );
 
         $callback = function() use($recorridos, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns,"\t");
 
             foreach ($recorridos as $m) {
-                $linea = array($m->inicio, $m->fin, $m->target, $m->ponderacion, $m->viaje, $m->tiers->nombre, $m->moviles->nombre, $m->puntos->nombre, $m->estado);
+
+                //Evalúa el tiempo en función a los puntos de control
+                $aplica = 'SI';
+                if($m->fin){
+                    $tiempo = strtotime($m->fin) - strtotime($m->inicio);
+                    $min = $this->timeToInt($m->puntos->minimo);
+                    $max = $this->timeToInt($m->puntos->maximo);
+                    if($tiempo <= $min || $tiempo >= $max){
+                        $aplica = 'NO';
+                    }
+                }
+
+                $linea = array(
+                    $m->inicio
+                    , $m->fin
+                    , $m->target
+                    , $m->ponderacion
+                    , $m->viaje
+                    , $m->tiers->nombre
+                    , $m->moviles->nombre
+                    , $m->puntos->nombre
+                    , $m->estado
+                    , $aplica
+                );
                 fputcsv($file, $linea,"\t");
             }
             fclose($file);
@@ -103,8 +140,6 @@ class Inicio extends Component
         $this->t2['%'] = $this->t2['OnTime']==0 ? 0 : round(($this->t2['OnTime'] / $this->t2['total']) * 100, 0);
 
         $this->acuraccy = DB::table('acuraccy')->whereDate('fecha', date('Y-m-d'))->get();
-
-        //$this->emit('accuracyGrap', $this->acuraccy[0]->porcentaje);
     }
 
     public function difTime($time){

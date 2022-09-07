@@ -62,6 +62,15 @@
                 @livewire('dashboards.componentes.gafica-anomalias-hora', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
             </div>
         </div>
+
+        <div class="d-flex flex-column flex-lg-row justify-content-between mt-5 mb-3">
+            <div class="w-50 me-2">
+                @livewire('dashboards.componentes.grafica-velas-alertas-tiempo', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+            </div>
+            <div class="w-50 ms-2">
+                @livewire('dashboards.componentes.grafica-velas-alertas-cantidad', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+            </div>
+        </div>
        
         @livewire('dashboards.componentes.table-alertas', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
 
