@@ -35,7 +35,7 @@ class GraficaVelasAlertasCantidad extends Component
         $fin = $this->hasta;
         $tiers = implode(',', $this->tiers) ? implode(',', $this->tiers) : '0';
 
-        $velaAlertaTiempo = collect(DB::select("select * from grafico_velas(?, ?) where tiers_id in ($tiers)", [$ini, $fin]));
+        $velaAlertaTiempo = collect(DB::select("select * from grafico_velas(?, ?) where puntos_id <> 6 and tiers_id in ($tiers)", [$ini, $fin]));
 
         $labels = [];
         $cantidad = [];

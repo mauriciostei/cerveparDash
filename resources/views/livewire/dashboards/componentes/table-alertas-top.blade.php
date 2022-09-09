@@ -6,8 +6,8 @@
                 <thead>
                     <tr>
                         <th>Anomalía</th>
-                        <th>Cantidad</th>
-                        <th>Promedio de resolución</th>
+                        <th class="text-center">Cantidad</th>
+                        <th class="text-center">Promedio de resolución</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,8 +20,8 @@
                                     Sin Anomalía Asignada
                                 @endif
                             </td>
-                            <td> {{$item->cantidad}} </td>
-                            <td> {{$item->tiempo_medio}} </td>
+                            <td class="text-center"> {{$item->cantidad}} </td>
+                            <td class="text-center"> {{$this->TimeToHour($item->tiempo_medio)}} </td>
                         </tr>
                     @empty
                         <tr>

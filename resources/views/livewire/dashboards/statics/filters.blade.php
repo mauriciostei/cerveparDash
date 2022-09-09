@@ -2,7 +2,7 @@
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Hora Inicio </th>
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
 
-        <a class="dropdown-toggle" role="button" id="dropMoviles" data-bs-toggle="dropdown" aria-expanded="false"> Movil </a>
+        <a class="dropdown-toggle" role="button" id="dropMoviles" data-bs-toggle="dropdown" aria-expanded="false"> Móvil </a>
         <ul class="dropdown-menu bg-dark" aria-labelledby="dropMoviles">
             <li class="dropdown-item">
                 <div class="form-check">

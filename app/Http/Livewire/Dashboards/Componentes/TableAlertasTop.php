@@ -3,11 +3,14 @@
 namespace App\Http\Livewire\Dashboards\Componentes;
 
 use App\Models\Alertas;
+use App\Traits\TimeToHour;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class TableAlertasTop extends Component
 {
+    use TimeToHour;
+
     public $desde;
     public $hasta;
     public $tiers;

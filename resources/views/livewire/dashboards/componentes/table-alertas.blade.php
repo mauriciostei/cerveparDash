@@ -10,8 +10,8 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Movil</th>
-                        <th>Chofer</th>
+                        <th class="text-center">Móvil</th>
+                        <th class="text-center">Chofer</th>
                         <th>Zona</th>
                         <th>Hora Detectada</th>
                         <th>Tiempo Retraso</th>
@@ -24,8 +24,8 @@
                     @forelse($alertas as $item)
                         <tr>
                             <td> {{$item->id}} </td>
-                            <td> {{$item->recorridos->moviles->nombre}} </td>
-                            <td> - </td>
+                            <td class="text-center"> {{$item->recorridos->moviles->nombre}} </td>
+                            <td class="text-center"> - </td>
                             <td> {{$item->recorridos->puntos->nombre}} </td>
                             <td> {{$item->created_at}} </td>
                             <td>

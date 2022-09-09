@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Dashboards\Componentes;
 
 use App\Models\Alertas;
+use App\Traits\TimeToHour;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,6 +11,8 @@ use Livewire\WithPagination;
 class TableAlertasAgrupado extends Component
 {
     use WithPagination;
+    use TimeToHour;
+
     protected $paginationTheme = 'bootstrap';
 
     public $desde;

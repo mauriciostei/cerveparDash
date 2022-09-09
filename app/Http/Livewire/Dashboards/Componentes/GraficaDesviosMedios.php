@@ -35,7 +35,7 @@ class GraficaDesviosMedios extends Component
         $fin = $this->hasta;
         $tiers = implode(',', $this->tiers) ? implode(',', $this->tiers) : '0';
 
-        $desvioMedio = collect(DB::select("select * from desvio_medio(?, ?) where tier_id in (".$tiers.")", [$ini, $fin]));
+        $desvioMedio = collect(DB::select("select * from desvio_medio(?, ?) where punto_nombre<>'FIN ENVASES' and tier_id in (".$tiers.")", [$ini, $fin]));
 
         $labels = [];
         $t1 = [];
