@@ -26,7 +26,7 @@ class Alertas extends Model
     }
 
     public function getEstado(){
-        if($this->recorridos->estado == 'Dismiss'){
+        if($this->recorridos->estado == 'Dismiss' && !$this->soluciones_id){
             return 'Alerta Eliminada (Dismiss)';
         }
         if($this->recorridos->estado == 'OutOfTime' && !$this->visible && !$this->users_id && $this->fin){
@@ -35,7 +35,7 @@ class Alertas extends Model
         if($this->recorridos->estado == 'OutOfTime' && $this->users_id && !$this->fin){
             return 'En curso';
         }
-        if($this->recorridos->estado == 'OutOfTime' && $this->soluciones_id){
+        if($this->soluciones_id){
             return 'Resuelto';
         }
         if($this->recorridos->estado == 'OutOfTime' && !$this->fin && !$this->users_id){
