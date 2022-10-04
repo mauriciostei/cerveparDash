@@ -50,7 +50,7 @@
                                 @endif
                             </td>
                             <td>
-                                @if($item->recorridos->estado == 'Dismiss')
+                                @if($item->recorridos->estado == 'Dismiss' && !$item->soluciones_id)
                                     <span class="text-danger"> {{$item->getEstado()}} </span>
                                 @endif
                                 @if($item->recorridos->estado == 'OutOfTime' && !$item->visible && !$item->users_id)
@@ -59,7 +59,7 @@
                                 @if($item->recorridos->estado == 'OutOfTime' && $item->users_id && !$item->fin)
                                     <span class="text-warning"> {{$item->getEstado()}} </span>
                                 @endif
-                                @if($item->recorridos->estado == 'OutOfTime' && $item->soluciones_id)
+                                @if($item->soluciones_id)
                                     <span class="text-success"> {{$item->getEstado()}} </span>
                                 @endif
                                 @if($item->recorridos->estado == 'OutOfTime' && !$item->fin && !$item->users_id)
