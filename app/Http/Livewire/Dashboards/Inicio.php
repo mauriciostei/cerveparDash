@@ -58,7 +58,7 @@ class Inicio extends Component
     }
 
     public function historial(){
-        $recorridos = Recorridos::orderBy('id', 'asc')->take(20)->get();
+        $recorridos = Recorridos::orderBy('id', 'desc')->take(10000)->get();
 
         $fileName = 'Historial.xls';
 
