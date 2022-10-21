@@ -16,6 +16,14 @@
             @error('usuario.email')
                 <p class='text-danger inputerror'>{{ $message }} </p>
             @enderror
+
+            <div class="input-group input-group-static mt-3">
+                <label>Avatar</label>
+                <input type="file" wire:model="avatar" class="form-control"/>
+            </div>
+            @error('avatar')
+                <p class='text-danger inputerror'>{{ $message }} </p>
+            @enderror
         </div>
         <div class="card-footer align-self-end">
             <input type="submit" value="Guardar" class="btn btn-success"/>

@@ -5,14 +5,19 @@ namespace App\Http\Livewire\Usuarios\MiCuenta;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Datos extends Component
 {
+    use WithFileUploads;
+
     public User $usuario;
+    public $avatar;
 
     protected $rules = [
         'usuario.name' => 'required|string|min:5',
         'usuario.email' => 'required|email',
+        'avatar' => 'nullable|image|max:10240',
     ];
 
     protected $messages = [
@@ -24,6 +29,11 @@ class Datos extends Component
 
     public function save(){
         $this->validate();
+
+        if($this->avatar){
+            $this->usuario->avatar = $this->avatar->store('avatars', 'real_public');
+        }
+
         $this->usuario->save();
 
         session()->flash('message', 'Usuario guardado!');

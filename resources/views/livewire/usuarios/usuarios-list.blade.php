@@ -41,7 +41,7 @@
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div>
-                                                    <img src="{{ asset('assets') }}/img/team-2.jpg"
+                                                    <img src="{{ asset('assets') }}/img/{{ $us->avatar }}"
                                                         class="avatar avatar-sm me-3 border-radius-lg"
                                                         alt="user1">
                                                 </div>
