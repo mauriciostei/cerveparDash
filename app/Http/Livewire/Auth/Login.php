@@ -38,7 +38,7 @@ class Login extends Component
 
         session()->regenerate();
 
-        return redirect('/inicio');
+        return redirect()->route('inicio');
 
     }
 }

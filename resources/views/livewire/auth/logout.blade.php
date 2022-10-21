@@ -1,1 +1,1 @@
-<span wire:click="destroy" class="d-sm-inline d-none">Salir</span>
+<span wire:click.prevent="destroy" class="d-sm-inline d-none">Salir</span>
