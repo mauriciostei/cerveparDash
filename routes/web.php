@@ -41,8 +41,8 @@ use App\Http\Livewire\Usuarios\UsuariosMiCuenta;
 |
 */
 
-Route::get('/', function(){ return redirect()->route('inicio'); })->name('home');
-Route::get('/dashboard', function(){ return redirect()->route('inicio'); })->name('home');
+Route::get('/', function(){ return redirect()->route('inicio'); });
+Route::get('/dashboard', function(){ return redirect()->route('inicio'); });
 
 Route::get('sign-in', Login::class)->middleware('guest')->name('login');
 
