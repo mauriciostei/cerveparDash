@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use App\Enums\TipoTiempo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Puntos extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'tipo_tiempo' => TipoTiempo::class
+    ];
 
     public function sensors(){
         return $this->hasMany(Sensores::class);

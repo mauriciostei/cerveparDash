@@ -49,6 +49,7 @@ class PlanImportar extends Component
             $codigo = trim($line[1]);
             $chapa = trim($line[2]);
             $viaje = trim($line[3]);
+            $documento = trim($line[4]);
 
             $movil = Moviles::where('chapa', $chapa)->first();
             if(!$movil){
@@ -59,10 +60,11 @@ class PlanImportar extends Component
                 $movil->save();
             }
 
-            $chofer = $movil->choferes;
+            $chofer = Choferes::where('documento', $documento)->first();
             if(!$chofer){
                 $chofer = Choferes::find(1);
             }
+
 
             $yaPlanificado = DB::table('choferes_moviles_planes')
                 ->where('planes_id', $this->plan->id)

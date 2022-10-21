@@ -17,9 +17,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-
-        // Clonar la planificacion de ayer
+        // Clonar la planificación de ayer
         $schedule->call(function(){
             $p = new PlanesController();
             $p->clonar();
@@ -36,6 +34,23 @@ class Kernel extends ConsoleKernel
             $r = new RecorridosController();
             $r->validarAlertas();
         })->daily();
+
+        $schedule->call(function(){
+            $r = new RecorridosController();
+            
+            $seconds = 5;
+            $count = (60/$seconds) - 1;
+            $inicial = date('c');
+            do{
+                $final = date('c', strtotime("$inicial +5 seconds"));
+                $r->ingresarPersona($inicial, $final);
+
+                $count--;
+                $inicial = $final;
+                sleep($seconds);
+            }while($count != 0);
+
+        })->everyMinute();
     }
 
     /**

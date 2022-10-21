@@ -13,6 +13,8 @@ class PuntosForm extends Component
         'punto.nombre' => 'required|string|min:5',
         'punto.minimo' => 'required|date_format:H:i:s',
         'punto.maximo' => 'required|date_format:H:i:s|after:punto.minimo',
+        'punto.tiempos_financieros' => 'required|bool',
+        'punto.tipo_tiempo' => 'required|string',
         'punto.activo' => ''
     ];
 
@@ -25,6 +27,7 @@ class PuntosForm extends Component
         if($id == 0){
             $this->punto = new Puntos();
             $this->punto->activo = true;
+            $this->punto->tiempos_financieros = false;
         }else{
             $this->punto = Puntos::find($id);
         }

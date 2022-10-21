@@ -3,7 +3,7 @@ POST http://localhost:8000/api/ingresarMovil
 Content-Type: multipart/form-data boundary=anpr
 
 --anpr
-Content-Disposition: form-data; name="anpr"; filename="anpr.xml"
+Content-Disposition: form-data; name="anpr_xml"; filename="anpr.xml"
 
-< ~/Desktop/anpr.xml
+< anpr.xml
 --anpr--

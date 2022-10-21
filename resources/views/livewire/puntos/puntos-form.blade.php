@@ -37,6 +37,27 @@
 
                     <br>
 
+                    <div class="input-group input-group-static">
+                        <label>Tipo de Tiempo Medio</label>
+                        <select wire:model="punto.tipo_tiempo" class="form-control">
+                            @foreach(\App\Enums\TipoTiempo::cases() as $item)
+                                <option value="{{ $item->value }}"> {{ $item->name }} </option>
+                            @endforeach
+                        </select>
+                        @error('punto.tipo_tiempo')
+                            <p class='text-danger inputerror'>{{ $message }} </p>
+                        @enderror
+                    </div>
+
+                    <br>
+
+                    <div class="form-check form-switch mt-3">
+                        <input wire:model="punto.tiempos_financieros" class="form-check-input" type="checkbox" >
+                        <label class="form-check-label">Tiempos Financieros</label>
+                    </div>
+
+                    <br>
+
                     <div class="form-check form-switch mt-3">
                         <input wire:model="punto.activo" class="form-check-input" type="checkbox" >
                         <label class="form-check-label">Activo</label>

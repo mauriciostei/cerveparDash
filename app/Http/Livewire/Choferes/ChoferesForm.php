@@ -3,15 +3,18 @@
 namespace App\Http\Livewire\Choferes;
 
 use App\Models\Choferes;
+use App\Models\Tiers;
 use Livewire\Component;
 
 class ChoferesForm extends Component
 {
     public Choferes $chofer;
+    public $tiers;
 
     protected $rules = [
         'chofer.nombre' => 'required|string|min:5',
         'chofer.documento' => 'required',
+        'chofer.tiers_id' => 'required',
         'chofer.activo' => '',
     ];
 
@@ -28,6 +31,7 @@ class ChoferesForm extends Component
         }else{
             $this->chofer = Choferes::find($id);
         }
+        $this->tiers = Tiers::all();
     }
 
     public function save(){

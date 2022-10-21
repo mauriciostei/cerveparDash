@@ -9,10 +9,6 @@ class Moviles extends Model
 {
     use HasFactory;
 
-    public function choferes(){
-        return $this->belongsTo(Choferes::class);
-    }
-
     public function planes(){
         return $this->belongsToMany(Planes::class, 'choferes_moviles_planes', 'moviles_id', 'planes_id')->withPivot(['viaje', 'choferes_id'])->withTimestamps();
     }

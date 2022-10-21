@@ -38,21 +38,6 @@
                         <p>No posee Tiers disponibles</p>
                     @endforelse
 
-                    <br/>
-
-                    <div class="input-group input-group-static mt-3">
-                        <label>Chofer</label>
-                        <select class="form-control" wire:model="movil.choferes_id">
-                            @forelse($choferes as $c)
-                                <option value="{{$c->id}}"> {{$c->nombre}} </option>
-                            @empty
-                            @endforelse
-                        </select>
-                    </div>
-                    @error('movil.choferes_id')
-                        <p class='text-danger inputerror'>{{ $message }} </p>
-                    @enderror
-
                     <br/><br/>
 
                     <div class="form-check form-switch">

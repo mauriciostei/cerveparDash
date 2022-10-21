@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Planes\Forms;
 use App\Models\Choferes;
 use App\Models\Moviles;
 use App\Models\Planes;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class PlanCrear extends Component
@@ -21,10 +22,18 @@ class PlanCrear extends Component
     public $choferes;
 
     protected $rules = [
-        'movil' => 'required',
-        'chofer' => 'required',
-        'viaje' => 'required',
+        'movil' => 'required|int',
+        'chofer' => 'required|int',
+        'viaje' => 'required|int|lte:2',
     ];
+
+    protected $messages = [
+        'viaje.lte' => 'El viaje no puede ser superior a 2',
+    ];
+
+    public function updated($property){
+        $this->validate();
+    }
 
     public function mount($id){
         $this->plan = Planes::find($id);
@@ -35,6 +44,22 @@ class PlanCrear extends Component
     }
 
     public function agregar(){
+        $this->validate();
+
+        $movil = Moviles::find($this->movil);
+        $validate = DB::table('choferes_moviles_planes')->where('planes_id', $this->plan->id)->where('moviles_id', $this->movil)->where('viaje', $this->viaje)->first();
+        if($validate){
+            return $this->addError('movil', "Ya existe una planificación de $movil->nombre para el viaje $this->viaje");
+        }
+
+        $chofer = Choferes::find($this->chofer);
+        if($chofer->tiers_id == 2){
+            $validate = DB::table('choferes_moviles_planes')->where('planes_id', $this->plan->id)->where('choferes_id', $this->chofer)->where('viaje', $this->viaje)->first();
+            if($validate){
+                return $this->addError('chofer', "Ya existe una planificación de $chofer->nombre para el viaje $this->viaje");
+            }
+        }
+
         $this->plan->moviles()->attach($this->movil, ['choferes_id' => $this->chofer, 'viaje' => $this->viaje]);
         session()->flash('message', 'Plan guardado!');
         return redirect()->to('/planes/'.$this->plan->id);

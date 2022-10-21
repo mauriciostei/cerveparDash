@@ -12,14 +12,11 @@ class MovilesForm extends Component
     public Moviles $movil;
     public $tiers;
 
-    public $choferes;
-
     protected $rules = [
         'movil.nombre' => 'required|string|min:3',
         'movil.chapa' => 'required|string',
         'movil.activo' => '',
         'movil.tiers_id' => '',
-        'movil.choferes_id' => '',
     ];
 
     protected $messages = [
@@ -37,7 +34,6 @@ class MovilesForm extends Component
             $this->movil = Moviles::find($id);
         }
         $this->tiers = Tiers::all();
-        $this->choferes = Choferes::all();
     }
 
     public function save(){

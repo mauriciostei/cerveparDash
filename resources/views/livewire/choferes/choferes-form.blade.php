@@ -26,6 +26,18 @@
                         <p class='text-danger inputerror'>{{ $message }} </p>
                     @enderror
 
+                    <br/>
+
+                    <h6>Tier del Chofer</h6>
+                    @forelse($tiers as $tier)
+                        <div class="form-check">
+                            <input class="form-check-input" wire:model="chofer.tiers_id" value={{$tier->id}} type="radio" name="flexRadioDefault">
+                            <label class="custom-control-label"> {{$tier->nombre}} </label>
+                        </div>
+                    @empty
+                        <p>No posee Tiers disponibles</p>
+                    @endforelse
+
                     <br/><br/>
 
                     <div class="form-check form-switch">

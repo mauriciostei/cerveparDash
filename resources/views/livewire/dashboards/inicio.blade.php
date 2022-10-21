@@ -118,6 +118,7 @@
                                                     <tr>
                                                         <td class="text-secondary text-sm text-center"> {{explode(' ',$r->inicio)[1]}} </td>
                                                         <td class="text-secondary text-sm text-center"> {{$r->moviles->nombre}} </td>
+                                                        <td class="text-secondary text-sm text-center"> {{$r->choferes->nombre}} </td>
                                                         <td class="text-secondary text-sm text-center"> {{$r->puntos->nombre}} </td>
                                                         <td class="text-secondary text-sm text-center"> {{$this->difTime($r->inicio)}} </td>
                                                         <td class="text-secondary text-sm text-center"> {{explode(' ',$r->target)[1]}} </td>

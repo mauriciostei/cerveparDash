@@ -17,6 +17,10 @@ class Tiers extends Model
         return $this->hasMany(Moviles::class);
     }
 
+    public function choferes(){
+        return $this->hasMany(Choferes::class);
+    }
+
     public function puntos(){
         return $this->belongsToMany(Puntos::class, 'puntos_tiers', 'tiers_id', 'puntos_id')->withPivot(['viaje', 'orden', 'target', 'ponderacion'])->withTimestamps()->orderByPivot('orden');
     }

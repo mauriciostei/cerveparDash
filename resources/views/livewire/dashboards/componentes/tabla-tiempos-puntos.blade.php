@@ -4,7 +4,7 @@
             <p class="text-lg mb-0 text-capitalize">Tiempos <span class="font-weight-bolder"> Medios por Zona </span> </p>
         </div>
     </div>
-    <div class="card-body pt-2 pb-2">
+    <div class="card-body pt-2 pb-2 table-responsive">
         <table class="table table-hover table-sm mt-2">
             <thead>
                 <tr>

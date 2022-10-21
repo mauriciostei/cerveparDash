@@ -41,9 +41,6 @@
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Tier</th>
                                         <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Chofer</th>
-                                        <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Estado</th>
                                         <th class="text-secondary opacity-7"></th>
@@ -58,11 +55,6 @@
                                         </td>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0"> {{$movil->tiers->nombre}} </p>
-                                        </td>
-                                        <td>
-                                            @if($movil->choferes)
-                                                <p class="text-xs font-weight-bold mb-0"> {{$movil->choferes->nombre}} </p>
-                                            @endif
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             <span class="badge badge-sm {{$movil->activo === true ? 'bg-gradient-success' : 'bg-gradient-warning'}}">
