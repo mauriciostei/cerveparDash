@@ -42,9 +42,13 @@ trait NuevoRecorrido{
                         $ultimoRecorrido->fin = $fechaHora;
                         $recorrido->viaje = $ultimoRecorrido->viaje;
                     }elseif($ultimoRecorrido->fin && $ultimoRecorrido->viaje==1){
-                        $recorrido->viaje = 2;
-                        $recorrido->moviles_id = $planificado[1]->moviles_id;
-                        $recorrido->choferes_id = $planificado[1]->choferes_id;
+                        if(count($planificado)==2){
+                            $recorrido->viaje = 2;
+                            $recorrido->moviles_id = $planificado[1]->moviles_id;
+                            $recorrido->choferes_id = $planificado[1]->choferes_id;
+                        }else{
+                            return null;
+                        }
                     }elseif($ultimoRecorrido->fin && $ultimoRecorrido->viaje==2){
                         return null;
                     }
