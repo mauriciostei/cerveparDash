@@ -104,7 +104,6 @@ class RecorridosController extends Controller
 
                 if($sensor && $chofer){
                     $this->ingresarRecorrido($sensor, $chofer->tiers_id, 'choferes_id', $chofer->id);
-                    break;
                 }
     
             endforeach;

@@ -78,6 +78,7 @@ class Inicio extends Component
             , 'Recorrido'
             , 'Tier'
             , 'Movil'
+            , 'Chofer'
             , 'Punto de control'
             , 'Estado'
             , 'Aplica'
@@ -107,7 +108,8 @@ class Inicio extends Component
                     , $m->ponderacion
                     , $m->viaje
                     , $m->tiers->nombre
-                    , $m->moviles->nombre
+                    , $m->moviles ? $m->moviles->nombre : ''
+                    , $m->choferes ? $m->choferes->nombre : ''
                     , $m->puntos->nombre
                     , $m->estado
                     , $aplica

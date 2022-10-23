@@ -19,7 +19,7 @@ trait NuevoRecorrido{
         if($plan){
             $planificado = DB::table('choferes_moviles_planes')->where('planes_id', $plan->id)->where($tipo_id, $id)->orderBy('viaje')->get();
 
-            if($planificado){
+            if(count($planificado)>=1){
     
                 $ultimoRecorrido = Recorridos::whereDate('inicio', date('Y-m-d'))
                     ->where($tipo_id, $id)
