@@ -37,8 +37,8 @@ class TablaTM extends Component
         $fin = $this->hasta;
         $tiers = implode(',', $this->tiers) ? implode(',', $this->tiers) : '0';
 
-        $this->tm = collect(DB::select("select * from tiempo_medios(?, ?) where id in (".$tiers.")", [$ini, $fin]));
-        $this->GlobalTM = collect(DB::select("select avg(tmi) tmi, avg(tmr) tmr, avg(tml) tml from tiempo_medios(?, ?) where id in (".$tiers.")", [$ini, $fin]));
+        $this->tm = collect(DB::select("select *, tmi+tml+tmr jornada from tiempo_medios(?, ?) where id in (".$tiers.")", [$ini, $fin]));
+        $this->GlobalTM = collect(DB::select("select avg(tmi) tmi, avg(tmr) tmr, avg(tml) tml, avg(tmi+tml+tmr) jornada from tiempo_medios(?, ?) where id in (".$tiers.")", [$ini, $fin]));
     }
 
     public function render(){
