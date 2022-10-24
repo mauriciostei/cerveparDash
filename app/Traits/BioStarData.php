@@ -35,8 +35,8 @@ trait BioStarData{
                   "column": "datetime",
                   "operator": 3,
                   "values": [
-                    "'.$inicio.'",
-                    "'.$fin.'"
+                    "'.$this->setTime($inicio).'",
+                    "'.$this->setTime($fin).'"
                   ]
                 },
                 {
@@ -76,6 +76,10 @@ trait BioStarData{
             return null;
         }
 
+    }
+
+    private function setTime($time){
+      return date("Y-m-d", strtotime("$time"))."T".date("H:i:s.v", strtotime("$time"))."Z";
     }
 
 }

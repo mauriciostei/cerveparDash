@@ -9,30 +9,30 @@
             <thead>
                 <tr>
                     <th>Tier</th>
-                    <th>TML</th>
-                    <th>TI</th>
-                    <th>TMR</th>
-                    <th>Jornada Laboral</th>
+                    <th class="text-center">TML</th>
+                    <th class="text-center">TI</th>
+                    <th class="text-center">TMR</th>
+                    <th class="text-center">Jornada Laboral</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($tm as $item)
                     <tr>
                         <td> Tier {{$item->id}} </td>
-                        <td> {{date('H:i', strtotime($item->tml))}} </td>
-                        <td> {{date('H:i', strtotime($item->tmi))}} </td>
-                        <td> {{date('H:i', strtotime($item->tmr))}}  </td>
-                        <td> {{date('H:i', strtotime($item->jornada))}}  </td>
+                        <td class="text-center"> {{date('H:i', strtotime($item->tml))}} </td>
+                        <td class="text-center"> {{date('H:i', strtotime($item->tmi))}} </td>
+                        <td class="text-center"> {{date('H:i', strtotime($item->tmr))}}  </td>
+                        <td class="text-center"> {{date('H:i', strtotime($item->jornada))}}  </td>
                     </tr>
                 @endforeach
             </tbody>
             <tfoot>
                 <tr>
                     <th>Promedio:</th>
-                    <th> {{date('H:i', strtotime($GlobalTM[0]->tml))}}  </th>
-                    <th> {{date('H:i', strtotime($GlobalTM[0]->tmi))}}  </th>
-                    <th> {{date('H:i', strtotime($GlobalTM[0]->tmr))}}  </th>
-                    <td> {{date('H:i', strtotime($GlobalTM[0]->jornada))}}  </td>
+                    <th class="text-center"> {{date('H:i', strtotime($GlobalTM[0]->tml))}}  </th>
+                    <th class="text-center"> {{date('H:i', strtotime($GlobalTM[0]->tmi))}}  </th>
+                    <th class="text-center"> {{date('H:i', strtotime($GlobalTM[0]->tmr))}}  </th>
+                    <td class="text-center"> {{date('H:i', strtotime($GlobalTM[0]->jornada))}}  </td>
                 </tr>
             </tfoot>
         </table>
