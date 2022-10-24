@@ -39,8 +39,8 @@ class Kernel extends ConsoleKernel
             $r = new RecorridosController();
             
             $seconds = 5;
-            $count = (60/$seconds) - 1;
-            $inicial = date('c');
+            $count = (60/$seconds) - 2;
+            $inicial = date('c', strtotime(date('Y-m-d H:i:s').' +3 hours'));
             do{
                 $final = date('c', strtotime("$inicial +5 seconds"));
                 $r->ingresarPersona($inicial, $final);

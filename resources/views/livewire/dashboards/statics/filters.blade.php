@@ -21,7 +21,7 @@
         </ul>
 
     </th>
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Choferes </th>
+    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Chofer </th>
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
         <a class="dropdown-toggle" role="button" id="dropSitios" data-bs-toggle="dropdown" aria-expanded="false"> Sitio </a>
         <ul class="dropdown-menu bg-dark" aria-labelledby="dropSitios">
