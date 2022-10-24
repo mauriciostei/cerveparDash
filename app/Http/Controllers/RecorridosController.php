@@ -11,6 +11,7 @@ use App\Traits\BioStarData;
 use App\Traits\NuevoRecorrido;
 use App\Traits\XMLToJSON;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class RecorridosController extends Controller
 {
@@ -97,6 +98,9 @@ class RecorridosController extends Controller
         $response = $this->getData($inicio, $fin);
 
         if($response){
+
+            Log::info('Llegue en la fecha y hora '.date('Y-m-d H:i:s'));
+
             foreach($response as $item):
     
                 $sensor = Sensores::where('codigo', $item->device_id->id)->where('activo', true)->first();
