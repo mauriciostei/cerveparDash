@@ -44,7 +44,7 @@
                         <i class="fa fa-bell cursor-pointer"></i>
                         @livewire('config.alertas-badge')
                     </a>
-                    <ul class="dropdown-menu  dropdown-menu-end px-2 py-3 me-sm-n4"
+                    <ul class="dropdown-menu  dropdown-menu-end px-2 py-3 me-sm-n4" style="z-index: 1500;"
                         aria-labelledby="dropdownMenuButton">
                         <livewire:config.alertas-box/>
                     </ul>

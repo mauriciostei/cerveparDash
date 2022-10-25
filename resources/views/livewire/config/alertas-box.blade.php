@@ -1,4 +1,4 @@
-<div wire:poll.1000ms style="z-index: 1000;">
+<div wire:poll.1000ms>
 
     @forelse($alertas as $al)
 
