@@ -15,6 +15,16 @@
 
             {{ $slot }}
 
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offCanvasAlertas">
+                <div class="offcanvas-header bg-dark">
+                    <h5 class="offcanvas-title" id="offcanvasRightLabel">Alertas del Sistema</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body bg-dark">
+                    <livewire:config.alertas-box/>
+                </div>
+            </div>
+
             <x-footers.auth></x-footers.auth>
             <div id="apartadoParaAlertas" class="toast-container position-absolute top-0 end-0 p-3 z-index-2">
                 @livewire('config.alertas-show')

@@ -22,7 +22,7 @@
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
                     <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
-                        <i class="fa fa-user me-sm-1"></i>
+                        <i class="fa fa-close me-sm-1"></i>
                         <livewire:auth.logout/>
                     </a>
                 </li>
@@ -37,18 +37,14 @@
                 </li>
                 <li class="nav-item px-3 d-flex align-items-center">
                 </li>
-                
+
                 <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-white p-0 position-relative" id="dropdownMenuButton"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-bell cursor-pointer"></i>
+                    <a class="nav-link text-white p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasAlertas" aria-controls="offCanvasAlertas">
+                        <i class="fa fa-bell"></i>
                         @livewire('config.alertas-badge')
                     </a>
-                    <ul class="dropdown-menu  dropdown-menu-end px-2 py-3 me-sm-n4" style="z-index: 1500;"
-                        aria-labelledby="dropdownMenuButton">
-                        <livewire:config.alertas-box/>
-                    </ul>
                 </li>
+
                 <li class="nav-item px-3 d-flex align-items-center">
                 </li>
                 <li class="nav-item d-flex align-items-center">
