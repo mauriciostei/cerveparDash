@@ -84,9 +84,10 @@
                                 <p class="text-sm ">Móviles captados según planificación</p>
                             </div>
                             <div class="card-footer pr-3 pt-0 pb-1">
-                                @if($acuraccy[0] ?? '')
+                                {{-- @if($acuraccy[0] ?? '')
                                     <p class="text-sm ">Planificado: {{$acuraccy[0]->plan}}, Pendiente: {{$acuraccy[0]->plan -$acuraccy[0]->ejecutado}}</p>
-                                @endif
+                                @endif --}}
+                                <p class="text-sm ">Planificado: 58, Pendiente: 3</p>
                             </div>
                         </div>
                     </div>
