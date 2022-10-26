@@ -57,6 +57,9 @@
             </div>
             <div class="w-100 w-lg-50 ms-0 ms-lg-2">
                 @livewire('dashboards.componentes.tabla-t-m', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+                <div class="pt-2">
+                    @livewire('dashboards.componentes.tiempos-financieros', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+                </div>
             </div>
         </div>
 
