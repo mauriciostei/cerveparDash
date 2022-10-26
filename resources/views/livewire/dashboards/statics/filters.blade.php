@@ -42,7 +42,7 @@
         </ul>
     </th>
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Duración </th>
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Target </th>
+    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Target Llegada </th>
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
         <a class="dropdown-toggle" role="button" id="dropEstados" data-bs-toggle="dropdown" aria-expanded="false"> Estado </a>
         <ul class="dropdown-menu bg-dark" aria-labelledby="dropEstados">
