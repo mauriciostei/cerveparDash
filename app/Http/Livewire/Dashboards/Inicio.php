@@ -26,6 +26,7 @@ class Inicio extends Component
     public $acuraccy;
     public $accuracyLogrado;
 
+    public $tiersSeleccionados;
     public $movilesSeleccionados;
     public $puntosSeleccionados;
     public $estadosSeleccionados;
@@ -35,12 +36,14 @@ class Inicio extends Component
         $this->puntosSeleccionados = $datos['puntos'];
         $this->movilesSeleccionados = $datos['moviles'];
         $this->estadosSeleccionados = $datos['estados'];
+        $this->tiersSeleccionados = $datos['tiers'];
     }
 
     public function mount(){
         $this->puntosSeleccionados = Puntos::pluck('id')->toArray();
         $this->movilesSeleccionados = Moviles::pluck('id')->toArray();
         $this->estadosSeleccionados = Array('OnTime', 'Dismiss', 'OutOfTime');
+        $this->tiersSeleccionados = Tiers::pluck('id')->toArray();
     }
 
     public function render()

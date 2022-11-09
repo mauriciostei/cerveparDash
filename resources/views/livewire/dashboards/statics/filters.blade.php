@@ -1,4 +1,23 @@
 <tr>
+    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
+        <a class="dropdown-toggle" role="button" id="dropSitios" data-bs-toggle="dropdown" aria-expanded="false"> Tiers </a>
+        <ul class="dropdown-menu bg-dark" aria-labelledby="dropSitios">
+            <li class="dropdown-item">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="true" wire:model="selectAllTiers" wire:change="cambiarTodosTiers">
+                    <label class="form-check-label"> Seleccionar Todo </label>
+                </div>
+            </li>
+            @foreach($tiers as $item)
+                <li class="dropdown-item">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{{$item->id}}" wire:model="selectedTiers">
+                        <label class="form-check-label"> {{$item->nombre}} </label>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
+    </th>
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Hora Inicio </th>
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
 

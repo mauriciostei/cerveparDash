@@ -114,8 +114,9 @@
                                         </thead>
                                         <tbody>
                                             @forelse($recorridos  as $r)
-                                                @if(in_array($r->puntos_id, $puntosSeleccionados) && in_array($r->moviles_id, $movilesSeleccionados) && in_array($r->estado, $estadosSeleccionados))
+                                                @if(in_array($r->puntos_id, $puntosSeleccionados) && in_array($r->moviles_id, $movilesSeleccionados) && in_array($r->estado, $estadosSeleccionados) && in_array($r->tiers_id, $tiersSeleccionados))
                                                     <tr>
+                                                        <td class="text-secondary text-sm text-center"> {{$r->tiers->nombre}} </td>
                                                         <td class="text-secondary text-sm text-center"> {{explode(' ',$r->inicio)[1]}} </td>
                                                         <td class="text-secondary text-sm text-center"> {{$r->moviles->nombre}} </td>
                                                         <td class="text-secondary text-sm text-center"> {{$r->choferes->nombre}} </td>

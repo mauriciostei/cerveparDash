@@ -5,7 +5,9 @@ namespace App\Http\Livewire\Planes\Forms;
 use App\Models\Choferes;
 use App\Models\Moviles;
 use App\Models\Planes;
+use App\Models\Tiers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -29,7 +31,6 @@ class PlanImportar extends Component
     }
 
     public function subirArchivo(){
-
         $fecha = date('Y-m.d');
         $file = $this->file->storeAs('/planes', 'plan'.$fecha.'.txt', $disk = 'local');
         $file = '../storage/app/'.$file;
@@ -37,6 +38,21 @@ class PlanImportar extends Component
         $fh = fopen($file, 'r');
         $contenido = explode("\n", fread($fh, filesize($file)));
         fclose($fh);
+
+        foreach($contenido as $m):
+            $line = explode("\t", $m);
+
+            $tiers = Tiers::find($line[0] ?? null);
+            $codigo = trim($line[1] ?? null);
+            $chapa = trim($line[2] ?? null);
+            $viaje = trim($line[3] ?? null);
+            $documento = trim($line[4] ?? null);
+
+            if(!$tiers || !$codigo || !$chapa || !$viaje || !$documento || $viaje > 2){
+                throw ValidationException::withMessages([ 'file' => 'Archivo con datos vacíos o datos inválidos' ]);
+            }
+        endforeach;
+
 
         if($this->remplazar){
             DB::table('choferes_moviles_planes')->where('planes_id', $this->plan->id)->delete();
