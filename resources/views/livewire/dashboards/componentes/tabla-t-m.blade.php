@@ -11,7 +11,7 @@
                     <th>Tier</th>
                     <th class="text-center">TML</th>
                     <th class="text-center">TI</th>
-                    <th class="text-center">TMR</th>
+                    <th class="text-center">TR</th>
                     {{-- <th class="text-center">Jornada Laboral</th> --}}
                 </tr>
             </thead>
@@ -26,15 +26,15 @@
                     </tr>
                 @endforeach
             </tbody>
-            <tfoot>
+            {{-- <tfoot>
                 <tr>
                     <th>Promedio:</th>
                     <th class="text-center"> {{date('H:i', strtotime($GlobalTM[0]->tml))}}  </th>
                     <th class="text-center"> {{date('H:i', strtotime($GlobalTM[0]->tmi))}}  </th>
                     <th class="text-center"> {{date('H:i', strtotime($GlobalTM[0]->tmr))}}  </th>
-                    {{-- <td class="text-center"> {{date('H:i', strtotime($GlobalTM[0]->jornada))}}  </td> --}}
+                    <td class="text-center"> {{date('H:i', strtotime($GlobalTM[0]->jornada))}}  </td>
                 </tr>
-            </tfoot>
+            </tfoot> --}}
         </table>
     </div>
 </div>
