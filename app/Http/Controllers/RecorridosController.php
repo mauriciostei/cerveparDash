@@ -99,8 +99,6 @@ class RecorridosController extends Controller
 
         if($response){
 
-            Log::info("Llegue en la fecha y hora ".date('Y-m-d H:i:s')." utilizando la fecha $inicio");
-
             foreach($response as $item):
     
                 $sensor = Sensores::where('codigo', $item->device_id->id)->where('activo', true)->first();

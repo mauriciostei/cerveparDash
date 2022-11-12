@@ -29,6 +29,7 @@ class Kernel extends ConsoleKernel
             $r->validarAlertas();
         })->daily();
 
+        // Leer datos del BioStar
         $schedule->call(function(){
             $r = new RecorridosController();
             

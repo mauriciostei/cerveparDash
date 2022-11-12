@@ -68,8 +68,12 @@ trait NuevoRecorrido{
                 }
         
                 $tiempo = DB::table('puntos_tiers')->where('tiers_id', $recorrido->tiers_id)->where('puntos_id', $recorrido->puntos_id)->where('viaje', $recorrido->viaje)->first();
-                $recorrido->target = $this->addTime($tiempo->target, $fechaHora);
-                $recorrido->ponderacion = $this->addTime($tiempo->ponderacion, $recorrido->target);
+                if($tiempo){
+                    $recorrido->target = $this->addTime($tiempo->target, $fechaHora);
+                    $recorrido->ponderacion = $this->addTime($tiempo->ponderacion, $recorrido->target);
+                }else{
+                    return;
+                }
 
                 if($recorrido->target === $recorrido->inicio && $recorrido->ponderacion === $recorrido->inicio){
                     $recorrido->fin = $fechaHora;
