@@ -9,12 +9,6 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * Define the application's command schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
     protected function schedule(Schedule $schedule)
     {
         // Clonar la planificación de ayer
@@ -38,36 +32,13 @@ class Kernel extends ConsoleKernel
         $schedule->call(function(){
             $r = new RecorridosController();
             
-            // $seconds = 5;
-            // $count = (60/$seconds) - 2;
-            // $inicial = date('c', strtotime(date('Y-m-d H:i:s').' +3 hours'));
-            // do{
-            //     $final = date('c', strtotime("$inicial +5 seconds"));
-            //     $r->ingresarPersona($inicial, $final);
-
-            //     $count--;
-            //     $inicial = $final;
-            //     sleep($seconds);
-            // }while($count != 0);
-
-            $inicial = date('c', strtotime(strtotime(date('Y-m-d H:i:s').' +3 hours')."-1 minutes"));
-            $final = date('c', strtotime("$inicial +30 seconds"));
-            $r->ingresarPersona($inicial, $final);
-
-            sleep(30);
-
-            $inicial = $final;
-            $final = date('c', strtotime("$inicial +30 seconds"));
+            $inicial = date('c', strtotime(now()." +3 hours -1 minute"));
+            $final = date('c', strtotime("$inicial +1 minutes"));
             $r->ingresarPersona($inicial, $final);
 
         })->everyMinute();
     }
 
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
