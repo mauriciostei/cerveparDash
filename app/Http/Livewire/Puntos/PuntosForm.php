@@ -14,6 +14,7 @@ class PuntosForm extends Component
         'punto.minimo' => 'required|date_format:H:i:s',
         'punto.maximo' => 'required|date_format:H:i:s|after:punto.minimo',
         'punto.tiempos_financieros' => 'required|bool',
+        'punto.tiempos_fisicos' => 'required|bool',
         'punto.tipo_tiempo' => 'required|string',
         'punto.activo' => ''
     ];

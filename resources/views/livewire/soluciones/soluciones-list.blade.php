@@ -65,6 +65,7 @@
                                     
                                 </tbody>
                             </table>
+                            {{$soluciones->links()}}
                         </div>
                     </div>
                 </div>

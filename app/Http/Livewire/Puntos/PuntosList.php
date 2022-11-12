@@ -4,14 +4,17 @@ namespace App\Http\Livewire\Puntos;
 
 use App\Models\Puntos;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PuntosList extends Component
 {
-    public $puntos;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public function render()
     {
-        $this->puntos = Puntos::all();
-        return view('livewire.puntos.puntos-list');
+        return view('livewire.puntos.puntos-list', [
+            'puntos' => Puntos::orderBy('id', 'desc')->paginate(10)
+        ]);
     }
 }

@@ -4,14 +4,17 @@ namespace App\Http\Livewire\Problemas;
 
 use App\Models\Problemas;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ProblemasList extends Component
 {
-    public $problemas;
-
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    
     public function render()
     {
-        $this->problemas = Problemas::all();
-        return view('livewire.problemas.problemas-list');
+        return view('livewire.problemas.problemas-list', [
+            'problemas' => Problemas::orderBy('id', 'desc')->paginate(10)
+        ]);
     }
 }

@@ -59,6 +59,13 @@
                     <br>
 
                     <div class="form-check form-switch mt-3">
+                        <input wire:model="punto.tiempos_fisicos" class="form-check-input" type="checkbox" >
+                        <label class="form-check-label">Tiempos Físicos</label>
+                    </div>
+
+                    <br>
+
+                    <div class="form-check form-switch mt-3">
                         <input wire:model="punto.activo" class="form-check-input" type="checkbox" >
                         <label class="form-check-label">Activo</label>
                     </div>

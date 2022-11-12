@@ -66,6 +66,7 @@
                                     
                                 </tbody>
                             </table>
+                            {{$choferes->links()}}
                         </div>
                     </div>
                 </div>

@@ -65,6 +65,7 @@
                                     
                                 </tbody>
                             </table>
+                            {{$problemas->links()}}
                         </div>
                     </div>
                 </div>

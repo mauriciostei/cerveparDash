@@ -61,7 +61,9 @@ class GraficaDescargaMovil extends Component
             Array('label' => 'Tiempo Medio', 'data' => $t2, 'backgroundColor' => '#F6AB16')
         ]);
 
-        $this->emit('updateGraficoDescargaMovil', $this->descargaDock);
+        $max = $t2 ? max($t2) : 0;
+
+        $this->emit('updateGraficoDescargaMovil', $this->descargaDock, $max);
     }
 
     public function render(){

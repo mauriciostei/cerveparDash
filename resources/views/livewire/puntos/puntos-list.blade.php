@@ -65,6 +65,7 @@
                                     
                                 </tbody>
                             </table>
+                            {{$puntos->links()}}
                         </div>
                     </div>
                 </div>

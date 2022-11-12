@@ -8,10 +8,11 @@
                 <li class="breadcrumb-item text-sm text-white active text-capitalize" aria-current="page">{{ str_replace('-', ' ', Route::currentRouteName()) }}</li>
             </ol>
         </nav> --}}
-        <div>
-            <button id="toggleMenu" class="text-white btn bg-transparent">
+        <div class="d-flex flex-row">
+            <button id="toggleMenu" class="d-none d-lg-flex text-white btn bg-transparent">
                 <i class="fa fa-bars cursor-pointer"></i>
             </button>
+            <div class="text-muted font-weight-bold overflow-hidden"> {{env('LOCALIDAD')}} </div>
         </div>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">

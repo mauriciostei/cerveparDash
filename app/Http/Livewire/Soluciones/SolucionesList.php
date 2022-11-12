@@ -4,14 +4,17 @@ namespace App\Http\Livewire\Soluciones;
 
 use App\Models\Soluciones;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class SolucionesList extends Component
 {
-    public $soluciones;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public function render()
     {
-        $this->soluciones = Soluciones::all();
-        return view('livewire.soluciones.soluciones-list');
+        return view('livewire.soluciones.soluciones-list', [
+            'soluciones' => Soluciones::orderBy('id', 'desc')->paginate(10)
+        ]);
     }
 }

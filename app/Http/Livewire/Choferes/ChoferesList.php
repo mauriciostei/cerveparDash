@@ -4,14 +4,17 @@ namespace App\Http\Livewire\Choferes;
 
 use App\Models\Choferes;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ChoferesList extends Component
 {
-    public $choferes;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public function render()
     {
-        $this->choferes = Choferes::all();
-        return view('livewire.choferes.choferes-list');
+        return view('livewire.choferes.choferes-list', [
+            'choferes' => Choferes::orderBy('id', 'desc')->paginate(10)
+        ]);
     }
 }

@@ -63,7 +63,9 @@ class GraficaDescargaDock extends Component
             Array('label' => 'Tier 2', 'data' => $t2, 'backgroundColor' => '#F6AB16')
         ]);
 
-        $this->emit('updateGraficoDescargaDock', $this->descargaDock);
+        $max = $t2 ? max($t2) : 0;
+
+        $this->emit('updateGraficoDescargaDock', $this->descargaDock, $max);
     }
 
     public function render(){

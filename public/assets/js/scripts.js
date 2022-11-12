@@ -145,7 +145,7 @@ Livewire.on('updateGraficoAnomaliasHora', (grafica) => {
     });
 });
 
-Livewire.on('updateGraficoDescargaDock', (grafica) => {
+Livewire.on('updateGraficoDescargaDock', (grafica, max) => {
     if (descarga_dock !== null) {
         descarga_dock.destroy();
     }
@@ -162,11 +162,36 @@ Livewire.on('updateGraficoDescargaDock', (grafica) => {
                 yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
             },
             color: '#FFF',
-        }
+        },
+        plugins: [{
+            beforeDraw: (chart) => {
+                const {ctx} = chart;
+                const area = chart.chartArea;
+
+                ctx.save();
+                ctx.globalCompositeOperation = 'destination-over';
+
+                porcentaje = max ? (area.top - area.bottom) / max : area.bottom;
+
+                var verde = 4 * porcentaje;
+                var amarillo = 4 * porcentaje;
+
+                ctx.fillStyle = "#4CAF50";
+                ctx.fillRect(area.left, area.bottom, area.right - area.left, verde);
+
+                ctx.fillStyle = "#FBD38D";
+                ctx.fillRect(area.left, area.bottom + verde, area.right - area.left, amarillo);
+                
+                ctx.fillStyle = "#F56565";
+                ctx.fillRect(area.left, area.bottom + (verde + amarillo), area.right - area.left, area.top - area.bottom);
+
+                ctx.restore();
+            }
+        }],
     });
 });
 
-Livewire.on('updateGraficoDescargaMovil', (grafica) => {
+Livewire.on('updateGraficoDescargaMovil', (grafica, max) => {
     if (descarga_movil !== null) {
         descarga_movil.destroy();
     }
@@ -183,7 +208,32 @@ Livewire.on('updateGraficoDescargaMovil', (grafica) => {
                 yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
             },
             color: '#FFF',
-        }
+        },
+        plugins: [{
+            beforeDraw: (chart) => {
+                const {ctx} = chart;
+                const area = chart.chartArea;
+
+                ctx.save();
+                ctx.globalCompositeOperation = 'destination-over';
+
+                porcentaje = max ? (area.top - area.bottom) / max : area.bottom;
+
+                var verde = 4 * porcentaje;
+                var amarillo = 4 * porcentaje;
+
+                ctx.fillStyle = "#4CAF50";
+                ctx.fillRect(area.left, area.bottom, area.right - area.left, verde);
+
+                ctx.fillStyle = "#FBD38D";
+                ctx.fillRect(area.left, area.bottom + verde, area.right - area.left, amarillo);
+                
+                ctx.fillStyle = "#F56565";
+                ctx.fillRect(area.left, area.bottom + (verde + amarillo), area.right - area.left, area.top - area.bottom);
+
+                ctx.restore();
+            }
+        }],
     });
 });
 

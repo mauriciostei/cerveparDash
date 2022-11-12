@@ -6,6 +6,7 @@
 ## Tabla de Contenido
 * Pre requisitos
 * Instalación
+* Configuración ENV
 * Servicios
 
 ## Pre requisitos
@@ -25,6 +26,15 @@ Para correr la aplicación es necesario contar con:
 5. Correr en la terminal `php artisan key:generate`
 6. Correr en la terminal `php artisan migrate --seed` para crear la base de datos
 7. Añadir el siguiente comando a los CRON Jobs del sistema `* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`
+
+## Configuración ENV
+Adicionalmente es necesario configurar las siguientes variables en el archivo `.env`:
+
+    SW_URL= URL del web service para captación de cámaras.
+    SW_USER= Usuario del sistema de cámaras.
+    SW_PASS= Contraseña del sistema de cámaras.
+    SW_EVENT= Evento de captura de variables, ejemplo: '["4867"]'
+    LOCALIDAD= Nombre del centro de distribución (Entre comillas dobles).
 
 ## Servicios
 Para el uso de los servicios es necesario que los ANPR sean dirigidos a la siguiente ruta:
