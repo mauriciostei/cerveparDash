@@ -38,17 +38,27 @@ class Kernel extends ConsoleKernel
         $schedule->call(function(){
             $r = new RecorridosController();
             
-            $seconds = 5;
-            $count = (60/$seconds) - 2;
-            $inicial = date('c', strtotime(date('Y-m-d H:i:s').' +3 hours'));
-            do{
-                $final = date('c', strtotime("$inicial +5 seconds"));
-                $r->ingresarPersona($inicial, $final);
+            // $seconds = 5;
+            // $count = (60/$seconds) - 2;
+            // $inicial = date('c', strtotime(date('Y-m-d H:i:s').' +3 hours'));
+            // do{
+            //     $final = date('c', strtotime("$inicial +5 seconds"));
+            //     $r->ingresarPersona($inicial, $final);
 
-                $count--;
-                $inicial = $final;
-                sleep($seconds);
-            }while($count != 0);
+            //     $count--;
+            //     $inicial = $final;
+            //     sleep($seconds);
+            // }while($count != 0);
+
+            $inicial = date('c', strtotime(strtotime(date('Y-m-d H:i:s').' +3 hours')."-1 minutes"));
+            $final = date('c', strtotime("$inicial +30 seconds"));
+            $r->ingresarPersona($inicial, $final);
+
+            sleep(30);
+
+            $inicial = $final;
+            $final = date('c', strtotime("$inicial +30 seconds"));
+            $r->ingresarPersona($inicial, $final);
 
         })->everyMinute();
     }
