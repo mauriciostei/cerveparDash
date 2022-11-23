@@ -17,6 +17,7 @@ class MovilesForm extends Component
         'movil.chapa' => 'required|string',
         'movil.activo' => '',
         'movil.tiers_id' => '',
+        'movil.chapa_trasera' => 'nullable|string|min:6',
     ];
 
     protected $messages = [

@@ -46,8 +46,8 @@ class TablaTiemposDesviosMoviles extends Component
 
         $columns = array(
             'Movil'
-            ,'OOT En Ruta', 'OOT Control 1', 'OOT Control 2', 'OOT Envases', 'OOT Fin Envases', 'OOT Descarga', 'OOT Espera'
-            ,'CANT. En Ruta', 'CANT. Control 1', 'CANT. Control 2', 'CANT. Envases', 'CANT. Fin Envases', 'CANT. Descarga', 'CANT. Espera'
+            ,'OOT En Ruta', 'OOT Control 1', 'OOT Control 2', 'OOT Envases', 'OOT Fin Envases', 'OOT Descarga', 'OOT Espera', 'OOT Liquidacion', 'OOT Caja'
+            ,'CANT. En Ruta', 'CANT. Control 1', 'CANT. Control 2', 'CANT. Envases', 'CANT. Fin Envases', 'CANT. Descarga', 'CANT. Espera', 'CANT. Liquidacion', 'CANT. Caja'
             ,'% En Ruta', '% Control 1', '% Control 2', '% Envases', '% Fin Envases', '% Descarga', '% Espera'
             , 'Total OOT', 'Total Captados', 'Porcentaje Total OOT'
         );
@@ -62,8 +62,8 @@ class TablaTiemposDesviosMoviles extends Component
             foreach ($resumen as $m) {
                 $linea = array(
                     $m->nombre
-                    , $m->cantidad_oot_ruta, $m->cantidad_oot_control1, $m->cantidad_oot_control2, $m->cantidad_oot_emvases, $m->cantidad_oot_fin_envases, $m->cantidad_oot_descarga, $m->cantidad_oot_espera
-                    , $m->cantidad_ruta, $m->cantidad_control1, $m->cantidad_control2, $m->cantidad_envases, $m->cantidad_fin_envases, $m->cantidad_descarga, $m->cantidad_espera
+                    , $m->cantidad_oot_ruta, $m->cantidad_oot_control1, $m->cantidad_oot_control2, $m->cantidad_oot_envases, $m->cantidad_oot_fin_envases, $m->cantidad_oot_descarga, $m->cantidad_oot_espera, $m->cantidad_oot_liquidacion, $m->cantidad_oot_caja
+                    , $m->cantidad_ruta, $m->cantidad_control1, $m->cantidad_control2, $m->cantidad_envases, $m->cantidad_fin_envases, $m->cantidad_descarga, $m->cantidad_espera, $m->cantidad_liquidacion, $m->cantidad_caja
                     , $this->getPorcentaje($m->cantidad_oot_ruta, $m->cantidad_ruta)
                     , $this->getPorcentaje($m->cantidad_oot_control1, $m->cantidad_control1)
                     , $this->getPorcentaje($m->cantidad_oot_control2, $m->cantidad_control2)
@@ -71,6 +71,8 @@ class TablaTiemposDesviosMoviles extends Component
                     , $this->getPorcentaje($m->cantidad_oot_fin_envases, $m->cantidad_fin_envases)
                     , $this->getPorcentaje($m->cantidad_oot_descarga, $m->cantidad_descarga)
                     , $this->getPorcentaje($m->cantidad_oot_espera, $m->cantidad_espera)
+                    , $this->getPorcentaje($m->cantidad_oot_liquidacion, $m->cantidad_liquidacion)
+                    , $this->getPorcentaje($m->cantidad_oot_caja, $m->cantidad_caja)
                     , $m->oot, $m->cantidad
                     , $this->getPorcentaje($m->oot, $m->cantidad)
                 );
@@ -101,6 +103,8 @@ class TablaTiemposDesviosMoviles extends Component
                 , DB::raw("sum(case when puntos_id = 5 then 1 else 0 end) as cantidad_fin_envases")
                 , DB::raw("sum(case when puntos_id = 6 then 1 else 0 end) as cantidad_descarga")
                 , DB::raw("sum(case when puntos_id = 7 then 1 else 0 end) as cantidad_espera")
+                , DB::raw("sum(case when puntos_id = 8 then 1 else 0 end) as cantidad_liquidacion")
+                , DB::raw("sum(case when puntos_id = 9 then 1 else 0 end) as cantidad_caja")
                 // oot
                 , DB::raw("sum(case when puntos_id = 1 and estado = 'OutOfTime' then 1 else 0 end) as cantidad_oot_ruta")
                 , DB::raw("sum(case when puntos_id = 2 and estado = 'OutOfTime' then 1 else 0 end) as cantidad_oot_control1")
@@ -109,6 +113,8 @@ class TablaTiemposDesviosMoviles extends Component
                 , DB::raw("sum(case when puntos_id = 5 and estado = 'OutOfTime' then 1 else 0 end) as cantidad_oot_fin_envases")
                 , DB::raw("sum(case when puntos_id = 6 and estado = 'OutOfTime' then 1 else 0 end) as cantidad_oot_descarga")
                 , DB::raw("sum(case when puntos_id = 7 and estado = 'OutOfTime' then 1 else 0 end) as cantidad_oot_espera")
+                , DB::raw("sum(case when puntos_id = 8 and estado = 'OutOfTime' then 1 else 0 end) as cantidad_oot_liquidacion")
+                , DB::raw("sum(case when puntos_id = 9 and estado = 'OutOfTime' then 1 else 0 end) as cantidad_oot_caja")
                 )
             ->join('moviles', 'recorridos.moviles_id', '=', 'moviles.id')
             ->whereIn('recorridos.tiers_id', $this->tiers)

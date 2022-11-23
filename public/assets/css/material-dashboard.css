@@ -5,6 +5,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+ ::-webkit-calendar-picker-indicator{
+  filter: invert(100%);
+ }
+
  @media (max-width:500px){
 
   .bottom-footer {
@@ -13941,7 +13945,7 @@ body.dark-version {
     border-color: #42424a; }
   .form-switch .form-check-input:checked {
     border-color: #42424a;
-    background-color: #42424a; }
+    background-color: var(--bs-blue); }
     .form-switch .form-check-input:checked:active:after {
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 0 0 15px rgba(53, 71, 102, 0.1); }
   .form-switch .form-check-input:active:after {

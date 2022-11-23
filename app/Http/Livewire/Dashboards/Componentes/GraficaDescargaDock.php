@@ -41,7 +41,7 @@ class GraficaDescargaDock extends Component
                 , DB::raw("extract(minutes from COALESCE(avg(case when tiers_id = 2 then fin-inicio end), '00:00:00')) t2")
                 )
             ->join('sensores', 'recorridos.sensores_id', '=', 'sensores.id')
-            ->where('recorridos.puntos_id', '=', 4)
+            ->where('recorridos.puntos_id', '=', env('DOCKS'))
             ->whereNotNull('fin')
             ->whereIn('recorridos.tiers_id', $this->tiers)
             ->whereDate('inicio', '>=', $ini)

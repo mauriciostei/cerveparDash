@@ -10,10 +10,10 @@
   <eventType>ANPR</eventType>
   <eventState>active</eventState>
   <eventDescription>ANPR</eventDescription>
-  <channelName>C2_2</channelName>
+  <channelName>Dock 1</channelName>
   <ANPR>
   <country>218</country>
-  <licensePlate>BZF664</licensePlate>
+  <licensePlate>AFG256</licensePlate>
   <line>1</line>
   <direction>forward</direction>
   <confidenceLevel>97</confidenceLevel>

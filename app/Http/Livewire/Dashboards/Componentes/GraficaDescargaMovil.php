@@ -40,7 +40,7 @@ class GraficaDescargaMovil extends Component
                 , DB::raw("extract(minutes from COALESCE(avg(fin-inicio), '00:00:00')) tiempo")
                 )
             ->join('moviles', 'recorridos.moviles_id', '=', 'moviles.id')
-            ->where('recorridos.puntos_id', '=', 4)
+            ->where('recorridos.puntos_id', '=', env('DOCKS'))
             ->whereNotNull('fin')
             ->whereIn('recorridos.tiers_id', $this->tiers)
             ->whereDate('inicio', '>=', $ini)

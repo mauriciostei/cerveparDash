@@ -28,6 +28,16 @@
 
                     <br/>
 
+                    <div class="input-group input-group-static mt-3">
+                        <label>Chapa Trasera</label>
+                        <input type="text" wire:model="movil.chapa_trasera" class="form-control"/>
+                    </div>
+                    @error('movil.chapa_trasera')
+                        <p class='text-danger inputerror'>{{ $message }} </p>
+                    @enderror
+
+                    <br/>
+
                     <h6>Tier del móvil</h6>
                     @forelse($tiers as $tier)
                         <div class="form-check">

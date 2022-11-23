@@ -11,7 +11,7 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th colspan="7" class="text-center">Porcentaje de OOT por zona</th>
+                        <th colspan="9" class="text-center">Porcentaje de OOT por zona</th>
                         <th colspan="3" class="text-center">Totales</th>
                     </tr>
                     <tr>
@@ -23,6 +23,8 @@
                         <th>Fin Envases</th>
                         <th>Descarga</th>
                         <th>Espera</th>
+                        <th>Liquidación</th>
+                        <th>Caja</th>
                         <th>Total de veces OOT</th>
                         <th>Total de veces Captado</th>
                         <th>Porcentaje total OOT</th>
@@ -39,6 +41,8 @@
                             {{$this->getHTML($item->cantidad_oot_fin_envases, $item->cantidad_fin_envases)}}
                             {{$this->getHTML($item->cantidad_oot_descarga, $item->cantidad_descarga)}}
                             {{$this->getHTML($item->cantidad_oot_espera, $item->cantidad_espera)}}
+                            {{$this->getHTML($item->cantidad_oot_liquidacion, $item->cantidad_liquidacion)}}
+                            {{$this->getHTML($item->cantidad_oot_caja, $item->cantidad_caja)}}
                             <td class="text-center"> {{$item->oot}} </td>
                             <td class="text-center"> {{$item->cantidad}} </td>
                             {{$this->getHTML($item->oot, $item->cantidad)}}

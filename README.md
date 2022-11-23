@@ -35,6 +35,7 @@ Adicionalmente es necesario configurar las siguientes variables en el archivo `.
     SW_PASS= Contraseña del sistema de cámaras.
     SW_EVENT= Evento de captura de variables, ejemplo: '["4867"]'
     LOCALIDAD= Nombre del centro de distribución (Entre comillas dobles).
+    DOCKS= Código interno del sistema para los docks de Descarga
 
 ## Servicios
 Para el uso de los servicios es necesario que los ANPR sean dirigidos a la siguiente ruta:

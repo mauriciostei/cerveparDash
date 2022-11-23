@@ -83,7 +83,12 @@ class RecorridosController extends Controller
 
         if($xml){
             $sensor = Sensores::where('codigo', $xml->channelName)->where('activo', true)->first();
-            $movil = Moviles::where('chapa', $xml->ANPR->licensePlate)->where('activo', true)->first();
+
+            $chapa = $xml->ANPR->licensePlate;
+            $movil = Moviles::where('activo', true)->where(function($query) use($chapa){
+                $query->where('chapa', $chapa)
+                    ->orWhere('chapa_trasera', $chapa);
+            })->first();
     
             if($sensor && $movil){
                 $this->ingresarRecorrido($sensor, $movil->tiers_id, 'moviles_id', $movil->id);
