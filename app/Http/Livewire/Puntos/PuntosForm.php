@@ -29,6 +29,7 @@ class PuntosForm extends Component
             $this->punto = new Puntos();
             $this->punto->activo = true;
             $this->punto->tiempos_financieros = false;
+            $this->punto->tiempos_fisicos = false;
         }else{
             $this->punto = Puntos::find($id);
         }

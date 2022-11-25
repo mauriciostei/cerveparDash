@@ -48,16 +48,84 @@ let descarga_dock = null;
 let descarga_movil = null;
 let vela_alerta_tiempo = null;
 let vela_alerta_cantidad = null;
+let descarga_dock_2 = null;
+let descarga_movil_2 = null;
 
 let ctx1 = document.getElementById("ingreso_moviles");
 let ctx2 = document.getElementById("desvio_medio");
 let ctx3 = document.getElementById("top_desvios");
 let ctx4 = document.getElementById("cantidad_desvios");
-let ctx5 = document.getElementById("descarga_dock");
-let ctx6 = document.getElementById("descarga_movil");
+
+let ctx5 = document.getElementById("descarga_dock_t2");
+let ctx6 = document.getElementById("descarga_movil_t2");
+
 let ctx7 = document.getElementById("vela_alerta_tiempo");
 let ctx8 = document.getElementById("vela_alerta_cantidad");
 
+let ctx9 = document.getElementById("descarga_dock_t1");
+let ctx10 = document.getElementById("descarga_movil_t1");
+
+const dock_plugin = {
+    beforeDraw: (chart) => {
+        const {ctx} = chart;
+        const area = chart.chartArea;
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-over';
+
+        var espacio = (area.top - area.bottom) / 30;
+
+        var verde = 5 * espacio;
+        var amarillo = 4 * espacio;
+        var naranja = 5 * espacio;
+
+        ctx.fillStyle = "#4CAF50";
+        ctx.fillRect(area.left, area.bottom, area.right - area.left, verde);
+
+        ctx.fillStyle = "#FBD38D";
+        ctx.fillRect(area.left, area.bottom + verde, area.right - area.left, amarillo);
+
+        ctx.fillStyle = "#FAC024";
+        ctx.fillRect(area.left, area.bottom + (verde + amarillo), area.right - area.left, naranja);
+        
+        ctx.fillStyle = "#F56565";
+        ctx.fillRect(area.left, area.bottom + (verde + amarillo + naranja) + 1, area.right - area.left, area.top - area.bottom);
+
+
+        ctx.restore();
+    }
+};
+
+const dock_plugin_t1 = {
+    beforeDraw: (chart) => {
+        const {ctx} = chart;
+        const area = chart.chartArea;
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-over';
+
+        var espacio = (area.top - area.bottom) / 200;
+
+        var verde = 15 * espacio;
+        var amarillo = 15 * espacio;
+        var naranja = 15 * espacio;
+
+        ctx.fillStyle = "#4CAF50";
+        ctx.fillRect(area.left, area.bottom, area.right - area.left, verde);
+
+        ctx.fillStyle = "#FBD38D";
+        ctx.fillRect(area.left, area.bottom + verde, area.right - area.left, amarillo);
+
+        ctx.fillStyle = "#FAC024";
+        ctx.fillRect(area.left, area.bottom + (verde + amarillo), area.right - area.left, naranja);
+        
+        ctx.fillStyle = "#F56565";
+        ctx.fillRect(area.left, area.bottom + (verde + amarillo + naranja) + 1, area.right - area.left, area.top - area.bottom);
+
+
+        ctx.restore();
+    }
+};
 
 Livewire.on('updateGraficoIngresoMoviles', (grafica) => {
     if (ingreso_moviles !== null) {
@@ -145,9 +213,13 @@ Livewire.on('updateGraficoAnomaliasHora', (grafica) => {
     });
 });
 
-Livewire.on('updateGraficoDescargaDock', (grafica, max) => {
+Livewire.on('updateGraficoDescargaDock', (grafica, grafica2) => {
     if (descarga_dock !== null) {
         descarga_dock.destroy();
+    }
+
+    if (descarga_dock_2 !== null) {
+        descarga_dock_2.destroy();
     }
     
     descarga_dock = new Chart(ctx5, {
@@ -159,41 +231,43 @@ Livewire.on('updateGraficoDescargaDock', (grafica, max) => {
             maintainAspectRatio: false,
             scales: {
                 xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Dock' } }],
-                yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
+                y: {
+                    suggestedMin: 0,
+                    suggestedMax: 30,
+                },
             },
             color: '#FFF',
         },
-        plugins: [{
-            beforeDraw: (chart) => {
-                const {ctx} = chart;
-                const area = chart.chartArea;
+        plugins: [dock_plugin]
+    });
 
-                ctx.save();
-                ctx.globalCompositeOperation = 'destination-over';
-
-                porcentaje = max ? (area.top - area.bottom) / max : area.bottom;
-
-                var verde = 4 * porcentaje;
-                var amarillo = 4 * porcentaje;
-
-                ctx.fillStyle = "#4CAF50";
-                ctx.fillRect(area.left, area.bottom, area.right - area.left, verde);
-
-                ctx.fillStyle = "#FBD38D";
-                ctx.fillRect(area.left, area.bottom + verde, area.right - area.left, amarillo);
-                
-                ctx.fillStyle = "#F56565";
-                ctx.fillRect(area.left, area.bottom + (verde + amarillo), area.right - area.left, area.top - area.bottom);
-
-                ctx.restore();
-            }
-        }],
+    descarga_dock_2 = new Chart(ctx9, {
+        type: "bar",
+        data: grafica2,
+        options: {
+            animation: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Dock' } }],
+                y: {
+                    suggestedMin: 0,
+                    suggestedMax: 200,
+                },
+            },
+            color: '#FFF',
+        },
+        plugins: [dock_plugin_t1]
     });
 });
 
-Livewire.on('updateGraficoDescargaMovil', (grafica, max) => {
+Livewire.on('updateGraficoDescargaMovil', (grafica, grafica2) => {
     if (descarga_movil !== null) {
         descarga_movil.destroy();
+    }
+
+    if (descarga_movil_2 !== null) {
+        descarga_movil_2.destroy();
     }
     
     descarga_movil = new Chart(ctx6, {
@@ -205,35 +279,33 @@ Livewire.on('updateGraficoDescargaMovil', (grafica, max) => {
             maintainAspectRatio: false,
             scales: {
                 xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Dock' } }],
-                yAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Horas' } }],
+                y: {
+                    suggestedMin: 0,
+                    suggestedMax: 30,
+                },
             },
             color: '#FFF',
         },
-        plugins: [{
-            beforeDraw: (chart) => {
-                const {ctx} = chart;
-                const area = chart.chartArea;
+        plugins: [dock_plugin]
+    });
 
-                ctx.save();
-                ctx.globalCompositeOperation = 'destination-over';
-
-                porcentaje = max ? (area.top - area.bottom) / max : area.bottom;
-
-                var verde = 4 * porcentaje;
-                var amarillo = 4 * porcentaje;
-
-                ctx.fillStyle = "#4CAF50";
-                ctx.fillRect(area.left, area.bottom, area.right - area.left, verde);
-
-                ctx.fillStyle = "#FBD38D";
-                ctx.fillRect(area.left, area.bottom + verde, area.right - area.left, amarillo);
-                
-                ctx.fillStyle = "#F56565";
-                ctx.fillRect(area.left, area.bottom + (verde + amarillo), area.right - area.left, area.top - area.bottom);
-
-                ctx.restore();
-            }
-        }],
+    descarga_movil_2 = new Chart(ctx10, {
+        type: "bar",
+        data: grafica2,
+        options: {
+            animation: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Dock' } }],
+                y: {
+                    suggestedMin: 0,
+                    suggestedMax: 200,
+                },
+            },
+            color: '#FFF',
+        },
+        plugins: [dock_plugin_t1]
     });
 });
 

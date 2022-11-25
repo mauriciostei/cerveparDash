@@ -61,7 +61,7 @@
                         <div class="card-body">
                             <div class="row">
                                 @forelse($recorridos->where('puntos_id', $p->puntos_id) as $r)
-                                    <div class="col-4 text-center text-bold text-lg">
+                                    <div class="col text-center text-bold text-lg">
                                         <span data-toggle="tooltip" data-placement="top" title="Hora de inicio {{ $r->inicio }}, hora target {{ $r->target }}">
                                             @switch($r->estado)
                                                 @case('OnTime')

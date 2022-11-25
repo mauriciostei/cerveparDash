@@ -71,7 +71,7 @@ class PerfilesSeeder extends Seeder
 
         $per1 = new Permisos();
         $per1->nombre = 'Alertas';
-        $per1->link = 'metricasAlertas';
+        $per1->link = 'metricaAlertas';
         $per1->categoria = 'Dashboards';
         $per1->icono = 'dashboard';
         $per1->save();

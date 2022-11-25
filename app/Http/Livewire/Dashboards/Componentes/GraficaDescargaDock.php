@@ -11,11 +11,14 @@ class GraficaDescargaDock extends Component
     public $hasta;
     public $tiers;
     public $descargaDock;
+    public $descargaDock2;
+    public $id_div;
 
     protected $listeners = ['actualizarTable'];
 
-    public function mount(){
+    public function mount($id_div){
         $this->tiers = [1,2];
+        $this->id_div = $id_div;
     }
 
     public function actualizarTable($datos){
@@ -53,19 +56,21 @@ class GraficaDescargaDock extends Component
         $labels = [];
         $t1 = [];
         $t2 = [];
-        foreach($descargaDock as $dm){
+        foreach($descargaDock as $dm):
             array_push($labels, $dm->nombre);
             array_push($t1, $dm->t1);
             array_push($t2, $dm->t2);
-        }
+        endforeach;
+
         $this->descargaDock = Array('labels' => $labels, 'datasets' => [
-            Array('label' => 'Tier 1', 'data' => $t1, 'backgroundColor' => '#37CBFF'),
-            Array('label' => 'Tier 2', 'data' => $t2, 'backgroundColor' => '#F6AB16')
+            Array('label' => 'Tiempo Medio', 'data' => $t2, 'backgroundColor' => '#F6AB16')
         ]);
 
-        $max = $t2 ? max($t2) : 0;
+        $this->descargaDock2 = Array('labels' => $labels, 'datasets' => [
+            Array('label' => 'Tiempo Medio', 'data' => $t1, 'backgroundColor' => '#37CBFF')
+        ]);
 
-        $this->emit('updateGraficoDescargaDock', $this->descargaDock, $max);
+        $this->emit('updateGraficoDescargaDock', $this->descargaDock, $this->descargaDock2);
     }
 
     public function render(){
