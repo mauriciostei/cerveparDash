@@ -51,37 +51,6 @@
             </div>
         </div>
 
-        {{-- <div class="d-flex flex-column flex-lg-row justify-content-between mb-5">
-            <div class="w-100 w-lg-33 me-0 me-lg-2">
-                @livewire('dashboards.componentes.tabla-tiempos-puntos', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
-            </div>
-            <div class="w-100 w-lg-33 ms-0 ms-lg-2">
-                @livewire('dashboards.componentes.tabla-t-m', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
-                <div class="pt-2">
-                    @livewire('dashboards.componentes.tiempos-financieros', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
-                </div>
-            </div>
-            <div class="w-100 w-lg-33 ms-0 ms-lg-2">
-                @livewire('dashboards.componentes.gafica-ingreso-moviles', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
-            </div>
-        </div>
-
-        <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
-            <div class="w-100 w-lg-25">
-                @livewire('dashboards.componentes.grafica-descarga-dock', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => 1, 'id_div' => 'descarga_dock_t1'])
-            </div>
-            <div class="w-100 w-lg-25">
-                @livewire('dashboards.componentes.grafica-descarga-movil', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => 1, 'id_div' => 'descarga_movil_t1'])
-            </div>
-
-            <div class="w-100 w-lg-25">
-                @livewire('dashboards.componentes.grafica-descarga-dock', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => 2, 'id_div' => 'descarga_dock_t2'])
-            </div>
-            <div class="w-100 w-lg-25">
-                @livewire('dashboards.componentes.grafica-descarga-movil', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => 2, 'id_div' => 'descarga_movil_t2'])
-            </div>
-        </div> --}}
-
         <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
             <div class="w-100 w-lg-33">
                 <div class="mb-3">
@@ -98,6 +67,7 @@
                 </div>
             </div>
             <div class="w-100 w-lg-33 ms-lg-3 me-lg-3">
+                <div class="text-center display-6 font-weight-bold mb-3">T1</div>
                 <div class="mb-3 pb-4">
                     @livewire('dashboards.componentes.grafica-descarga-dock', ['desde' => $desde, 'hasta' => $hasta, 'id_div' => 'descarga_dock_t1'])
                 </div>
@@ -122,7 +92,7 @@
                                     <th>Refuerzo de AE para descarga o carga</th>
                                 </tr>
                                 <tr>
-                                    <th>45 minutos a 3 horas</th>
+                                    <th>Mayor a 45 minutos</th>
                                     <th>Liberar en falso</th>
                                 </tr>
                             </table>
@@ -131,6 +101,7 @@
                 </div>
             </div>
             <div class="w-100 w-lg-33">
+                <div class="text-center display-6 font-weight-bold mb-3">T2</div>
                 <div class="mb-3 pb-4">
                     @livewire('dashboards.componentes.grafica-descarga-dock', ['desde' => $desde, 'hasta' => $hasta, 'id_div' => 'descarga_dock_t2'])
                 </div>
@@ -155,7 +126,7 @@
                                     <th>Solicitar prioridad a zona de chequeo</th>
                                 </tr>
                                 <tr>
-                                    <th>15 a 30 minutos</th>
+                                    <th>Mayor a 15 minutos</th>
                                     <th>Solicitar liberación inmediata de WH</th>
                                 </tr>
                             </table>

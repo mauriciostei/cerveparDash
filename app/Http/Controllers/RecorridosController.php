@@ -81,7 +81,7 @@ class RecorridosController extends Controller
     public function ingresarMovil(Request $request){
         $xml = $this->xmlToJson($request);
 
-        if($xml){
+        if($xml && date('H')>=5 && date('H')<=21){
             $sensor = Sensores::where('codigo', $xml->channelName)->where('activo', true)->first();
 
             $chapa = $xml->ANPR->licensePlate;
@@ -102,7 +102,7 @@ class RecorridosController extends Controller
 
         $response = $this->getData($inicio, $fin);
 
-        if($response){
+        if($response && date('H')>=5 && date('H')<=21){
 
             foreach($response as $item):
     

@@ -2,7 +2,7 @@
     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
         <div class="bg-gradient-grafica shadow border-radius-lg py-3 pe-1">
             <div class="chart">
-                <canvas id="ingreso_moviles" class="chart-canvas" height="140"></canvas>
+                <canvas id="ingreso_moviles" class="chart-canvas" height="180"></canvas>
             </div>
         </div>
     </div>

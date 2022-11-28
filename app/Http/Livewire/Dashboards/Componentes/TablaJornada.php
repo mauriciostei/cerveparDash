@@ -36,6 +36,8 @@ class TablaJornada extends Component
             , 'tiers.nombre as tiers_nombre'
             , 'recorridos.choferes_id'
             , 'choferes.nombre as chofer_nombre'
+            , 'recorridos.moviles_id'
+            , 'moviles.nombre as movil_nombre'
             , DB::raw("sum( case when puntos.tipo_tiempo = 'tml' then fin-inicio else '00:00:00' end ) tml")
             , DB::raw("sum( case when puntos.tipo_tiempo = 'tmr' then fin-inicio else '00:00:00' end ) tr")
             , DB::raw("sum( case when puntos.tiempos_fisicos = True then fin-inicio else '00:00:00' end ) tfisico")
@@ -50,11 +52,12 @@ class TablaJornada extends Component
             ->join('puntos', 'recorridos.puntos_id', '=', 'puntos.id')
             ->join('tiers', 'tiers.id', '=', 'recorridos.tiers_id')
             ->join('choferes', 'choferes.id', '=', 'recorridos.choferes_id')
+            ->join('moviles', 'moviles.id', '=', 'recorridos.moviles_id')
             ->whereNotNull('recorridos.fin')
             ->whereIn('recorridos.tiers_id', $this->tiers)
             ->whereDate('recorridos.inicio', '>=', $this->desde)
             ->whereDate('recorridos.inicio', '<=', $this->hasta)
-            ->groupBy(['recorridos.tiers_id', 'tiers.nombre', 'recorridos.choferes_id', 'choferes.nombre'])
+            ->groupBy(['recorridos.tiers_id', 'tiers.nombre', 'recorridos.choferes_id', 'choferes.nombre', 'recorridos.moviles_id', 'moviles.nombre'])
             ->get();
     }
 

@@ -104,7 +104,7 @@ const dock_plugin_t1 = {
         ctx.save();
         ctx.globalCompositeOperation = 'destination-over';
 
-        var espacio = (area.top - area.bottom) / 200;
+        var espacio = (area.top - area.bottom) / 120;
 
         var verde = 15 * espacio;
         var amarillo = 15 * espacio;
@@ -252,7 +252,7 @@ Livewire.on('updateGraficoDescargaDock', (grafica, grafica2) => {
                 xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Dock' } }],
                 y: {
                     suggestedMin: 0,
-                    suggestedMax: 200,
+                    suggestedMax: 120,
                 },
             },
             color: '#FFF',
@@ -300,7 +300,7 @@ Livewire.on('updateGraficoDescargaMovil', (grafica, grafica2) => {
                 xAxes: [{ stacked: true, scaleLabel: { display: true, labelString: 'Dock' } }],
                 y: {
                     suggestedMin: 0,
-                    suggestedMax: 200,
+                    suggestedMax: 120,
                 },
             },
             color: '#FFF',

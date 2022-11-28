@@ -5,7 +5,7 @@
   <protocol>HTTP</protocol>
   <macAddress>d4:e8:53:56:64:24</macAddress>
   <channelID>1</channelID>
-  <dateTime>2022-10-20T21:38:52-04:00</dateTime>
+  <dateTime>2022-10-28T21:38:52-04:00</dateTime>
   <activePostCount>1</activePostCount>
   <eventType>ANPR</eventType>
   <eventState>active</eventState>
@@ -13,7 +13,7 @@
   <channelName>Dock 1</channelName>
   <ANPR>
   <country>218</country>
-  <licensePlate>AFG256</licensePlate>
+  <licensePlate>HFB439</licensePlate>
   <line>1</line>
   <direction>forward</direction>
   <confidenceLevel>97</confidenceLevel>
