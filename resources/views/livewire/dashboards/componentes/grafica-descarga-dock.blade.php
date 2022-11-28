@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="card-body">
-        <h6 class="mb-0 ">Descarga por Dock</h6>
-        <p class="text-sm ">Tiempo medio de descargas realizadas por cada Dock</p>
+        <h6 class="mb-0 ">Atendimiento por Dock</h6>
+        <p class="text-sm ">Tiempo medio de atendimiento realizadas por cada Dock</p>
     </div>
 </div>

@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="card-body">
-        <h6 class="mb-0 ">Descarga por Movil</h6>
-        <p class="text-sm ">Tiempo medio de descargas realizadas por cada Movil</p>
+        <h6 class="mb-0 ">Atendimiento por Movil</h6>
+        <p class="text-sm ">Tiempo medio de atendimiento realizados por cada Movil</p>
     </div>
 </div>
