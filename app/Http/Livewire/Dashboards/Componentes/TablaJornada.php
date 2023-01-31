@@ -30,6 +30,60 @@ class TablaJornada extends Component
         endforeach;
     }
 
+    public function exportar(){
+        $jornada = $this->jornada;
+
+        $fileName = 'Jornada.xls';
+
+        $headers = array(
+            "Content-type"        => "application/vnd.ms-excel;",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Expires"             => "0"
+        );
+
+        $columns = array(
+            'Tiers'
+            , 'Chofer'
+            , 'Movil'
+            , 'TML'
+            , 'TR'
+            , 'T. Interno'
+            , 'Liquidación'
+            , 'Caja'
+            , 'T. Financiero'
+            , 'T. Warehouse'
+            , 'T. de desplazamiento'
+            , 'Jornada'
+        );
+
+        $callback = function() use($jornada, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns,"\t");
+
+            foreach ($jornada as $item) {
+                $linea = array(
+                    $item['tiers_nombre'],
+                    $item['chofer_nombre'],
+                    $item['movil_nombre'],
+                    $item['tml'],
+                    $item['tr'],
+                    $item['tmi'],
+                    $item['liquidacion'],
+                    $item['caja'],
+                    $item['tfinanciero'],
+                    $item['warehouse'],
+                    $item['desplazamiento'],
+                    $item['ttotal']
+                );
+                fputcsv($file, $linea,"\t");
+            }
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
     public function getInfo(){
         $this->jornada = DB::table('recorridos')->select([
             'recorridos.tiers_id'

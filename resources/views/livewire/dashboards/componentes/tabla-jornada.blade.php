@@ -1,4 +1,5 @@
 <div wire:poll.1000ms class="card w-100 shadow">
+    <button class="btn btn-primary shadow mb-0 mt-0" wire:click.prevent="exportar">Exportar</button>
     <div class="card-body table-responsive p-3">
         <table class="table table-hover table-sm">
             <thead>
