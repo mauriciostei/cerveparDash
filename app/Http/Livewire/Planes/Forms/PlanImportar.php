@@ -6,6 +6,7 @@ use App\Models\Choferes;
 use App\Models\Moviles;
 use App\Models\Planes;
 use App\Models\Tiers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
@@ -94,6 +95,10 @@ class PlanImportar extends Component
             }
 
         endforeach;
+
+        $this->plan->users_id = Auth::user()->id;
+        $this->plan->ultima_actualizacion = now();
+        $this->plan->save();
 
         session()->flash('message', 'Plan Actualizado!');
         return redirect()->to('/planes/'.$this->plan->id);

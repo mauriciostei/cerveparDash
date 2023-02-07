@@ -33,6 +33,12 @@
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Accuracy</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Usuario Generador</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Ultima Actualización</th>
                                         <th class="text-secondary opacity-7"></th>
                                     </tr>
                                 </thead>
@@ -50,6 +56,12 @@
                                         </td>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0"> {{round($plan->acuraccy(),0)}} % </p>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0"> @if($plan->users_id) {{$plan->users->name}} @endif </p>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0"> {{$plan->ultima_actualizacion}} </p>
                                         </td>
                                         <td class="align-middle">
                                             @if($plan->fecha >= date('Y-m-d'))

@@ -46,6 +46,10 @@ class User extends Authenticatable
         return $this->hasMany(Alertas::class);
     }
 
+    public function planes(){
+        return $this->hasMany(Planes::class);
+    }
+
     public function perfiles(){
         return $this->belongsToMany(Perfiles::class, 'perfiles_users', 'users_id', 'perfiles_id')->withTimestamps();
     }

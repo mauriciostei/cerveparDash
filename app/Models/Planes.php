@@ -18,6 +18,10 @@ class Planes extends Model
         return $this->belongsToMany(Moviles::class, 'choferes_moviles_planes', 'planes_id', 'moviles_id')->withPivot(['viaje', 'choferes_id'])->withTimestamps();
     }
 
+    public function users(){
+        return $this->belongsTo(User::class);
+    }
+
     public function acuraccy(){
         $res = DB::table('acuraccy')->where('fecha', $this->fecha)->first();
         return $res->porcentaje;

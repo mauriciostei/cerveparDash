@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Planes;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PlanesController extends Controller
 {
     public function clonar(){
+        $planAnterior = Planes::latest()->first();
+
         $pl = new Planes();
         $pl->fecha = date('Y-m-d');
+        $pl->ultima_actualizacion = $planAnterior->ultima_actualizacion;
+        $pl->users_id = 1;
         $pl->save();
 
         DB::statement("
