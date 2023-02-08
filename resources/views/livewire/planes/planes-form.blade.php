@@ -47,7 +47,8 @@
                     </div>
                     <div class="card-body px-4 pb-2">
                         <div>
-                            <p>Viajes de la fecha {{$plan->fecha}} </p>
+                            <p>Viajes de la fecha: {{$plan->fecha}} </p>
+                            <p>Actualizado al: {{$plan->ultima_actualizacion}} </p>
         
                             <table class="table align-items-center mb-0 table-hover">
                                 <thead>
@@ -60,7 +61,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($plan->moviles as $m)
+                                    @forelse($plan->moviles->sortByDesc('moviles.nombre') as $m)
                                         <tr>
                                             <td> {{$m->nombre}} </td>
                                             <td> {{$choferes->find($m->pivot->choferes_id)->nombre}} </td>
