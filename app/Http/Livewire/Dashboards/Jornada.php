@@ -8,7 +8,7 @@ class Jornada extends Component
 {
     public $desde;
     public $hasta;
-    public $tiers = ['1' => true, '2' => true];
+    public $tiers = ['2' => true];
 
     public function mount(){
         $this->desde = date('Y-m-d');

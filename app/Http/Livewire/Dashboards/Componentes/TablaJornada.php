@@ -16,7 +16,7 @@ class TablaJornada extends Component
     protected $listeners = ['actualizarJornada'];
 
     public function mount(){
-        $this->tiers = [1,2];
+        $this->tiers = [2];
     }
 
     public function actualizarJornada($datos){
