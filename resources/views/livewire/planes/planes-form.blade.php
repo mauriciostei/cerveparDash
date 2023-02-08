@@ -61,7 +61,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($plan->moviles->sortByDesc('nombre') as $m)
+                                    @forelse($plan->moviles->sortByDesc('tiers_id') as $m)
                                         <tr>
                                             <td> {{$m->nombre}} </td>
                                             <td> {{$choferes->find($m->pivot->choferes_id)->nombre}} </td>
