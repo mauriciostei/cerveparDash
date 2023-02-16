@@ -50,7 +50,7 @@ class RecorridosController extends Controller
 
         if($recorrido){
             foreach($recorrido as $r){
-                $r->estado = 'Dismiss';
+                $r->estado = 'No Tratada';
                 $r->save();
 
                 $a = Alertas::where('recorridos_id', $r->id)->first();
@@ -72,7 +72,7 @@ class RecorridosController extends Controller
             $a->save();
 
             $r = $a->recorridos;
-            $r->estado = 'Dismiss';
+            $r->estado = 'No Tratada';
             $r->save();
         }
     }

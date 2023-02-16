@@ -33,6 +33,46 @@ class PlanesForm extends Component
         return redirect()->to('/planes/'.$this->plan->id);
     }
 
+    public function exportar(){
+        $plan = $this->plan->moviles->sortByDesc('tiers_id');
+        $chofer = $this->choferes;
+        $recorridos = $this->recorridos;
+
+        $fileName = 'Planificación.xls';
+
+        $headers = array(
+            "Content-type"        => "application/vnd.ms-excel;",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Expires"             => "0"
+        );
+
+        $columns = array(
+            'Movil'
+            , 'Chofer'
+            , 'Viaje'
+            , 'Captado'
+        );
+
+        $callback = function() use($plan, $chofer, $recorridos, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns,"\t");
+
+            foreach ($plan as $item) {
+                $linea = array(
+                    $item['nombre'],
+                    $chofer->find($item['pivot']['choferes_id'])->nombre,
+                    $item['pivot']['viaje'],
+                    $recorridos->where('moviles_id', $item['id'])->first() ? 'OK' : '',
+                );
+                fputcsv($file, $linea,"\t");
+            }
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
     public function render(){
         return view('livewire.planes.planes-form');
     }

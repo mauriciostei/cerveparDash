@@ -71,7 +71,7 @@
                                                     @case('OutOfTime')
                                                         <span class="text-danger"> {{$r->moviles->nombre}} </span>
                                                     @break
-                                                    @case('Dismiss')
+                                                    @default
                                                         <span class="text-warning"> {{$r->moviles->nombre}} </span>
                                                     @break
                                                 @endswitch
