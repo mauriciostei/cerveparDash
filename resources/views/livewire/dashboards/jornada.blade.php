@@ -1,6 +1,5 @@
 <div>
     <div class="container-fluid position-relative  py-4" style="z-index: 200;">
-
         <div class="row sticky-top mb-3">
             <div class="col">
                 <div class="card mb-2">
@@ -38,7 +37,14 @@
         </div>
 
         <div class="d-flex flex-column flex-lg-row justify-content-between mb-5 w-100">
-            @livewire('dashboards.componentes.tabla-jornada', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+            @switch($url)
+                @case('/jornada-oviedo')
+                    @livewire('dashboards.componentes.tabla-jornada-oviedo', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+                @break
+                @default
+                    @livewire('dashboards.componentes.tabla-jornada', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+                @break
+            @endswitch
         </div>
 
 

@@ -9,11 +9,13 @@ class Jornada extends Component
     public $desde;
     public $hasta;
     public $tiers = ['2' => true];
+    public $url;
 
     public function mount(){
         $this->desde = date('Y-m-d');
         $this->hasta = date('Y-m-d');
         $this->emitir();
+        $this->url = $_SERVER['REQUEST_URI'];
     }
 
     public function emitir(){
