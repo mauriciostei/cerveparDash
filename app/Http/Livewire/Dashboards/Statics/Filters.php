@@ -40,7 +40,7 @@ class Filters extends Component
             array_push($this->selectedTiers, $item->id);
         }
 
-        $this->selectedEstados = Array('OnTime', 'Dismiss', 'OutOfTime');
+        $this->selectedEstados = Array('OnTime', 'No Tratada', 'OutOfTime');
     }
 
     public function cambiarTodosPuntos(){
@@ -67,7 +67,7 @@ class Filters extends Component
 
     public function cambiarTodosEstados(){
         if($this->selectAllEstados){
-            $this->selectedEstados = Array('OnTime', 'Dismiss', 'OutOfTime');
+            $this->selectedEstados = Array('OnTime', 'No Tratada', 'OutOfTime');
         }else{
             $this->selectedEstados = Array();
         }

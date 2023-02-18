@@ -42,7 +42,7 @@ class Inicio extends Component
     public function mount(){
         $this->puntosSeleccionados = Puntos::pluck('id')->toArray();
         $this->movilesSeleccionados = Moviles::pluck('id')->toArray();
-        $this->estadosSeleccionados = Array('OnTime', 'Dismiss', 'OutOfTime');
+        $this->estadosSeleccionados = Array('OnTime', 'No Tratada', 'OutOfTime');
         $this->tiersSeleccionados = Tiers::pluck('id')->toArray();
     }
 

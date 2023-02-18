@@ -38,7 +38,7 @@
 
         <div class="d-flex flex-column flex-lg-row justify-content-between mb-5 w-100">
             @switch($url)
-                @case('/jornada-oviedo')
+                @case('jornada-oviedo')
                     @livewire('dashboards.componentes.tabla-jornada-oviedo', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
                 @break
                 @default

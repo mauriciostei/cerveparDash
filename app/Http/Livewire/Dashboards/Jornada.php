@@ -15,7 +15,7 @@ class Jornada extends Component
         $this->desde = date('Y-m-d');
         $this->hasta = date('Y-m-d');
         $this->emitir();
-        $this->url = $_SERVER['REQUEST_URI'];
+        $this->url =  basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));;
     }
 
     public function emitir(){

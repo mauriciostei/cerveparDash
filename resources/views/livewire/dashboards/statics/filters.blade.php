@@ -79,8 +79,8 @@
             </li>
             <li class="dropdown-item">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="Dismiss" wire:model="selectedEstados">
-                    <label class="form-check-label"> Dismiss </label>
+                    <input class="form-check-input" type="checkbox" value="No Tratada" wire:model="selectedEstados">
+                    <label class="form-check-label"> No Tratada </label>
                 </div>
             </li>
             <li class="dropdown-item">
