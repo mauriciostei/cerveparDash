@@ -12,6 +12,8 @@ use App\Http\Livewire\Dashboards\MetricaAlertas;
 use App\Http\Livewire\Dashboards\Metricas;
 use App\Http\Livewire\Moviles\MovilesForm;
 use App\Http\Livewire\Moviles\MovilesList;
+use App\Http\Livewire\Operadoras\OperadorasForm;
+use App\Http\Livewire\Operadoras\OperadorasList;
 use App\Http\Livewire\Perfiles\PerfilesForm;
 use App\Http\Livewire\Perfiles\PerfilesList;
 use App\Http\Livewire\Planes\PlanesForm;
@@ -61,6 +63,9 @@ Route::middleware('auth')->group(function(){
 
     Route::get('perfiles', PerfilesList::class)->name('perfilesList');
     Route::get('perfiles/{id}', PerfilesForm::class)->name('perfilesForm');
+
+    Route::get('operadora', OperadorasList::class)->name('operadorasList');
+    Route::get('operadora/{id}', OperadorasForm::class)->name('operadorasForm');
 
     Route::get('choferes', ChoferesList::class)->name('choferesList');
     Route::get('choferes/{id}', ChoferesForm::class)->name('choferesForm');

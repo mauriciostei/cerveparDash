@@ -38,6 +38,18 @@
                         <p>No posee Tiers disponibles</p>
                     @endforelse
 
+                    <br/>
+
+                    <div class="input-group input-group-static mt-3">
+                        <label>Operador Logístico</label>
+                        <select class="form-control" wire:model="chofer.operadoras_id">
+                            <option>--Seleccione su Operador Logístico--</option>
+                            @foreach($operadoras as $operador)
+                                <option value="{{$operador->id}}"> {{$operador->nombre}} </option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <br/><br/>
 
                     <div class="form-check form-switch">

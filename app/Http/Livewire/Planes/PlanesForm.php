@@ -50,6 +50,7 @@ class PlanesForm extends Component
         $columns = array(
             'Movil'
             , 'Chofer'
+            , 'Operador Logístico'
             , 'Viaje'
             , 'Captado'
         );
@@ -62,6 +63,7 @@ class PlanesForm extends Component
                 $linea = array(
                     $item['nombre'],
                     $chofer->find($item['pivot']['choferes_id'])->nombre,
+                    $chofer->find($item['pivot']['choferes_id'])->operadoras ? $chofer->find($item['pivot']['choferes_id'])->operadoras->nombre : '',
                     $item['pivot']['viaje'],
                     $recorridos->where('moviles_id', $item['id'])->first() ? 'OK' : '',
                 );

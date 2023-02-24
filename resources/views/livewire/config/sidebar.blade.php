@@ -10,10 +10,10 @@
             </a>
     </div>
     <div class="w-auto" id="sidenav-collapse-main">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav me-3 ms-3">
 
             @forelse($subMenu as $s)
-                <li class="nav-item mt-3">
+                <li class="nav-item mt-2">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-8"> {{$s->categoria}} </h6>
                 </li>
                 @forelse($menu as $m)

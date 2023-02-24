@@ -9,11 +9,11 @@
                         <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
                             <div class="row">
                                 <div class="col-lg-10">
-                                    <h6 class="text-white text-capitalize ps-3 pt-2">Lista de Problemas</h6>
+                                    <h6 class="text-white text-capitalize ps-3 pt-2">Lista de Operadores Logísticos</h6>
                                 </div>
                                 <div class="col-lg-2">
-                                    @can('problemas_crear')
-                                    <a href="{{ route('problemasForm', ['id' => 0]) }}" class="btn btn-secondary">
+                                    @can('operadoras_crear')
+                                    <a href="{{ route('operadorasForm', ['id' => 0]) }}" class="btn btn-secondary">
                                         <i class="material-icons opacity-10"> add </i> Nuevo
                                     </a>
                                     @endcan
@@ -28,30 +28,32 @@
                                     <tr>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Problemas</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Estado</th>
+                                            Operador Logístico</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Estado
+                                        </th>
                                         <th class="text-secondary opacity-7"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse( $problemas as $problema )
+                                    @forelse( $operadoras as $item )
                                     <tr>
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0"> {{$problema->nombre}} </p>
+                                            <p class="text-xs font-weight-bold mb-0"> {{$item->nombre}} </p>
                                         </td>
-                                        <td class="align-middle text-center text-sm">
-                                            <span class="badge badge-sm {{$problema->activo === true ? 'bg-gradient-success' : 'bg-gradient-warning'}}">
-                                                {{$problema->activo === true ? 'Activo' : 'Inactivo'}}
-                                            </span>
+                                        <td class="align-middle text-sm">
+                                            @if($item->activo)
+                                                <span class="badge badge-sm bg-gradient-success">Activo</span>
+                                            @else
+                                                <span class="badge badge-sm bg-gradient-danger">Inactivo</span>
+                                            @endif
                                         </td>
                                         <td class="align-middle">
-                                            @can('problemas_editar')
-                                            <a href="{{ route('problemasForm', ['id' => $problema->id]) }}"
+                                            @can('operadoras_editar')
+                                            <a href="{{ route('operadorasForm', ['id' => $item->id]) }}"
                                                 class="text-secondary font-weight-bold text-xs"
-                                                data-toggle="tooltip" data-original-title="Editar Problema">
-                                                Edit
+                                                data-toggle="tooltip" data-original-title="Editar">
+                                                Editar
                                             </a>
                                             @endcan
                                         </td>
@@ -65,7 +67,8 @@
                                     
                                 </tbody>
                             </table>
-                            {{$problemas->links()}}
+                            <br/>
+                            {{ $operadoras->links() }}
                         </div>
                     </div>
                 </div>

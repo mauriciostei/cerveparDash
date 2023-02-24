@@ -46,6 +46,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('soluciones_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 10)->first()->leer; });
         Gate::define('puntos_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 11)->first()->leer; });
         Gate::define('tiers_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 12)->first()->leer; });
+        Gate::define('operadoras_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 16)->first()->leer; });
 
         Gate::define('usuarios_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 3)->first()->editar; });
         Gate::define('perfiles_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 4)->first()->editar; });
@@ -57,6 +58,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('soluciones_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 10)->first()->editar; });
         Gate::define('puntos_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 11)->first()->editar; });
         Gate::define('tiers_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 12)->first()->editar; });
+        Gate::define('operadoras_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 16)->first()->editar; });
 
         Gate::define('usuarios_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 3)->first()->crear; });
         Gate::define('perfiles_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 4)->first()->crear; });
@@ -68,6 +70,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('soluciones_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 10)->first()->crear; });
         Gate::define('puntos_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 11)->first()->crear; });
         Gate::define('tiers_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 12)->first()->crear; });
+        Gate::define('operadoras_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 16)->first()->crear; });
 
     }
 }

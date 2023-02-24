@@ -17,6 +17,10 @@ class Choferes extends Model
         return $this->belongsTo(Tiers::class);
     }
 
+    public function operadoras(){
+        return $this->belongsTo(Operadoras::class);
+    }
+
     public function recorridos(){
         return $this->hasMany(Recorridos::class);
     }

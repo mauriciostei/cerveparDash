@@ -136,7 +136,7 @@
                                                 @endif
                                             @empty
                                                 <tr>
-                                                    <td colspan="5">Tabla vacía, esperando datos...</td>
+                                                    <td colspan="8">Tabla vacía, esperando datos...</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
