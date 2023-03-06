@@ -51,6 +51,8 @@ class PlanImportar extends Component
 
             if(!$tiers || !$codigo || !$chapa || !$viaje || !$documento || $viaje > 2){
                 throw ValidationException::withMessages([ 'file' => 'Archivo con datos vacíos o datos inválidos' ]);
+            }else{
+                
             }
         endforeach;
 
@@ -82,13 +84,24 @@ class PlanImportar extends Component
                 $chofer = Choferes::find(1);
             }
 
-
             $yaPlanificado = DB::table('choferes_moviles_planes')
                 ->where('planes_id', $this->plan->id)
                 ->where('moviles_id', $movil->id)
                 ->where('choferes_id', $chofer->id)
                 ->where('viaje', $viaje)
             ->first();
+
+            $validate = DB::table('choferes_moviles_planes')->where('planes_id', $this->plan->id)->where('moviles_id', $movil->id)->where('viaje', $viaje)->first();
+            if($validate){
+                continue;
+            }
+
+            if($chofer->tiers_id == 2){
+                $validate = DB::table('choferes_moviles_planes')->where('planes_id', $this->plan->id)->where('choferes_id', $chofer->id)->where('viaje', $viaje)->first();
+                if($validate){
+                    continue;
+                }
+            }
 
             if(!$yaPlanificado){
                 $this->plan->moviles()->attach($movil->id, ['choferes_id' => $chofer->id, 'viaje' => $viaje]);
