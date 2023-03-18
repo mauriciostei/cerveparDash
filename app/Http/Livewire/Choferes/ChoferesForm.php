@@ -5,6 +5,9 @@ namespace App\Http\Livewire\Choferes;
 use App\Models\Choferes;
 use App\Models\Operadoras;
 use App\Models\Tiers;
+use App\Models\UserChoferes;
+use Exception;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class ChoferesForm extends Component
@@ -42,6 +45,22 @@ class ChoferesForm extends Component
         $this->validate();
 
         $this->chofer->save();
+
+        try{
+            $existe = UserChoferes::where('document', $this->chofer->documento)->first();
+            if($existe){
+                $existe->document = $this->chofer->documento;
+                $existe->name = $this->chofer->nombre;
+                $existe->save();
+            }else{
+                $chofer = new UserChoferes();
+                $chofer->document = $this->chofer->documento;
+                $chofer->name = $this->chofer->nombre;
+                $chofer->password = bcrypt('12345');
+                $chofer->save();
+            }
+        } catch(Exception $ex){}
+
 
         session()->flash('message', 'Chofer guardado!');
         return redirect()->to('/choferes');
