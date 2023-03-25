@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function(){
     Route::get('metricaAlertas', MetricaAlertas::class)->name('metricaAlertas');
     Route::get('jornada', Jornada::class)->name('jornada');
     Route::get('jornada-oviedo', Jornada::class)->name('jornada-oviedo');
+    Route::get('jornadaT1', Jornada::class)->name('jornadaT1');
 
     Route::get('usuarios', UsuariosList::class)->name('usuariosList');
     Route::get('usuarios/{id}', UsuariosForm::class)->name('usuariosForm');

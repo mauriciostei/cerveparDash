@@ -164,7 +164,7 @@
                                         @if($punto->pivot->viaje == $t1Viaje)
                                             <div class="timeline-block mb-3">
                                                 <span class="timeline-step">
-                                                    <i class="material-icons text-primary text-gradient">alt_route</i>
+                                                    {{-- <i class="material-icons text-primary text-gradient">alt_route</i> --}}
                                                 </span>
                                                 <div class="timeline-content">
                                                     <h6 class="text-dark text-sm font-weight-bold mb-0"> {{$punto->nombre}}: {{$punto->pivot->target}}
@@ -202,7 +202,7 @@
                                         @if($punto->pivot->viaje == $t2Viaje)
                                             <div class="timeline-block mb-3">
                                                 <span class="timeline-step">
-                                                    <i class="material-icons text-primary text-gradient">alt_route</i>
+                                                    {{-- <i class="material-icons text-primary text-gradient">alt_route</i> --}}
                                                 </span>
                                                 <div class="timeline-content">
                                                     <h6 class="text-dark text-sm font-weight-bold mb-0"> {{$punto->nombre}}: {{$punto->pivot->target}}
