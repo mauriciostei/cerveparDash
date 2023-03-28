@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function(){
             $r = new RecorridosController();
             
-            $inicial = date('c', strtotime(now()." +3 hours -1 minute"));
+            $inicial = date('c', strtotime(now()." +4 hours -1 minute"));
             $final = date('c', strtotime("$inicial +1 minutes"));
             $r->ingresarPersona($inicial, $final);
 
