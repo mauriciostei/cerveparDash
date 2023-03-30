@@ -33,7 +33,7 @@ class TablaJornadaOviedo extends Component
     public function exportar(){
         $jornada = $this->jornada;
 
-        $fileName = 'Jornada.xls';
+        $fileName = 'JornadaT2.xls';
 
         $headers = array(
             "Content-type"        => "application/vnd.ms-excel;",
@@ -84,8 +84,7 @@ class TablaJornadaOviedo extends Component
             , 'tiers.nombre as tiers_nombre'
             , 'recorridos.choferes_id'
             , 'choferes.nombre as chofer_nombre'
-            , 'recorridos.moviles_id'
-            , 'moviles.nombre as movil_nombre'
+            , DB::raw("string_agg(distinct moviles.nombre::text, ',') as movil_nombre")
             , DB::raw("sum( case when puntos.tipo_tiempo = 'tml' then fin-inicio else '00:00:00' end ) tml")
             , DB::raw("sum( case when puntos.tipo_tiempo = 'tmr' then fin-inicio else '00:00:00' end ) tr")
             , DB::raw("sum( case when puntos.tiempos_fisicos = True then fin-inicio else '00:00:00' end ) tfisico")
@@ -105,7 +104,7 @@ class TablaJornadaOviedo extends Component
             ->whereIn('recorridos.tiers_id', $this->tiers)
             ->whereDate('recorridos.inicio', '>=', $this->desde)
             ->whereDate('recorridos.inicio', '<=', $this->hasta)
-            ->groupBy(['recorridos.tiers_id', 'tiers.nombre', 'recorridos.choferes_id', 'choferes.nombre', 'recorridos.moviles_id', 'moviles.nombre'])
+            ->groupBy(['recorridos.tiers_id', 'tiers.nombre', 'recorridos.choferes_id', 'choferes.nombre'])
             ->get();
     }
 
