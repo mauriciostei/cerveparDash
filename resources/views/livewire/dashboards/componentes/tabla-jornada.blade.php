@@ -36,7 +36,7 @@
                         <td class="text-center"> {{$item->warehouse}} </td>
                         <td class="text-center"> {{$item->desplazamiento}} </td>
                         
-                        <td class="text-center"> {{$item->ttotal}} </td>
+                        <td class="text-center"> {{$this->getTotalTime([$item->tml, $item->tr, $item->tmi])}} </td>
                     </tr>
                 @empty
                     <tr>
