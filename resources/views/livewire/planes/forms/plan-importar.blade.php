@@ -17,6 +17,21 @@
 
     <br/>
 
+    <div class="input-group input-group-static">
+        <label>Tier a Importar</label>
+        <select wire:model="tier" class="form-control">
+            <option value="" selected> -- Seleccione el Tier -- </option>
+            @foreach($tiers as $item)
+                <option value="{{ $item->id }}"> {{ $item->nombre }} </option>
+            @endforeach
+        </select>
+        @error('tier')
+            <p class='text-danger inputerror'>{{ $message }} </p>
+        @enderror
+    </div>
+
+    <br/>
+
     <div class="form-check form-switch">
         <input wire:model="remplazar" class="form-check-input" type="checkbox" >
         <label class="form-check-label">Remplazar datos actuales</label>

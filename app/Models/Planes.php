@@ -11,11 +11,11 @@ class Planes extends Model
     use HasFactory;
 
     public function choferes(){
-        return $this->belongsToMany(Choferes::class, 'choferes_moviles_planes', 'planes_id', 'choferes_id')->withPivot(['viaje', 'moviles_id'])->withTimestamps();
+        return $this->belongsToMany(Choferes::class, 'choferes_moviles_planes', 'planes_id', 'choferes_id')->withPivot(['viaje', 'moviles_id', 'hora_esperada'])->withTimestamps();
     }
 
     public function moviles(){
-        return $this->belongsToMany(Moviles::class, 'choferes_moviles_planes', 'planes_id', 'moviles_id')->withPivot(['viaje', 'choferes_id'])->withTimestamps()->orderByPivot('moviles.nombre');
+        return $this->belongsToMany(Moviles::class, 'choferes_moviles_planes', 'planes_id', 'moviles_id')->withPivot(['viaje', 'choferes_id', 'hora_esperada'])->withTimestamps()->orderByPivot('moviles.nombre');
     }
 
     public function users(){

@@ -17,23 +17,29 @@ class PlanImportar extends Component
     use WithFileUploads;
 
     public $plan;
+    public $tiers;
 
     // Form para importar
     public $file;
     public $remplazar = false;
+    public $tier;
 
     protected $rules = [
         'file' => 'required|file|max:10240',
         'remplazar' => '',
+        'tier' => 'required',
     ];
 
     public function mount($id){
         $this->plan = Planes::find($id);
+        $this->tiers = Tiers::all();
     }
 
     public function subirArchivo(){
-        $fecha = date('Y-m.d');
-        $file = $this->file->storeAs('/planes', 'plan'.$fecha.'.txt', $disk = 'local');
+        $this->validate();
+
+        $fecha = date('Y-m-d');
+        $file = $this->file->storeAs('/planes', "plan(T{$this->tier})".$fecha.'.txt', $disk = 'local');
         $file = '../storage/app/'.$file;
         
         $fh = fopen($file, 'r');
@@ -43,22 +49,28 @@ class PlanImportar extends Component
         foreach($contenido as $m):
             $line = explode("\t", $m);
 
-            $tiers = Tiers::find($line[0] ?? null);
+            $tier = trim($line[0]) ?? null;
             $codigo = trim($line[1] ?? null);
             $chapa = trim($line[2] ?? null);
             $viaje = trim($line[3] ?? null);
             $documento = trim($line[4] ?? null);
+            $hora = ($tier == 1) ? trim($line[5] ?? null) : null;
 
-            if(!$tiers || !$codigo || !$chapa || !$viaje || !$documento || $viaje > 2){
+            if($this->tier==2 && (!$tier || !$codigo || !$chapa || !$viaje || !$documento || $viaje > 2)){
                 throw ValidationException::withMessages([ 'file' => 'Archivo con datos vacíos o datos inválidos' ]);
-            }else{
-                
+            }
+            if($this->tier==1 && (!$tier || !$codigo || !$chapa || !$viaje || !$documento || $viaje > 2 || !$hora)){
+                throw ValidationException::withMessages([ 'file' => 'Archivo con datos vacíos o datos inválidos' ]);
             }
         endforeach;
 
 
         if($this->remplazar){
-            DB::table('choferes_moviles_planes')->where('planes_id', $this->plan->id)->delete();
+            $choferes_delete = DB::table('choferes')->where('tiers_id', $this->tier)->select('id');
+            DB::table('choferes_moviles_planes')->where('planes_id', $this->plan->id)->whereIn('choferes_id', $choferes_delete)->delete();
+
+            $moviles_delete = DB::table('moviles')->where('tiers_id', $this->tier)->select('id');
+            DB::table('choferes_moviles_planes')->where('planes_id', $this->plan->id)->whereIn('moviles_id', $moviles_delete)->delete();
         }
 
         foreach($contenido as $m):
@@ -69,6 +81,7 @@ class PlanImportar extends Component
             $chapa = trim($line[2]);
             $viaje = trim($line[3]);
             $documento = trim($line[4]);
+            $hora = ($tier == 1) ? trim($line[5] ?? null) : null;
 
             $movil = Moviles::where('chapa', $chapa)->first();
             if(!$movil){
@@ -104,7 +117,7 @@ class PlanImportar extends Component
             }
 
             if(!$yaPlanificado){
-                $this->plan->moviles()->attach($movil->id, ['choferes_id' => $chofer->id, 'viaje' => $viaje]);
+                $this->plan->moviles()->attach($movil->id, ['choferes_id' => $chofer->id, 'viaje' => $viaje, 'hora_esperada' => $hora]);
             }
 
         endforeach;
