@@ -17,6 +17,26 @@
                         </div>
                     </div>
                     <div class="card-body px-4 pb-2">
+                        
+                        <form wire:submit.prevent="download" class="row mb-4 px-5">
+                            <span class="col-1"></span>
+                            <div class="col-8">
+                                <div class="input-group input-group-static">
+                                    <label>Planificación a Descargar</label>
+                                    <select class="form-control" name="planificaciones_file" wire:model="file">
+                                        @forelse($files as $file)
+                                        <option value="{{$file}}"> {{$file}} </option>
+                                        @empty
+                                        <option selected disabled>Sin Planificaciones importadas aun!</option>
+                                        @endforelse
+                                    </select>
+                                </div>
+                            </div>
+                            <span class="col-1"></span>
+                            <input type="submit" value="Descargar" class="btn btn-primary btn-sm shadow col-1">
+                            <span class="col-1"></span>
+                        </form>
+
                         <div class="table-responsive p-0">
                             <table class="table align-items-center mb-0 table-hover table-sm">
                                 <thead>
