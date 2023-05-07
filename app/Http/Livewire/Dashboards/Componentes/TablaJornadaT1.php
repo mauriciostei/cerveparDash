@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class TablaJornadaT1 extends Component
-{public $desde;
+{
+    public $desde;
     public $hasta;
     public $tiers;
 

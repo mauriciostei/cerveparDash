@@ -50,6 +50,7 @@ let vela_alerta_tiempo = null;
 let vela_alerta_cantidad = null;
 let descarga_dock_2 = null;
 let descarga_movil_2 = null;
+let grafico_tma = null;
 
 let ctx1 = document.getElementById("ingreso_moviles");
 let ctx2 = document.getElementById("desvio_medio");
@@ -64,6 +65,9 @@ let ctx8 = document.getElementById("vela_alerta_cantidad");
 
 let ctx9 = document.getElementById("descarga_dock_t1");
 let ctx10 = document.getElementById("descarga_movil_t1");
+
+let ctx11 = document.getElementById("tma");
+
 
 const dock_plugin = {
     beforeDraw: (chart) => {
@@ -126,6 +130,44 @@ const dock_plugin_t1 = {
         ctx.restore();
     }
 };
+
+Livewire.on('updateGraficoTMA', (grafica) => {
+    if (grafico_tma !== null) {
+        grafico_tma.destroy();
+    }
+
+    grafico_tma = new Chart(ctx11, {
+        type: "bar",
+        data: grafica,
+        options: {
+            animation: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            color: '#FFF',
+            scales: {
+                y: {
+                    display: false,
+                },
+                x: {
+                    ticks: {
+                        color: "white",
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    enabled: false,
+                },
+                legend: {
+                    display: false,
+                }
+            },
+        }
+    });
+});
 
 Livewire.on('updateGraficoIngresoMoviles', (grafica) => {
     if (ingreso_moviles !== null) {
