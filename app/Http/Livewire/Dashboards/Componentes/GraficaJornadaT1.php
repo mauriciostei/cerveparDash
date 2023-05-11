@@ -30,7 +30,7 @@ class GraficaJornadaT1 extends Component
         $fin = $this->hasta;
         $tier = $this->tiers;
 
-        $tma = collect(DB::select("select * from tma(?, ?, ?)", [$ini, $fin, $tier]));
+        $tma = collect(DB::select("select * from tma('$ini', '$fin', $tier)"));
 
         $labels = [];
         $t1 = [];

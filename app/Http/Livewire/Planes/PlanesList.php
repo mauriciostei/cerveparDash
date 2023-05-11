@@ -21,7 +21,7 @@ class PlanesList extends Component
 
     public function render()
     {
-        $files = scandir(storage_path('app/Planes'));
+        $files = scandir(storage_path('app/planes'));
         array_shift($files);
         array_shift($files);
 
@@ -32,6 +32,6 @@ class PlanesList extends Component
     }
 
     public function download(){
-        return Storage::disk('local')->download('Planes/'.$this->file);
+        return Storage::disk('local')->download('planes/'.$this->file);
     }
 }
