@@ -48,7 +48,7 @@ return new class extends Migration
                     group by g.turno
                 )
 
-                select g.*, COALESCE(r.media, '00:00:00') media, COALESCE(extract(EPOCH from r.media), 0) seconds
+                select g.*, COALESCE(r.media, '00:00:00') media, cast(COALESCE(extract(EPOCH from r.media), 0) as numeric) seconds
                 from grupo g
                     left join resultado r on g.turno = r.turno
                 order by g.fin
