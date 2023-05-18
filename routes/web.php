@@ -6,6 +6,7 @@ use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Choferes\ChoferesForm;
 use App\Http\Livewire\Choferes\ChoferesList;
 use App\Http\Livewire\Dashboards\ControlMoviles;
+use App\Http\Livewire\Dashboards\ControlPuntos;
 use App\Http\Livewire\Dashboards\Inicio;
 use App\Http\Livewire\Dashboards\Jornada;
 use App\Http\Livewire\Dashboards\MetricaAlertas;
@@ -57,6 +58,7 @@ Route::middleware('auth')->group(function(){
     Route::get('jornada', Jornada::class)->name('jornada');
     Route::get('jornada-oviedo', Jornada::class)->name('jornada-oviedo');
     Route::get('jornadaT1', Jornada::class)->name('jornadaT1');
+    Route::get('controlPuntos', ControlPuntos::class)->name('controlPuntos');
 
     Route::get('usuarios', UsuariosList::class)->name('usuariosList');
     Route::get('usuarios/{id}', UsuariosForm::class)->name('usuariosForm');

@@ -9,6 +9,10 @@ class Recorridos extends Model
 {
     use HasFactory;
 
+    public function getHoraInicioAttribute(){
+        return date('H:i:s', strtotime($this->inicio));
+    }
+
     public function moviles(){
         return $this->belongsTo(Moviles::class);
     }
