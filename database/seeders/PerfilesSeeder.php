@@ -187,5 +187,71 @@ class PerfilesSeeder extends Seeder
         // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
         // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
         // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
+
+        $per1 = new Permisos();
+        $per1->nombre = 'Status';
+        $per1->link = 'controlMoviles';
+        $per1->categoria = 'Dashboards';
+        $per1->icono = 'dashboard';
+        $per1->save();
+        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
+        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
+        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
+        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
+
+        $per1 = new Permisos();
+        $per1->nombre = 'Alertas';
+        $per1->link = 'metricaAlertas';
+        $per1->categoria = 'Dashboards';
+        $per1->icono = 'dashboard';
+        $per1->save();
+        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
+        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
+        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
+        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
+
+        $per1 = new Permisos();
+        $per1->nombre = 'O.L.';
+        $per1->link = 'operadorasList';
+        $per1->categoria = 'MasterData';
+        $per1->icono = 'local_shipping';
+        $per1->save();
+        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
+        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
+        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
+        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
+
+        $per1 = new Permisos();
+        $per1->nombre = 'Jornada T1';
+        $per1->link = 'jornadaT1';
+        $per1->categoria = 'Dashboards';
+        $per1->icono = 'dashboard';
+        $per1->save();
+        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
+        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
+        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
+        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
+
+        $per1 = new Permisos();
+        $per1->nombre = 'Jornada T2';
+        $per1->link = 'jornada';
+        $per1->categoria = 'Dashboards';
+        $per1->icono = 'dashboard';
+        $per1->save();
+        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
+        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
+        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
+        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
+
+        $per1 = new Permisos();
+        $per1->nombre = 'Control Puntos';
+        $per1->link = 'controlPuntos';
+        $per1->categoria = 'Dashboards';
+        $per1->icono = 'dashboard';
+        $per1->save();
+        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
+        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
+        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
+        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
     }
 }
