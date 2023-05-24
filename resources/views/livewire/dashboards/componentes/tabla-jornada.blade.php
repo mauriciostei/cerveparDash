@@ -5,6 +5,7 @@
             <thead>
                 <tr>
                     <th>Tiers</th>
+                    <th>Fecha</th>
                     <th>Choferes</th>
                     <th>Móviles</th>
                     <th class="text-center">TML <sup style="color: darkturquoise;">(A)</sup> </th>
@@ -22,6 +23,7 @@
                 @forelse($jornada as $item)
                     <tr>
                         <td> {{$item->tiers_nombre}} </td>
+                        <td> {{$item->fecha}} </td>
                         <td> {{$item->chofer_nombre}} </td>
                         <td> {{$item->movil_nombre}} </td>
 

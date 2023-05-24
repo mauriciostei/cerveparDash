@@ -84,6 +84,7 @@ class TablaJornadaOviedo extends Component
             , 'tiers.nombre as tiers_nombre'
             , 'recorridos.choferes_id'
             , 'choferes.nombre as chofer_nombre'
+            , DB::raw("cast(recorridos.inicio as date) as fecha")
             , DB::raw("string_agg(distinct moviles.nombre::text, ',') as movil_nombre")
             , DB::raw("sum( case when puntos.tipo_tiempo = 'tml' then fin-inicio else '00:00:00' end ) tml")
             , DB::raw("sum( case when puntos.tipo_tiempo = 'tmr' then fin-inicio else '00:00:00' end ) tr")
@@ -104,6 +105,7 @@ class TablaJornadaOviedo extends Component
             ->whereIn('recorridos.tiers_id', $this->tiers)
             ->whereDate('recorridos.inicio', '>=', $this->desde)
             ->whereDate('recorridos.inicio', '<=', $this->hasta)
+            ->groupByRaw("cast(recorridos.inicio as date)")
             ->groupBy(['recorridos.tiers_id', 'tiers.nombre', 'recorridos.choferes_id', 'choferes.nombre'])
             ->get();
     }

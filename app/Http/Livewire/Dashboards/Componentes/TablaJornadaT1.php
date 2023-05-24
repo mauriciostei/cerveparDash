@@ -73,6 +73,7 @@ class TablaJornadaT1 extends Component
             , 'recorridos.choferes_id'
             , 'choferes.nombre as chofer_nombre'
             , 'moviles.nombre as movil_nombre'
+            , DB::raw("cast(recorridos.inicio as date) as fecha")
             , DB::raw("sum( case when puntos.id in (".env('ESPERA').") then fin-inicio else '00:00:00' end ) espera")
             , DB::raw("sum( case when puntos.id in (".env('ATENDIMIENTO').") then fin-inicio else '00:00:00' end ) atendimiento")
             , DB::raw("sum( fin-inicio ) ttotal")
@@ -85,6 +86,7 @@ class TablaJornadaT1 extends Component
             ->whereIn('recorridos.tiers_id', $this->tiers)
             ->whereDate('recorridos.inicio', '>=', $this->desde)
             ->whereDate('recorridos.inicio', '<=', $this->hasta)
+            ->groupByRaw("cast(recorridos.inicio as date)")
             ->groupBy(['recorridos.tiers_id', 'tiers.nombre', 'recorridos.choferes_id', 'choferes.nombre', 'moviles.nombre'])
             ->get();
     }
