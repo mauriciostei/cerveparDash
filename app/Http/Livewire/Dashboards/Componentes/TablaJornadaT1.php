@@ -38,6 +38,7 @@ class TablaJornadaT1 extends Component
 
         $columns = array(
             'Tiers'
+            , 'Fecha'
             , 'Chofer'
             , 'Movil'
             , 'T. Espera'
@@ -52,6 +53,7 @@ class TablaJornadaT1 extends Component
             foreach ($jornada as $item) {
                 $linea = array(
                     $item['tiers_nombre'],
+                    $item['fecha'],
                     $item['chofer_nombre'],
                     $item['movil_nombre'],
                     $item['espera'],
