@@ -18,6 +18,7 @@ class ControlPuntos extends Component
     public $puntos;
 
     public $plan;
+    public $recorridos;
 
     public function mount(){
         $this->fecha = date('Y-m-d');
@@ -28,10 +29,9 @@ class ControlPuntos extends Component
         return $punto->nombre;
     }
 
-    public function getRecorrido($movil, $chofer, $punto){
+    public function getRecorrido($chofer, $punto){
         $r = Recorridos::
-            where('moviles_id', $movil)
-            ->where('choferes_id', $chofer)
+            where('choferes_id', $chofer)
             ->where('puntos_id', $punto)
             ->whereDate('inicio', $this->fecha)
             ->where('viaje', $this->viaje)
@@ -45,18 +45,15 @@ class ControlPuntos extends Component
 
         $this->puntos = DB::table('puntos_tiers')->where('tiers_id', $this->tiers_id)->where('viaje', $this->viaje)->orderBy('orden', 'asc')->get();
 
-        $this->plan = DB::table('choferes_moviles_planes')
-            ->select(['moviles.nombre as moviles_nombre', 'choferes.nombre as choferes_nombre', 'moviles_id', 'choferes_id'])
-            ->join('planes', 'id', '=', 'planes_id')
-            ->join('moviles', 'choferes_moviles_planes.moviles_id', '=', 'moviles.id')
-            ->join('choferes', 'choferes_moviles_planes.choferes_id', '=', 'choferes.id')
-            ->where('planes.fecha', $this->fecha)
+        $this->recorridos = Recorridos::select(['recorridos.choferes_id', 'choferes.nombre as choferes_nombre', DB::raw("string_agg(distinct moviles.nombre::text, ',') as moviles_nombre")])
+            ->join('choferes', 'recorridos.choferes_id', '=', 'choferes.id')
+            ->join('moviles', 'recorridos.moviles_id', '=', 'moviles.id')
+            ->whereDate('inicio', $this->fecha)
             ->where('viaje', $this->viaje)
             ->where('moviles.tiers_id', $this->tiers_id)
             ->where('choferes.tiers_id', $this->tiers_id)
-            ->orderBy('moviles.nombre')
-            ->get()
-        ;
+            ->groupBy('recorridos.choferes_id', 'choferes.nombre')
+            ->get();
     }
 
     public function render()

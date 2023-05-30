@@ -69,15 +69,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($this->plan as $plan)
+                    @forelse($this->recorridos as $recorrido)
                         <tr>
-                            <td> {{$plan->moviles_nombre}} </td>
-                            <td> {{$plan->choferes_nombre}} </td>
+                            <td> {{$recorrido->moviles_nombre}} </td>
+                            <td> {{strtoupper($recorrido->choferes_nombre)}} </td>
                             @foreach($puntos as $p)
                                 <td class="text-center">
-                                    @if($this->getRecorrido($plan->moviles_id, $plan->choferes_id, $p->puntos_id))
+                                    @if($this->getRecorrido($recorrido->choferes_id, $p->puntos_id))
                                         <span class="text-success">
-                                            {{$this->getRecorrido($plan->moviles_id, $plan->choferes_id, $p->puntos_id)}}
+                                            {{$this->getRecorrido($recorrido->choferes_id, $p->puntos_id)}}
                                         </span>
                                     @else
                                         <span class="text-danger">X</span>
