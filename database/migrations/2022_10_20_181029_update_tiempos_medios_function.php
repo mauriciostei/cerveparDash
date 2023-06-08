@@ -14,6 +14,8 @@ return new class extends Migration
      */
     public function up()
     {
+        DB::statement("DROP FUNCTION IF EXISTS public.tiempo_medios(date, date);");
+
         DB::statement("
         CREATE OR REPLACE FUNCTION public.tiempo_medios(
             fec_inicio date,
