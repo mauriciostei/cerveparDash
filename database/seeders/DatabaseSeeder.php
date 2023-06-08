@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Planes;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,5 +22,9 @@ class DatabaseSeeder extends Seeder
                 //RecorridosSeeder::class,
             HorariosSeeder::class,
         ]);
+
+        $plan = new Planes();
+        $plan->fecha = date('Y-m-d');
+        $plan->save();
     }
 }
