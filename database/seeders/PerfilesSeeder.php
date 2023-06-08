@@ -38,30 +38,6 @@ class PerfilesSeeder extends Seeder
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
 
         $per1 = new Permisos();
-        $per1->nombre = 'Status';
-        $per1->link = 'controlMoviles';
-        $per1->categoria = 'Dashboards';
-        $per1->icono = 'dashboard';
-        $per1->save();
-        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-
-        $per1 = new Permisos();
-        $per1->nombre = 'Alertas';
-        $per1->link = 'metricaAlertas';
-        $per1->categoria = 'Dashboards';
-        $per1->icono = 'dashboard';
-        $per1->save();
-        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-
-        $per1 = new Permisos();
-        $per1->nombre = 'Jornada';
-        $per1->link = 'jornada';
-        $per1->categoria = 'Dashboards';
-        $per1->icono = 'dashboard';
-        $per1->save();
-        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-
-        $per1 = new Permisos();
         $per1->nombre = 'Usuarios';
         $per1->link = 'usuariosList';
         $per1->categoria = 'Accesos';
@@ -138,6 +114,14 @@ class PerfilesSeeder extends Seeder
         $per1->link = 'tiersList';
         $per1->categoria = 'Ejecución';
         $per1->icono = 'map';
+        $per1->save();
+        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
+
+        $per1 = new Permisos();
+        $per1->nombre = 'Status';
+        $per1->link = 'controlMoviles';
+        $per1->categoria = 'Dashboards';
+        $per1->icono = 'dashboard';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
 
