@@ -21,21 +21,6 @@ class PerfilesSeeder extends Seeder
         $p1->save();
         $p1->users()->attach([1,2]);
 
-        // $p2 = new Perfiles();
-        // $p2->nombre = 'admin';
-        // $p2->save();
-        // $p2->users()->attach([3,4,5]);
-
-        // $p3 = new Perfiles();
-        // $p3->nombre = 'Logístico';
-        // $p3->save();
-        // $p3->users()->attach([6,7,8,9]);
-
-        // $p4 = new Perfiles();
-        // $p4->nombre = 'Warehouse';
-        // $p4->save();
-        // $p4->users()->attach([10,11,12,13]);
-
         $per1 = new Permisos();
         $per1->nombre = 'Inicio';
         $per1->link = 'inicio';
@@ -43,9 +28,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'dashboard';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Métricas';
@@ -54,9 +36,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'dashboard';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Status';
@@ -65,9 +44,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'dashboard';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Alertas';
@@ -76,9 +52,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'dashboard';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Jornada';
@@ -87,9 +60,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'dashboard';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Usuarios';
@@ -98,7 +68,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'person';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Perfiles';
@@ -107,7 +76,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'desktop_access_disabled';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Choferes';
@@ -116,7 +84,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'transfer_within_a_station';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Móviles';
@@ -125,9 +92,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'taxi_alert';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Sensores';
@@ -136,7 +100,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'photo_camera';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Planes';
@@ -145,8 +108,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'task';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => true, 'editar' => true]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Problemas';
@@ -155,7 +116,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'info';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Soluciones';
@@ -164,7 +124,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'task_alt';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Puntos';
@@ -173,9 +132,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'location_searching';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Tiers';
@@ -184,20 +140,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'map';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
-
-        $per1 = new Permisos();
-        $per1->nombre = 'Status';
-        $per1->link = 'controlMoviles';
-        $per1->categoria = 'Dashboards';
-        $per1->icono = 'dashboard';
-        $per1->save();
-        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Alertas';
@@ -206,9 +148,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'dashboard';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'O.L.';
@@ -217,9 +156,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'local_shipping';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Jornada T1';
@@ -228,9 +164,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'dashboard';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Jornada T2';
@@ -239,9 +172,6 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'dashboard';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
 
         $per1 = new Permisos();
         $per1->nombre = 'Control Puntos';
@@ -250,8 +180,5 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'dashboard';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
-        // $per1->perfiles()->attach($p2, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p3, ['leer' => true, 'crear' => false, 'editar' => false]);
-        // $per1->perfiles()->attach($p4, ['leer' => true, 'crear' => false, 'editar' => false]);
     }
 }
