@@ -16,4 +16,8 @@ class Perfiles extends Model
     public function users(){
         return $this->belongsToMany(User::class, 'perfiles_users', 'perfiles_id', 'users_id')->withTimestamps();
     }
+
+    public function aprobables(){
+        return $this->belongsToMany(Aprobables::class, 'aprobables_perfiles', 'perfiles_id', 'aprobables_id');
+    }
 }

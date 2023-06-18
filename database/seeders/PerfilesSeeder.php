@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Aprobables;
 use App\Models\Perfiles;
 use App\Models\Permisos;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -164,5 +165,18 @@ class PerfilesSeeder extends Seeder
         $per1->icono = 'dashboard';
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
+
+        $per1 = new Permisos();
+        $per1->nombre = 'Recorridos';
+        $per1->link = 'cambiosRecorridos';
+        $per1->categoria = 'Aprobaciones';
+        $per1->icono = 'local_shipping';
+        $per1->save();
+        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
+
+        $apr = new Aprobables();
+        $apr->nombre = 'Cambio de Recorridos';
+        $apr->aprobable_type = 'App\Models\CambiosRecorridos';
+        $apr->save();
     }
 }

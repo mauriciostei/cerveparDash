@@ -17,11 +17,18 @@
 
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offCanvasAlertas">
                 <div class="offcanvas-header bg-dark">
-                    <h5 class="offcanvas-title" id="offcanvasRightLabel">Alertas del Sistema</h5>
+                    <h5 class="offcanvas-title" id="offcanvasRightLabel">Notificaciones del Sistema</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body bg-dark">
-                    <livewire:config.alertas-box/>
+                    <div class="py-2">
+                        <h6>Aprobaciones Pendientes:</h6>
+                        <livewire:config.aprobaciones-box/>
+                    </div>
+                    <div class="py-2">
+                        <h6>Alertas Pendientes:</h6>
+                        <livewire:config.alertas-box/>
+                    </div>
                 </div>
             </div>
 

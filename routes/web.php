@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Alertas\AlertasForm;
+use App\Http\Livewire\Aprobaciones\Procesar;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Choferes\ChoferesForm;
 use App\Http\Livewire\Choferes\ChoferesList;
@@ -23,6 +24,7 @@ use App\Http\Livewire\Problemas\ProblemasForm;
 use App\Http\Livewire\Problemas\ProblemasList;
 use App\Http\Livewire\Puntos\PuntosForm;
 use App\Http\Livewire\Puntos\PuntosList;
+use App\Http\Livewire\Recorridos\Cambios;
 use App\Http\Livewire\Sensores\SensoresForm;
 use App\Http\Livewire\Sensores\SensoresList;
 use App\Http\Livewire\Soluciones\SolucionesForm;
@@ -49,7 +51,6 @@ Route::get('/', function(){ return redirect()->route('inicio'); });
 Route::get('sign-in', Login::class)->middleware('guest')->name('login');
 
 Route::middleware('auth')->group(function(){
-//Route::group(['middleware' => 'auth'], function () {
 
     Route::get('inicio', Inicio::class)->name('inicio');
     Route::get('metricas', Metricas::class)->name('metricas');
@@ -59,6 +60,9 @@ Route::middleware('auth')->group(function(){
     Route::get('jornada-oviedo', Jornada::class)->name('jornada-oviedo');
     Route::get('jornadaT1', Jornada::class)->name('jornadaT1');
     Route::get('controlPuntos', ControlPuntos::class)->name('controlPuntos');
+
+    Route::get('cambioRecorrido', Cambios::class)->name('cambiosRecorridos');
+    Route::get('ProcesarAprobacion/{id}', Procesar::class)->name('ProcesarAprobacion');
 
     Route::get('usuarios', UsuariosList::class)->name('usuariosList');
     Route::get('usuarios/{id}', UsuariosForm::class)->name('usuariosForm');

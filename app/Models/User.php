@@ -50,6 +50,10 @@ class User extends Authenticatable
         return $this->hasMany(Planes::class);
     }
 
+    public function aprobaciones(){
+        return $this->hasMany(Aprobaciones::class);
+    }
+
     public function perfiles(){
         return $this->belongsToMany(Perfiles::class, 'perfiles_users', 'users_id', 'perfiles_id')->withTimestamps();
     }

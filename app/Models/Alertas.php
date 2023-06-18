@@ -25,6 +25,10 @@ class Alertas extends Model
         return $this->belongsTo(User::class);
     }
 
+    public static function total(){
+        return self::where('visible', true)->count();
+    }
+
     public function getEstado(){
         if($this->recorridos->estado == 'Dismiss' && !$this->soluciones_id){
             return 'Alerta Eliminada (Dismiss)';

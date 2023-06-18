@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Perfiles;
 
+use App\Models\Aprobables;
 use App\Models\Perfiles;
 use App\Models\Permisos;
 use Livewire\Component;
@@ -13,6 +14,9 @@ class PerfilesForm extends Component
     public $selectedLeer = Array();
     public $selectedCrear = Array();
     public $selectedEditar = Array();
+
+    public $aprobables;
+    public $selectedAprobables = Array();
 
     public $select;
 
@@ -34,7 +38,11 @@ class PerfilesForm extends Component
             $this->perfil = Perfiles::find($id);
         }
 
-        $this->perfil->permisos;
+        $this->aprobables = Aprobables::where('activo', true)->get();
+        foreach($this->perfil->aprobables as $ap):
+            $this->selectedAprobables[$ap['id']] = true;
+        endforeach;
+
         $this->permisos = Permisos::all();
         foreach($this->perfil->permisos as $p):
             $this->selectedLeer[$p['id']] = $p->pivot->leer;
@@ -54,9 +62,15 @@ class PerfilesForm extends Component
                 , 'editar' => array_key_exists($per->id, $this->selectedEditar) ? $this->selectedEditar[$per->id] : false
             ];
         endforeach;
+
+        $select = [];
+        foreach($this->selectedAprobables as $key => $value):
+            if($value){ array_push($select, $key); }
+        endforeach;
         
         $this->perfil->save();
         $this->perfil->permisos()->sync($this->select);
+        $this->perfil->aprobables()->sync($select);
 
         session()->flash('message', 'Perfil guardado!');
 
