@@ -127,7 +127,7 @@ class Inicio extends Component
 
     public function getInfo(){
         $this->recorridos = Recorridos::
-            where('created_at', '>=', date('Y-m-d').' 00:00:00')
+            whereDate('inicio', date('Y-m-d'))
             ->where('fin', null)
             ->orderBy('id', 'desc')
         ->get();

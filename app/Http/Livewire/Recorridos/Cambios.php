@@ -38,7 +38,7 @@ class Cambios extends Component
             'cambio.puntos_id' => 'required|exists:puntos,id',
             'cambio.sensores_id' => 'required|exists:sensores,id',
             'cambio.inicio' => 'required',
-            'observacion' => 'required',
+            'cambio.observacion' => 'required',
         ];
     }
 
@@ -128,12 +128,6 @@ class Cambios extends Component
         $this->validate();
 
         $this->cambio->save();
-        
-        $apr = new Aprobaciones();
-        $apr->observacion = $this->observacion;
-        $apr->users_id = Auth::user()->id;
-        $apr->aprobacion()->associate($this->cambio);
-        $apr->save();
 
         session()->flash('message', 'Solicitud registrada!');
 

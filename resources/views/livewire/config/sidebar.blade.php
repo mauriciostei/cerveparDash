@@ -10,11 +10,11 @@
             </a>
     </div>
     <div class="w-auto" id="sidenav-collapse-main">
-        <ul class="navbar-nav me-3 ms-3">
+        <ul class="navbar-nav me-2 ms-2">
 
             @forelse($subMenu as $s)
-                <li class="nav-item mt-2">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-8"> {{$s->categoria}} </h6>
+                <li class="nav-item mt-1">
+                    <h6 class="ps-3 ms-2 text-uppercase text-xs font-weight-bolder opacity-8"> {{$s->categoria}} </h6>
                 </li>
                 @forelse($menu as $m)
                     @if($m->categoria === $s->categoria)
@@ -23,7 +23,7 @@
                         <li class="nav-item">
                             <a class="nav-link {{ Route::currentRouteName() == $m->link ? ' active bg-gradient-success' : '' }} "
                                 href="{{ route($m->link) }}">
-                                <div class="text-center me-2 d-flex align-items-center justify-content-center">
+                                <div class="text-center me-1 d-flex align-items-center justify-content-center">
                                     <i class="material-icons text-white opacity-10"> {{$m->icono}} </i>
                                 </div>
                                 <span class="nav-link-text text-white ms-1"> {{$m->nombre}} </span>

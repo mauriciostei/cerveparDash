@@ -128,7 +128,7 @@
 
                                 <div class="input-group input-group-sm input-group-static mb-3">
                                     <label>Observaciones</label>
-                                    <textarea class="form-control" wire:model="observacion"></textarea>
+                                    <textarea class="form-control" wire:model="cambio.observacion"></textarea>
                                 </div>
 
                                 <div class="text-center">

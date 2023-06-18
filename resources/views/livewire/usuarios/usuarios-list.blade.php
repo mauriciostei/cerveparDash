@@ -29,9 +29,6 @@
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Usuario</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Estado</th>
                                         <th class="text-secondary opacity-7"></th>
                                     </tr>
                                 </thead>
@@ -51,9 +48,6 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td class="align-middle text-center text-sm">
-                                            <span class="badge badge-sm bg-gradient-success">Online</span>
                                         </td>
                                         <td class="align-middle">
                                             @can('usuarios_editar')

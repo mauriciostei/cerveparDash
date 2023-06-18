@@ -23,6 +23,7 @@ return new class extends Migration
 
             $table->dateTime('inicio');
             $table->integer('viaje')->default(1);
+            $table->text('observacion');
 
             $table->timestamps();
 
