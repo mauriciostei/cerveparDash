@@ -30,12 +30,29 @@ Para correr la aplicación es necesario contar con:
 ## Configuración ENV
 Adicionalmente es necesario configurar las siguientes variables en el archivo `.env`:
 
+    # Variables de configuración para el biostar
     SW_URL= URL del web service para captación de cámaras.
     SW_USER= Usuario del sistema de cámaras.
     SW_PASS= Contraseña del sistema de cámaras.
     SW_EVENT= Evento de captura de variables, ejemplo: '["4867"]'
+
+    # Variables globales
     LOCALIDAD= Nombre del centro de distribución (Entre comillas dobles).
     DOCKS= Código interno del sistema para los docks de Descarga
+
+    # Variables para la tabla de jornadas
+    LIQUIDACION= Puntos a ser utilizados para la liquidación
+    CAJA= puntos de control que corresponden a la caja
+    WAREHOUSE= puntos de control que corresponden a warehouse
+    DESPLAZAMIENTO= puntos de control que corresponden al desplazamiento
+    ESPERA= puntos de control que corresponden a la espera
+    ATENDIMIENTO= puntos de control que corresponden al atendimiento
+    RUTA= puntos de control que corresponden a la ruta
+
+    # Variables para la jornada de T1
+    T_ESPERA= puntos de corte para el color en la tabla jornada de T1
+    T_ATENDIMIENTO= puntos de corte para el color en la tabla jornada de T1
+    T_PERMANENCIA= puntos de corte para el color en la tabla jornada de T1
 
 ## Servicios
 Para el uso de los servicios es necesario que los ANPR sean dirigidos a la siguiente ruta:

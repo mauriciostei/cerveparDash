@@ -119,6 +119,7 @@
                                                         <td class="text-secondary text-sm text-center"> {{$r->tiers->nombre}} </td>
                                                         <td class="text-secondary text-sm text-center"> {{explode(' ',$r->inicio)[1]}} </td>
                                                         <td class="text-secondary text-sm text-center"> {{$r->moviles->nombre}} </td>
+                                                        <td class="text-secondary text-sm text-center"> @if($r->choferes->operadoras) {{$r->choferes->operadoras->nombre}} @endif </td>
                                                         <td class="text-secondary text-sm text-center"> {{$r->choferes->nombre}} </td>
                                                         <td class="text-secondary text-sm text-center"> {{$r->puntos->nombre}} </td>
                                                         <td class="text-secondary text-sm text-center"> {{$this->difTime($r->inicio)}} </td>

@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire\Dashboards\Componentes;
 
+use App\Traits\CalculateColorT1;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class TablaJornadaT1 extends Component
 {
+    use CalculateColorT1;
+
     public $desde;
     public $hasta;
     public $tiers;
