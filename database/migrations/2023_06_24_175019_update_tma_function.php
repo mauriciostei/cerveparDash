@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     public function up()
     {
         DB::statement("DROP FUNCTION IF EXISTS public.tma(date, date, integer);");
-        
+
         DB::statement("
         CREATE OR REPLACE FUNCTION public.tma(
             fec_inicio date,
@@ -36,20 +37,21 @@ return new class extends Migration
                     union
                     select '14:00:00', '22:00:00', 'Tarde'
                 ),
-                data as (
-                    select r.*, r.fin - r.inicio as total
+                movement as (
+                    select g.turno, r.moviles_id, r.choferes_id, sum(r.fin - r.inicio) as total
                     from recorridos r
+                        join grupo g on r.inicio::time between g.inicio and g.fin
                     where cast(r.inicio as date) between fec_inicio and fec_fin
                         and r.tiers_id = tier
                         and r.fin is not null
+                    group by g.turno, r.moviles_id, r.choferes_id
                 ),
                 resultado as (
-                    select g.turno, DATE_TRUNC('second', avg(d.total))::time as media
-                    from data d
-                        join grupo g on d.inicio::time between g.inicio and g.fin
-                    group by g.turno
+                    select m.turno, DATE_TRUNC('second', avg(m.total))::time as media
+                    from movement m
+                    group by m.turno
                 )
-
+                
                 select g.*, COALESCE(r.media, '00:00:00') media, cast(COALESCE(extract(EPOCH from r.media), 0) as numeric) seconds
                 from grupo g
                     left join resultado r on g.turno = r.turno

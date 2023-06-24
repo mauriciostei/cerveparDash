@@ -26,10 +26,9 @@
                         <td> {{$item->chofer_nombre}} </td>
                         <td> {{$item->movil_nombre}} </td>
 
-                        <td class="text-center font-bold {{$this->getColor($item->espera, ENV('T_ESPERA'))}}"> {{$item->espera}} </td>
-                        <td class="text-center {{$this->getColor($item->atendimiento, ENV('T_ATENDIMIENTO'))}}"> {{$item->atendimiento}} </td>
-                        
-                        <td class="text-center {{$this->getColor($item->ttotal, ENV('T_PERMANENCIA'))}}"> {{$item->ttotal}} </td>
+                        <td class="text-center"> <span class="{{$this->getColor($item->espera, ENV('T_ESPERA'))}}">{{$item->espera}}</span> </td>
+                        <td class="text-center"> <span class="{{$this->getColor($item->atendimiento, ENV('T_ATENDIMIENTO'))}}">{{$item->atendimiento}}</span> </td>
+                        <td class="text-center"> <span class="{{$this->getColor($item->ttotal, ENV('T_PERMANENCIA'))}}">{{$item->ttotal}}</span> </td>
                     </tr>
                 @empty
                     <tr>
