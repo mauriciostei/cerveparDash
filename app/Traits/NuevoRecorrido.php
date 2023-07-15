@@ -34,6 +34,14 @@ trait NuevoRecorrido{
                 $recorrido->moviles_id = $planificado[0]->moviles_id;
                 $recorrido->choferes_id = $planificado[0]->choferes_id;
                 $recorrido->viaje = 1;
+
+                $tiempo = DB::table('puntos_tiers')->where('tiers_id', $recorrido->tiers_id)->where('puntos_id', $recorrido->puntos_id)->where('viaje', $recorrido->viaje)->first();
+                if($tiempo){
+                    $recorrido->target = $this->addTime($tiempo->target, $fechaHora);
+                    $recorrido->ponderacion = $this->addTime($tiempo->ponderacion, $recorrido->target);
+                }else{
+                    return;
+                }
         
                 if($ultimoRecorrido){
         
@@ -65,14 +73,6 @@ trait NuevoRecorrido{
         
                     $ultimoRecorrido->save();
         
-                }
-        
-                $tiempo = DB::table('puntos_tiers')->where('tiers_id', $recorrido->tiers_id)->where('puntos_id', $recorrido->puntos_id)->where('viaje', $recorrido->viaje)->first();
-                if($tiempo){
-                    $recorrido->target = $this->addTime($tiempo->target, $fechaHora);
-                    $recorrido->ponderacion = $this->addTime($tiempo->ponderacion, $recorrido->target);
-                }else{
-                    return;
                 }
 
                 if($recorrido->target === $recorrido->inicio && $recorrido->ponderacion === $recorrido->inicio){
