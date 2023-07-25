@@ -81,7 +81,7 @@ class RecorridosController extends Controller
     public function ingresarMovil(Request $request){
         $xml = $this->xmlToJson($request);
 
-        if($xml && date('H')>=5 && date('H')<=21){
+        if($xml){
             $sensor = Sensores::where('codigo', $xml->channelName)->where('activo', true)->first();
 
             $chapa = $xml->ANPR->licensePlate;
@@ -91,8 +91,10 @@ class RecorridosController extends Controller
             })->first();
     
             if($sensor && $movil){
-                $this->ingresarRecorrido($sensor, $movil->tiers_id, 'moviles_id', $movil->id);
-                return response()->json(["mensaje" => "Datos ingresado con exito"]);
+                if($movil->tiers_id==1 || (date('H')>=5 && date('H')<=21)){
+                    $this->ingresarRecorrido($sensor, $movil->tiers_id, 'moviles_id', $movil->id);
+                    return response()->json(["mensaje" => "Datos ingresado con exito"]);
+                }
             }
         }
     }
@@ -102,7 +104,7 @@ class RecorridosController extends Controller
 
         $response = $this->getData($inicio, $fin);
 
-        if($response && date('H')>=5 && date('H')<=21){
+        if($response){
 
             foreach($response as $item):
     
@@ -110,7 +112,9 @@ class RecorridosController extends Controller
                 $chofer = Choferes::where('documento', $item->user_id->user_id)->where('activo', true)->first();
 
                 if($sensor && $chofer){
-                    $this->ingresarRecorrido($sensor, $chofer->tiers_id, 'choferes_id', $chofer->id);
+                    if($chofer->tiers_id==1 || (date('H')>=5 && date('H')<=21)){
+                        $this->ingresarRecorrido($sensor, $chofer->tiers_id, 'choferes_id', $chofer->id);
+                    }
                 }
     
             endforeach;
