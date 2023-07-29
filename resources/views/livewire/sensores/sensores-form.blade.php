@@ -38,6 +38,20 @@
                         <p>No posee Puntos disponibles</p>
                     @endforelse
 
+                    <br/>
+
+                    <div class="input-group input-group-static">
+                        <label>Dirección del Sensor</label>
+                        <select wire:model="sensor.direccion" class="form-control">
+                            @foreach(\App\Enums\TipoSentidoSensor::cases() as $item)
+                                <option value="{{ $item->value }}"> {{ $item->name }} </option>
+                            @endforeach
+                        </select>
+                        @error('sensor.direccion')
+                            <p class='text-danger inputerror'>{{ $message }} </p>
+                        @enderror
+                    </div>
+
                     <br/><br/>
 
                     <div class="form-check form-switch">

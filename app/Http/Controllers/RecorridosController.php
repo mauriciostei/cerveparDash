@@ -82,7 +82,13 @@ class RecorridosController extends Controller
         $xml = $this->xmlToJson($request);
 
         if($xml){
-            $sensor = Sensores::where('codigo', $xml->channelName)->where('activo', true)->first();
+            $direccion = $xml->ANPR->direction;
+            $sensor = Sensores::where('codigo', $xml->channelName)
+                ->where('activo', true)
+                ->where(function($query) use($direccion){
+                    $query->where('direccion', $direccion)->orWhere('direccion', 'Todas');
+                })
+                ->first();
 
             $chapa = $xml->ANPR->licensePlate;
             $movil = Moviles::where('activo', true)->where(function($query) use($chapa){

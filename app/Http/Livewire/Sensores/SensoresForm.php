@@ -14,6 +14,7 @@ class SensoresForm extends Component
     protected $rules = [
         'sensor.nombre' => 'required|string|min:5',
         'sensor.codigo' => 'required',
+        'sensor.direccion' => 'required',
         'sensor.activo' => '',
         'sensor.puntos_id' => '',
     ];
