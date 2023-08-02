@@ -24,6 +24,7 @@ trait NuevoRecorrido{
                 $ultimoRecorrido = Recorridos::whereDate('inicio', date('Y-m-d'))
                     ->where($tipo_id, $id)
                     ->orderByDesc('inicio')
+                    ->orderByDesc('id')
                     ->first();
                 
                 $recorrido = new Recorridos();

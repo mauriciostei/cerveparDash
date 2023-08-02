@@ -75,6 +75,7 @@ class TablaJornadaT1 extends Component
         $this->jornada = DB::table('recorridos')->select([
             'recorridos.tiers_id'
             , 'tiers.nombre as tiers_nombre'
+            , 'recorridos.viaje'
             , 'recorridos.choferes_id'
             , 'choferes.nombre as chofer_nombre'
             , 'moviles.nombre as movil_nombre'
@@ -92,7 +93,7 @@ class TablaJornadaT1 extends Component
             ->whereDate('recorridos.inicio', '>=', $this->desde)
             ->whereDate('recorridos.inicio', '<=', $this->hasta)
             ->groupByRaw("cast(recorridos.inicio as date)")
-            ->groupBy(['recorridos.tiers_id', 'tiers.nombre', 'recorridos.choferes_id', 'choferes.nombre', 'moviles.nombre'])
+            ->groupBy(['recorridos.tiers_id', 'tiers.nombre', 'recorridos.viaje', 'recorridos.choferes_id', 'choferes.nombre', 'moviles.nombre'])
             ->get();
     }
 
