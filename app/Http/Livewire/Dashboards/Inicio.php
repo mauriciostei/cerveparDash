@@ -4,14 +4,14 @@ namespace App\Http\Livewire\Dashboards;
 
 use App\Models\Recorridos;
 use App\Models\Tiers;
-use App\Traits\Diftime;
+use App\Traits\DifTime;
 use App\Traits\TimeToInt;
 use Livewire\Component;
 
 class Inicio extends Component
 {
     use TimeToInt;
-    use Diftime;
+    use DifTime;
 
     public $recorridos;
     public $t1 = [];
