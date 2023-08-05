@@ -95,6 +95,9 @@ class CambiosRecorridos extends Model
                 $recorrido_siguiente->recorridos_id = $recorrido->id;
                 $recorrido_siguiente->save();
             }
+        }else{
+            $recorrido->fin = $recorrido->inicio;
+            $recorrido->save();
         }
     }
 }

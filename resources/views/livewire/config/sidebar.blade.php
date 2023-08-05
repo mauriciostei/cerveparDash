@@ -24,7 +24,7 @@
                             <a class="nav-link {{ Route::currentRouteName() == $m->link ? ' active bg-gradient-success' : '' }} "
                                 href="{{ route($m->link) }}">
                                 <div class="text-center me-1 d-flex align-items-center justify-content-center">
-                                    <i class="material-icons text-white opacity-10"> {{$m->icono}} </i>
+                                    <i class="fa {{$m->icono}} text-white opacity-10"></i>
                                 </div>
                                 <span class="nav-link-text text-white ms-1"> {{$m->nombre}} </span>
                             </a>

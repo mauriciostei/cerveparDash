@@ -14,7 +14,7 @@
                                 <div class="col-lg-2">
                                     @can('problemas_crear')
                                     <a href="{{ route('problemasForm', ['id' => 0]) }}" class="btn btn-secondary">
-                                        <i class="material-icons opacity-10"> add </i> Nuevo
+                                        <i class="fa-solid fa-plus"></i> Nuevo
                                     </a>
                                     @endcan
                                 </div>
@@ -51,7 +51,7 @@
                                             <a href="{{ route('problemasForm', ['id' => $problema->id]) }}"
                                                 class="text-secondary font-weight-bold text-xs"
                                                 data-toggle="tooltip" data-original-title="Editar Problema">
-                                                Edit
+                                                Editar
                                             </a>
                                             @endcan
                                         </td>

@@ -14,7 +14,7 @@
                                 <div class="col-lg-2">
                                     @can('puntos_crear')
                                     <a href="{{ route('puntosForm', ['id' => 0]) }}" class="btn btn-secondary">
-                                        <i class="material-icons opacity-10"> add </i> Nuevo
+                                        <i class="fa-solid fa-plus"></i> Nuevo
                                     </a>
                                     @endcan
                                 </div>

@@ -5,7 +5,7 @@
             <a class="list-group-item list-group-item-action" href="{{ route('ProcesarAprobacion', ['id' => $al->id]) }}">
                 <div class="d-flex py-1">
                     <div class="my-auto">
-                        <i class="material-icons opacity-10 me-3 text-2xl">notifications_active </i>
+                        <i class="fa fa-bell opacity-10 me-3 text-2xl"></i>
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">

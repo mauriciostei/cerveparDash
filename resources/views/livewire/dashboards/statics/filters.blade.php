@@ -18,7 +18,9 @@
             @endforeach
         </ul>
     </th>
+
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Hora Inicio </th>
+
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
 
         <a class="dropdown-toggle" role="button" id="dropMoviles" data-bs-toggle="dropdown" aria-expanded="false"> Móvil </a>
@@ -38,10 +40,50 @@
                 </li>
             @endforeach
         </ul>
-
     </th>
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> O.L. </th>
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Chofer </th>
+
+    
+    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
+        <a class="dropdown-toggle" role="button" id="dropOL" data-bs-toggle="dropdown" aria-expanded="false"> O.L. </a>
+        <ul class="dropdown-menu bg-dark" aria-labelledby="dropOL">
+            <li class="dropdown-item">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="true" wire:model="selectAllOL" wire:change="cambiarTodosOL">
+                    <label class="form-check-label"> Seleccionar Todo </label>
+                </div>
+            </li>
+            @foreach($ol as $item)
+                <li class="dropdown-item">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{{$item->id}}" wire:model="selectedOL">
+                        <label class="form-check-label"> {{$item->nombre}} </label>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
+    </th>
+
+    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
+        <a class="dropdown-toggle" role="button" id="dropChoferes" data-bs-toggle="dropdown" aria-expanded="false"> Chofer </a>
+        <ul class="dropdown-menu bg-dark" aria-labelledby="dropChoferes">
+            <li class="dropdown-item">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="true" wire:model="selectAllChoferes" wire:change="cambiarTodosChoferes">
+                    <label class="form-check-label"> Seleccionar Todo </label>
+                </div>
+            </li>
+            @foreach($choferes as $item)
+                <li class="dropdown-item">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{{$item->id}}" wire:model="selectedChoferes">
+                        <label class="form-check-label"> {{$item->nombre}} </label>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
+    </th>
+
+
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
         <a class="dropdown-toggle" role="button" id="dropSitios" data-bs-toggle="dropdown" aria-expanded="false"> Sitio </a>
         <ul class="dropdown-menu bg-dark" aria-labelledby="dropSitios">
@@ -61,8 +103,11 @@
             @endforeach
         </ul>
     </th>
+
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Duración </th>
+
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Target Llegada </th>
+
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
         <a class="dropdown-toggle" role="button" id="dropEstados" data-bs-toggle="dropdown" aria-expanded="false"> Estado </a>
         <ul class="dropdown-menu bg-dark" aria-labelledby="dropEstados">
@@ -92,4 +137,6 @@
             </li>
         </ul>
     </th>
+
+    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Jornada Lab. </th>
 </tr>
