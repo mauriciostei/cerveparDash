@@ -46,12 +46,21 @@ class TablaInicio extends Component
         $this->choferesSeleccionados = Choferes::pluck('id')->toArray();
     }
 
-    public function getInicio($chofer){
-        $result = Recorridos::
-            whereDate('inicio', date('Y-m-d'))
-            ->where('choferes_id', $chofer)
-            ->orderBy('id', 'asc')
-        ->first();
+    public function getInicio($chofer, $movil, $tier){
+        if($tier == 2){
+            $result = Recorridos::
+                whereDate('inicio', date('Y-m-d'))
+                ->where('choferes_id', $chofer)
+                ->orderBy('id', 'asc')
+            ->first();
+        }else{
+            $result = Recorridos::
+                whereDate('inicio', date('Y-m-d'))
+                ->where('choferes_id', $chofer)
+                ->where('moviles_id', $movil)
+                ->orderBy('id', 'asc')
+            ->first();
+        }
         return $result->inicio;
     }
 

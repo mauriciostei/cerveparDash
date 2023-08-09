@@ -138,5 +138,5 @@
         </ul>
     </th>
 
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Jornada Lab. </th>
+    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Jornada Lab / TMA </th>
 </tr>

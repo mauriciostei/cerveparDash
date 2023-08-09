@@ -45,7 +45,9 @@
                                         <span class="text-warning">{{$r->estado}}</span>
                                     @endif
                                 </td>
-                                <td class="text-secondary text-sm text-center"> {{$this->difTime($this->getInicio($r->choferes_id))}}</td>
+                                <td class="text-secondary text-sm text-center">
+                                    {{$this->difTime($this->getInicio($r->choferes_id, $r->moviles_id, $r->tiers_id))}}
+                                </td>
                             </tr>
                         @endif
                     @empty
