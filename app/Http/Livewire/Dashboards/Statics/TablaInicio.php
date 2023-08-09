@@ -8,6 +8,7 @@ use App\Models\Operadoras;
 use App\Models\Puntos;
 use App\Models\Recorridos;
 use App\Models\Tiers;
+use App\Traits\ColorByTime;
 use App\Traits\Diftime;
 use App\Traits\TimeToInt;
 use Livewire\Component;
@@ -16,6 +17,7 @@ class TablaInicio extends Component
 {
     use Diftime;
     use TimeToInt;
+    use ColorByTime;
 
     public $recorridos;
 

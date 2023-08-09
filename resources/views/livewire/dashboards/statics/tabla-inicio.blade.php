@@ -46,7 +46,9 @@
                                     @endif
                                 </td>
                                 <td class="text-secondary text-sm text-center">
-                                    {{$this->difTime($this->getInicio($r->choferes_id, $r->moviles_id, $r->tiers_id))}}
+                                    <span class="{{ $this->getColor( $this->difTime($this->getInicio($r->choferes_id, $r->moviles_id, $r->tiers_id)), $r->tiers_id ) }}">
+                                        {{ $this->difTime($this->getInicio($r->choferes_id, $r->moviles_id, $r->tiers_id)) }}
+                                    </span>
                                 </td>
                             </tr>
                         @endif
