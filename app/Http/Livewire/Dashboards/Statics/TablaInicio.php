@@ -53,14 +53,14 @@ class TablaInicio extends Component
             $result = Recorridos::
                 whereDate('inicio', date('Y-m-d'))
                 ->where('choferes_id', $chofer)
-                ->orderBy('id', 'asc')
+                ->orderBy('inicio', 'asc')
             ->first();
         }else{
             $result = Recorridos::
                 whereDate('inicio', date('Y-m-d'))
                 ->where('choferes_id', $chofer)
                 ->where('moviles_id', $movil)
-                ->orderBy('id', 'asc')
+                ->orderBy('inicio', 'asc')
             ->first();
         }
         return $result->inicio;
