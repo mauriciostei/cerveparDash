@@ -46,7 +46,7 @@
                                     @endif
                                 </td>
                                 <td class="text-secondary text-sm text-center">
-                                    <span class="{{ $this->getColor( $this->difTime($this->getInicio($r->choferes_id, $r->moviles_id, $r->tiers_id)), $r->tiers_id ) }}">
+                                    <span class="font-weight-bold {{ $this->getColor( $this->difTime($this->getInicio($r->choferes_id, $r->moviles_id, $r->tiers_id)), $r->tiers_id ) }}">
                                         {{ $this->difTime($this->getInicio($r->choferes_id, $r->moviles_id, $r->tiers_id)) }}
                                     </span>
                                 </td>
@@ -54,7 +54,7 @@
                         @endif
                     @empty
                         <tr>
-                            <td colspan="8" class="text-center text-muted">Tabla vacía, esperando datos...</td>
+                            <td colspan="10" class="text-center text-muted">Tabla vacía, esperando datos...</td>
                         </tr>
                     @endforelse
                 </tbody>

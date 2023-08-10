@@ -98,7 +98,8 @@ class RecorridosController extends Controller
     
             if($sensor && $movil){
                 if($movil->tiers_id==1 || (date('H')>=5 && date('H')<=21)){
-                    $this->ingresarRecorrido($sensor, $movil->tiers_id, 'moviles_id', $movil->id);
+                    $fechaHora = date('Y-m-d H:i:s');
+                    $this->ingresarRecorrido($sensor, $movil->tiers_id, 'moviles_id', $movil->id, $fechaHora);
                     return response()->json(["mensaje" => "Datos ingresado con exito"]);
                 }
             }
@@ -119,7 +120,8 @@ class RecorridosController extends Controller
 
                 if($sensor && $chofer){
                     if($chofer->tiers_id==1 || (date('H')>=5 && date('H')<=21)){
-                        $this->ingresarRecorrido($sensor, $chofer->tiers_id, 'choferes_id', $chofer->id);
+                        $fechaHora = date('Y-m-d H:i:s', strtotime($item->datetime));;
+                        $this->ingresarRecorrido($sensor, $chofer->tiers_id, 'choferes_id', $chofer->id, $fechaHora);
                     }
                 }
     

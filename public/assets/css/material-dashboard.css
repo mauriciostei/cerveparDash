@@ -7260,6 +7260,10 @@ textarea.form-control-lg {
 .text-success {
   color: #4CAF50 !important; }
 
+.text-yellow{
+  color: var(--bs-yellow) !important;
+}
+
 .text-info {
   color: #1A73E8 !important; }
 

@@ -11,9 +11,9 @@ trait NuevoRecorrido{
 
     use AddTime;
 
-    public function ingresarRecorrido($sensor, $tier, $tipo_id, $id){
+    public function ingresarRecorrido($sensor, $tier, $tipo_id, $id, $fechaHora){
 
-        $fechaHora = date('Y-m-d H:i:s');
+        $fechaHora = $fechaHora ?? date('Y-m-d H:i:s');
         $plan = Planes::whereDate('fecha', date('Y-m-d'))->first();
 
         if($plan){
