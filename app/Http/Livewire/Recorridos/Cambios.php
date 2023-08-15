@@ -39,6 +39,8 @@ class Cambios extends Component
             'cambio.sensores_id' => 'required|exists:sensores,id',
             'cambio.inicio' => 'required',
             'cambio.observacion' => 'required',
+            'fecha' => 'required',
+            'hora' => 'required',
         ];
     }
 
@@ -127,6 +129,7 @@ class Cambios extends Component
     public function save(){
         $this->validate();
 
+        $this->cambio->inicio = "$this->fecha $this->hora";
         $this->cambio->save();
 
         session()->flash('message', 'Solicitud registrada!');
