@@ -11,7 +11,6 @@ use App\Traits\BioStarData;
 use App\Traits\NuevoRecorrido;
 use App\Traits\XMLToJSON;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class RecorridosController extends Controller
 {
