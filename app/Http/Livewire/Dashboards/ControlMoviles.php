@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Dashboards;
 
-use App\Models\Moviles;
 use App\Models\Puntos;
 use App\Models\Recorridos;
 use App\Models\Tiers;
@@ -34,7 +33,7 @@ class ControlMoviles extends Component
         $this->puntos = DB::table('puntos_tiers')->where('tiers_id', $this->tiers_id)->where('viaje', $this->viaje)->orderBy('orden', 'asc')->get();
 
         $this->recorridos = Recorridos::
-        whereDate('created_at', date('Y-m-d'))
+        whereDate('inicio', date('Y-m-d'))
             ->where('fin', null)
             ->where('tiers_id', $this->tiers_id)
             ->where('viaje', $this->viaje)
