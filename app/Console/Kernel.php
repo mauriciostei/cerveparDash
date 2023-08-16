@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function(){
             $p = new PlanesController();
             $p->clonar();
-        })->dailyAt('01:00');
+        })->dailyAt('00:01');
             
         // Actualizar los recorridos OOT o DIS
         $schedule->call(function(){
