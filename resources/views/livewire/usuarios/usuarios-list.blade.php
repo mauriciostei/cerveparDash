@@ -12,7 +12,7 @@
                                     <h6 class="text-white text-capitalize ps-3 pt-2">Lista de Usuarios</h6>
                                 </div>
                                 <div class="col-lg-2">
-                                    @can('usuarios_crear')
+                                    @can('create', App\Models\User::class)
                                     <a href="{{ route('usuariosForm', ['id' => 0]) }}" class="btn btn-secondary">
                                         <i class="fa-solid fa-plus"></i> Nuevo
                                     </a>
@@ -50,7 +50,7 @@
                                             </div>
                                         </td>
                                         <td class="align-middle">
-                                            @can('usuarios_editar')
+                                            @can('update', $us)
                                             <a href="{{ route('usuariosForm', ['id' => $us->id]) }}"
                                                 class="text-secondary font-weight-bold text-xs"
                                                 data-toggle="tooltip" data-original-title="Editar Usuario">

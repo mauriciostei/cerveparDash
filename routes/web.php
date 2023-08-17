@@ -52,50 +52,50 @@ Route::get('sign-in', Login::class)->middleware('guest')->name('login');
 
 Route::middleware('auth')->group(function(){
 
-    Route::get('inicio', Inicio::class)->name('inicio');
-    Route::get('metricas', Metricas::class)->name('metricas');
-    Route::get('controlMoviles', ControlMoviles::class)->name('controlMoviles');
-    Route::get('metricaAlertas', MetricaAlertas::class)->name('metricaAlertas');
-    Route::get('jornada', Jornada::class)->name('jornada');
+    Route::get('inicio', Inicio::class)->name('inicio')->can('inicio');
+    Route::get('metricas', Metricas::class)->name('metricas')->can('metricas');
+    Route::get('controlMoviles', ControlMoviles::class)->name('controlMoviles')->can('controlMoviles');
+    Route::get('metricaAlertas', MetricaAlertas::class)->name('metricaAlertas')->can('metricaAlertas');
+    Route::get('jornada', Jornada::class)->name('jornada')->can('jornada');
     Route::get('jornada-oviedo', Jornada::class)->name('jornada-oviedo');
-    Route::get('jornadaT1', Jornada::class)->name('jornadaT1');
-    Route::get('controlPuntos', ControlPuntos::class)->name('controlPuntos');
+    Route::get('jornadaT1', Jornada::class)->name('jornadaT1')->can('jornadaT1');
+    Route::get('controlPuntos', ControlPuntos::class)->name('controlPuntos')->can('controlPuntos');
 
-    Route::get('cambioRecorrido', Cambios::class)->name('cambiosRecorridos');
+    Route::get('cambioRecorrido', Cambios::class)->name('cambiosRecorridos')->can('cambiosRecorridos');
     Route::get('ProcesarAprobacion/{id}', Procesar::class)->name('ProcesarAprobacion');
 
-    Route::get('usuarios', UsuariosList::class)->name('usuariosList');
+    Route::get('usuarios', UsuariosList::class)->name('usuariosList')->can('viewAny', \App\Models\User::class);
     Route::get('usuarios/{id}', UsuariosForm::class)->name('usuariosForm');
     Route::get('MiCuenta', UsuariosMiCuenta::class)->name('usuariosMiCuenta');
 
-    Route::get('perfiles', PerfilesList::class)->name('perfilesList');
+    Route::get('perfiles', PerfilesList::class)->name('perfilesList')->can('viewAny', \App\Models\Perfiles::class);
     Route::get('perfiles/{id}', PerfilesForm::class)->name('perfilesForm');
 
-    Route::get('operadora', OperadorasList::class)->name('operadorasList');
+    Route::get('operadora', OperadorasList::class)->name('operadorasList')->can('viewAny', \App\Models\Operadoras::class);
     Route::get('operadora/{id}', OperadorasForm::class)->name('operadorasForm');
 
-    Route::get('choferes', ChoferesList::class)->name('choferesList');
+    Route::get('choferes', ChoferesList::class)->name('choferesList')->can('viewAny', \App\Models\Choferes::class);
     Route::get('choferes/{id}', ChoferesForm::class)->name('choferesForm');
 
-    Route::get('moviles', MovilesList::class)->name('movilesList');
+    Route::get('moviles', MovilesList::class)->name('movilesList')->can('viewAny', \App\Models\Moviles::class);
     Route::get('moviles/{id}', MovilesForm::class)->name('movilesForm');
 
-    Route::get('problemas', ProblemasList::class)->name('problemasList');
+    Route::get('problemas', ProblemasList::class)->name('problemasList')->can('viewAny', \App\Models\Problemas::class);
     Route::get('problemas/{id}', ProblemasForm::class)->name('problemasForm');
 
-    Route::get('soluciones', SolucionesList::class)->name('solucionesList');
+    Route::get('soluciones', SolucionesList::class)->name('solucionesList')->can('viewAny', \App\Models\Soluciones::class);
     Route::get('soluciones/{id}', SolucionesForm::class)->name('solucionesForm');
 
-    Route::get('sensores', SensoresList::class)->name('sensoresList');
+    Route::get('sensores', SensoresList::class)->name('sensoresList')->can('viewAny', \App\Models\Sensores::class);
     Route::get('sensores/{id}', SensoresForm::class)->name('sensoresForm');
 
-    Route::get('puntos', PuntosList::class)->name('puntosList');
+    Route::get('puntos', PuntosList::class)->name('puntosList')->can('viewAny', \App\Models\Puntos::class);
     Route::get('puntos/{id}', PuntosForm::class)->name('puntosForm');
 
-    Route::get('planes', PlanesList::class)->name('planesList');
+    Route::get('planes', PlanesList::class)->name('planesList')->can('viewAny', \App\Models\Planes::class);
     Route::get('planes/{id}', PlanesForm::class)->name('planesForm');
 
-    Route::get('tiers', TiersList::class)->name('tiersList');
+    Route::get('tiers', TiersList::class)->name('tiersList')->can('viewAny', \App\Models\Tiers::class);
     Route::get('tiers/{id}', TiersForm::class)->name('tiersForm');
     Route::get('tiers/{id}/{viaje}', TierViajeForm::class)->name('tiersViajeForm');
 

@@ -12,7 +12,7 @@
                                     <h6 class="text-white text-capitalize ps-3 pt-2">Lista de Tiers</h6>
                                 </div>
                                 <div class="col-lg-2">
-                                    @can('tiers_crear')
+                                    @can('create', App\Models\Tiers::class)
                                     <a href="{{ route('tiersForm', ['id' => 0]) }}" class="btn btn-secondary">
                                         <i class="fa-solid fa-plus"></i> Nuevo
                                     </a>
@@ -55,7 +55,7 @@
                                             </span>
                                         </td>
                                         <td class="align-middle">
-                                            @can('tiers_editar')
+                                            @can('update', $tier)
                                             <a href="{{ route('tiersForm', ['id' => $tier->id]) }}"
                                                 class="text-secondary font-weight-bold text-xs"
                                                 data-toggle="tooltip" data-original-title="Editar Tier">
@@ -64,7 +64,7 @@
                                             @endcan
                                         </td>
                                         <td class="align-middle">
-                                            @can('tiers_editar')
+                                            @can('update', $tier)
                                             <a href="{{ route('tiersViajeForm', ['id' => $tier->id, 'viaje' => 1]) }}"
                                                 class="text-secondary font-weight-bold text-xs"
                                                 data-toggle="tooltip" data-original-title="Editar Tier">
@@ -73,7 +73,7 @@
                                             @endcan
                                         </td>
                                         <td class="align-middle">
-                                            @can('tiers_editar')
+                                            @can('update', $tier)
                                             <a href="{{ route('tiersViajeForm', ['id' => $tier->id, 'viaje' => 2]) }}"
                                                 class="text-secondary font-weight-bold text-xs"
                                                 data-toggle="tooltip" data-original-title="Editar Tier">

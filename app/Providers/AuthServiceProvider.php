@@ -2,9 +2,29 @@
 
 namespace App\Providers;
 
-use App\Models\Permisos;
+use App\Models\Choferes;
+use App\Models\Moviles;
+use App\Models\Operadoras;
+use App\Models\Perfiles;
+use App\Models\Planes;
+use App\Models\Problemas;
+use App\Models\Puntos;
+use App\Models\Sensores;
+use App\Models\Soluciones;
+use App\Models\Tiers;
+use App\Models\User;
+use App\Policies\ChoferesPolicy;
+use App\Policies\MovilesPolicy;
+use App\Policies\OperadorasPolicy;
+use App\Policies\PerfilesPolicy;
+use App\Policies\PlanesPolicy;
+use App\Policies\ProblemasPolicy;
+use App\Policies\PuntosPolicy;
+use App\Policies\SensoresPolicy;
+use App\Policies\SolucionesPolicy;
+use App\Policies\TiersPolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -15,7 +35,17 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        User::class => UserPolicy::class,
+        Perfiles::class => PerfilesPolicy::class,
+        Operadoras::class => OperadorasPolicy::class,
+        Choferes::class => ChoferesPolicy::class,
+        Moviles::class => MovilesPolicy::class,
+        Sensores::class => SensoresPolicy::class,
+        Planes::class => PlanesPolicy::class,
+        Problemas::class => ProblemasPolicy::class,
+        Soluciones::class => SolucionesPolicy::class,
+        Puntos::class => PuntosPolicy::class,
+        Tiers::class => TiersPolicy::class,
     ];
 
     /**
@@ -28,49 +58,35 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('inicio', function($user){
-            return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 1)->first()->leer;
+            return $user->getPermisos(1)->leer;
         });
 
         Gate::define('metricas', function($user){
-            return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 2)->first()->leer;
+            return $user->getPermisos(2)->leer;
         });
 
+        Gate::define('controlMoviles', function($user){
+            return $user->getPermisos(13)->leer;
+        });
 
-        Gate::define('usuarios_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 3)->first()->leer; });
-        Gate::define('perfiles_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 4)->first()->leer; });
-        Gate::define('choferes_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 5)->first()->leer; });
-        Gate::define('moviles_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 6)->first()->leer; });
-        Gate::define('sensores_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 7)->first()->leer; });
-        Gate::define('planes_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 8)->first()->leer; });
-        Gate::define('problemas_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 9)->first()->leer; });
-        Gate::define('soluciones_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 10)->first()->leer; });
-        Gate::define('puntos_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 11)->first()->leer; });
-        Gate::define('tiers_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 12)->first()->leer; });
-        Gate::define('operadoras_leer', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 16)->first()->leer; });
+        Gate::define('metricaAlertas', function($user){
+            return $user->getPermisos(14)->leer;
+        });
 
-        Gate::define('usuarios_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 3)->first()->editar; });
-        Gate::define('perfiles_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 4)->first()->editar; });
-        Gate::define('choferes_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 5)->first()->editar; });
-        Gate::define('moviles_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 6)->first()->editar; });
-        Gate::define('sensores_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 7)->first()->editar; });
-        Gate::define('planes_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 8)->first()->editar; });
-        Gate::define('problemas_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 9)->first()->editar; });
-        Gate::define('soluciones_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 10)->first()->editar; });
-        Gate::define('puntos_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 11)->first()->editar; });
-        Gate::define('tiers_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 12)->first()->editar; });
-        Gate::define('operadoras_editar', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 16)->first()->editar; });
+        Gate::define('jornada', function($user){
+            return $user->getPermisos(15)->leer;
+        });
 
-        Gate::define('usuarios_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 3)->first()->crear; });
-        Gate::define('perfiles_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 4)->first()->crear; });
-        Gate::define('choferes_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 5)->first()->crear; });
-        Gate::define('moviles_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 6)->first()->crear; });
-        Gate::define('sensores_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 7)->first()->crear; });
-        Gate::define('planes_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 8)->first()->crear; });
-        Gate::define('problemas_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 9)->first()->crear; });
-        Gate::define('soluciones_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 10)->first()->crear; });
-        Gate::define('puntos_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 11)->first()->crear; });
-        Gate::define('tiers_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 12)->first()->crear; });
-        Gate::define('operadoras_crear', function($user){ return DB::table('roles')->where('users_id', $user->id)->where('permisos_id', 16)->first()->crear; });
+        Gate::define('jornadaT1', function($user){
+            return $user->getPermisos(17)->leer;
+        });
 
+        Gate::define('controlPuntos', function($user){
+            return $user->getPermisos(18)->leer;
+        });
+
+        Gate::define('cambiosRecorridos', function($user){
+            return $user->getPermisos(19)->leer;
+        });
     }
 }

@@ -12,7 +12,7 @@
                                     <h6 class="text-white text-capitalize ps-3 pt-2">Lista de Problemas</h6>
                                 </div>
                                 <div class="col-lg-2">
-                                    @can('problemas_crear')
+                                    @can('create', App\Models\Problemas::class)
                                     <a href="{{ route('problemasForm', ['id' => 0]) }}" class="btn btn-secondary">
                                         <i class="fa-solid fa-plus"></i> Nuevo
                                     </a>
@@ -47,7 +47,7 @@
                                             </span>
                                         </td>
                                         <td class="align-middle">
-                                            @can('problemas_editar')
+                                            @can('update', $problema)
                                             <a href="{{ route('problemasForm', ['id' => $problema->id]) }}"
                                                 class="text-secondary font-weight-bold text-xs"
                                                 data-toggle="tooltip" data-original-title="Editar Problema">

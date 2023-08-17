@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -56,5 +57,9 @@ class User extends Authenticatable
 
     public function perfiles(){
         return $this->belongsToMany(Perfiles::class, 'perfiles_users', 'users_id', 'perfiles_id')->withTimestamps();
+    }
+
+    public function getPermisos($permisos_id){
+        return DB::table('roles')->where('users_id', $this->id)->where('permisos_id', $permisos_id)->first();
     }
 }

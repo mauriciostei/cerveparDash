@@ -85,7 +85,7 @@
                                         </td>
                                         <td class="align-middle">
                                             @if($plan->fecha >= date('Y-m-d'))
-                                                @can('planes_editar')
+                                                @can('update', $plan)
                                                 <a href="{{ route('planesForm', ['id' => $plan->id]) }}"
                                                     class="text-secondary font-weight-bold text-xs"
                                                     data-toggle="tooltip" data-original-title="Editar Plan">

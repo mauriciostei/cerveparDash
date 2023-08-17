@@ -12,7 +12,7 @@
                                     <h6 class="text-white text-capitalize ps-3 pt-2">Lista de Operadores Logísticos</h6>
                                 </div>
                                 <div class="col-lg-2">
-                                    @can('operadoras_crear')
+                                    @can('create', App\Models\Operadoras::class)
                                     <a href="{{ route('operadorasForm', ['id' => 0]) }}" class="btn btn-secondary">
                                         <i class="fa-solid fa-plus"></i> Nuevo
                                     </a>
@@ -49,7 +49,7 @@
                                             @endif
                                         </td>
                                         <td class="align-middle">
-                                            @can('operadoras_editar')
+                                            @can('update', $item)
                                             <a href="{{ route('operadorasForm', ['id' => $item->id]) }}"
                                                 class="text-secondary font-weight-bold text-xs"
                                                 data-toggle="tooltip" data-original-title="Editar">
