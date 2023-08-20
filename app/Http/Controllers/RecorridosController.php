@@ -98,6 +98,12 @@ class RecorridosController extends Controller
             if($sensor && $movil){
                 if($movil->tiers_id==1 || (date('H')>=5 && date('H')<=21)){
                     $fechaHora = date('Y-m-d H:i:s');
+
+                    $ruta = Recorridos::whereDate('inicio', date('Y-m-d'))->where('moviles_id', $movil->id)->where('puntos_id', env('PUNTO_INICIO'))->first();
+                    if(!$ruta && $movil->tiers_id==2 && $sensor->puntos_id != env('PUNTO_INICIO')){
+                        return response()->json(["mensaje" => "Aun no se alcanzo el punto de inicio"]);
+                    }
+
                     $this->ingresarRecorrido($sensor, $movil->tiers_id, 'moviles_id', $movil->id, $fechaHora);
                     return response()->json(["mensaje" => "Datos ingresado con exito"]);
                 }

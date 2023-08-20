@@ -12,6 +12,7 @@ use App\Http\Livewire\Dashboards\Inicio;
 use App\Http\Livewire\Dashboards\Jornada;
 use App\Http\Livewire\Dashboards\MetricaAlertas;
 use App\Http\Livewire\Dashboards\Metricas;
+use App\Http\Livewire\Dashboards\Status;
 use App\Http\Livewire\Moviles\MovilesForm;
 use App\Http\Livewire\Moviles\MovilesList;
 use App\Http\Livewire\Operadoras\OperadorasForm;
@@ -54,7 +55,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('inicio', Inicio::class)->name('inicio')->can('inicio');
     Route::get('metricas', Metricas::class)->name('metricas')->can('metricas');
-    Route::get('controlMoviles', ControlMoviles::class)->name('controlMoviles')->can('controlMoviles');
+    Route::get('controlMoviles', Status::class)->name('controlMoviles')->can('controlMoviles');
     Route::get('metricaAlertas', MetricaAlertas::class)->name('metricaAlertas')->can('metricaAlertas');
     Route::get('jornada', Jornada::class)->name('jornada')->can('jornada');
     Route::get('jornada-oviedo', Jornada::class)->name('jornada-oviedo');
