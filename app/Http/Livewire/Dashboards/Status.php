@@ -12,7 +12,7 @@ class Status extends Component
     public $recorridos;
 
     public function getInfo(){
-        $this->tiers = Tiers::all();
+        $this->tiers = Tiers::where('activo', true)->get();
 
         $this->recorridos = Recorridos::
         whereDate('inicio', date('Y-m-d'))
