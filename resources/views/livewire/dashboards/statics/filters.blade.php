@@ -11,7 +11,8 @@
 
     
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
-        @livewire('config.dropdown', [ 'arreglo' => $ol, 'titulo' => 'O.L.' ])
+        {{-- @livewire('config.dropdown', [ 'arreglo' => $ol, 'titulo' => 'O.L.' ]) --}}
+        O.L.
     </th>
 
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
