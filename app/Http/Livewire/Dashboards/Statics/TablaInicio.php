@@ -26,11 +26,11 @@ class TablaInicio extends Component
     protected $listeners = ['actualizarInforme'];
 
     public function actualizarInforme(){
-        $this->tiersSeleccionados = session('selectedTiers');
-        $this->puntosSeleccionados = session('selectedSitio');
-        $this->movilesSeleccionados = session('selectedMóviles');
-        $this->olSeleccionados = session('selectedO.L.');
-        $this->choferesSeleccionados = session('selectedChofer');
+        $this->tiersSeleccionados = session('selectedTiers') ?? [];
+        $this->puntosSeleccionados = session('selectedSitio') ?? [];
+        $this->movilesSeleccionados = session('selectedMóviles') ?? [];
+        $this->olSeleccionados = session('selectedO.L.') ?? [];
+        $this->choferesSeleccionados = session('selectedChofer') ?? [];
     }
 
     public function mount($recorridos){

@@ -90,6 +90,55 @@ class RecorridosController extends Controller
                 ->first();
 
             $chapa = $xml->ANPR->licensePlate;
+
+            $letras = substr($chapa,0,-3);
+            $numeros = substr($chapa,-3);
+            /*verificamos si son letras los primeros 4 y numeros los 3 ultimos*/
+            if(ctype_alpha($letras) && ctype_digit($numeros)){
+                /*la chapa esta sin errores*/
+            }
+            /*si tiene letras o numeros en donde no van*/
+            elseif((!ctype_alpha($letras)||!ctype_digit($numeros))&& $chapa !="unknown" && $chapa != "######"){
+                    if((substr($chapa,-1))=='#'){
+                    }else{
+                        /*Reemplazar seccion incorrecta en los errores ya conocidos*/
+
+                        /*-------------Hallar la chapa que mas se aproxima en la bd----------------------------*/
+                        // aún no se ha encontrado la distancia más corta
+                        $closest = 'nada';
+                        $shortest = -1;
+                        $moviles= Moviles::all();
+                        // bucle a través de las palabras para encontrar la más cercana
+                        foreach ($moviles as $movil) {
+                            // calcula la distancia entre la palabra de entrada
+                            // y la palabra actual
+                            $lev = levenshtein($chapa,$movil->chapa);
+                            // verifica por una coincidencia exacta
+                            if ($lev == 0) {
+                                // la palabra más cercana es esta (coincidencia exacta)
+                                $closest = $movil->chapa;
+                                $shortest = 0;
+                                // salir del bucle ya que se ha encontrado una coincidencia exacta
+                                break;
+                            }
+                            // si esta distancia es menor que la siguiente distancia
+                            // más corta o si una siguiente palabra más corta aun no se ha encontrado
+                            if (($lev <= $shortest || $shortest < 0) && ( $lev < 3 )) {
+                                // establece la coincidencia más cercana y la distancia más corta
+                                $closest  = $movil->chapa;
+                                $shortest = $lev;
+                            }
+                        }
+                        /*retornamos la chapa que mas se aproximo */
+                            /*que solo haga el cambio si shortest es menor a tres*/
+                            if($shortest < 3){
+                                    $chapa = $closest;
+                            }
+
+                    }
+            }
+
+
             $movil = Moviles::where('activo', true)->where(function($query) use($chapa){
                 $query->where('chapa', $chapa)
                     ->orWhere('chapa_trasera', $chapa);
