@@ -6,7 +6,9 @@ namespace App\Http\Livewire\Dashboards\Statics;
 use App\Models\Recorridos;
 use App\Traits\ColorByTime;
 use App\Traits\Diftime;
+use App\Traits\SessionArrayFilter;
 use App\Traits\TimeToInt;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class TablaInicio extends Component
@@ -14,6 +16,7 @@ class TablaInicio extends Component
     use Diftime;
     use TimeToInt;
     use ColorByTime;
+    use SessionArrayFilter;
 
     public $recorridos;
 
@@ -26,17 +29,25 @@ class TablaInicio extends Component
     protected $listeners = ['actualizarInforme'];
 
     public function actualizarInforme(){
-        $this->tiersSeleccionados = session('selectedTiers') ?? [];
-        $this->puntosSeleccionados = session('selectedSitio') ?? [];
-        $this->movilesSeleccionados = session('selectedMóviles') ?? [];
-        $this->olSeleccionados = session('selectedO.L.') ?? [];
-        $this->choferesSeleccionados = session('selectedChofer') ?? [];
+        $tier = $this->sessionToArray('selectedTiers');
+        $puntos = $this->sessionToArray('selectedSitio');
+        $moviles = $this->sessionToArray('selectedMóviles');
+        $choferes = $this->sessionToArray('selectedChofer');
+
+        $this->recorridos = Recorridos::
+            whereDate('inicio', date('Y-m-d'))
+            ->where('fin', null)
+            ->orderBy('id', 'desc')
+            ->whereIn('tiers_id', $tier)
+            ->whereIn('puntos_id', $puntos)
+            ->whereIn('moviles_id', $moviles)
+            ->whereIn('choferes_id', $choferes)
+        ->get();
     }
 
     public function mount($recorridos){
         $this->recorridos = $recorridos;
         $this->estadosSeleccionados = Array('OnTime', 'No Tratada', 'OutOfTime');
-        $this->actualizarInforme();
     }
 
     public function getInicio($chofer, $movil, $tier, $viaje){

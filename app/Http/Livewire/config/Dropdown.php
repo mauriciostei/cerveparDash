@@ -24,8 +24,8 @@ class Dropdown extends Component
             foreach($this->datos as $s):
                 $this->selected[$s['id']] = true;
             endforeach;
-            $this->modificacion();
         }
+        $this->modificacion();
     }
 
     public function modificacion(){

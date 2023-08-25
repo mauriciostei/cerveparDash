@@ -20,14 +20,14 @@
                 </thead>
                 <tbody>
                     @forelse($recorridos  as $r)
-                        @if(
+                        {{-- @if(
                             $tiersSeleccionados[$r->tiers_id]
                             && $puntosSeleccionados[$r->puntos_id]
                             && $movilesSeleccionados[$r->moviles_id]
-                            // && $olSeleccionados[$r->choferes->operadoras_id]
+                            && $olSeleccionados[$r->choferes->operadoras_id]
                             && $choferesSeleccionados[$r->choferes_id]
                             && in_array($r->estado, $estadosSeleccionados)
-                        )
+                        ) --}}
                             <tr>
                                 <td class="text-secondary text-sm text-center"> {{$r->tiers->nombre}} </td>
                                 <td class="text-secondary text-sm text-center"> {{explode(' ',$r->inicio)[1]}} </td>
@@ -52,7 +52,6 @@
                                     </span>
                                 </td>
                             </tr>
-                        @endif
                     @empty
                         <tr>
                             <td colspan="10" class="text-center text-muted">Tabla vacía, esperando datos...</td>
