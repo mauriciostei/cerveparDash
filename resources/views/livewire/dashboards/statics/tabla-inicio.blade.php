@@ -26,7 +26,7 @@
                             && $movilesSeleccionados[$r->moviles_id]
                             && $olSeleccionados[$r->choferes->operadoras_id]
                             && $choferesSeleccionados[$r->choferes_id]
-                            && in_array($r->estado, $estadosSeleccionados)
+                            // && in_array($r->estado, $estadosSeleccionados)
                         )
                             <tr>
                                 <td class="text-secondary text-sm text-center"> {{$r->tiers->nombre}} </td>
