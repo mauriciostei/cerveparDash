@@ -8,7 +8,6 @@ use App\Traits\ColorByTime;
 use App\Traits\Diftime;
 use App\Traits\SessionArrayFilter;
 use App\Traits\TimeToInt;
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class TablaInicio extends Component
@@ -48,6 +47,7 @@ class TablaInicio extends Component
     public function mount($recorridos){
         $this->recorridos = $recorridos;
         $this->estadosSeleccionados = Array('OnTime', 'No Tratada', 'OutOfTime');
+        $this->actualizarInforme();
     }
 
     public function getInicio($chofer, $movil, $tier, $viaje){
