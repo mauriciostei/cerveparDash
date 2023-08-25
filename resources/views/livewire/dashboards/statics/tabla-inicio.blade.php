@@ -20,13 +20,13 @@
                 </thead>
                 <tbody>
                     @forelse($recorridos  as $r)
-                        @if(in_array($r->puntos_id, $puntosSeleccionados) 
-                            && in_array($r->moviles_id, $movilesSeleccionados) 
-                            && in_array($r->estado, $estadosSeleccionados) 
-                            && in_array($r->tiers_id, $tiersSeleccionados)
-                            && in_array($r->choferes->operadoras_id, $olSeleccionados)
-                            && in_array($r->choferes_id, $choferesSeleccionados)
-                            )
+                        @if(
+                            $tiersSeleccionados[$r->tiers_id]
+                            && $puntosSeleccionados[$r->puntos_id]
+                            && $movilesSeleccionados[$r->moviles_id]
+                            && $olSeleccionados[$r->choferes->operadoras_id]
+                            && $choferesSeleccionados[$r->choferes_id]
+                        )
                             <tr>
                                 <td class="text-secondary text-sm text-center"> {{$r->tiers->nombre}} </td>
                                 <td class="text-secondary text-sm text-center"> {{explode(' ',$r->inicio)[1]}} </td>

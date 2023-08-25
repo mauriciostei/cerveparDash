@@ -2,12 +2,8 @@
 
 namespace App\Http\Livewire\Dashboards\Statics;
 
-use App\Models\Choferes;
-use App\Models\Moviles;
-use App\Models\Operadoras;
-use App\Models\Puntos;
+
 use App\Models\Recorridos;
-use App\Models\Tiers;
 use App\Traits\ColorByTime;
 use App\Traits\Diftime;
 use App\Traits\TimeToInt;
@@ -27,25 +23,20 @@ class TablaInicio extends Component
     public $estadosSeleccionados;
     public $olSeleccionados;
     public $choferesSeleccionados;
-    protected $listeners = ['actualizarTable'];
+    protected $listeners = ['actualizarInforme'];
 
-    public function actualizarTable($datos){
-        $this->puntosSeleccionados = $datos['puntos'];
-        $this->movilesSeleccionados = $datos['moviles'];
-        $this->estadosSeleccionados = $datos['estados'];
-        $this->tiersSeleccionados = $datos['tiers'];
-        $this->olSeleccionados = $datos['ol'];
-        $this->choferesSeleccionados = $datos['choferes'];
+    public function actualizarInforme(){
+        $this->tiersSeleccionados = session('selectedTiers');
+        $this->puntosSeleccionados = session('selectedSitio');
+        $this->movilesSeleccionados = session('selectedMóviles');
+        $this->olSeleccionados = session('selectedO.L.');
+        $this->choferesSeleccionados = session('selectedChofer');
     }
 
     public function mount($recorridos){
         $this->recorridos = $recorridos;
-        $this->puntosSeleccionados = Puntos::pluck('id')->toArray();
-        $this->movilesSeleccionados = Moviles::pluck('id')->toArray();
         $this->estadosSeleccionados = Array('OnTime', 'No Tratada', 'OutOfTime');
-        $this->tiersSeleccionados = Tiers::pluck('id')->toArray();
-        $this->olSeleccionados = Operadoras::pluck('id')->toArray();
-        $this->choferesSeleccionados = Choferes::pluck('id')->toArray();
+        $this->actualizarInforme();
     }
 
     public function getInicio($chofer, $movil, $tier, $viaje){

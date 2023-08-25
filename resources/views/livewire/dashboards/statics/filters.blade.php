@@ -1,6 +1,6 @@
 <tr>
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
-        <a class="dropdown-toggle" role="button" id="dropSitios" data-bs-toggle="dropdown" aria-expanded="false"> Tiers </a>
+        {{-- <a class="dropdown-toggle" role="button" id="dropSitios" data-bs-toggle="dropdown" aria-expanded="false"> Tiers </a>
         <ul class="dropdown-menu bg-dark" aria-labelledby="dropSitios">
             <li class="dropdown-item">
                 <div class="form-check">
@@ -16,14 +16,15 @@
                     </div>
                 </li>
             @endforeach
-        </ul>
+        </ul> --}}
+        @livewire('config.dropdown', [ 'arreglo' => $tiers, 'titulo' => 'Tiers' ])
     </th>
 
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Hora Inicio </th>
 
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
 
-        <a class="dropdown-toggle" role="button" id="dropMoviles" data-bs-toggle="dropdown" aria-expanded="false"> Móvil </a>
+        {{-- <a class="dropdown-toggle" role="button" id="dropMoviles" data-bs-toggle="dropdown" aria-expanded="false"> Móvil </a>
         <ul class="dropdown-menu bg-dark" aria-labelledby="dropMoviles">
             <li class="dropdown-item">
                 <div class="form-check">
@@ -39,12 +40,13 @@
                     </div>
                 </li>
             @endforeach
-        </ul>
+        </ul> --}}
+        @livewire('config.dropdown', [ 'arreglo' => $moviles, 'titulo' => 'Móviles' ])
     </th>
 
     
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
-        <a class="dropdown-toggle" role="button" id="dropOL" data-bs-toggle="dropdown" aria-expanded="false"> O.L. </a>
+        {{-- <a class="dropdown-toggle" role="button" id="dropOL" data-bs-toggle="dropdown" aria-expanded="false"> O.L. </a>
         <ul class="dropdown-menu bg-dark" aria-labelledby="dropOL">
             <li class="dropdown-item">
                 <div class="form-check">
@@ -60,11 +62,12 @@
                     </div>
                 </li>
             @endforeach
-        </ul>
+        </ul> --}}
+        @livewire('config.dropdown', [ 'arreglo' => $ol, 'titulo' => 'O.L.' ])
     </th>
 
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
-        <a class="dropdown-toggle" role="button" id="dropChoferes" data-bs-toggle="dropdown" aria-expanded="false"> Chofer </a>
+        {{-- <a class="dropdown-toggle" role="button" id="dropChoferes" data-bs-toggle="dropdown" aria-expanded="false"> Chofer </a>
         <ul class="dropdown-menu bg-dark" aria-labelledby="dropChoferes">
             <li class="dropdown-item">
                 <div class="form-check">
@@ -80,12 +83,13 @@
                     </div>
                 </li>
             @endforeach
-        </ul>
+        </ul> --}}
+        @livewire('config.dropdown', [ 'arreglo' => $choferes, 'titulo' => 'Chofer' ])
     </th>
 
 
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
-        <a class="dropdown-toggle" role="button" id="dropSitios" data-bs-toggle="dropdown" aria-expanded="false"> Sitio </a>
+        {{-- <a class="dropdown-toggle" role="button" id="dropSitios" data-bs-toggle="dropdown" aria-expanded="false"> Sitio </a>
         <ul class="dropdown-menu bg-dark" aria-labelledby="dropSitios">
             <li class="dropdown-item">
                 <div class="form-check">
@@ -101,7 +105,8 @@
                     </div>
                 </li>
             @endforeach
-        </ul>
+        </ul> --}}
+        @livewire('config.dropdown', [ 'arreglo' => $puntos, 'titulo' => 'Sitio' ])
     </th>
 
     <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Duración </th>
