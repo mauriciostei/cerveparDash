@@ -19,12 +19,7 @@ class TablaInicio extends Component
 
     public $recorridos;
 
-    public $tiersSeleccionados;
-    public $movilesSeleccionados;
-    public $puntosSeleccionados;
     public $estadosSeleccionados;
-    public $olSeleccionados;
-    public $choferesSeleccionados;
     protected $listeners = ['actualizarInforme'];
 
     public function actualizarInforme(){
@@ -44,8 +39,13 @@ class TablaInicio extends Component
         ->get();
     }
 
-    public function mount($recorridos){
-        $this->recorridos = $recorridos;
+    public function mount(){
+        $this->recorridos = Recorridos::
+            whereDate('inicio', date('Y-m-d'))
+            ->where('fin', null)
+            ->orderBy('id', 'desc')
+        ->get();
+
         $this->estadosSeleccionados = Array('OnTime', 'No Tratada', 'OutOfTime');
         $this->actualizarInforme();
     }
@@ -67,7 +67,7 @@ class TablaInicio extends Component
                 ->orderBy('inicio', 'asc')
             ->first();
         }
-        return $result->inicio;
+        return $result ? $result->inicio : '00:00:00';
     }
 
     public function historial(){
@@ -79,7 +79,6 @@ class TablaInicio extends Component
             "Content-type"        => "application/vnd.ms-excel;",
             "Content-Disposition" => "attachment; filename=$fileName",
             "Pragma"              => "no-cache",
-            //"Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
             "Expires"             => "0"
         );
 

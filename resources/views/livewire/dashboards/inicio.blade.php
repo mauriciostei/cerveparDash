@@ -40,7 +40,7 @@
                             @if($showTimeline) Ocultar Linea de Tiempo @else Mostrar Linea de Tiempo @endif
                         </button>
                         {{-- Tabla de móviles en circulación --}}
-                        @livewire('dashboards.statics.tabla-inicio', ['recorridos' => $recorridos])
+                        @livewire('dashboards.statics.tabla-inicio')
                     </div>
                 </div>
             </div>
