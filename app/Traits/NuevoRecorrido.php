@@ -6,6 +6,7 @@ use App\Models\Alertas;
 use App\Models\Planes;
 use App\Models\Recorridos;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 trait NuevoRecorrido{
 
@@ -15,6 +16,8 @@ trait NuevoRecorrido{
 
         $fechaHora = $fechaHora ?? date('Y-m-d H:i:s');
         $plan = Planes::whereDate('fecha', date('Y-m-d'))->first();
+
+        Log::info('Utilizando el plan:'.$plan->id);
 
         if($plan){
             $planificado = DB::table('choferes_moviles_planes')->where('planes_id', $plan->id)->where($tipo_id, $id)->orderBy('viaje')->get();
@@ -36,11 +39,19 @@ trait NuevoRecorrido{
                 $recorrido->choferes_id = $planificado[0]->choferes_id;
                 $recorrido->viaje = 1;
 
+                Log::info('Ingresó como planificado.Recorrido:');
+                Log::info($recorrido);
+                Log::info('Ultimo Recorrido es:');
+                Log::info($ultimoRecorrido);
+
                 $tiempo = DB::table('puntos_tiers')->where('tiers_id', $recorrido->tiers_id)->where('puntos_id', $recorrido->puntos_id)->where('viaje', $recorrido->viaje)->first();
                 if($tiempo){
                     $recorrido->target = $this->addTime($tiempo->target, $fechaHora);
                     $recorrido->ponderacion = $this->addTime($tiempo->ponderacion, $recorrido->target);
                 }else{
+                    Log::info('SALIÓ SIN GUARDAR');
+                    Log::info('Ultimo recorrido quedó así:');
+                    Log::info($ultimoRecorrido);
                     return;
                 }
         
@@ -56,6 +67,7 @@ trait NuevoRecorrido{
                             $recorrido->moviles_id = $planificado[1]->moviles_id;
                             $recorrido->choferes_id = $planificado[1]->choferes_id;
                         }else{
+                            Log::info('DATO DESCARTADO');
                             return null;
                         }
                     }elseif($ultimoRecorrido->fin && $ultimoRecorrido->viaje==2){
@@ -71,7 +83,8 @@ trait NuevoRecorrido{
                             $a->save();
                         }
                     }
-        
+                    
+                    Log::info('Un paso antes de guardar ultimoRecorrido');
                     $ultimoRecorrido->save();
         
                 }

@@ -11,6 +11,7 @@ use App\Traits\BioStarData;
 use App\Traits\NuevoRecorrido;
 use App\Traits\XMLToJSON;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class RecorridosController extends Controller
 {
@@ -91,6 +92,12 @@ class RecorridosController extends Controller
 
             $chapa = $xml->ANPR->licensePlate;
 
+            /* array para contar cuantas chapas se aproximaron con $lev in(0,1,2) */
+            $count =array(
+                0 => 0,
+                1 => 0,
+                2 => 0,
+            );
             $letras = substr($chapa,0,-3);
             $numeros = substr($chapa,-3);
             /*verificamos si son letras los primeros 4 y numeros los 3 ultimos*/
@@ -100,6 +107,7 @@ class RecorridosController extends Controller
             /*si tiene letras o numeros en donde no van*/
             elseif((!ctype_alpha($letras)||!ctype_digit($numeros))&& $chapa !="unknown" && $chapa != "######"){
                     if((substr($chapa,-1))=='#'){
+                        Log::info('No se puede encontrar el numero numero de la chapa');
                     }else{
                         /*Reemplazar seccion incorrecta en los errores ya conocidos*/
 
@@ -130,10 +138,12 @@ class RecorridosController extends Controller
                             }
                         }
                         /*retornamos la chapa que mas se aproximo */
-                            /*que solo haga el cambio si shortest es menor a tres*/
-                            if($shortest < 3){
-                                    $chapa = $closest;
-                            }
+                        Log::info('--El ingresado es:'.$chapa);
+                        /*si shortest es menor a 3 se tomas las aproximaciones con 2 cambios posibles para disminuir los errores si count es uno solo hay una aproximacion posible */
+                        if($shortest < 2 && $shortest !=-1 && $count[$shortest] == 1){
+                            $chapa = $closest;
+                            Log::info('--El mas cercano es $Closest:'. $closest);
+                        }
 
                     }
             }
@@ -143,6 +153,12 @@ class RecorridosController extends Controller
                 $query->where('chapa', $chapa)
                     ->orWhere('chapa_trasera', $chapa);
             })->first();
+
+            if(is_null($movil)){
+                Log::info("el movil to string vino NULL");
+            }else{
+                Log::info('movil con to_string:'.$movil->toString());
+            }
     
             if($sensor && $movil){
                 if($movil->tiers_id==1 || (date('H')>=5 && date('H')<=21)){
