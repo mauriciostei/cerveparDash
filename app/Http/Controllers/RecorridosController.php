@@ -157,7 +157,7 @@ class RecorridosController extends Controller
             if(is_null($movil)){
                 Log::info("el movil to string vino NULL");
             }else{
-                Log::info('movil con to_string:'.$movil->toString());
+                Log::info('movil con to_string:'.$movil->nombre);
             }
     
             if($sensor && $movil){
