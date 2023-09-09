@@ -9,7 +9,7 @@
         <div class="card-body px-4 pb-2">
             
             <p class="my-2 text-muted">Seleccione los filtros para desplegar los resultados posibles</p>
-            
+
             <div class="input-group input-group-sm input-group-static">
                 <label>Fecha</label>
                 <input type="date" wire:model="fecha" class="form-control">
@@ -26,6 +26,7 @@
             <div class="input-group input-group-static mt-3">
                 <label>Movil</label>
                 <select class="form-control" wire:model="cambio.moviles_id">
+                    <option>** Seleccione un Movil **</option>
                     @forelse($moviles as $m)
                         <option value="{{$m->id}}"> {{$m->nombre}} </option>
                     @empty
@@ -33,17 +34,20 @@
                 </select>
             </div>
 
-            <div class="input-group input-group-static mt-3 mb-3">
-                <label>Chofer</label>
-                <select class="form-control" wire:model="cambio.choferes_id">
-                    @forelse($choferes as $c)
-                        <option value="{{$c->id}}"> {{$c->nombre}} </option>
-                    @empty
-                    @endforelse
-                </select>
-            </div>
+            @if($cambio->moviles_id)
+                <div class="input-group input-group-static mt-3 mb-3">
+                    <label>Chofer</label>
+                    <select class="form-control" wire:model="cambio.choferes_id">
+                        <option>** Seleccione un Chofer **</option>
+                        @forelse($choferes as $c)
+                            <option value="{{$c->id}}"> {{$c->nombre}} </option>
+                        @empty
+                        @endforelse
+                    </select>
+                </div>
+            @endif
 
-            @if($ideal)
+            @if($ideal && $cambio->moviles_id && $cambio->choferes_id)
                 <div class="d-flex flex-column flex-lg-row justify-content-between pt-3">
 
                     <div class="timeline timeline-one-side w-100 w-lg-25">

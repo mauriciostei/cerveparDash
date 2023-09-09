@@ -9,7 +9,7 @@ trait CalculateColorT1{
         $escala = date('H:i:s', strtotime($escala));
 
         if($real == '00:00:00'){
-            return 'text-danger';
+            return '';
         }
 
         return $real > $escala ? 'text-danger' : 'text-success';

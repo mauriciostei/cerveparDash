@@ -2,15 +2,13 @@
 
 namespace App\Http\Livewire\Recorridos;
 
-use App\Models\Aprobaciones;
 use App\Models\CambiosRecorridos;
 use App\Models\Choferes;
 use App\Models\Moviles;
-use App\Models\Puntos;
 use App\Models\Recorridos;
 use App\Models\Sensores;
 use App\Models\Tiers;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Cambios extends Component
@@ -52,13 +50,41 @@ class Cambios extends Component
 
         $this->cambio = new CambiosRecorridos();
         $this->cambio->viaje = 1;
-        $this->cambio->moviles_id = $this->moviles->first()->id;
-        $this->cambio->choferes_id = $this->choferes->first()->id;
+
+        $this->listaMoviles();
         $this->cambio->tiers_id = $this->moviles->first()->tiers_id;
+    }
+
+    public function listaMoviles(){
+        $this->moviles = Moviles::whereIn('id', 
+            DB::table('planes')
+                ->select('choferes_moviles_planes.moviles_id')
+                ->join('choferes_moviles_planes', 'planes.id', 'choferes_moviles_planes.planes_id')
+                ->whereDate('fecha', $this->fecha)
+                ->where('choferes_moviles_planes.viaje', $this->cambio->viaje)
+        )->get();
+    }
+
+    public function listaChoferes(){
+        $this->choferes = Choferes::whereIn('id', 
+            DB::table('planes')
+                ->select('choferes_moviles_planes.choferes_id')
+                ->join('choferes_moviles_planes', 'planes.id', 'choferes_moviles_planes.planes_id')
+                ->whereDate('fecha', $this->fecha)
+                ->where('choferes_moviles_planes.moviles_id', $this->cambio->moviles_id)
+                ->where('choferes_moviles_planes.viaje', $this->cambio->viaje)
+        )->get();
+    }
+
+    public function anular(){
+        $this->cambio->choferes_id = null;
+        $this->cambio->moviles_id = null;
+        $this->listaMoviles();
     }
 
     public function updatedFecha($value){
         $this->actualizarIdeal();
+        $this->anular();
     }
 
     public function updatedHora($value){
@@ -68,6 +94,7 @@ class Cambios extends Component
     public function updatedCambioMovilesId($value){
         $this->cambio->tiers_id = Moviles::find($value)->tiers_id;
         $this->actualizarIdeal();
+        $this->listaChoferes();
     }
 
     public function updatedCambioChoferesId($value){
@@ -76,6 +103,7 @@ class Cambios extends Component
 
     public function updatedCambioViaje($value){
         $this->actualizarIdeal();
+        $this->anular();
     }
 
     public function actualizarIdeal(){
