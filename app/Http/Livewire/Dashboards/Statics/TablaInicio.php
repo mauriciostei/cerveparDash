@@ -40,12 +40,11 @@ class TablaInicio extends Component
     }
 
     public function mount(){
-        $this->recorridos = Recorridos::
-            whereDate('inicio', date('Y-m-d'))
-            ->where('fin', null)
-            ->orderBy('id', 'desc')
-        ->get();
-
+        // $this->recorridos = Recorridos::
+        //     whereDate('inicio', date('Y-m-d'))
+        //     ->where('fin', null)
+        //     ->orderBy('id', 'desc')
+        // ->get();
         $this->estadosSeleccionados = Array('OnTime', 'No Tratada', 'OutOfTime');
         $this->actualizarInforme();
     }
@@ -136,6 +135,7 @@ class TablaInicio extends Component
 
     public function render()
     {
+        $this->actualizarInforme();
         return view('livewire.dashboards.statics.tabla-inicio');
     }
 }
