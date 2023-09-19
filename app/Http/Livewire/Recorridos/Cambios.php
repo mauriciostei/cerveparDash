@@ -63,7 +63,7 @@ class Cambios extends Component
                 ->whereDate('fecha', $this->fecha)
                 ->where('choferes_moviles_planes.viaje', $this->cambio->viaje)
             )
-            ->orderBy('tiers_id', 'asc')
+            ->orderBy('tiers_id', 'desc')
         ->get();
     }
 
