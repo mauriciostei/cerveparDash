@@ -18,7 +18,7 @@ class Inicio extends Component
     public $t2 = [];
     public $tiers;
 
-    public $showTimeline = true;
+    public $showTimeline = false;
 
     public function render()
     {

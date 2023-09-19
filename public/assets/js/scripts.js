@@ -15,6 +15,8 @@ botonToggle.addEventListener('click', (event) => {
     }
 });
 
+botonToggle.click();
+
 // Notificaciones
 Livewire.on('nuevaAlerta', (param) => {
     let caja = document.querySelector("#apartadoParaAlertas");

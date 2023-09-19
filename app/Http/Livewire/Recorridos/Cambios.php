@@ -43,8 +43,8 @@ class Cambios extends Component
     }
 
     public function mount(){
-        $this->moviles = Moviles::all();
-        $this->choferes = Choferes::all();
+        // $this->moviles = Moviles::all();
+        // $this->choferes = Choferes::all();
         $this->tiers = Tiers::all();
         $this->fecha = date('Y-m-d');
 
@@ -62,7 +62,9 @@ class Cambios extends Component
                 ->join('choferes_moviles_planes', 'planes.id', 'choferes_moviles_planes.planes_id')
                 ->whereDate('fecha', $this->fecha)
                 ->where('choferes_moviles_planes.viaje', $this->cambio->viaje)
-        )->get();
+            )
+            ->orderBy('tiers_id', 'asc')
+        ->get();
     }
 
     public function listaChoferes(){
