@@ -3,12 +3,14 @@
 namespace App\Http\Livewire\Dashboards\Componentes;
 
 use App\Traits\CalculateColorT1;
+use App\Traits\TurnoJornadaT1;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class TablaJornadaT1 extends Component
 {
     use CalculateColorT1;
+    use TurnoJornadaT1;
 
     public $desde;
     public $hasta;
@@ -78,6 +80,7 @@ class TablaJornadaT1 extends Component
             , 'recorridos.viaje'
             , 'recorridos.choferes_id'
             , 'choferes.nombre as chofer_nombre'
+            , 'recorridos.moviles_id'
             , 'moviles.nombre as movil_nombre'
             , DB::raw("cast(recorridos.inicio as date) as fecha")
             , DB::raw("sum( case when puntos.id in (".env('ESPERA').") then fin-inicio else '00:00:00' end ) espera")
@@ -93,7 +96,7 @@ class TablaJornadaT1 extends Component
             ->whereDate('recorridos.inicio', '>=', $this->desde)
             ->whereDate('recorridos.inicio', '<=', $this->hasta)
             ->groupByRaw("cast(recorridos.inicio as date)")
-            ->groupBy(['recorridos.tiers_id', 'tiers.nombre', 'recorridos.viaje', 'recorridos.choferes_id', 'choferes.nombre', 'moviles.nombre'])
+            ->groupBy(['recorridos.tiers_id', 'tiers.nombre', 'recorridos.viaje', 'recorridos.choferes_id', 'recorridos.moviles_id', 'choferes.nombre', 'moviles.nombre'])
             ->get();
     }
 

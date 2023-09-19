@@ -14,6 +14,8 @@
                     <th>Fecha</th>
                     <th>Choferes</th>
                     <th>Móviles</th>
+                    <th>Primer Contacto</th>
+                    <th>Primer Contacto (Turno)</th>
                     <th class="text-center">Espera <sup style="color: darkturquoise;">(A)</sup> </th>
                     <th class="text-center">Atendimiento <sup style="color: darkturquoise;">(B)</sup> </th>
                     <th class="text-center">Permanencia <sup style="color: darkturquoise;">A + B</sup> </th>
@@ -27,6 +29,9 @@
                         <td> {{$item->fecha}} </td>
                         <td> {{$item->chofer_nombre}} </td>
                         <td> {{$item->movil_nombre}} </td>
+
+                        <td> {{ $this->getInicio($item->moviles_id, $item->choferes_id, $item->viaje, $item->fecha) }} </td>
+                        <td> {{ $this->getTurno($item->moviles_id, $item->choferes_id, $item->viaje, $item->fecha) }} </td>
 
                         <td class="text-center"> <span class="{{$this->getColor($item->espera, ENV('T_ESPERA'))}}">{{$item->espera}}</span> </td>
                         <td class="text-center"> <span class="{{$this->getColor($item->atendimiento, ENV('T_ATENDIMIENTO'))}}">{{$item->atendimiento}}</span> </td>
