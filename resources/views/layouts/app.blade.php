@@ -8,7 +8,6 @@
                 </div>
         </main>
     @else
-        {{-- <x-navbars.sidebar></x-navbars.sidebar> --}}
         @livewire('config.sidebar')
         <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
             <x-navbars.navs.auth></x-navbars.navs.auth>
