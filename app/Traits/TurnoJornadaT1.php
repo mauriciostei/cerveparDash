@@ -15,15 +15,15 @@ trait TurnoJornadaT1{
             ->where('viaje', $viaje)
             ->first()
         ;
-        return $result->fecha;
+
+        $hora = date('H:i:s', strtotime($result->fecha));
+        return $hora;
     }
 
     public function getTurno($movil, $chofer, $viaje, $fecha){
-        $fecha = $this->getInicio($movil, $chofer, $viaje, $fecha);
-        $hora = date('H:i:s', strtotime($fecha));
+        $hora = $this->getInicio($movil, $chofer, $viaje, $fecha);
 
         $result = 'Noche';
-
         switch($hora){
             case ($hora > '22:00:00' && $hora <= '23:59:59'): $result = 'Noche'; break;
             case ($hora > '00:00:01' && $hora <= '06:00:00'): $result = 'Noche'; break;

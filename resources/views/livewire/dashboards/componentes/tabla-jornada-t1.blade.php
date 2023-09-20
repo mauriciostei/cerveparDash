@@ -14,8 +14,8 @@
                     <th>Fecha</th>
                     <th>Choferes</th>
                     <th>Móviles</th>
-                    <th>Primer Contacto</th>
-                    <th>Primer Contacto (Turno)</th>
+                    <th>Hora</th>
+                    <th>Turno</th>
                     <th class="text-center">Espera <sup style="color: darkturquoise;">(A)</sup> </th>
                     <th class="text-center">Atendimiento <sup style="color: darkturquoise;">(B)</sup> </th>
                     <th class="text-center">Permanencia <sup style="color: darkturquoise;">A + B</sup> </th>
