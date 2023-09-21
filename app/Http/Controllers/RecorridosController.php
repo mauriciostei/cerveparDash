@@ -83,12 +83,14 @@ class RecorridosController extends Controller
 
         if($xml){
             $direccion = $xml->ANPR->direction;
-            $sensor = Sensores::where('codigo', $xml->channelName)
-                ->where('activo', true)
-                ->where(function($query) use($direccion){
+
+            $query = Sensores::query()->where('codigo', $xml->channelName)->where('activo', true);
+            if(trim($direccion) !== 'unknown'){
+                $query->where(function($query) use($direccion){
                     $query->where('direccion', $direccion)->orWhere('direccion', 'Todas');
-                })
-                ->first();
+                });
+            }
+            $sensor = $query->first();
 
             $chapa = $xml->ANPR->licensePlate;
 
@@ -168,7 +170,9 @@ class RecorridosController extends Controller
                     }
 
                     $this->ingresarRecorrido($sensor, $movil->tiers_id, 'moviles_id', $movil->id, $fechaHora);
-                    return response()->json(["mensaje" => "Datos ingresado con exito"]);
+                    return response()->json(["mensaje" => "Datos ingresado con éxito"]);
+                }else{
+                    return response()->json(["mensaje" => "Fuera de horario para la captación T2"]);
                 }
             }
         }
