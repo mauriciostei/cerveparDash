@@ -1,34 +1,34 @@
 <tr>
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
+    <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">
         @livewire('config.dropdown', [ 'arreglo' => $tiers, 'titulo' => 'Tiers' ])
     </th>
 
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Hora Inicio </th>
+    <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center"> Hora Inicio </th>
 
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
+    <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">
         @livewire('config.dropdown', [ 'arreglo' => $moviles, 'titulo' => 'Móviles' ])
     </th>
 
     
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
+    <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">
         {{-- @livewire('config.dropdown', [ 'arreglo' => $ol, 'titulo' => 'O.L.' ]) --}}
         O.L.
     </th>
 
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
+    <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">
         @livewire('config.dropdown', [ 'arreglo' => $choferes, 'titulo' => 'Chofer' ])
     </th>
 
 
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
+    <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">
         @livewire('config.dropdown', [ 'arreglo' => $puntos, 'titulo' => 'Sitio' ])
     </th>
 
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Duración </th>
+    <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center"> Duración </th>
 
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Target Llegada </th>
+    <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center"> Target Llegada </th>
 
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center">
+    <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">
         <a class="dropdown-toggle" role="button" id="dropEstados" data-bs-toggle="dropdown" aria-expanded="false"> Estado </a>
         <ul class="dropdown-menu bg-dark" aria-labelledby="dropEstados">
             <li class="dropdown-item">
@@ -52,5 +52,5 @@
         </ul>
     </th>
 
-    <th class="text-uppercase text-secondary text-sm font-weight-bolder text-center"> Jornada Lab / TMA </th>
+    <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center"> Jornada Lab / TMA </th>
 </tr>
