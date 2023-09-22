@@ -28,6 +28,8 @@ class TablaInicio extends Component
         $moviles = $this->sessionToArray('selectedMóviles');
         $choferes = $this->sessionToArray('selectedChofer');
 
+        echo json_encode($tier);
+
         $this->recorridos = Recorridos::
             whereDate('inicio', date('Y-m-d'))
             ->where('fin', null)
