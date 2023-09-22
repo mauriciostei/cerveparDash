@@ -2,35 +2,44 @@
 
 namespace App\Http\Livewire\Config;
 
+use App\Models\StoreFilter;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Dropdown extends Component
 {
     public $datos;
     public $titulo;
-    public $seccion;
+    public $nombre;
+    public $user_id;
 
     public $selected;
+    public $store;
 
-    public function mount($arreglo, $titulo){
+    public function mount($arreglo, $nombre, $titulo){
         $this->datos = $arreglo;
         $this->titulo = $titulo;
+        $this->nombre = $nombre;
+        $this->user_id = Auth::user()->id;
 
-        $this->seccion = "selected".$titulo;
+        $this->store = StoreFilter::where('users_id', $this->user_id)->where('nombre', $this->nombre)->first();
+        $datos = json_decode($this->store->datos);
 
-        if(session($this->seccion)){
-            $this->selected = session()->get($this->seccion);
-        }else{
-            foreach($this->datos as $s):
-                $this->selected[$s['id']] = true;
-            endforeach;
-        }
-        $this->modificacion();
+        foreach($this->datos as $s):
+            $this->selected[$s['id']] = in_array($s['id'], $datos);
+        endforeach;
     }
 
     public function modificacion(){
-        session()->put($this->seccion, $this->selected);
-        // session()->push($this->seccion, $this->selected);
+        $result = [];
+        foreach($this->selected as $key => $value):
+            if($value){
+                array_push($result, $key);
+            }
+        endforeach;
+        $this->store->datos = $result;
+        $this->store->save();
+
         $this->emit('actualizarInforme');
     }
 

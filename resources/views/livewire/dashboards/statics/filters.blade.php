@@ -1,12 +1,12 @@
 <tr>
     <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">
-        @livewire('config.dropdown', [ 'arreglo' => $tiers, 'titulo' => 'Tiers' ])
+        @livewire('config.dropdown', [ 'arreglo' => $tiers, 'nombre' => 'inicioTiers', 'titulo' => 'Tiers' ])
     </th>
 
     <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center"> Hora Inicio </th>
 
     <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">
-        @livewire('config.dropdown', [ 'arreglo' => $moviles, 'titulo' => 'Móviles' ])
+        @livewire('config.dropdown', [ 'arreglo' => $moviles, 'nombre' => 'inicioMoviles', 'titulo' => 'Móviles' ])
     </th>
 
     
@@ -16,12 +16,12 @@
     </th>
 
     <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">
-        @livewire('config.dropdown', [ 'arreglo' => $choferes, 'titulo' => 'Chofer' ])
+        @livewire('config.dropdown', [ 'arreglo' => $choferes, 'nombre' => 'inicioChoferes', 'titulo' => 'Chofer' ])
     </th>
 
 
     <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center">
-        @livewire('config.dropdown', [ 'arreglo' => $puntos, 'titulo' => 'Sitio' ])
+        @livewire('config.dropdown', [ 'arreglo' => $puntos, 'nombre' => 'inicioPuntos', 'titulo' => 'Sitio' ])
     </th>
 
     <th class="text-uppercase text-secondary text-xs font-weight-bolder text-center"> Duración </th>
