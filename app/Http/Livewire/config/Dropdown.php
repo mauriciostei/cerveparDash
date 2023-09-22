@@ -19,7 +19,7 @@ class Dropdown extends Component
         $this->seccion = "selected".$titulo;
 
         if(session($this->seccion)){
-            $this->selected = session($this->seccion);
+            $this->selected = session()->get($this->seccion);
         }else{
             foreach($this->datos as $s):
                 $this->selected[$s['id']] = true;
@@ -29,7 +29,8 @@ class Dropdown extends Component
     }
 
     public function modificacion(){
-        session([$this->seccion => $this->selected]);
+        session()->put($this->seccion, $this->selected);
+        // session()->push($this->seccion, $this->selected);
         $this->emit('actualizarInforme');
     }
 

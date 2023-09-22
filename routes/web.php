@@ -51,7 +51,7 @@ use App\Http\Livewire\Usuarios\UsuariosMiCuenta;
 Route::get('/', function(){ return redirect()->route('inicio'); });
 Route::get('sign-in', Login::class)->middleware('guest')->name('login');
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth','web')->group(function(){
 
     Route::get('inicio', Inicio::class)->name('inicio')->can('inicio');
     Route::get('metricas', Metricas::class)->name('metricas')->can('metricas');

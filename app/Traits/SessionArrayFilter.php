@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 trait SessionArrayFilter{
 
     private function sessionToArray($seccion){
-        $se = session($seccion);
+        $se = session()->get($seccion);
 
         if(!isset($se)){
             switch($seccion){
