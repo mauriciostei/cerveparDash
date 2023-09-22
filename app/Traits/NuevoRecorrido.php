@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 trait NuevoRecorrido{
 
     use AddTime;
+    use DifTime;
 
     public function ingresarRecorrido($sensor, $tier, $tipo_id, $id, $fechaHora){
 
@@ -63,15 +64,22 @@ trait NuevoRecorrido{
                         $recorrido->viaje = $ultimoRecorrido->viaje;
                     }elseif($ultimoRecorrido->fin && $ultimoRecorrido->viaje==1){
                         if(count($planificado)==2){
+
+                            $diferencia = $this->difTime($ultimoRecorrido->fin);
+                            if($diferencia < '01:00:00' && $recorrido->tiers_id==1){
+                                Log::info('MENOS DE UNA HORA '.$diferencia);
+                                return false;
+                            }
+
                             $recorrido->viaje = 2;
                             $recorrido->moviles_id = $planificado[1]->moviles_id;
                             $recorrido->choferes_id = $planificado[1]->choferes_id;
                         }else{
                             Log::info('DATO DESCARTADO');
-                            return null;
+                            return false;
                         }
                     }elseif($ultimoRecorrido->fin && $ultimoRecorrido->viaje==2){
-                        return null;
+                        return false;
                     }
         
                     if($ultimoRecorrido->estado == 'OutOfTime'){
@@ -83,10 +91,14 @@ trait NuevoRecorrido{
                             $a->save();
                         }
                     }
+
+                    if($recorrido->inicio < $ultimoRecorrido->inicio){
+                        $recorrido->inicio = date('Y-m-d H:i:s', strtotime($ultimoRecorrido->inicio." +1 minute"));
+                        $ultimoRecorrido->fin = $recorrido->inicio;
+                    }
                     
                     Log::info('Un paso antes de guardar ultimoRecorrido');
                     $ultimoRecorrido->save();
-        
                 }
 
                 if($recorrido->target === $recorrido->inicio && $recorrido->ponderacion === $recorrido->inicio){
@@ -94,6 +106,7 @@ trait NuevoRecorrido{
                 }
         
                 $recorrido->save();
+                return true;
             }
         }
     }

@@ -70,7 +70,7 @@
                                             <td> @if($choferes->find($m->pivot->choferes_id)->operadoras) {{$choferes->find($m->pivot->choferes_id)->operadoras->nombre}} @endif </td>
                                             <td> {{$m->pivot->viaje}} </td>
                                             <td>
-                                                @if($recorridos->where('moviles_id', $m->id)->first())
+                                                @if($recorridos->where('moviles_id', $m->id)->where('choferes_id', $m->pivot->choferes_id)->where('viaje', $m->pivot->viaje)->first())
                                                     OK
                                                 @endif
                                             </td>
