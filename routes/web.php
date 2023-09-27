@@ -37,6 +37,7 @@ use App\Http\Livewire\Usuarios\UsuariosForm;
 use App\Http\Livewire\Usuarios\UsuariosList;
 use App\Http\Livewire\Usuarios\UsuariosMiCuenta;
 
+use App\Http\Livewire\Dashboards\ControlPuntosT1;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,6 +54,8 @@ Route::get('sign-in', Login::class)->middleware('guest')->name('login');
 
 Route::middleware('auth','web')->group(function(){
 
+    Route::get('controlPuntosT1', ControlPuntosT1::class)->name('controlPuntosT1');
+    
     Route::get('inicio', Inicio::class)->name('inicio')->can('inicio');
     Route::get('metricas', Metricas::class)->name('metricas')->can('metricas');
     Route::get('controlMoviles', Status::class)->name('controlMoviles')->can('controlMoviles');
