@@ -15,6 +15,7 @@ class UsuariosForm extends Component
     protected $rules = [
         'usuario.name' => 'required|string|min:5',
         'usuario.email' => 'required|email',
+        'usuario.active' => 'required|bool',
     ];
 
     protected $messages = [

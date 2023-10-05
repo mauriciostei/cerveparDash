@@ -25,6 +25,14 @@
                         <p class='text-danger inputerror'>{{ $message }} </p>
                     @enderror
 
+                    <div class="form-check form-switch mt-3">
+                        <input wire:model="usuario.active" class="form-check-input" type="checkbox">
+                        <label class="form-check-label">Activo</label>
+                    </div>
+                    @error('usuario.active')
+                        <p class='text-danger inputerror'>{{ $message }} </p>
+                    @enderror
+
                     <br/>
 
                     <div class="d-flex flex-column p-2">
