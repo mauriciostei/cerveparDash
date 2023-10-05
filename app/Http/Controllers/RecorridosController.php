@@ -11,6 +11,7 @@ use App\Traits\BioStarData;
 use App\Traits\NuevoRecorrido;
 use App\Traits\XMLToJSON;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class RecorridosController extends Controller
@@ -34,6 +35,7 @@ class RecorridosController extends Controller
 
                 $a = new Alertas();
                 $a->recorridos_id = $r->id;
+                $a->tipos_alertas_id = 1;
                 $a->save();
             }
         }
@@ -78,7 +80,13 @@ class RecorridosController extends Controller
     }
 
     public function alertasTMA(){
-        
+        $generar = DB::table('public.alertas_tma')->get();
+        foreach($generar as $reco):
+            $al = new Alertas();
+            $al->recorridos_id = $reco->recorrido;
+            $al->tipos_alertas_id = 2;
+            $al->save();
+        endforeach;
     }
 
 

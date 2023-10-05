@@ -9,7 +9,7 @@
             <div class="card-body px-4 pb-2">
                 <form wire:submit.prevent="save">
 
-                    <h5>Generalidades del Viaje</h5>
+                    <h5>Generalidades del Viaje de {{$tier->nombre}} </h5>
 
                     <select class="form-select p-2 mb-3 mt-3" wire:change.prevent="changeViaje($event.target.value)">
                         <option selected disabled>Seleccione el viaje a trabajar</option>

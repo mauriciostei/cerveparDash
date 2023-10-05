@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Alertas\AlertasForm;
+use App\Http\Livewire\Alertas\AlertasTma;
 use App\Http\Livewire\Aprobaciones\Procesar;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Causas\CausasForm;
@@ -108,4 +109,5 @@ Route::middleware('auth','web')->group(function(){
     Route::get('tiers/{tier}/viaje', ViajeForm::class)->name('viajeForm');
 
     Route::get('alertas/{id}', AlertasForm::class)->name('alertasForm');
+    Route::get('alertas/{alerta}/tma', AlertasTma::class)->name('alertasTma');
 });
