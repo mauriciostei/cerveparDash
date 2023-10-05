@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Perfiles;
 use App\Models\Aprobables;
 use App\Models\Perfiles;
 use App\Models\Permisos;
+use App\Models\TiposAlertas;
 use Livewire\Component;
 
 class PerfilesForm extends Component
@@ -17,6 +18,9 @@ class PerfilesForm extends Component
 
     public $aprobables;
     public $selectedAprobables = Array();
+
+    public $tiposAlertas;
+    public $selectedTiposAlertas = Array();
 
     public $select;
 
@@ -43,6 +47,11 @@ class PerfilesForm extends Component
             $this->selectedAprobables[$ap['id']] = true;
         endforeach;
 
+        $this->tiposAlertas = TiposAlertas::where('activo', true)->get();
+        foreach($this->perfil->tiposAlertas as $ap):
+            $this->selectedTiposAlertas[$ap['id']] = true;
+        endforeach;
+
         $this->permisos = Permisos::all();
         foreach($this->perfil->permisos as $p):
             $this->selectedLeer[$p['id']] = $p->pivot->leer;
@@ -63,14 +72,20 @@ class PerfilesForm extends Component
             ];
         endforeach;
 
-        $select = [];
+        $aprobables = [];
         foreach($this->selectedAprobables as $key => $value):
-            if($value){ array_push($select, $key); }
+            if($value){ array_push($aprobables, $key); }
+        endforeach;
+
+        $tiposAlertas = [];
+        foreach($this->selectedTiposAlertas as $key => $value):
+            if($value){ array_push($tiposAlertas, $key); }
         endforeach;
         
         $this->perfil->save();
         $this->perfil->permisos()->sync($this->select);
-        $this->perfil->aprobables()->sync($select);
+        $this->perfil->aprobables()->sync($aprobables);
+        $this->perfil->tiposAlertas()->sync($tiposAlertas);
 
         session()->flash('message', 'Perfil guardado!');
 

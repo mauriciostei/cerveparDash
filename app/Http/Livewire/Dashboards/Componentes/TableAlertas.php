@@ -43,7 +43,7 @@ class TableAlertas extends Component
     }
 
     public function historial(){
-        $alertas = Alertas::orderBy('id', 'DESC')->take(2000)->get();
+        $alertas = Alertas::where('tipos_alertas_id', 1)->orderBy('id', 'DESC')->take(2000)->get();
 
         $fileName = 'HistorialAlertas.xls';
 
@@ -107,6 +107,7 @@ class TableAlertas extends Component
         return view('livewire.dashboards.componentes.table-alertas', [
             'alertas' => Alertas::select('alertas.*')
                 ->join('recorridos', 'alertas.recorridos_id', '=', 'recorridos.id')
+                ->where('alertas.tipos_alertas_id', 1)
                 ->whereIn('tiers_id', $this->tiers)
                 ->whereDate('alertas.created_at', '>=', $this->desde)
                 ->whereDate('alertas.created_at', '<=', $this->hasta)

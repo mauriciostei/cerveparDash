@@ -11,7 +11,7 @@ class AlertasBadge extends Component
     public $alertas;
 
     public function render(){
-        $alertas = Alertas::total();
+        $alertas = Alertas::countPending();
         $aprobaciones = Aprobaciones::countPending();
         $this->alertas = $alertas + $aprobaciones;
         return view('livewire.config.alertas-badge');

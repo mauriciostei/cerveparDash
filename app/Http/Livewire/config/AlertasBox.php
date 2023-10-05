@@ -11,7 +11,7 @@ class AlertasBox extends Component
 
     public function render()
     {
-        $this->alertas = Alertas::where('visible', true)->orderBy('created_at', 'DESC')->get();
+        $this->alertas = Alertas::totalPending();
         $this->notificar();
         return view('livewire.config.alertas-box');
     }

@@ -53,7 +53,7 @@ class RecorridosController extends Controller
                 $r->estado = 'No Tratada';
                 $r->save();
 
-                $a = Alertas::where('recorridos_id', $r->id)->first();
+                $a = Alertas::where('recorridos_id', $r->id)->where('tipos_alertas_id', 1)->first();
                 $a->visible = false;
                 $a->fin = now();
                 $a->observaciones = 'Alerta eliminada por sobrepaso de Ponderación';
@@ -64,7 +64,7 @@ class RecorridosController extends Controller
 
 
     public function validarAlertas(){
-        $alertas = Alertas::where('created_at', '<', date('Y-m-d').' 00:00:00')->whereNull('users_id')->whereNull('fin')->get();
+        $alertas = Alertas::where('created_at', '<', date('Y-m-d').' 00:00:00')->whereNull('users_id')->whereNull('fin')->where('tipos_alertas_id', 1)->get();
         foreach($alertas as $a){
             $a->visible = false;
             $a->fin = now();
@@ -75,6 +75,10 @@ class RecorridosController extends Controller
             $r->estado = 'No Tratada';
             $r->save();
         }
+    }
+
+    public function alertasTMA(){
+        
     }
 
 

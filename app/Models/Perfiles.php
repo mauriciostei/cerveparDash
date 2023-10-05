@@ -20,4 +20,8 @@ class Perfiles extends Model
     public function aprobables(){
         return $this->belongsToMany(Aprobables::class, 'aprobables_perfiles', 'perfiles_id', 'aprobables_id');
     }
+
+    public function tiposAlertas(){
+        return $this->belongsToMany(tiposAlertas::class, 'perfiles_tipos_alertas', 'perfiles_id', 'tipos_alertas_id');
+    }
 }

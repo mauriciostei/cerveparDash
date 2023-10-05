@@ -1,6 +1,4 @@
 <div class="">
-    <!-- Navbar -->
-    <!-- End Navbar -->
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
@@ -9,11 +7,11 @@
                         <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
                             <div class="row">
                                 <div class="col-lg-10">
-                                    <h6 class="text-white text-capitalize ps-3 pt-2">Lista de Tiers</h6>
+                                    <h6 class="text-white text-capitalize ps-3 pt-2">Lista de Causas</h6>
                                 </div>
                                 <div class="col-lg-2">
-                                    @can('create', App\Models\Tiers::class)
-                                    <a href="{{ route('tiersForm', ['id' => 0]) }}" class="btn btn-secondary">
+                                    @can('create', App\Models\Causas::class)
+                                    <a href="{{ route('causasForm', ['id' => 0]) }}" class="btn btn-secondary">
                                         <i class="fa-solid fa-plus"></i> Nuevo
                                     </a>
                                     @endcan
@@ -28,45 +26,30 @@
                                     <tr>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Tiers</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Puntos</th>
+                                            Causa</th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Estado</th>
-                                        <th class="text-secondary opacity-7" rowspan="2"></th>
+                                            Activo</th>
+                                        <th class="text-secondary opacity-7"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse( $tiers as $tier )
+                                    @forelse( $causas as $causa )
                                     <tr>
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0"> {{$tier->nombre}} </p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-bold mb-0"> {{$tier->puntos->count()}} </p>
+                                            <p class="text-xs font-weight-bold mb-0"> {{$causa->nombre}} </p>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <span class="badge badge-sm {{$tier->activo === true ? 'bg-gradient-success' : 'bg-gradient-warning'}}">
-                                                {{$tier->activo === true ? 'Activo' : 'Inactivo'}}
+                                            <span class="badge badge-sm {{$causa->activo === true ? 'bg-gradient-success' : 'bg-gradient-warning'}}">
+                                                {{$causa->activo === true ? 'Activo' : 'Inactivo'}}
                                             </span>
                                         </td>
                                         <td class="align-middle">
-                                            @can('update', $tier)
-                                            <a href="{{ route('tiersForm', ['id' => $tier->id]) }}"
+                                            @can('update', $causa)
+                                            <a href="{{ route('causasForm', ['id' => $causa->id]) }}"
                                                 class="text-secondary font-weight-bold text-xs"
-                                                data-toggle="tooltip" data-original-title="Editar Tier">
+                                                data-toggle="tooltip" data-original-title="Editar Problema">
                                                 Editar
-                                            </a>
-                                            @endcan
-                                        </td>
-                                        <td class="align-middle">
-                                            @can('update', $tier)
-                                            <a href="{{ route('viajeForm', ['tier' => $tier->id]) }}"
-                                                class="text-secondary font-weight-bold text-xs"
-                                                data-toggle="tooltip" data-original-title="Editar Tier">
-                                                Viajes
                                             </a>
                                             @endcan
                                         </td>
@@ -80,6 +63,7 @@
                                     
                                 </tbody>
                             </table>
+                            {{$causas->links()}}
                         </div>
                     </div>
                 </div>

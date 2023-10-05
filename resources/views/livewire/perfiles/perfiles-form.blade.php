@@ -66,20 +66,43 @@
 
                     <br/>
 
-                    <h6>Módulos de Aprobación</h6>
+                    
 
-                    <ul class="list-group">
-                        @forelse($aprobables as $ap)
-                            <li class="list-group-item">
-                                <div class="form-check form-switch">
-                                    <input wire:model="selectedAprobables.{{ $ap->id }}"  class="form-check-input" type="checkbox">
-                                    <label class="form-check-label">{{$ap->nombre}}</label>
-                                </div>
-                            </li>
-                        @empty
-                            <li class="list-group-item text-center text-muted">Sin módulos para aprobar</li>
-                        @endforelse
-                    </ul>
+                    <div class="d-flex flex-column flex-lg-row justify-content-around mt-2">
+
+                        <div>
+                            <h6>Módulos de Aprobación</h6>
+                            <ul class="list-group">
+                                @forelse($aprobables as $ap)
+                                    <li class="list-group-item">
+                                        <div class="form-check form-switch">
+                                            <input wire:model="selectedAprobables.{{ $ap->id }}"  class="form-check-input" type="checkbox">
+                                            <label class="form-check-label">{{$ap->nombre}}</label>
+                                        </div>
+                                    </li>
+                                @empty
+                                    <li class="list-group-item text-center text-muted">Sin módulos para aprobar</li>
+                                @endforelse
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h6>Alertas a trabajar</h6>
+                            <ul class="list-group">
+                                @forelse($tiposAlertas as $ap)
+                                    <li class="list-group-item">
+                                        <div class="form-check form-switch">
+                                            <input wire:model="selectedTiposAlertas.{{ $ap->id }}"  class="form-check-input" type="checkbox">
+                                            <label class="form-check-label">{{$ap->nombre}}</label>
+                                        </div>
+                                    </li>
+                                @empty
+                                    <li class="list-group-item text-center text-muted">Sin alertas para trabajar</li>
+                                @endforelse
+                            </ul>
+                        </div>
+
+                    </div>
 
                     <div class="text-center">
                         <button type="submit" class="btn bg-gradient-success w-100 my-4 mb-2">Guardar</button>

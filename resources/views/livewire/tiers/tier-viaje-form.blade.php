@@ -10,61 +10,51 @@
                 <form wire:submit.prevent="save">
 
                     <h4>Detalle de Viajes</h4>
-
-                    <div class="text-center">
-                        <button type="submit" class="btn bg-gradient-success w-100 my-4 mb-2">Guardar</button>
-                    </div>
-
+                    
                     <div>
                         @foreach($arrPuntos as $index => $puntosResult)
-                            <div class="row">
+                            <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
 
-                                <div class="col-4 col-lg-2">
-                                    <div class="input-group input-group-static mt-3">
-                                        <label>Orden</label>
-                                        <input type="number" name="" wire:model="arrPuntos.{{$index}}.orden" class="form-control"/>
-                                    </div>
+                                <div class="input-group input-group-static w-100 w-lg-10 me-0 me-lg-2">
+                                    <label>Orden</label>
+                                    <input type="number" wire:model="arrPuntos.{{$index}}.orden" class="form-control"/>
                                 </div>
 
-                                <div class="col-8 col-lg-2">
-                                    <div class="input-group input-group-static mt-3">
-                                        <label>Punto de control</label>
-                                        <select class="form-control" wire:model="arrPuntos.{{$index}}.puntos_id">
-                                            <option>--Seleccione Punto de Control--</option>
-                                            @foreach($puntos as $m)
-                                                <option value="{{$m->id}}"> {{$m->nombre}} </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-6 col-lg-3">
-                                    <div class="input-group input-group-static mt-3">
-                                        <label>Tiempo Target</label>
-                                        <input type="time" name="" wire:model="arrPuntos.{{$index}}.target" class="form-control"/>
-                                    </div>
+                                <div class="input-group input-group-static  w-100 me-0 me-lg-2">
+                                    <label>Punto de control</label>
+                                    <select class="form-control" wire:model="arrPuntos.{{$index}}.puntos_id">
+                                        <option>--Seleccione Punto de Control--</option>
+                                        @foreach($puntos as $m)
+                                            <option value="{{$m->id}}"> {{$m->nombre}} </option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
-                                <div class="col-6 col-lg-3">
-                                    <div class="input-group input-group-static mt-3">
-                                        <label>Tiempo Ponderado</label>
-                                        <input type="time" name="" wire:model="arrPuntos.{{$index}}.ponderacion" class="form-control"/>
-                                    </div>
+                                <div class="input-group input-group-static  w-100 me-0 me-lg-2">
+                                    <label>Tiempo Target</label>
+                                    <input type="time" wire:model="arrPuntos.{{$index}}.target" class="form-control"/>
                                 </div>
 
-                                <div class="col col-lg-2">
-                                    <button class="btn bg-gradient-success mt-3" wire:click.prevent="eliminarPunto({{$index}})"> 
-                                        Eliminar
-                                    </button>
+                                <div class="input-group input-group-static  w-100 me-0 me-lg-2">
+                                    <label>Tiempo Ponderado</label>
+                                    <input type="time" wire:model="arrPuntos.{{$index}}.ponderacion" class="form-control"/>
                                 </div>
+
+                                <button class="btn bg-gradient-success  w-100 w-lg-20" wire:click.prevent="eliminarPunto({{$index}})"> 
+                                    Eliminar
+                                </button>
 
                             </div>
                         @endforeach
                     </div>
 
                     <button class="btn bg-gradient-success my-4 mb-2" wire:click.prevent="agregarPunto">
-                        <i class="material-icons opacity-10"> add </i> Agregar Fila
+                        <i class="fa-solid fa-plus"></i> Agregar Fila
                     </button>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn bg-gradient-success w-100 my-4 mb-2">Guardar</button>
+                    </div>
 
                 </form>
             </div>

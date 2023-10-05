@@ -36,6 +36,7 @@ class TableAlertasTop extends Component
     {
         $sinAsignar = Alertas::select(DB::raw("'Sin Asignar'"), DB::raw('count(*) as cantidad'), DB::raw('avg(alertas.fin - alertas.created_at) as tiempo_medio'))
             ->join('recorridos', 'alertas.recorridos_id', '=', 'recorridos.id')
+            ->where('alertas.tipos_alertas_id', 1)
             ->whereIn('tiers_id', $this->tiers)
             ->whereDate('alertas.created_at', '>=', $this->desde)
             ->whereDate('alertas.created_at', '<=', $this->hasta)
@@ -45,6 +46,7 @@ class TableAlertasTop extends Component
         $top5 = Alertas::select('problemas.nombre as problema_nombre', DB::raw('count(*) as cantidad'), DB::raw('avg(alertas.fin - alertas.inicio) as tiempo_medio'))
             ->join('recorridos', 'alertas.recorridos_id', '=', 'recorridos.id')
             ->join('problemas', 'alertas.problemas_id', '=', 'problemas.id')
+            ->where('alertas.tipos_alertas_id', 1)
             ->whereIn('tiers_id', $this->tiers)
             ->whereDate('alertas.created_at', '>=', $this->desde)
             ->whereDate('alertas.created_at', '<=', $this->hasta)

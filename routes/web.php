@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Alertas\AlertasForm;
 use App\Http\Livewire\Aprobaciones\Procesar;
 use App\Http\Livewire\Auth\Login;
+use App\Http\Livewire\Causas\CausasForm;
+use App\Http\Livewire\Causas\CausasList;
 use App\Http\Livewire\Choferes\ChoferesForm;
 use App\Http\Livewire\Choferes\ChoferesList;
-use App\Http\Livewire\Dashboards\ControlMoviles;
 use App\Http\Livewire\Dashboards\ControlPuntos;
 use App\Http\Livewire\Dashboards\Inicio;
 use App\Http\Livewire\Dashboards\Jornada;
@@ -32,12 +33,12 @@ use App\Http\Livewire\Soluciones\SolucionesForm;
 use App\Http\Livewire\Soluciones\SolucionesList;
 use App\Http\Livewire\Tiers\TiersForm;
 use App\Http\Livewire\Tiers\TiersList;
-use App\Http\Livewire\Tiers\TierViajeForm;
 use App\Http\Livewire\Usuarios\UsuariosForm;
 use App\Http\Livewire\Usuarios\UsuariosList;
 use App\Http\Livewire\Usuarios\UsuariosMiCuenta;
-
 use App\Http\Livewire\Dashboards\ControlPuntosT1;
+use App\Http\Livewire\Tiers\ViajeForm;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -90,6 +91,9 @@ Route::middleware('auth','web')->group(function(){
     Route::get('soluciones', SolucionesList::class)->name('solucionesList')->can('viewAny', \App\Models\Soluciones::class);
     Route::get('soluciones/{id}', SolucionesForm::class)->name('solucionesForm');
 
+    Route::get('causas', CausasList::class)->name('causasList')->can('viewAny', \App\Models\Causas::class);
+    Route::get('causas/{id}', CausasForm::class)->name('causasForm');
+
     Route::get('sensores', SensoresList::class)->name('sensoresList')->can('viewAny', \App\Models\Sensores::class);
     Route::get('sensores/{id}', SensoresForm::class)->name('sensoresForm');
 
@@ -101,7 +105,7 @@ Route::middleware('auth','web')->group(function(){
 
     Route::get('tiers', TiersList::class)->name('tiersList')->can('viewAny', \App\Models\Tiers::class);
     Route::get('tiers/{id}', TiersForm::class)->name('tiersForm');
-    Route::get('tiers/{id}/{viaje}', TierViajeForm::class)->name('tiersViajeForm');
+    Route::get('tiers/{tier}/viaje', ViajeForm::class)->name('viajeForm');
 
     Route::get('alertas/{id}', AlertasForm::class)->name('alertasForm');
 });

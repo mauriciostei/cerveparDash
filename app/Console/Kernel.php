@@ -22,6 +22,7 @@ class Kernel extends ConsoleKernel
             $r = new RecorridosController();
             $r->OutTime();
             $r->Dismiss();
+            $r->alertasTMA();
         })->everyMinute();
 
         $schedule->call(function(){

@@ -42,6 +42,7 @@ class TableAlertasAgrupado extends Component
                 ->join('recorridos', 'alertas.recorridos_id', '=', 'recorridos.id')
                 ->join('puntos', 'recorridos.puntos_id', '=', 'puntos.id')
                 ->leftJoin('problemas', 'alertas.problemas_id', '=', 'problemas.id')
+                ->where('alertas.tipos_alertas_id', 1)
                 ->whereIn('tiers_id', $this->tiers)
                 ->whereDate('alertas.created_at', '>=', $this->desde)
                 ->whereDate('alertas.created_at', '<=', $this->hasta)

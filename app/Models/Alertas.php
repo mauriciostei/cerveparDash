@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Alertas extends Model
 {
@@ -25,8 +26,28 @@ class Alertas extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function total(){
-        return self::where('visible', true)->count();
+    public function tiposAlertas(){
+        return $this->belongsTo(TiposAlertas::class);
+    }
+
+    public function causas(){
+        return $this->belongsTo(Causas::class);
+    }
+
+    public static function totalPending(){
+        $lista = null;
+        $user = User::find(Auth::user()->id);
+        $tipos = $user->perfiles->map->tiposAlertas->flatten()->where('activo', true)->pluck('id');
+        if($tipos){
+            $lista = self::where('visible', true)->whereIn('tipos_alertas_id', $tipos)->get();
+        }
+        return $lista;
+    }
+
+    public static function countPending(){
+        $total = self::totalPending();
+        $total = $total ? $total->count() : 0;
+        return $total;
     }
 
     public function getEstado(){
