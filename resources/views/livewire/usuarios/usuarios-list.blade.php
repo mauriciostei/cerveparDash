@@ -29,6 +29,7 @@
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Usuario</th>
+                                        <th>Estado</th>
                                         <th class="text-secondary opacity-7"></th>
                                     </tr>
                                 </thead>
@@ -48,6 +49,13 @@
                                                     </p>
                                                 </div>
                                             </div>
+                                        </td>
+                                        <td>
+                                            @if($us->active)
+                                                <span class="badge badge-sm bg-gradient-success"> Activo </span>
+                                            @else
+                                                <span class="badge badge-sm bg-gradient-warning"> Inactivo </span>
+                                            @endif
                                         </td>
                                         <td class="align-middle">
                                             @can('update', $us)
