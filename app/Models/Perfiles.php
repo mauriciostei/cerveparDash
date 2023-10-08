@@ -22,6 +22,6 @@ class Perfiles extends Model
     }
 
     public function tiposAlertas(){
-        return $this->belongsToMany(tiposAlertas::class, 'perfiles_tipos_alertas', 'perfiles_id', 'tipos_alertas_id');
+        return $this->belongsToMany(TiposAlertas::class, 'perfiles_tipos_alertas', 'perfiles_id', 'tipos_alertas_id');
     }
 }
