@@ -9,6 +9,7 @@ use App\Http\Livewire\Causas\CausasForm;
 use App\Http\Livewire\Causas\CausasList;
 use App\Http\Livewire\Choferes\ChoferesForm;
 use App\Http\Livewire\Choferes\ChoferesList;
+use App\Http\Livewire\Dashboards\AlertasTMA as DashboardsAlertasTMA;
 use App\Http\Livewire\Dashboards\ControlPuntos;
 use App\Http\Livewire\Dashboards\Inicio;
 use App\Http\Livewire\Dashboards\Jornada;
@@ -66,6 +67,7 @@ Route::middleware('auth','web')->group(function(){
     Route::get('jornada-oviedo', Jornada::class)->name('jornada-oviedo');
     Route::get('jornadaT1', Jornada::class)->name('jornadaT1')->can('jornadaT1');
     Route::get('controlPuntos', ControlPuntos::class)->name('controlPuntos')->can('controlPuntos');
+    Route::get('alertasTMA', DashboardsAlertasTMA::class)->name('alertasTMA')->can('alertasTMA');
 
     Route::get('cambioRecorrido', Cambios::class)->name('cambiosRecorridos')->can('cambiosRecorridos');
     Route::get('ProcesarAprobacion/{id}', Procesar::class)->name('ProcesarAprobacion');

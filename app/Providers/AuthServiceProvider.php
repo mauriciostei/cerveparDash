@@ -91,5 +91,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('cambiosRecorridos', function($user){
             return $user->getPermisos(19)->leer;
         });
+
+        Gate::define('alertasTMA', function($user){
+            return $user->getPermisos(21)->leer;
+            // return true;
+        });
     }
 }
