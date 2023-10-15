@@ -61,40 +61,48 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('inicio', function($user){
-            return $user->getPermisos(1)->leer;
+            // return $user->getPermisos(1)->leer;
+            return $user->getPermisosByLink('inicio')->leer;
         });
 
         Gate::define('metricas', function($user){
-            return $user->getPermisos(2)->leer;
+            // return $user->getPermisos(2)->leer;
+            return $user->getPermisosByLink('metricas')->leer;
         });
 
         Gate::define('controlMoviles', function($user){
-            return $user->getPermisos(13)->leer;
+            // return $user->getPermisos(13)->leer;
+            return $user->getPermisosByLink('controlMoviles')->leer;
         });
 
         Gate::define('metricaAlertas', function($user){
-            return $user->getPermisos(14)->leer;
+            // return $user->getPermisos(14)->leer;
+            return $user->getPermisosByLink('metricaAlertas')->leer;
         });
 
         Gate::define('jornada', function($user){
-            return $user->getPermisos(15)->leer;
+            // return $user->getPermisos(15)->leer;
+            return $user->getPermisosByLink('jornada')->leer;
         });
 
         Gate::define('jornadaT1', function($user){
-            return $user->getPermisos(17)->leer;
+            // return $user->getPermisos(17)->leer;
+            return $user->getPermisosByLink('jornadaT1')->leer;
         });
 
         Gate::define('controlPuntos', function($user){
-            return $user->getPermisos(18)->leer;
+            // return $user->getPermisos(18)->leer;
+            return $user->getPermisosByLink('controlPuntos')->leer;
         });
 
         Gate::define('cambiosRecorridos', function($user){
-            return $user->getPermisos(19)->leer;
+            // return $user->getPermisos(19)->leer;
+            return $user->getPermisosByLink('cambiosRecorridos')->leer;
         });
 
         Gate::define('alertasTMA', function($user){
-            return $user->getPermisos(21)->leer;
-            // return true;
+            // return $user->getPermisos(21)->leer;
+            return $user->getPermisosByLink('alertasTMA')->leer;
         });
     }
 }

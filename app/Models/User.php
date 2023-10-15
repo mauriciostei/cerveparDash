@@ -62,4 +62,8 @@ class User extends Authenticatable
     public function getPermisos($permisos_id){
         return DB::table('roles')->where('users_id', $this->id)->where('permisos_id', $permisos_id)->first();
     }
+
+    public function getPermisosByLink($permiso){
+        return DB::table('roles')->where('users_id', $this->id)->where('link', $permiso)->first();
+    }
 }

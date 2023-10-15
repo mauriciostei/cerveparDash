@@ -12,7 +12,8 @@ class ChoferesPolicy
 
     public function viewAny(User $user)
     {
-        return $user->getPermisos(5)->leer;
+        // return $user->getPermisos(5)->leer;
+        return $user->getPermisosByLink('choferesList')->leer;
     }
 
     public function view(User $user, Choferes $choferes)
@@ -22,12 +23,14 @@ class ChoferesPolicy
 
     public function create(User $user)
     {
-        return $user->getPermisos(5)->crear;
+        // return $user->getPermisos(5)->crear;
+        return $user->getPermisosByLink('choferesList')->crear;
     }
 
     public function update(User $user, Choferes $choferes)
     {
-        return $user->getPermisos(5)->editar;
+        // return $user->getPermisos(5)->editar;
+        return $user->getPermisosByLink('choferesList')->editar;
     }
 
     public function delete(User $user, Choferes $choferes)

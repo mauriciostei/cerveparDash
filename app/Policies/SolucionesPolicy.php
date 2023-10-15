@@ -12,7 +12,8 @@ class SolucionesPolicy
 
     public function viewAny(User $user)
     {
-        return $user->getPermisos(10)->leer;
+        // return $user->getPermisos(10)->leer;
+        return $user->getPermisosByLink('solucionesList')->leer;
     }
 
     public function view(User $user, Soluciones $soluciones)
@@ -22,12 +23,14 @@ class SolucionesPolicy
 
     public function create(User $user)
     {
-        return $user->getPermisos(10)->crear;
+        // return $user->getPermisos(10)->crear;
+        return $user->getPermisosByLink('solucionesList')->crear;
     }
 
     public function update(User $user, Soluciones $soluciones)
     {
-        return $user->getPermisos(10)->editar;
+        // return $user->getPermisos(10)->editar;
+        return $user->getPermisosByLink('solucionesList')->editar;
     }
 
     public function delete(User $user, Soluciones $soluciones)

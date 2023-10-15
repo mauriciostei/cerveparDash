@@ -12,7 +12,8 @@ class CausasPolicy
 
     public function viewAny(User $user)
     {
-        return $user->getPermisos(20)->leer;
+        // return $user->getPermisos(20)->leer;
+        return $user->getPermisosByLink('causasList')->leer;
     }
 
     public function view(User $user, Causas $causas)
@@ -22,12 +23,14 @@ class CausasPolicy
 
     public function create(User $user)
     {
-        return $user->getPermisos(20)->crear;
+        // return $user->getPermisos(20)->crear;
+        return $user->getPermisosByLink('causasList')->crear;
     }
 
     public function update(User $user, Causas $causas)
     {
-        return $user->getPermisos(20)->editar;
+        // return $user->getPermisos(20)->editar;
+        return $user->getPermisosByLink('causasList')->editar;
     }
 
     public function delete(User $user, Causas $causas)

@@ -12,7 +12,8 @@ class UserPolicy
 
     public function viewAny(User $user)
     {
-        return $user->getPermisos(3)->leer;
+        // return $user->getPermisos(3)->leer;
+        return $user->getPermisosByLink('usuariosList')->leer;
     }
 
     public function view(User $user, User $model)
@@ -22,12 +23,14 @@ class UserPolicy
 
     public function create(User $user)
     {
-        return $user->getPermisos(3)->crear;
+        // return $user->getPermisos(3)->crear;
+        return $user->getPermisosByLink('usuariosList')->crear;
     }
 
     public function update(User $user, User $model)
     {
-        return $user->getPermisos(3)->editar;
+        // return $user->getPermisos(3)->editar;
+        return $user->getPermisosByLink('usuariosList')->editar;
     }
 
     public function delete(User $user, User $model)

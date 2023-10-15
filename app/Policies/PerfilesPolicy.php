@@ -12,7 +12,8 @@ class PerfilesPolicy
 
     public function viewAny(User $user)
     {
-        return $user->getPermisos(4)->leer;
+        // return $user->getPermisos(4)->leer;
+        return $user->getPermisosByLink('perfilesList')->leer;
     }
 
     public function view(User $user, Perfiles $perfiles)
@@ -22,12 +23,14 @@ class PerfilesPolicy
 
     public function create(User $user)
     {
-        return $user->getPermisos(4)->crear;
+        // return $user->getPermisos(4)->crear;
+        return $user->getPermisosByLink('perfilesList')->crear;
     }
 
     public function update(User $user, Perfiles $perfiles)
     {
-        return $user->getPermisos(4)->editar;
+        // return $user->getPermisos(4)->editar;
+        return $user->getPermisosByLink('perfilesList')->editar;
     }
 
     public function delete(User $user, Perfiles $perfiles)

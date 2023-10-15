@@ -3,7 +3,7 @@
     navbar-scroll="true">
     <div class="container-fluid py-1 px-3">
         <div class="d-flex flex-row">
-            <button id="toggleMenu" class="d-none d-lg-flex text-white btn bg-primary p-2 me-3">
+            <button id="toggleMenu" class="flex text-white btn bg-primary p-2 me-3">
                 Menú
             </button>
             <div class="font-weight-bold overflow-hidden"> {{env('LOCALIDAD')}} </div>
@@ -21,15 +21,7 @@
                         <livewire:auth.logout/>
                     </a>
                 </li>
-                <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
-                        <div class="sidenav-toggler-inner">
-                            <i class="sidenav-toggler-line"></i>
-                            <i class="sidenav-toggler-line"></i>
-                            <i class="sidenav-toggler-line"></i>
-                        </div>
-                    </a>
-                </li>
+                
                 <li class="nav-item px-3 d-flex align-items-center">
                 </li>
 

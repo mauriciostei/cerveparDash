@@ -12,7 +12,8 @@ class PuntosPolicy
 
     public function viewAny(User $user)
     {
-        return $user->getPermisos(11)->leer;
+        // return $user->getPermisos(11)->leer;
+        return $user->getPermisosByLink('puntosList')->leer;
     }
 
     public function view(User $user, Puntos $puntos)
@@ -22,12 +23,14 @@ class PuntosPolicy
 
     public function create(User $user)
     {
-        return $user->getPermisos(11)->crear;
+        // return $user->getPermisos(11)->crear;
+        return $user->getPermisosByLink('puntosList')->crear;
     }
 
     public function update(User $user, Puntos $puntos)
     {
-        return $user->getPermisos(11)->editar;
+        // return $user->getPermisos(11)->editar;
+        return $user->getPermisosByLink('puntosList')->editar;
     }
 
     public function delete(User $user, Puntos $puntos)

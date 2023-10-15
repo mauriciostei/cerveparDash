@@ -12,7 +12,8 @@ class ProblemasPolicy
 
     public function viewAny(User $user)
     {
-        return $user->getPermisos(9)->leer;
+        // return $user->getPermisos(9)->leer;
+        return $user->getPermisosByLink('problemasList')->leer;
     }
 
     public function view(User $user, Problemas $problemas)
@@ -22,12 +23,14 @@ class ProblemasPolicy
 
     public function create(User $user)
     {
-        return $user->getPermisos(9)->crear;
+        // return $user->getPermisos(9)->crear;
+        return $user->getPermisosByLink('problemasList')->crear;
     }
 
     public function update(User $user, Problemas $problemas)
     {
-        return $user->getPermisos(9)->editar;
+        // return $user->getPermisos(9)->editar;
+        return $user->getPermisosByLink('problemasList')->editar;
     }
 
     public function delete(User $user, Problemas $problemas)

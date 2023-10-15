@@ -39,7 +39,7 @@ class TablaTMACausas extends Component
             ->where('alertas.causas_id', null)
         ;
 
-        $top5 = Alertas::select('causas.nombre as causa_nombre', DB::raw('count(*) as cantidad'), DB::raw('avg(alertas.fin - alertas.inicio) as tiempo_medio'))
+        $top5 = Alertas::select('causas.nombre as causa_nombre', DB::raw('count(*) as cantidad'), DB::raw('avg(alertas.fin - alertas.created_at) as tiempo_medio'))
             ->join('recorridos', 'alertas.recorridos_id', '=', 'recorridos.id')
             // ->join('causas', 'alertas.causas_id', '=', 'causas.id')
             ->join('causas', 'alertas.causas_id', '=', 'causas.id')

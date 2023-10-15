@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Alertas;
 
 use App\Models\Alertas;
 use App\Models\Causas;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AlertasTma extends Component
@@ -27,6 +28,7 @@ class AlertasTma extends Component
         $this->validate();
 
         $this->alerta->visible = false;
+        $this->alerta->users_id = Auth::user()->id;
         $this->alerta->inicio = now();
         $this->alerta->fin = now();
         $this->alerta->save();

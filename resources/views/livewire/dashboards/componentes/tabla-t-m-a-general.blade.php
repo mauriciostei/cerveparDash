@@ -12,8 +12,9 @@
                         <th>#</th>
                         <th class="text-center">Móvil</th>
                         <th class="text-center">Chofer</th>
-                        <th>Hora Detectada</th>
-                        <th>Tiempo Retraso</th>
+                        <th>Inicio Jornada</th>
+                        <th>TMA Alcanzado</th>
+                        <th>TMA Total</th>
                         <th>Causa</th>
                         <th>Trabajado Por</th>
                     </tr>
@@ -24,6 +25,7 @@
                             <td> {{$item->id}} </td>
                             <td class="text-center"> {{$item->recorridos->moviles->nombre}} </td>
                             <td class="text-center"> {{$item->recorridos->choferes->nombre}} </td>
+                            <td> {{$item->recorridos->inicio}} </td>
                             <td> {{$item->created_at}} </td>
                             <td>
                                 @if(!$item->fin)
