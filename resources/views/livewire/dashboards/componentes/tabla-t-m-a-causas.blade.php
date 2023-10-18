@@ -7,7 +7,7 @@
                     <tr>
                         <th>Causas</th>
                         <th class="text-center">Cantidad</th>
-                        <th class="text-center">Promedio de resolución</th>
+                        <th class="text-center">Promedio de TMA</th>
                     </tr>
                 </thead>
                 <tbody>

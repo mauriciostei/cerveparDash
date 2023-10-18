@@ -15,8 +15,8 @@
                         <th>Inicio Jornada</th>
                         <th>Inicio Alerta</th>
                         <th>TMA Total</th>
-                        <th>Causa General</th>
                         <th>Causa Raíz</th>
+                        <th>Causa General</th>
                         <th>Trabajado Por</th>
                     </tr>
                 </thead>
@@ -33,15 +33,15 @@
                                 {{$this->difTimeFrom($item->recorridos->inicio, $item->recorridos->TMA)}}
                             </td>
                             <td>
-                                @if($item->causas_id)
-                                    {{$item->causas->nombre}}
+                                @if($item->causa_raizs_id)
+                                    {{$item->causasRaiz->nombre}}
                                 @else
                                     -
                                 @endif
                             </td>
                             <td>
-                                @if($item->causa_raizs_id)
-                                    {{$item->causasRaiz->nombre}}
+                                @if($item->causas_id)
+                                    {{$item->causas->nombre}}
                                 @else
                                     -
                                 @endif
