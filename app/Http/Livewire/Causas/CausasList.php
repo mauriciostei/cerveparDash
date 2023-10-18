@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Causas;
 
+use App\Models\CausaRaiz;
 use App\Models\Causas;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -15,6 +16,7 @@ class CausasList extends Component
     {
         return view('livewire.causas.causas-list', [
             'causas' => Causas::orderBy('id', 'desc')->paginate(10)
+            , 'causasRaiz' => CausaRaiz::orderBy('id', 'desc')->paginate(10)
         ]);
     }
 }

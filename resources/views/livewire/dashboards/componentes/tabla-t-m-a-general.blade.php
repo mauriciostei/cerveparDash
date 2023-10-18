@@ -13,9 +13,10 @@
                         <th class="text-center">Móvil</th>
                         <th class="text-center">Chofer</th>
                         <th>Inicio Jornada</th>
-                        <th>TMA Alcanzado</th>
+                        <th>Inicio Alerta</th>
                         <th>TMA Total</th>
-                        <th>Causa</th>
+                        <th>Causa General</th>
+                        <th>Causa Raíz</th>
                         <th>Trabajado Por</th>
                     </tr>
                 </thead>
@@ -23,20 +24,24 @@
                     @forelse($alertas as $item)
                         <tr>
                             <td> {{$item->id}} </td>
-                            <td class="text-center"> {{$item->recorridos->moviles->nombre}} </td>
+                            <td class="text-center"> {{$item->recorridos->moviles->nombre}}  </td>
                             <td class="text-center"> {{$item->recorridos->choferes->nombre}} </td>
                             <td> {{$item->recorridos->inicio}} </td>
                             <td> {{$item->created_at}} </td>
-                            <td>
-                                @if(!$item->fin)
-                                    {{$this->difTime($item->created_at)}}
-                                @else
-                                    {{$item->fin}}
-                                @endif
+                            <td> 
+                                {{-- Tiempo TMA Total del movil --}}
+                                {{$this->difTimeFrom($item->recorridos->inicio, $item->recorridos->TMA)}}
                             </td>
                             <td>
                                 @if($item->causas_id)
                                     {{$item->causas->nombre}}
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td>
+                                @if($item->causa_raizs_id)
+                                    {{$item->causasRaiz->nombre}}
                                 @else
                                     -
                                 @endif

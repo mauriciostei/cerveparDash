@@ -3,12 +3,15 @@
 namespace App\Http\Livewire\Dashboards\Componentes;
 
 use App\Models\Alertas;
+use App\Traits\DifTime;
 use DateTime;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class TablaTMAGeneral extends Component
 {
+    use DifTime;
+
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
@@ -20,15 +23,6 @@ class TablaTMAGeneral extends Component
 
     public function mount(){
         $this->tiers = [1,2];
-    }
-
-    public function difTime($time){
-        $datetime1 = new DateTime();
-        $datetime2 = new DateTime($time);
-        $interval = $datetime1->diff($datetime2);
-        $elapsed = $interval->format("(%d) %H:%I:%S");
-
-        return $elapsed;
     }
 
     public function actualizarTable($datos){

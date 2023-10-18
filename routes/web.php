@@ -7,6 +7,7 @@ use App\Http\Livewire\Aprobaciones\Procesar;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Causas\CausasForm;
 use App\Http\Livewire\Causas\CausasList;
+use App\Http\Livewire\Causas\CausasRaizForm;
 use App\Http\Livewire\Choferes\ChoferesForm;
 use App\Http\Livewire\Choferes\ChoferesList;
 use App\Http\Livewire\Dashboards\AlertasTMA as DashboardsAlertasTMA;
@@ -96,6 +97,7 @@ Route::middleware('auth','web')->group(function(){
 
     Route::get('causas', CausasList::class)->name('causasList')->can('viewAny', \App\Models\Causas::class);
     Route::get('causas/{id}', CausasForm::class)->name('causasForm');
+    Route::get('causasRaiz/{id}', CausasRaizForm::class)->name('causasRaizForm');
 
     Route::get('sensores', SensoresList::class)->name('sensoresList')->can('viewAny', \App\Models\Sensores::class);
     Route::get('sensores/{id}', SensoresForm::class)->name('sensoresForm');

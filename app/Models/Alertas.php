@@ -34,6 +34,10 @@ class Alertas extends Model
         return $this->belongsTo(Causas::class);
     }
 
+    public function causasRaiz(){
+        return $this->belongsTo(CausaRaiz::class, 'causa_raizs_id', 'id');
+    }
+
     public static function totalPending(){
         $lista = null;
         $user = User::find(Auth::user()->id);

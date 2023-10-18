@@ -28,7 +28,7 @@
                 <form wire:submit.prevent="save">
 
                     <div class="input-group input-group-static mt-3">
-                        <label>Causas</label>
+                        <label>Causa General</label>
                         <select class="form-control" wire:model="alerta.causas_id">
                             <option selected>--Selecciones una Causa--</option>
                             @forelse($causas as $p)
@@ -38,6 +38,20 @@
                         </select>
                     </div>
                     @error('alerta.causas_id')
+                        <p class='text-danger inputerror'>{{ $message }} </p>
+                    @enderror
+
+                    <div class="input-group input-group-static mt-3">
+                        <label>Causa Raíz</label>
+                        <select class="form-control" wire:model="alerta.causa_raizs_id">
+                            <option selected>--Selecciones una Causa--</option>
+                            @forelse($causaRaiz as $p)
+                                <option value="{{$p->id}}"> {{$p->nombre}} </option>
+                            @empty
+                            @endforelse
+                        </select>
+                    </div>
+                    @error('alerta.causa_raizs_id')
                         <p class='text-danger inputerror'>{{ $message }} </p>
                     @enderror
                 

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Alertas;
 
 use App\Models\Alertas;
+use App\Models\CausaRaiz;
 use App\Models\Causas;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -11,10 +12,12 @@ class AlertasTma extends Component
 {
     public Alertas $alerta;
     public $causas;
+    public $causaRaiz;
 
     public function rules(){
         return [
             'alerta.causas_id' => 'required|exists:causas,id',
+            'alerta.causa_raizs_id' => 'required|exists:causa_raizs,id',
             'alerta.observaciones' => 'required|max:200'
         ];
     }
@@ -22,6 +25,7 @@ class AlertasTma extends Component
     public function mount(Alertas $alerta){
         $this->alerta = $alerta;
         $this->causas = Causas::all();
+        $this->causaRaiz = CausaRaiz::all();
     }
 
     public function save(){
