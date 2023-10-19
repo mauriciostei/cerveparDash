@@ -34,7 +34,7 @@ class Recorridos extends Model
             ->where('tiers_id', $this->tiers_id)
             ->whereDate('inicio', date('Y-m-d', strtotime($this->inicio)))
             ->whereNotNull('fin')
-            ->orderBy('fin', 'asc')
+            ->orderBy('fin', 'desc')
         ->first();
         return $finReal->fin;
     }
