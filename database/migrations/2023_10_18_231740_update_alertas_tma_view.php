@@ -28,7 +28,7 @@ return new class extends Migration
         , datos as (
             select r.*
                 , pr.inicio::time without time zone primera
-                , (now()::time without time zone - pr.inicio::time without time zone)::time without time zone AS resultado
+                , (current_timestamp - pr.inicio)::time without time zone AS resultado
                 , tv.tiempo_tma
             from reco r
                 join recorridos pr on pr.id = r.primero
@@ -36,7 +36,7 @@ return new class extends Migration
                 left join tiers_viajes tv ON r.tiers_id = tv.tiers_id AND r.viaje = tv.viajes_id
             where se.fin is null
                 AND tv.tiempo_tma > '00:00:00'::time without time zone 
-                AND pr.inicio::time without time zone > tv.tiempo_tma
+                AND (current_timestamp - pr.inicio) > tv.tiempo_tma
         )
 
         select d.tiers_id
