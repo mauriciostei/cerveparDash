@@ -95,6 +95,10 @@ trait NuevoRecorrido{
                     if($recorrido->inicio < $ultimoRecorrido->inicio){
                         $recorrido->inicio = date('Y-m-d H:i:s', strtotime($ultimoRecorrido->inicio." +1 minute"));
                         $ultimoRecorrido->fin = $recorrido->inicio;
+
+                        $tiempo = DB::table('puntos_tiers')->where('tiers_id', $recorrido->tiers_id)->where('puntos_id', $recorrido->puntos_id)->where('viaje', $recorrido->viaje)->first();
+                        $recorrido->target = $this->addTime($tiempo->target, $recorrido->inicio);
+                        $recorrido->ponderacion = $this->addTime($tiempo->ponderacion, $recorrido->target);
                     }
                     
                     Log::info('Un paso antes de guardar ultimoRecorrido');

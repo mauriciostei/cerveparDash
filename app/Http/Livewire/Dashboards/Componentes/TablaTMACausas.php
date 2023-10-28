@@ -30,25 +30,19 @@ class TablaTMACausas extends Component
     public function render()
     {
         $alertas = DB::select(DB::raw("
-        select c.nombre as causa_nombre
-            , count(*) as cantidad
-            , avg( COALESCE(
-                (
-                    select fin 
-                    from recorridos 
-                    where 
-                        cast(inicio as date) = cast(r.inicio as date) 
-                        and moviles_id = r.moviles_id 
-                        and choferes_id = r.choferes_id 
-                        and viaje = r.viaje 
-                        and tiers_id = r.tiers_id 
-                        and fin is not null
-                        limit 1
-                ),current_timestamp) - r.inicio
-            ) as tiempo_medio
+        select c.nombre causa_nombre
+            , count(*) cantidad
+            , avg(ru.fin - ri.inicio) tiempo_medio
         from alertas a
-            join recorridos r on r.id = a.recorridos_id
-            left join causas c on c.id = a.causas_id 
+            join recorridos ri on a.recorridos_id = ri.id
+            join recorridos ru on ru.tiers_id = ri.tiers_id 
+                and ru.moviles_id = ri.moviles_id
+                and ru.choferes_id = ri.choferes_id
+                and ru.viaje = ri.viaje
+                and cast(ru.inicio as date) = cast(ri.inicio as date)
+                and ru.fin is not null
+                and ru.inicio = ru.fin
+            join causas c on a.causas_id = c.id
         where a.tipos_alertas_id = 2
             and cast(a.created_at as date) between '$this->desde' and '$this->hasta'
         group by c.nombre;
