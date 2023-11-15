@@ -37,7 +37,12 @@ class TablaTMAGeneral extends Component
     }
 
     public function historial(){
-        $alertas = Alertas::where('tipos_alertas_id', 2)->orderBy('id', 'DESC')->take(2000)->get();
+        $alertas = Alertas::where('tipos_alertas_id', 2)
+            ->whereDate('alertas.created_at', '>=', $this->desde)
+            ->whereDate('alertas.created_at', '<=', $this->hasta)
+            ->orderBy('id', 'DESC')
+            ->take(2000)
+        ->get();
 
         $fileName = 'HistorialAlertas.xls';
 
@@ -49,11 +54,13 @@ class TablaTMAGeneral extends Component
         );
 
         $columns = array(
-            'Movil'
+            'Centro de Distribución'
+            , 'Movil'
             , 'Chofer'
             , 'Hora Detectada'
             , 'Hora Fin'
-            , 'Causa'
+            , 'Causa Raíz'
+            , 'Causa General'
             , 'Trabajado por'
             , 'Observaciones'
         );
@@ -65,10 +72,12 @@ class TablaTMAGeneral extends Component
             foreach ($alertas as $m) {
 
                 $linea = array(
-                    $m->recorridos->moviles->nombre
+                    env('LOCALIDAD')
+                    , $m->recorridos->moviles->nombre
                     , $m->recorridos->choferes->nombre
                     , $m->created_at
                     , $m->fin ? $m->fin : $this->difTime($m->created_at)
+                    , $m->causa_raizs_id ? $m->causasRaiz->nombre : '-'
                     , $m->causas_id ? $m->causas->nombre : '-'
                     , $m->users_id ? $m->users->name : '-'
                     , $m->observaciones
