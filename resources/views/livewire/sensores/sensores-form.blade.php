@@ -61,6 +61,10 @@
 
                     <br/>
 
+                    <div class="alert alert-info text-white text-center">
+                        Importante tener en cuenta que cuando se quiere utilizar un sensor en multiples direcciones (Puntos de Control) no se debe utilizar la dirección "Todas".
+                    </div>
+
                     <div class="text-center">
                         <button type="submit" class="btn bg-gradient-success w-100 my-4 mb-2">Guardar</button>
                     </div>
