@@ -40,6 +40,7 @@ use App\Http\Livewire\Usuarios\UsuariosForm;
 use App\Http\Livewire\Usuarios\UsuariosList;
 use App\Http\Livewire\Usuarios\UsuariosMiCuenta;
 use App\Http\Livewire\Dashboards\ControlPuntosT1;
+use App\Http\Livewire\Limites\LimitesList;
 use App\Http\Livewire\Tiers\ViajeForm;
 
 /*
@@ -114,4 +115,6 @@ Route::middleware('auth','web')->group(function(){
 
     Route::get('alertas/{id}', AlertasForm::class)->name('alertasForm');
     Route::get('alertas/{alerta}/tma', AlertasTma::class)->name('alertasTma');
+
+    Route::get('limites', LimitesList::class)->name('limitesList')->can('viewAny', \App\Models\Limites::class);
 });
