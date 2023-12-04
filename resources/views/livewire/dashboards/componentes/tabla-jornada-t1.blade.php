@@ -14,6 +14,7 @@
                     <th class="text-center">Fecha</th>
                     <th class="text-center">Choferes</th>
                     <th class="text-center">Móviles</th>
+                    <th class="text-center">Corresponde</th>
                     <th class="text-center">Hora</th>
                     <th class="text-center">Turno</th>
                     <th class="text-center">Espera <sup style="color: darkturquoise;">(A)</sup> </th>
@@ -29,6 +30,8 @@
                         <td class="text-center"> {{$item->fecha}} </td>
                         <td class="text-center"> {{$item->chofer_nombre}} </td>
                         <td class="text-center"> {{$item->movil_nombre}} </td>
+
+                        <td class="text-center"> {{ $this->corresponde($item->fecha, $item->moviles_id, $item->choferes_id, $item->viaje) }} </td>
 
                         <td class="text-center"> {{ $this->getInicio($item->moviles_id, $item->choferes_id, $item->viaje, $item->fecha) }} </td>
                         <td class="text-center"> {{ $this->getTurno($item->moviles_id, $item->choferes_id, $item->viaje, $item->fecha) }} </td>

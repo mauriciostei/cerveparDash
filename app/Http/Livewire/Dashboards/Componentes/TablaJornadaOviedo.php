@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire\Dashboards\Componentes;
 
+use App\Traits\ExportarExcel;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class TablaJornadaOviedo extends Component
 {
+    use ExportarExcel;
+
     public $desde;
     public $hasta;
     public $tiers;
@@ -31,53 +34,11 @@ class TablaJornadaOviedo extends Component
     }
 
     public function exportar(){
-        $jornada = $this->jornada;
+        $columns = array('Tiers', 'Fecha', 'Chofer', 'Movil', 'TML', 'TR', 'T. Interno', 'T. Financiero', 'T. Warehouse', 'Jornada');
 
-        $fileName = 'JornadaT2.xls';
+        $columnsTaken = Array('tiers_nombre', 'fecha', 'chofer_nombre', 'movil_nombre', 'tml', 'tr', 'tmi', 'tfinanciero', 'warehouse', 'ttotal');
 
-        $headers = array(
-            "Content-type"        => "application/vnd.ms-excel;",
-            "Content-Disposition" => "attachment; filename=$fileName",
-            "Pragma"              => "no-cache",
-            "Expires"             => "0"
-        );
-
-        $columns = array(
-            'Tiers'
-            , 'Fecha'
-            , 'Chofer'
-            , 'Movil'
-            , 'TML'
-            , 'TR'
-            , 'T. Interno'
-            , 'T. Financiero'
-            , 'T. Warehouse'
-            , 'Jornada'
-        );
-
-        $callback = function() use($jornada, $columns) {
-            $file = fopen('php://output', 'w');
-            fputcsv($file, $columns,"\t");
-
-            foreach ($jornada as $item) {
-                $linea = array(
-                    $item['tiers_nombre'],
-                    $item['fecha'],
-                    $item['chofer_nombre'],
-                    $item['movil_nombre'],
-                    $item['tml'],
-                    $item['tr'],
-                    $item['tmi'],
-                    $item['tfinanciero'],
-                    $item['warehouse'],
-                    $item['ttotal']
-                );
-                fputcsv($file, $linea,"\t");
-            }
-            fclose($file);
-        };
-
-        return response()->stream($callback, 200, $headers);
+        return $this->getFile('JornadaT2.xls', $columns, $this->jornada, $columnsTaken);
     }
 
     public function getInfo(){

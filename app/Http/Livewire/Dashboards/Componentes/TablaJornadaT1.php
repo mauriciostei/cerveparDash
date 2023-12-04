@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Dashboards\Componentes;
 
 use App\Traits\CalculateColorT1;
+use App\Traits\ExportarExcel;
 use App\Traits\TurnoJornadaT1;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -11,6 +12,7 @@ class TablaJornadaT1 extends Component
 {
     use CalculateColorT1;
     use TurnoJornadaT1;
+    use ExportarExcel;
 
     public $desde;
     public $hasta;
@@ -30,47 +32,22 @@ class TablaJornadaT1 extends Component
     }
 
     public function exportar(){
-        $jornada = $this->jornada;
+        $columns = array('Tiers', 'Fecha', 'Chofer', 'Movil', 'T. Espera', 'T. Atendimiento', 'Permanencia');
 
-        $fileName = 'JornadaT1.xls';
+        $columnsTaken = Array('tiers_nombre', 'fecha', 'chofer_nombre', 'movil_nombre', 'espera', 'atendimiento', 'ttotal');
 
-        $headers = array(
-            "Content-type"        => "application/vnd.ms-excel;",
-            "Content-Disposition" => "attachment; filename=$fileName",
-            "Pragma"              => "no-cache",
-            "Expires"             => "0"
-        );
+        return $this->getFile('JornadaT1.xls', $columns, $this->jornada, $columnsTaken);
+    }
 
-        $columns = array(
-            'Tiers'
-            , 'Fecha'
-            , 'Chofer'
-            , 'Movil'
-            , 'T. Espera'
-            , 'T. Atendimiento'
-            , 'Permanencia'
-        );
-
-        $callback = function() use($jornada, $columns) {
-            $file = fopen('php://output', 'w');
-            fputcsv($file, $columns,"\t");
-
-            foreach ($jornada as $item) {
-                $linea = array(
-                    $item['tiers_nombre'],
-                    $item['fecha'],
-                    $item['chofer_nombre'],
-                    $item['movil_nombre'],
-                    $item['espera'],
-                    $item['atendimiento'],
-                    $item['ttotal']
-                );
-                fputcsv($file, $linea,"\t");
-            }
-            fclose($file);
-        };
-
-        return response()->stream($callback, 200, $headers);
+    public function corresponde($fecha, $movil, $chofer, $viaje){
+        $query = DB::select(DB::raw("select corresponde
+        from planes p
+            join choferes_moviles_planes cmp on p.id = cmp.planes_id
+        where p.fecha = '$fecha'
+            and moviles_id = $movil
+            and choferes_id = $chofer
+            and viaje = $viaje"));
+        return $query[0]->corresponde ? 'SI' : 'NO';
     }
 
     public function getInfo(){
