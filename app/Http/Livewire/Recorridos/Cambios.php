@@ -36,7 +36,7 @@ class Cambios extends Component
             'cambio.puntos_id' => 'required|exists:puntos,id',
             'cambio.sensores_id' => 'required|exists:sensores,id',
             'cambio.inicio' => 'required',
-            'cambio.observacion' => 'required',
+            'cambio.observacion' => '',
             'fecha' => 'required',
             'hora' => 'required',
         ];
@@ -52,7 +52,7 @@ class Cambios extends Component
         $this->cambio->viaje = 1;
 
         $this->listaMoviles();
-        $this->cambio->tiers_id = $this->moviles->first()->tiers_id;
+        $this->cambio->tiers_id = $this->moviles->first() ? $this->moviles->first()->tiers_id : 1;
     }
 
     public function listaMoviles(){
@@ -97,6 +97,7 @@ class Cambios extends Component
         $this->cambio->tiers_id = Moviles::find($value)->tiers_id;
         $this->actualizarIdeal();
         $this->listaChoferes();
+        $this->cambio->choferes_id = $this->choferes->first() ? $this->choferes->first()->id : 0;
     }
 
     public function updatedCambioChoferesId($value){

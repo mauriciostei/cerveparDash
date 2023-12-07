@@ -11,7 +11,7 @@ class Procesar extends Component
 
     public function rules(){
         return [
-            'aprobacion.observacion_resolucion' => 'required',
+            'aprobacion.observacion_resolucion' => '',
         ];
     }
 
