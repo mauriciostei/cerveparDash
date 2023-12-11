@@ -112,6 +112,11 @@ class RecorridosController extends Controller
                 1 => 0,
                 2 => 0,
             );
+            $count2 =array(
+                0 => 0,
+                1 => 0,
+                2 => 0,
+            );
             /*si vienen valores desconocidos o que no se pueden hallar*/
             if( $chapa !="unknown" && $chapa != "######"){
                 /*verifica que el ultimo caracter no sea # */
@@ -121,32 +126,50 @@ class RecorridosController extends Controller
                     /*Reemplazar seccion incorrecta en los errores ya conocidos*/
 
                     /*-------------Hallar la chapa que mas se aproxima en la bd----------------------------*/
-                    // aún no se ha encontrado la distancia más corta
+                    // aÃºn no se ha encontrado la distancia mÃ¡s corta
                     $closest = 'nada';
+                    $closest2 = 'nada';
                     $shortest = -1;
+                    $shortest2 = -1;
                     $moviles= Moviles::all();
-                    // bucle a través de las palabras para encontrar la más cercana
+                    // bucle a travÃ©s de las palabras para encontrar la mÃ¡s cercana
                     foreach ($moviles as $movil) {
                         // calcula la distancia entre la palabra de entrada
                         // y la palabra actual
 
                         $lev = levenshtein($chapa,$movil->chapa);
+                        $lev2 = levenshtein($chapa,$movil->chapa_trasera);
 
                         // verifica por una coincidencia exacta
                         if ($lev == 0) {
-                            // la palabra más cercana es esta (coincidencia exacta)
+                            // la palabra mÃ¡s cercana es esta (coincidencia exacta)
                             $closest = $movil->chapa;
                             $shortest = 0;
                             // salir del bucle ya que se ha encontrado una coincidencia exacta
                             break;
                         }
+
+                        // verifica por una coincidencia exacta
+                        if ($lev2 == 0) {
+                            // la palabra mÃ¡s cercana es esta (coincidencia exacta)
+                            $closest2 = $movil->chapa_trasera;
+                            $shortest2 = 0;
+                            // salir del bucle ya que se ha encontrado una coincidencia exacta
+                            break;
+                        }
                         // si esta distancia es menor que la siguiente distancia
-                        // más corta o si una siguiente palabra más corta aun no se ha encontrado
+                        // mÃ¡s corta o si una siguiente palabra mÃ¡s corta aun no se ha encontrado
                         if (($lev <= $shortest || $shortest < 0) && ( $lev < 2 )) {
-                            // establece la coincidencia más cercana y la distancia más corta
+                            // establece la coincidencia mÃ¡s cercana y la distancia mÃ¡s corta
                             $closest  = $movil->chapa;
                             $shortest = $lev;
                             $count[$lev]++;
+                        }
+                         if (($lev2 <= $shortest2 || $shortest2 < 0) && ( $lev2 < 2 )) {
+                            // establece la coincidencia mÃ¡s cercana y la distancia mÃ¡s corta
+                            $closest2  = $movil->chapa_trasera;
+                            $shortest2 = $lev2;
+                            $count2[$lev2]++;
                         }
                     }
                     /*retornamos la chapa que mas se aproximo */
@@ -154,9 +177,12 @@ class RecorridosController extends Controller
                     /*si shortest es menor a 3 se tomas las aproximaciones con 2 cambios posibles para disminuir los errores
                     si count es uno solo hay una aproximacion posible
                     */
-                    if($shortest < 2 && $shortest !=-1 && $count[$shortest] == 1){
-                            $chapa = $closest;
-                            Log::info('--El mas cercano es $Closest:'. $closest);
+                    if(($shortest < 2 && $shortest !=-1 && $count[$shortest] == 1) || ($shortest2 < 2 && $shortest2 !=-1 && $count2[$shortest2] == 1)){
+                        if($shortest>$shortest2){
+                            $closest=$closest2;
+                        }
+                        $chapa = $closest;
+                        Log::info('--El mas cercano es $Closest:'. $closest);
                     }
                 }
             }
