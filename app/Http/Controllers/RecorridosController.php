@@ -178,11 +178,11 @@ class RecorridosController extends Controller
                     si count es uno solo hay una aproximacion posible
                     */
                     if(($shortest < 2 && $shortest !=-1 && $count[$shortest] == 1) || ($shortest2 < 2 && $shortest2 !=-1 && $count2[$shortest2] == 1)){
-                        if($shortest>$shortest2){
-                            $closest=$closest2;
-                        }
-                        $chapa = $closest;
-                        Log::info('--El mas cercano es $Closest:'. $closest);
+                            if($shortest>$shortest2 && $shortest2 !=-1){
+                               $closest=$closest2;
+                            }
+                            $chapa = $closest;
+                            Log::info('--El mas cercano es $Closest:'. $closest);
                     }
                 }
             }
@@ -199,7 +199,7 @@ class RecorridosController extends Controller
             }
     
             if($sensor && $movil){
-                if($movil->tiers_id==1 || (date('H')>=5 && date('H')<=21)){
+                if($movil->tiers_id==1 || (date('H')>=4 && date('H')<=23)){
                     $fechaHora = date('Y-m-d H:i:s');
 
                     $ruta = Recorridos::whereDate('inicio', date('Y-m-d'))->where('moviles_id', $movil->id)->where('puntos_id', env('PUNTO_INICIO'))->first();
