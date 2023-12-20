@@ -233,7 +233,7 @@ class RecorridosController extends Controller
                 $chofer = Choferes::where('documento', $item->user_id->user_id)->where('activo', true)->first();
 
                 if($sensor && $chofer){
-                    if($chofer->tiers_id==1 || (date('H')>=5 && date('H')<=21)){
+                    if($chofer->tiers_id==1 || (date('H')>=4 && date('H')<=23)){
                         $fechaHora = date('Y-m-d H:i:s', strtotime($item->datetime));;
                         $this->ingresarRecorrido($sensor, $chofer->tiers_id, 'choferes_id', $chofer->id, $fechaHora);
                     }
