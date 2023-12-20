@@ -18,10 +18,9 @@
                         <th>Movil</th>
                         <th>En Ruta</th>
                         <th>Control 1</th>
-                        <th>Control 2</th>
-                        <th>Envases</th>
-                        <th>Fin Envases</th>
                         <th>Descarga</th>
+                        <th>Envases</th>
+                        <th>Parking</th>
                         <th>Espera</th>
                         <th>Liquidación</th>
                         <th>Caja</th>
@@ -37,7 +36,6 @@
                             {{$this->getHTML($item->cantidad_oot_ruta, $item->cantidad_ruta)}}
                             {{$this->getHTML($item->cantidad_oot_control1, $item->cantidad_control1)}}
                             {{$this->getHTML($item->cantidad_oot_control2, $item->cantidad_control2)}}
-                            {{$this->getHTML($item->cantidad_oot_envases, $item->cantidad_envases)}}
                             {{$this->getHTML($item->cantidad_oot_fin_envases, $item->cantidad_fin_envases)}}
                             {{$this->getHTML($item->cantidad_oot_descarga, $item->cantidad_descarga)}}
                             {{$this->getHTML($item->cantidad_oot_espera, $item->cantidad_espera)}}

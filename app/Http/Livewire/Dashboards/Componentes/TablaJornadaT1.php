@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Dashboards\Componentes;
 
 use App\Traits\CalculateColorT1;
+use App\Traits\CorrespondeViaje;
 use App\Traits\ExportarExcel;
 use App\Traits\TurnoJornadaT1;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,7 @@ class TablaJornadaT1 extends Component
     use CalculateColorT1;
     use TurnoJornadaT1;
     use ExportarExcel;
+    use CorrespondeViaje;
 
     public $desde;
     public $hasta;
@@ -32,22 +34,23 @@ class TablaJornadaT1 extends Component
     }
 
     public function exportar(){
-        $columns = array('Tiers', 'Fecha', 'Chofer', 'Movil', 'T. Espera', 'T. Atendimiento', 'Permanencia');
+        $columns = array('Tiers', 'Fecha', 'Chofer', 'Movil', 'Corresponde', 'T. Espera', 'T. Atendimiento', 'Permanencia');
 
-        $columnsTaken = Array('tiers_nombre', 'fecha', 'chofer_nombre', 'movil_nombre', 'espera', 'atendimiento', 'ttotal');
-
-        return $this->getFile('JornadaT1.xls', $columns, $this->jornada, $columnsTaken);
-    }
-
-    public function corresponde($fecha, $movil, $chofer, $viaje){
-        $query = DB::select(DB::raw("select corresponde
-        from planes p
-            join choferes_moviles_planes cmp on p.id = cmp.planes_id
-        where p.fecha = '$fecha'
-            and moviles_id = $movil
-            and choferes_id = $chofer
-            and viaje = $viaje"));
-        return $query[0]->corresponde ? 'SI' : 'NO';
+        $datos = Array();
+        foreach($this->jornada as $jornada):
+            $datos[] = Array(
+                $jornada['tiers_nombre']
+                , $jornada['fecha']
+                , $jornada['chofer_nombre']
+                , $jornada['movil_nombre']
+                , $this->corresponde($jornada['fecha'], $jornada['moviles_id'], $jornada['choferes_id'], $jornada['viaje'])
+                , $jornada['espera']
+                , $jornada['atendimiento']
+                , $jornada['ttotal']
+            );
+        endforeach;
+        
+        return $this->getFile('JornadaT1.xls', $columns, $datos);
     }
 
     public function getInfo(){

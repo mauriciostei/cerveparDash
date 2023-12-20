@@ -3,14 +3,17 @@
 namespace App\Http\Livewire\Dashboards\Componentes;
 
 use App\Models\Alertas;
+use App\Traits\CorrespondeViaje;
 use App\Traits\DifTime;
-use DateTime;
+use App\Traits\ExportarExcel;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class TablaTMAGeneral extends Component
 {
     use DifTime;
+    use CorrespondeViaje;
+    use ExportarExcel;
 
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -44,50 +47,29 @@ class TablaTMAGeneral extends Component
             ->take(2000)
         ->get();
 
-        $fileName = 'HistorialAlertas.xls';
+        $columns = array('Centro de Distribución', 'Movil', 'Chofer', 'Corresponde', 'Hora Detectada', 'Hora Fin', 'Causa Raíz', 'Causa General', 'Trabajado por', 'Observaciones');
 
-        $headers = array(
-            "Content-type"        => "application/vnd.ms-excel;",
-            "Content-Disposition" => "attachment; filename=$fileName",
-            "Pragma"              => "no-cache",
-            "Expires"             => "0"
-        );
-
-        $columns = array(
-            'Centro de Distribución'
-            , 'Movil'
-            , 'Chofer'
-            , 'Hora Detectada'
-            , 'Hora Fin'
-            , 'Causa Raíz'
-            , 'Causa General'
-            , 'Trabajado por'
-            , 'Observaciones'
-        );
-
-        $callback = function() use($alertas, $columns) {
-            $file = fopen('php://output', 'w');
-            fputcsv($file, $columns,"\t");
-
-            foreach ($alertas as $m) {
-
-                $linea = array(
-                    env('LOCALIDAD')
-                    , $m->recorridos->moviles->nombre
-                    , $m->recorridos->choferes->nombre
-                    , $m->created_at
-                    , $m->fin ? $m->fin : $this->difTime($m->created_at)
-                    , $m->causa_raizs_id ? $m->causasRaiz->nombre : '-'
-                    , $m->causas_id ? $m->causas->nombre : '-'
-                    , $m->users_id ? $m->users->name : '-'
-                    , $m->observaciones
-                );
-                fputcsv($file, $linea,"\t");
-            }
-            fclose($file);
-        };
-
-        return response()->stream($callback, 200, $headers);
+        $datos = Array();
+        foreach($alertas as $item):
+            $datos[] = Array(
+                env('LOCALIDAD')
+                , $item->recorridos->moviles->nombre
+                , $item->recorridos->choferes->nombre
+                , $this->corresponde(
+                    date('Y-m-d', strtotime($item->recorridos->inicio))
+                    , $item->recorridos->moviles_id
+                    , $item->recorridos->choferes_id
+                    , $item->recorridos->viaje)
+                , $item->created_at
+                , $item->fin ? $item->fin : $this->difTime($item->created_at)
+                , $item->causa_raizs_id ? $item->causasRaiz->nombre : '-'
+                , $item->causas_id ? $item->causas->nombre : '-'
+                , $item->users_id ? $item->users->name : '-'
+                , $item->observaciones
+            );
+        endforeach;
+        
+        return $this->getFile('HistorialAlertas.xls', $columns, $datos);
     }
 
     public function render()

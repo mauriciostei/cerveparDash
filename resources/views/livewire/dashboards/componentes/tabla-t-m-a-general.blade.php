@@ -12,6 +12,7 @@
                         <th>#</th>
                         <th class="text-center">Móvil</th>
                         <th class="text-center">Chofer</th>
+                        <th class="text-center">Corresponde</th>
                         <th>Inicio Jornada</th>
                         <th>Inicio Alerta</th>
                         <th>TMA Total</th>
@@ -26,6 +27,12 @@
                             <td> {{$item->id}} </td>
                             <td class="text-center"> {{$item->recorridos->moviles->nombre}}  </td>
                             <td class="text-center"> {{$item->recorridos->choferes->nombre}} </td>
+                            <td class="text-center"> {{ $this->corresponde(
+                                    date('Y-m-d', strtotime($item->recorridos->inicio))
+                                    , $item->recorridos->moviles_id
+                                    , $item->recorridos->choferes_id
+                                    , $item->recorridos->viaje)
+                                     }} </td>
                             <td> {{$item->recorridos->inicio}} </td>
                             <td> {{$item->created_at}} </td>
                             <td> 
