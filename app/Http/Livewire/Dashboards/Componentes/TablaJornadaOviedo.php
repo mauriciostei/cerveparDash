@@ -36,9 +36,23 @@ class TablaJornadaOviedo extends Component
     public function exportar(){
         $columns = array('Tiers', 'Fecha', 'Chofer', 'Movil', 'TML', 'TR', 'T. Interno', 'T. Financiero', 'T. Warehouse', 'Jornada');
 
-        $columnsTaken = Array('tiers_nombre', 'fecha', 'chofer_nombre', 'movil_nombre', 'tml', 'tr', 'tmi', 'tfinanciero', 'warehouse', 'ttotal');
+        $datos = Array();
+        foreach($this->jornada as $jornada):
+            $datos[] = Array(
+                $jornada['tiers_nombre'],
+                $jornada['fecha'],
+                $jornada['chofer_nombre'],
+                $jornada['movil_nombre'],
+                $jornada['tml'],
+                $jornada['tr'],
+                $jornada['tmi'],
+                $jornada['tfinanciero'],
+                $jornada['warehouse'],
+                $jornada['ttotal']
+            );
+        endforeach;
 
-        return $this->getFile('JornadaT2.xls', $columns, $this->jornada, $columnsTaken);
+        return $this->getFile('JornadaT2.xls', $columns, $datos);
     }
 
     public function getInfo(){

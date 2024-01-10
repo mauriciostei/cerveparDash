@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dashboards\Componentes;
 
+use App\Traits\ExportarExcel;
 use App\Traits\JornadaTotalTime;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -9,6 +10,7 @@ use Livewire\Component;
 class TablaJornada extends Component
 {
     use JornadaTotalTime;
+    use ExportarExcel;
 
     public $desde;
     public $hasta;
@@ -34,59 +36,28 @@ class TablaJornada extends Component
     }
 
     public function exportar(){
-        $jornada = $this->jornada;
+        $columns = array('Tiers', 'Fecha', 'Chofer', 'Movil', 'TML', 'TR', 'T. Interno', 'Liquidación', 'Caja', 'T. Financiero', 'T. Warehouse', 'T. de desplazamiento', 'Jornada');
 
-        $fileName = 'JornadaT2.xls';
-
-        $headers = array(
-            "Content-type"        => "application/vnd.ms-excel;",
-            "Content-Disposition" => "attachment; filename=$fileName",
-            "Pragma"              => "no-cache",
-            "Expires"             => "0"
-        );
-
-        $columns = array(
-            'Tiers'
-            , 'Fecha'
-            , 'Chofer'
-            , 'Movil'
-            , 'TML'
-            , 'TR'
-            , 'T. Interno'
-            , 'Liquidación'
-            , 'Caja'
-            , 'T. Financiero'
-            , 'T. Warehouse'
-            , 'T. de desplazamiento'
-            , 'Jornada'
-        );
-
-        $callback = function() use($jornada, $columns) {
-            $file = fopen('php://output', 'w');
-            fputcsv($file, $columns,"\t");
-
-            foreach ($jornada as $item) {
-                $linea = array(
-                    $item['tiers_nombre'],
-                    $item['fecha'],
-                    $item['chofer_nombre'],
-                    $item['movil_nombre'],
-                    $item['tml'],
-                    $item['tr'],
-                    $item['tmi'],
-                    $item['liquidacion'],
-                    $item['caja'],
-                    $item['tfinanciero'],
-                    $item['warehouse'],
-                    $item['desplazamiento'],
-                    $this->getTotalTime([$item['tml'], $item['tr'], $item['tmi']]),
-                );
-                fputcsv($file, $linea,"\t");
-            }
-            fclose($file);
-        };
-
-        return response()->stream($callback, 200, $headers);
+        $datos = Array();
+        foreach($this->jornada as $jornada):
+            $datos[] = Array(
+                $jornada['tiers_nombre'],
+                $jornada['fecha'],
+                $jornada['chofer_nombre'],
+                $jornada['movil_nombre'],
+                $jornada['tml'],
+                $jornada['tr'],
+                $jornada['tmi'],
+                $jornada['liquidacion'],
+                $jornada['caja'],
+                $jornada['tfinanciero'],
+                $jornada['warehouse'],
+                $jornada['desplazamiento'],
+                $this->getTotalTime([$jornada['tml'], $jornada['tr'], $jornada['tmi']]),
+            );
+        endforeach;
+        
+        return $this->getFile('JornadaT2.xls', $columns, $datos);
     }
 
     public function getInfo(){
