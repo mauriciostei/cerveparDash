@@ -77,7 +77,7 @@
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0"> 
                                                 {{-- {{round($plan->acuraccy(),0)}} %  --}}
-                                                0%
+                                                {{ $plan->Accuracy }}%
                                             </p>
                                         </td>
                                         <td>

@@ -26,4 +26,36 @@ class Planes extends Model
         $res = DB::table('acuraccy')->where('fecha', $this->fecha)->first();
         return $res->porcentaje;
     }
+
+    public function getAccuracyAttribute(){
+        $total = 0;
+        $captados = 0;
+
+        $resulset =  DB::select("
+        select cmp.choferes_id, cmp.moviles_id, cmp.viaje, count(distinct r.moviles_id) encontrado
+        from planes p
+            join choferes_moviles_planes cmp on p.id = cmp.planes_id
+            join moviles m on m.id = cmp.moviles_id
+            left join recorridos r on 
+                cast(r.inicio as date) = p.fecha
+                and r.moviles_id = cmp.moviles_id
+                and r.choferes_id = cmp.choferes_id
+                and r.viaje = cmp.viaje
+        where p.id = $this->id
+            and m.tiers_id = 2
+        group by cmp.choferes_id, cmp.moviles_id, cmp.viaje
+        ");
+
+        foreach($resulset as $res):
+            $total++;
+            $captados += $res->encontrado;
+        endforeach;
+
+        if($total == 0)
+            return 100;
+        if($captados == 0)
+            return 0;
+        if($total > 0 && $captados > 0)
+            return round( ($captados / $total) * 100, 0);
+    }
 }
