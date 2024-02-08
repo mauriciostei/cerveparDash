@@ -18,12 +18,6 @@ return new class extends Migration
             $table->index('recorridos_id', 'recorridos_id');
             $table->index('viaje', 'viaje');
             $table->index('inicio', 'inicio');
-
-            DB::statement('CREATE INDEX inicio_as_date
-            ON public.recorridos USING btree
-            ((cast(inicio as date)) ASC NULLS LAST)
-            INCLUDE(inicio)
-            WITH (deduplicate_items=True);');
         });
     }
 
