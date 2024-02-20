@@ -14,6 +14,9 @@ trait CorrespondeViaje{
             and moviles_id = $movil
             and choferes_id = $chofer
             and viaje = $viaje"));
+
+        if(count($query) == 0){ return 'NO'; }
+
         return $query[0]->corresponde ? 'SI' : 'NO';
     }
     
