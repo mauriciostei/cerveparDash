@@ -57,6 +57,9 @@
             </div>
         </div>
 
+        <div class="card w-100 shadow">
+            <button class="btn btn-primary shadow mb-0 mt-0" wire:click.prevent="exportar">Exportar</button>
+        </div>
         <div class="table-responsive mt-3 card card-body">
             <table class="table table-sm table-striped table-hover">
                 <thead>
