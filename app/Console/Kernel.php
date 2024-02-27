@@ -37,8 +37,9 @@ class Kernel extends ConsoleKernel
             $inicial = date('c', strtotime(now()." +3 hours -1 minute -30 seconds"));
             $final = date('c', strtotime("$inicial +1 minutes"));
             $r->ingresarPersona($inicial, $final);
-
         })->everyMinute();
+
+        $schedule->command('logs:clear')->weekly();
     }
 
     protected function commands()
