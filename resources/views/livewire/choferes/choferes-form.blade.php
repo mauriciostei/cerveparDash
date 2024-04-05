@@ -49,6 +49,24 @@
                             @endforeach
                         </select>
                     </div>
+                    @error('chofer.operadoras_id')
+                        <p class='text-danger inputerror'>{{ $message }} </p>
+                    @enderror
+
+                    <br/>
+
+                    <div class="input-group input-group-static mt-3">
+                        <label>Ayudante</label>
+                        <select class="form-control" wire:model="chofer.ayudantes_id">
+                            <option>--Seleccione su Ayudante--</option>
+                            @foreach($ayudantes as $ayudante)
+                                <option value="{{$ayudante->id}}"> {{$ayudante->nombre}} </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @error('chofer.ayudantes_id')
+                        <p class='text-danger inputerror'>{{ $message }} </p>
+                    @enderror
 
                     <br/><br/>
 

@@ -65,7 +65,7 @@ class PlanCrear extends Component
         $this->plan->ultima_actualizacion = now();
         $this->plan->save();
 
-        $this->plan->moviles()->attach($this->movil, ['choferes_id' => $this->chofer, 'viaje' => $this->viaje, 'hora_esperada' => null]);
+        $this->plan->moviles()->attach($this->movil, ['choferes_id' => $this->chofer, 'viaje' => $this->viaje, 'hora_esperada' => null, 'ayudantes_id' => $chofer->ayudantes_id]);
 
         session()->flash('message', 'Plan guardado!');
         return redirect()->to('/planes/'.$this->plan->id);

@@ -5,6 +5,8 @@ use App\Http\Livewire\Alertas\AlertasForm;
 use App\Http\Livewire\Alertas\AlertasTma;
 use App\Http\Livewire\Aprobaciones\Procesar;
 use App\Http\Livewire\Auth\Login;
+use App\Http\Livewire\Ayudantes\AyudantesForm;
+use App\Http\Livewire\Ayudantes\AyudantesList;
 use App\Http\Livewire\Causas\CausasForm;
 use App\Http\Livewire\Causas\CausasList;
 use App\Http\Livewire\Causas\CausasRaizForm;
@@ -105,6 +107,9 @@ Route::middleware('auth','web')->group(function(){
 
     Route::get('puntos', PuntosList::class)->name('puntosList')->can('viewAny', \App\Models\Puntos::class);
     Route::get('puntos/{id}', PuntosForm::class)->name('puntosForm');
+
+    Route::get('ayudantes', AyudantesList::class)->name('ayudantesList')->can('viewAny', \App\Models\Ayudantes::class);
+    Route::get('ayudantes/{id}', AyudantesForm::class)->name('ayudantesForm');
 
     Route::get('planes', PlanesList::class)->name('planesList')->can('viewAny', \App\Models\Planes::class);
     Route::get('planes/{id}', PlanesForm::class)->name('planesForm');

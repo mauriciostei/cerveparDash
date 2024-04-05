@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Ayudantes;
 use App\Models\CausaRaiz;
 use App\Models\Causas;
 use App\Models\Choferes;
@@ -16,6 +17,7 @@ use App\Models\Sensores;
 use App\Models\Soluciones;
 use App\Models\Tiers;
 use App\Models\User;
+use App\Policies\AyudantesPolicy;
 use App\Policies\CausasPolicy;
 use App\Policies\CausasRaizPolicy;
 use App\Policies\ChoferesPolicy;
@@ -55,6 +57,7 @@ class AuthServiceProvider extends ServiceProvider
         Causas::class => CausasPolicy::class,
         CausaRaiz::class => CausasRaizPolicy::class,
         Limites::class => LimitesPolicy::class,
+        Ayudantes::class => AyudantesPolicy::class,
     ];
 
     /**

@@ -43,6 +43,10 @@ class Recorridos extends Model
         return $this->belongsTo(Moviles::class);
     }
 
+    public function ayudantes(){
+        return $this->belongsTo(Ayudantes::class);
+    }
+
     public function choferes(){
         return $this->belongsTo(Choferes::class);
     }

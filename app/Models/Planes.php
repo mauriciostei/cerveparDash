@@ -15,7 +15,7 @@ class Planes extends Model
     }
 
     public function moviles(){
-        return $this->belongsToMany(Moviles::class, 'choferes_moviles_planes', 'planes_id', 'moviles_id')->withPivot(['viaje', 'choferes_id', 'hora_esperada'])->withTimestamps()->orderByPivot('moviles.nombre');
+        return $this->belongsToMany(Moviles::class, 'choferes_moviles_planes', 'planes_id', 'moviles_id')->withPivot(['viaje', 'choferes_id', 'hora_esperada', 'ayudantes_id'])->withTimestamps()->orderByPivot('moviles.nombre');
     }
 
     public function users(){

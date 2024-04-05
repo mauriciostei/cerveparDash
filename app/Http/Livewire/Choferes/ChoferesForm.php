@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Choferes;
 
+use App\Models\Ayudantes;
 use App\Models\Choferes;
 use App\Models\Operadoras;
 use App\Models\Tiers;
 use App\Models\UserChoferes;
 use Exception;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class ChoferesForm extends Component
@@ -15,20 +15,29 @@ class ChoferesForm extends Component
     public Choferes $chofer;
     public $tiers;
     public $operadoras;
+    public $ayudantes;
 
-    protected $rules = [
-        'chofer.nombre' => 'required|string|min:5',
-        'chofer.documento' => 'required',
-        'chofer.tiers_id' => 'required',
-        'chofer.operadoras_id' => '',
-        'chofer.activo' => '',
-    ];
+    public function rules(){
+        return [
+            'chofer.nombre' => 'required|string|min:5',
+            'chofer.documento' => 'required',
+            'chofer.tiers_id' => 'required',
+            'chofer.operadoras_id' => '',
+            'chofer.ayudantes_id' => 'unique:choferes,ayudantes_id'.($this->chofer->id > 0 ? ",".$this->chofer->id : ""),
+            'chofer.activo' => '',
+        ];
+    }
 
     protected $messages = [
         'chofer.nombre.required' => 'El campo nombre no puede ser nulo',
         'chofer.nombre.min' => 'El nombre debe contener al menos 5 caracteres',
         'chofer.documento.required' => 'El numero de documento es requerido',
+        'chofer.ayudantes_id' => 'Este ayudante se encuentra actualmente asignado a otro chofer',
     ];
+
+    public function updated($property){
+        $this->validateOnly($property);
+    }
 
     public function mount($id){
         if($id == 0){
@@ -39,6 +48,7 @@ class ChoferesForm extends Component
         }
         $this->tiers = Tiers::all();
         $this->operadoras = Operadoras::where('activo', true)->get();
+        $this->ayudantes = Ayudantes::all();
     }
 
     public function save(){

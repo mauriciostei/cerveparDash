@@ -38,6 +38,7 @@ trait NuevoRecorrido{
                 $recorrido->tiers_id = $tier;
                 $recorrido->moviles_id = $planificado[0]->moviles_id;
                 $recorrido->choferes_id = $planificado[0]->choferes_id;
+                $recorrido->ayudantes_id = $planificado[0]->ayudantes_id;
                 $recorrido->viaje = 1;
 
                 Log::info('Ingresó como planificado.Recorrido:');

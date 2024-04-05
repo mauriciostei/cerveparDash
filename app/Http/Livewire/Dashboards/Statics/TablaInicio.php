@@ -7,6 +7,7 @@ use App\Models\Recorridos;
 use App\Models\StoreFilter;
 use App\Traits\ColorByTime;
 use App\Traits\Diftime;
+use App\Traits\ExportarExcel;
 use App\Traits\StoreFilterGet;
 use App\Traits\TimeToInt;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,7 @@ class TablaInicio extends Component
     use TimeToInt;
     use ColorByTime;
     use StoreFilterGet;
+    use ExportarExcel;
 
     public $recorridos;
 
@@ -70,65 +72,38 @@ class TablaInicio extends Component
     public function historial(){
         $recorridos = Recorridos::orderBy('id', 'desc')->take(10000)->get();
 
-        $fileName = 'Historial.xls';
+        $columns = array('Hora Inicio', 'Hora Fin', 'Hora Limite', 'Hora Ponderada', 'Recorrido', 'Tier', 'Movil', 'Chofer', 'Ayudante', 'Punto de control', 'Estado', 'Aplica');
 
-        $headers = array(
-            "Content-type"        => "application/vnd.ms-excel;",
-            "Content-Disposition" => "attachment; filename=$fileName",
-            "Pragma"              => "no-cache",
-            "Expires"             => "0"
-        );
-
-        $columns = array(
-            'Hora Inicio'
-            , 'Hora Fin'
-            , 'Hora Limite'
-            , 'Hora Ponderada'
-            , 'Recorrido'
-            , 'Tier'
-            , 'Movil'
-            , 'Chofer'
-            , 'Punto de control'
-            , 'Estado'
-            , 'Aplica'
-        );
-
-        $callback = function() use($recorridos, $columns) {
-            $file = fopen('php://output', 'w');
-            fputcsv($file, $columns,"\t");
-
-            foreach ($recorridos as $m) {
-
-                //Evalúa el tiempo en función a los puntos de control
-                $aplica = 'SI';
-                if($m->fin){
-                    $tiempo = strtotime($m->fin) - strtotime($m->inicio);
-                    $min = $this->timeToInt($m->puntos->minimo);
-                    $max = $this->timeToInt($m->puntos->maximo);
-                    if($tiempo <= $min || $tiempo >= $max){
-                        $aplica = 'NO';
-                    }
+        $datos = Array();
+        foreach($recorridos as $m):
+            //Evalúa el tiempo en función a los puntos de control
+            $aplica = 'SI';
+            if($m->fin){
+                $tiempo = strtotime($m->fin) - strtotime($m->inicio);
+                $min = $this->timeToInt($m->puntos->minimo);
+                $max = $this->timeToInt($m->puntos->maximo);
+                if($tiempo <= $min || $tiempo >= $max){
+                    $aplica = 'NO';
                 }
-
-                $linea = array(
-                    $m->inicio
-                    , $m->fin
-                    , $m->target
-                    , $m->ponderacion
-                    , $m->viaje
-                    , $m->tiers->nombre
-                    , $m->moviles ? $m->moviles->nombre : ''
-                    , $m->choferes ? $m->choferes->nombre : ''
-                    , $m->puntos->nombre
-                    , $m->estado
-                    , $aplica
-                );
-                fputcsv($file, $linea,"\t");
             }
-            fclose($file);
-        };
 
-        return response()->stream($callback, 200, $headers);
+            $datos[] = Array(
+                $m->inicio
+                , $m->fin
+                , $m->target
+                , $m->ponderacion
+                , $m->viaje
+                , $m->tiers->nombre
+                , $m->moviles ? $m->moviles->nombre : ''
+                , $m->choferes ? $m->choferes->nombre : ''
+                , $m->ayudantes ? $m->ayudantes->nombre : ''
+                , $m->puntos->nombre
+                , $m->estado
+                , $aplica
+            );
+        endforeach;
+        
+        return $this->getFile('Historial.xls', $columns, $datos);
     }
 
     public function render()

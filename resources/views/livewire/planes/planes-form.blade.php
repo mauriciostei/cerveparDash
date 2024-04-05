@@ -57,6 +57,7 @@
                                         <th>Movil</th>
                                         <th>Chofer</th>
                                         <th>Operador Logístico</th>
+                                        <th>Ayudante</th>
                                         <th>Viaje</th>
                                         <th>Captado</th>
                                         <th></th>
@@ -68,6 +69,7 @@
                                             <td> {{$m->nombre}} </td>
                                             <td> {{$choferes->find($m->pivot->choferes_id)->nombre}} </td>
                                             <td> @if($choferes->find($m->pivot->choferes_id)->operadoras) {{$choferes->find($m->pivot->choferes_id)->operadoras->nombre}} @endif </td>
+                                            <td> @if($choferes->find($m->pivot->choferes_id)->ayudantes) {{$choferes->find($m->pivot->choferes_id)->ayudantes->nombre}} @endif </td>
                                             <td> {{$m->pivot->viaje}} </td>
                                             <td>
                                                 @if($recorridos->where('moviles_id', $m->id)->where('choferes_id', $m->pivot->choferes_id)->where('viaje', $m->pivot->viaje)->first())

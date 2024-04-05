@@ -117,7 +117,7 @@ class PlanImportar extends Component
             }
 
             if(!$yaPlanificado){
-                $this->plan->moviles()->attach($movil->id, ['choferes_id' => $chofer->id, 'viaje' => $viaje, 'hora_esperada' => $hora]);
+                $this->plan->moviles()->attach($movil->id, ['choferes_id' => $chofer->id, 'viaje' => $viaje, 'hora_esperada' => $hora, 'ayudantes_id' => $chofer->ayudantes_id]);
             }
 
         endforeach;
