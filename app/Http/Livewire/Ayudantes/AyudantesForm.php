@@ -13,6 +13,7 @@ class AyudantesForm extends Component
         return [
             'ayudante.nombre' => 'required|min:5',
             'ayudante.cedula' => 'required|min:3|unique:ayudantes,cedula'.($this->ayudante->id > 0 ? ",".$this->ayudante->id : ""),
+            'ayudante.activo' => 'boolean',
         ];
     }
 

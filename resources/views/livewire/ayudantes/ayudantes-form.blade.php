@@ -26,7 +26,18 @@
                         <p class='text-danger inputerror'>{{ $message }} </p>
                     @enderror
 
-                    <br/>
+                    <br/><br/>
+
+                    <div class="form-check form-switch">
+                        <input wire:model="ayudante.activo" class="form-check-input" type="checkbox" >
+                        <label class="form-check-label">Activo</label>
+                    </div>
+
+                    @if($ayudante->chofer)
+                        <div class="d-flex flex-row">
+                            Ayudante asignado al chofer: <b>{{$ayudante->chofer->nombre}}</b>
+                        </div>
+                    @endif
 
                     <div class="text-center">
                         <button type="submit" class="btn bg-gradient-success w-100 my-4 mb-2">Guardar</button>

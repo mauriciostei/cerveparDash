@@ -58,7 +58,7 @@
                     <div class="input-group input-group-static mt-3">
                         <label>Ayudante</label>
                         <select class="form-control" wire:model="chofer.ayudantes_id">
-                            <option>--Seleccione su Ayudante--</option>
+                            <option value="">--Seleccione su Ayudante--</option>
                             @foreach($ayudantes as $ayudante)
                                 <option value="{{$ayudante->id}}"> {{$ayudante->nombre}} </option>
                             @endforeach
