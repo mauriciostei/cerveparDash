@@ -23,7 +23,7 @@ class ChoferesForm extends Component
             'chofer.documento' => 'required',
             'chofer.tiers_id' => 'required',
             'chofer.operadoras_id' => '',
-            'chofer.ayudantes_id' => 'exclude_if:ayudantes_id,null|unique:choferes,ayudantes_id'.($this->chofer->id > 0 ? ",".$this->chofer->id : ""),
+            'chofer.ayudantes_id' => 'exclude_if:ayudantes_id,null'.($this->chofer->ayudantes_id ? '|unique:choferes,ayudantes_id'.($this->chofer->id ? ','.$this->chofer->id : '') : ''),
             'chofer.activo' => '',
         ];
     }
@@ -46,6 +46,7 @@ class ChoferesForm extends Component
         }else{
             $this->chofer = Choferes::find($id);
         }
+        $this->chofer->ayudantes_id = $this->chofer->ayudantes_id ? $this->chofer->ayudantes_id : '';
         $this->tiers = Tiers::all();
         $this->operadoras = Operadoras::where('activo', true)->get();
         $this->ayudantes = Ayudantes::where('activo', true)->get();
