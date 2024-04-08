@@ -40,8 +40,8 @@ class PlanCrear extends Component
         $this->plan = Planes::find($id);
         $this->plan->moviles;
 
-        $this->moviles = Moviles::all();
-        $this->choferes = Choferes::all();
+        $this->moviles = Moviles::where('activo', true)->get();
+        $this->choferes = Choferes::where('activo', true)->get();
     }
 
     public function agregar(){
