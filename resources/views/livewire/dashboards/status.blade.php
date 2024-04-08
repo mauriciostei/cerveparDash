@@ -16,7 +16,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            @forelse($recorridos->where('puntos_id', $punto->id)->where('tiers_id', $tier->id) as $r)
+                                            @forelse($recorridos->where('puntos_id', $punto->id)->where('tiers_id', $tier->id)->sortBy('id') as $r)
                                                 <div class="col text-center text-bold text-lg">
                                                     <span data-toggle="tooltip" data-placement="top" title="Hora de inicio {{ $r->inicio }}, hora target {{ $r->target }}">
                                                         @switch($r->estado)
