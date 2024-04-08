@@ -21,13 +21,13 @@
                                                     <span data-toggle="tooltip" data-placement="top" title="Hora de inicio {{ $r->inicio }}, hora target {{ $r->target }}">
                                                         @switch($r->estado)
                                                             @case('OnTime')
-                                                                <span class="text-success"> {{$r->moviles->nombre}} </span>
+                                                                <span class="text-success"> {{$r->moviles ? $r->moviles->nombre : ''}} </span>
                                                             @break
                                                             @case('OutOfTime')
-                                                                <span class="text-danger"> {{$r->moviles->nombre}} </span>
+                                                                <span class="text-danger"> {{$r->moviles ? $r->moviles->nombre : ''}} </span>
                                                             @break
                                                             @default
-                                                                <span class="text-warning"> {{$r->moviles->nombre}} </span>
+                                                                <span class="text-warning"> {{$r->moviles ? $r->moviles->nombre : ''}} </span>
                                                             @break
                                                         @endswitch
                                                     </span>
