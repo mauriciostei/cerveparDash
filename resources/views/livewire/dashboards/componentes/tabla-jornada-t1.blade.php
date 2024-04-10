@@ -18,6 +18,7 @@
                     <th class="text-center">Hora</th>
                     <th class="text-center">Turno</th>
                     <th class="text-center">Espera <sup style="color: darkturquoise;">(A)</sup> </th>
+                    <th class="text-center">Control 1 </th>
                     <th class="text-center">Atendimiento <sup style="color: darkturquoise;">(B)</sup> </th>
                     <th class="text-center">Permanencia <sup style="color: darkturquoise;">A + B</sup> </th>
                 </tr>
@@ -37,6 +38,7 @@
                         <td class="text-center"> {{ $this->getTurno($item->moviles_id, $item->choferes_id, $item->viaje, $item->fecha) }} </td>
 
                         <td class="text-center"> <span class="{{$this->getColor($item->espera, ENV('T_ESPERA'))}}">{{$item->espera}}</span> </td>
+                        <td class="text-center"> <span class="{{$this->getColor($item->control, ENV('T_CONTROL'))}}">{{$item->control}}</span> </td>
                         <td class="text-center"> <span class="{{$this->getColor($item->atendimiento, ENV('T_ATENDIMIENTO'))}}">{{$item->atendimiento}}</span> </td>
                         <td class="text-center"> <span class="{{$this->getColor($item->ttotal, ENV('T_PERMANENCIA'))}}">{{$item->ttotal}}</span> </td>
                     </tr>
