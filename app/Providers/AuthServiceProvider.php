@@ -99,6 +99,11 @@ class AuthServiceProvider extends ServiceProvider
             return $user->getPermisosByLink('jornadaT1')->leer;
         });
 
+        Gate::define('jornadafa', function($user){
+            // return $user->getPermisos(23)->leer;
+            return $user->getPermisosByLink('jornadafa')->leer;
+        });
+
         Gate::define('controlPuntos', function($user){
             // return $user->getPermisos(18)->leer;
             return $user->getPermisosByLink('controlPuntos')->leer;
