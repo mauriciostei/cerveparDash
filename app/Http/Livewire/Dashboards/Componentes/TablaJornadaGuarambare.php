@@ -9,7 +9,7 @@ use App\Traits\TurnoJornadaT1;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class TablaJornadaT1 extends Component
+class TablaJornadaGuarambare extends Component
 {
     use CalculateColorT1;
     use TurnoJornadaT1;
@@ -46,6 +46,7 @@ class TablaJornadaT1 extends Component
                 , $this->corresponde($jornada['fecha'], $jornada['moviles_id'], $jornada['choferes_id'], $jornada['viaje'])
                 , $this->getInicio($jornada['moviles_id'], $jornada['choferes_id'], $jornada['viaje'], $jornada['fecha'])
                 , $jornada['espera']
+                , $jornada['control']
                 , $jornada['atendimiento']
                 , $jornada['ttotal']
             );
@@ -65,6 +66,7 @@ class TablaJornadaT1 extends Component
             , 'moviles.nombre as movil_nombre'
             , DB::raw("cast(recorridos.inicio as date) as fecha")
             , DB::raw("sum( case when puntos.id in (".env('ESPERA').") then fin-inicio else '00:00:00' end ) espera")
+            , DB::raw("sum( case when puntos.id in (".env('CONTROL1').") then fin-inicio else '00:00:00' end ) control")
             , DB::raw("sum( case when puntos.id in (".env('ATENDIMIENTO').") then fin-inicio else '00:00:00' end ) atendimiento")
             , DB::raw("sum( fin-inicio ) ttotal")
         ])
@@ -84,6 +86,6 @@ class TablaJornadaT1 extends Component
     public function render()
     {
         $this->getInfo();
-        return view('livewire.dashboards.componentes.tabla-jornada-t1');
+        return view('livewire.dashboards.componentes.tabla-jornada-guarambare');
     }
 }
