@@ -18,15 +18,22 @@ trait NuevoRecorrido{
         $fechaHora = $fechaHora ?? date('Y-m-d H:i:s');
         $plan = Planes::whereDate('fecha', date('Y-m-d'))->first();
 
-        Log::info('Utilizando el plan:'.$plan->id);
+        Log::info("Utilizando el plan: $plan->id");
 
         if($plan){
             $planificado = DB::table('choferes_moviles_planes')->where('planes_id', $plan->id)->where($tipo_id, $id)->orderBy('viaje')->get();
 
-            if(count($planificado)>=1){
-    
+            if($planificado){
+                
+                $tipo_busqueda = $tipo_id;
+                $id_busqueda = $id;
+                if(count($planificado) == 1 && $planificado[0]->viaje > 1){
+                    $tipo_busqueda = ($tipo_id == 'moviles_id') ? 'choferes_id' : 'moviles_id';
+                    $id_busqueda = $plan[0]->$tipo_busqueda;
+                }
+
                 $ultimoRecorrido = Recorridos::whereDate('inicio', date('Y-m-d'))
-                    ->where($tipo_id, $id)
+                    ->where($tipo_busqueda, $id_busqueda)
                     ->orderByDesc('inicio')
                     ->orderByDesc('id')
                     ->first();
@@ -41,10 +48,8 @@ trait NuevoRecorrido{
                 $recorrido->ayudantes_id = $planificado[0]->ayudantes_id;
                 $recorrido->viaje = 1;
 
-                Log::info('Ingresó como planificado.Recorrido:');
-                Log::info($recorrido);
-                Log::info('Ultimo Recorrido es:');
-                Log::info($ultimoRecorrido);
+                Log::info("Ingresó como planificado.Recorrido: $recorrido");
+                Log::info("Ultimo Recorrido es: $ultimoRecorrido");
 
                 $tiempo = DB::table('puntos_tiers')->where('tiers_id', $recorrido->tiers_id)->where('puntos_id', $recorrido->puntos_id)->where('viaje', $recorrido->viaje)->first();
                 if($tiempo){
@@ -52,8 +57,7 @@ trait NuevoRecorrido{
                     $recorrido->ponderacion = $this->addTime($tiempo->ponderacion, $recorrido->target);
                 }else{
                     Log::info('SALIÓ SIN GUARDAR');
-                    Log::info('Ultimo recorrido quedó así:');
-                    Log::info($ultimoRecorrido);
+                    Log::info("Ultimo recorrido quedó así: $ultimoRecorrido");
                     return;
                 }
         
@@ -68,19 +72,20 @@ trait NuevoRecorrido{
 
                             $diferencia = $this->difTime($ultimoRecorrido->fin);
                             if($diferencia < '01:00:00' && $recorrido->tiers_id==1){
-                                Log::info('MENOS DE UNA HORA '.$diferencia);
-                                return false;
+                                Log::info("MENOS DE UNA HORA $diferencia");
+                                return;
                             }
 
                             $recorrido->viaje = 2;
                             $recorrido->moviles_id = $planificado[1]->moviles_id;
                             $recorrido->choferes_id = $planificado[1]->choferes_id;
+                            $recorrido->ayudantes_id = $planificado[1]->ayudantes_id;
                         }else{
                             Log::info('DATO DESCARTADO');
-                            return false;
+                            return;
                         }
                     }elseif($ultimoRecorrido->fin && $ultimoRecorrido->viaje==2){
-                        return false;
+                        return;
                     }
         
                     if($ultimoRecorrido->estado == 'OutOfTime'){
@@ -111,8 +116,12 @@ trait NuevoRecorrido{
                 }
         
                 $recorrido->save();
-                return true;
+                return $recorrido;
             }
+
+
+
+
         }
     }
 }

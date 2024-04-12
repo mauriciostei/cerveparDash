@@ -209,7 +209,7 @@ class RecorridosController extends Controller
 
                     $resultado = $this->ingresarRecorrido($sensor, $movil->tiers_id, 'moviles_id', $movil->id, $fechaHora);
                     if($resultado){
-                        return response()->json(["mensaje" => "Datos ingresado con éxito"]);
+                        return response()->json(["mensaje" => "Datos ingresado con éxito $resultado"]);
                     }else{
                         return response()->json(["mensaje" => "Recorrido no cumple con los requisitos para el guardado"]);
                     }
