@@ -63,15 +63,15 @@ class TablaJornada extends Component
     public function getInfo(){
 
         $tml = 'and (
-            exists(select r.inicio from recorridos r where cast(r.inicio as date) = cast("recorridos".inicio as date) and r.moviles_id = moviles.id and r.puntos_id='.env('RUTA').' limit 1)
+            exists(select r.inicio from recorridos r where cast(r.inicio as date) = cast("recorridos".inicio as date) and r.moviles_id = moviles.id and r.puntos_id='.env('RUTA').' and r.viaje = "recorridos".viaje limit 1)
             and
-            (select r.inicio from recorridos r where cast(r.inicio as date) = cast("recorridos".inicio as date) and r.moviles_id = moviles.id and r.puntos_id='.env('RUTA').' limit 1) >= inicio
+            (select r.inicio from recorridos r where cast(r.inicio as date) = cast("recorridos".inicio as date) and r.moviles_id = moviles.id and r.puntos_id='.env('RUTA').' and r.viaje = "recorridos".viaje limit 1) >= inicio
         )';
 
         $tmi = 'and (
-            exists(select r.fin from recorridos r where cast(r.inicio as date) = cast("recorridos".inicio as date) and r.moviles_id = moviles.id and r.puntos_id='.env('RUTA').' limit 1)
+            exists(select r.fin from recorridos r where cast(r.inicio as date) = cast("recorridos".inicio as date) and r.moviles_id = moviles.id and r.puntos_id='.env('RUTA').' and r.viaje = "recorridos".viaje limit 1)
             and
-            (select r.fin from recorridos r where cast(r.inicio as date) = cast("recorridos".inicio as date) and r.moviles_id = moviles.id and r.puntos_id='.env('RUTA').' limit 1) <= inicio
+            (select r.fin from recorridos r where cast(r.inicio as date) = cast("recorridos".inicio as date) and r.moviles_id = moviles.id and r.puntos_id='.env('RUTA').' and r.viaje = "recorridos".viaje limit 1) <= inicio
         )';
 
         $this->jornada = DB::table('recorridos')->select([
