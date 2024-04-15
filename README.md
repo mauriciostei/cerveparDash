@@ -38,6 +38,7 @@ Adicionalmente es necesario configurar las siguientes variables en el archivo `.
 
     # Variables globales
     LOCALIDAD= Nombre del centro de distribución (Entre comillas dobles).
+    SIGLAS= Siglas del centro de distribución.
     DOCKS= Código interno del sistema para los docks de Descarga
 
     # Variables para la tabla de jornadas
