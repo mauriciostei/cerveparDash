@@ -9,7 +9,7 @@
         <table class="table table-hover table-sm">
             <thead>
                 <tr>
-                    <th class="text-center">Tiers</th>
+                    <th class="text-center">Centro</th>
                     <th class="text-center">Viaje</th>
                     <th class="text-center">Fecha</th>
                     <th class="text-center">Choferes</th>
@@ -25,7 +25,7 @@
             <tbody>
                 @forelse($jornada as $item)
                     <tr>
-                        <td class="text-center"> {{$item->tiers_nombre}} </td>
+                        <td class="text-center"> {{env('SIGLAS')}} </td>
                         <td class="text-center"> {{$item->viaje}} </td>
                         <td class="text-center"> {{$item->fecha}} </td>
                         <td class="text-center"> {{$item->chofer_nombre}} </td>

@@ -34,12 +34,12 @@ class TablaJornadaT1 extends Component
     }
 
     public function exportar(){
-        $columns = array('Tiers', 'Fecha', 'Chofer', 'Movil', 'Corresponde', 'Hora', 'T. Espera', 'T. Atendimiento', 'Permanencia');
+        $columns = array('Centro', 'Fecha', 'Chofer', 'Movil', 'Corresponde', 'Hora', 'T. Espera', 'T. Atendimiento', 'Permanencia');
 
         $datos = Array();
         foreach($this->jornada as $jornada):
             $datos[] = Array(
-                $jornada['tiers_nombre']
+                env('SIGLAS')
                 , $jornada['fecha']
                 , $jornada['chofer_nombre']
                 , $jornada['movil_nombre']
