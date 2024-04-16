@@ -48,6 +48,8 @@ class CambiosRecorridos extends Model
         $punto_anterior = DB::table('puntos_tiers')->where('tiers_id', $this->tiers_id)->where('viaje', $this->viaje)->where('orden', $orden_menos)->first();
         $punto_siguiente = DB::table('puntos_tiers')->where('tiers_id', $this->tiers_id)->where('viaje', $this->viaje)->where('orden', $orden_mas)->first();
 
+        $chofer = Choferes::find($this->choferes_id);
+
         $recorrido = new Recorridos();
         $recorrido->sensores_id = $this->sensores_id;
         $recorrido->puntos_id = $this->puntos_id;
@@ -59,6 +61,7 @@ class CambiosRecorridos extends Model
         $recorrido->estado = 'OnTime';
         $recorrido->target = $this->addTime($punto->target, $this->inicio);
         $recorrido->ponderacion = $this->addTime($punto->ponderacion, $recorrido->target);
+        $recorrido->ayudantes_id = $chofer->ayudantes_id;
         $recorrido->save();
 
         if($punto_anterior){
