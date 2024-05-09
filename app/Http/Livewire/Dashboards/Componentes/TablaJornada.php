@@ -36,7 +36,7 @@ class TablaJornada extends Component
     }
 
     public function exportar(){
-        $columns = array('Tiers', 'Fecha', 'Chofer', 'Movil', 'TML', 'TR', 'T. Interno', 'Liquidación', 'Caja', 'T. Financiero', 'T. Warehouse', 'T. de desplazamiento', 'Jornada');
+        $columns = array('Tiers', 'Fecha', 'Chofer', 'Movil', 'TML', 'Hora Ruta', 'TR', 'T. Interno', 'Liquidación', 'Caja', 'T. Financiero', 'T. Warehouse', 'T. de desplazamiento', 'Jornada');
 
         $datos = Array();
         foreach($this->jornada as $jornada):
@@ -46,6 +46,7 @@ class TablaJornada extends Component
                 $jornada['chofer_nombre'],
                 $jornada['movil_nombre'],
                 $jornada['tml'],
+                $jornada['ruta'],
                 $jornada['tr'],
                 $jornada['tmi'],
                 $jornada['liquidacion'],
@@ -90,6 +91,7 @@ class TablaJornada extends Component
             , DB::raw("sum( case when puntos.id in (".env('CAJA').") {$tmi} then fin-inicio else '00:00:00' end ) caja")
             , DB::raw("sum( case when puntos.id in (".env('WAREHOUSE').") {$tmi} then fin-inicio else '00:00:00' end ) warehouse")
             , DB::raw("sum( case when puntos.id in (".env('DESPLAZAMIENTO').") {$tmi} then fin-inicio else '00:00:00' end ) desplazamiento")
+            , DB::raw("min( case when puntos.id in (".env('RUTA').") then cast(inicio as time) end ) ruta")
             , DB::raw("sum( fin-inicio ) ttotal")
         ])
             ->join('puntos', 'recorridos.puntos_id', '=', 'puntos.id')

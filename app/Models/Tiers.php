@@ -33,4 +33,7 @@ class Tiers extends Model
         return $this->belongsToMany(Viajes::class, 'tiers_viajes', 'tiers_id', 'viajes_id')->withPivot(['tiempo_tma']);
     }
 
+    public function jornadaAyudantes(){
+        return $this->hasMany(JornadaAyudantes::class);
+    }
 }

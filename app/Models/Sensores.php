@@ -21,4 +21,8 @@ class Sensores extends Model
     public function recorridos(){
         return $this->hasMany(Recorridos::class);
     }
+
+    public function jornadaAyudantes(){
+        return $this->hasMany(JornadaAyudantes::class);
+    }
 }

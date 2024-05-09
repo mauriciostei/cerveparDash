@@ -72,6 +72,7 @@ Route::middleware('auth','web')->group(function(){
     Route::get('jornada-guarambare', Jornada::class)->name('jornada-guarambare');
     Route::get('jornadaT1', Jornada::class)->name('jornadaT1')->can('jornadaT1');
     Route::get('jornadafa', Jornada::class)->name('jornadafa')->can('jornadafa');
+    Route::get('jornadaAyudante', Jornada::class)->name('jornadaAyudante')->can('jornadaAyudante');
     Route::get('controlPuntos', ControlPuntos::class)->name('controlPuntos')->can('controlPuntos');
     Route::get('alertasTMA', DashboardsAlertasTMA::class)->name('alertasTMA')->can('alertasTMA');
 
