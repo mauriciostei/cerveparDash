@@ -34,12 +34,13 @@ class TablaJornadaGuarambare extends Component
     }
 
     public function exportar(){
-        $columns = array('Centro', 'Fecha', 'Chofer', 'Movil', 'Corresponde', 'Hora', 'T. Espera', 'Control 1', 'T. Atendimiento', 'Permanencia');
+        $columns = array('Centro', 'Viaje', 'Fecha', 'Chofer', 'Movil', 'Corresponde', 'Hora', 'T. Espera', 'Control 1', 'T. Atendimiento', 'Permanencia');
 
         $datos = Array();
         foreach($this->jornada as $jornada):
             $datos[] = Array(
                 env('SIGLAS')
+                , $jornada['viaje']
                 , $jornada['fecha']
                 , $jornada['chofer_nombre']
                 , $jornada['movil_nombre']
