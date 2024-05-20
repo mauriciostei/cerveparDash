@@ -30,7 +30,7 @@ trait NuevoRecorrido{
                 $id_busqueda = $id;
                 if(count($planificado) == 1 && $planificado[0]->viaje > 1){
                     $tipo_busqueda = ($tipo_id == 'moviles_id') ? 'choferes_id' : 'moviles_id';
-                    $id_busqueda = $plan[0]->$tipo_busqueda;
+                    $id_busqueda = $planificado[0]->$tipo_busqueda;
                 }
 
                 $ultimoRecorrido = Recorridos::whereDate('inicio', date('Y-m-d'))
