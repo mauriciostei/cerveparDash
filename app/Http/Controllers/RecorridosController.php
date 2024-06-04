@@ -195,6 +195,7 @@ class RecorridosController extends Controller
 
             if(is_null($movil)){
                 Log::info("el movil to string vino NULL");
+                return response()->json(["mensaje" => "No se encuentra el movil a ejecutar"]);
             }else{
                 Log::info('movil con to_string:'.$movil->nombre);
             }
