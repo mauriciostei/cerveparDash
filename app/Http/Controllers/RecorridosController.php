@@ -232,9 +232,13 @@ class RecorridosController extends Controller
             foreach($response as $item):
     
                 $sensor = Sensores::where('codigo', $item->device_id->id)->where('activo', true)->first();
-                $chofer = Choferes::where('documento', $item->user_id->user_id)->where('activo', true)->first();
+                $chofer = Choferes::where('documento', intval($item->user_id->user_id))->where('activo', true)->first();
                 $ayudante = Ayudantes::where('cedula', $item->user_id->user_id)->where('activo', true)->first();
                 $fechaHora = date('Y-m-d H:i:s', strtotime($item->datetime));
+
+                Log::info("El XML: $item");
+                Log::info("El chofer: $chofer");
+                Log::info("El sensor: $sensor");
 
                 if($sensor && $chofer){
                     if($chofer->tiers_id==1 || (date('H')>=4 && date('H')<=23)){
