@@ -229,6 +229,8 @@ class RecorridosController extends Controller
 
         if($response){
 
+            Log::info($response);
+
             foreach($response as $item):
     
                 $sensor = Sensores::where('codigo', $item->device_id->id)->where('activo', true)->first();
