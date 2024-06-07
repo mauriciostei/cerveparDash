@@ -236,8 +236,9 @@ class RecorridosController extends Controller
                 $ayudante = Ayudantes::where('cedula', $item->user_id->user_id)->where('activo', true)->first();
                 $fechaHora = date('Y-m-d H:i:s', strtotime($item->datetime));
 
-                Log::info("El chofer: $chofer");
-                Log::info("El sensor: $sensor");
+                Log::info($item);
+                Log::info($chofer);
+                Log::info($sensor);
 
                 if($sensor && $chofer){
                     if($chofer->tiers_id==1 || (date('H')>=4 && date('H')<=23)){
