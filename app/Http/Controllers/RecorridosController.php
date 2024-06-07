@@ -236,7 +236,6 @@ class RecorridosController extends Controller
                 $ayudante = Ayudantes::where('cedula', $item->user_id->user_id)->where('activo', true)->first();
                 $fechaHora = date('Y-m-d H:i:s', strtotime($item->datetime));
 
-                Log::info($item);
                 Log::info($chofer);
                 Log::info($sensor);
 
