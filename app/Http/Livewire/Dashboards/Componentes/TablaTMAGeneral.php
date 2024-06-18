@@ -47,7 +47,7 @@ class TablaTMAGeneral extends Component
             ->take(2000)
         ->get();
 
-        $columns = array('Centro de Distribución', 'Movil', 'Chofer', 'Corresponde', 'Hora Detectada', 'Hora Fin', 'Causa Raíz', 'Causa General', 'Trabajado por', 'Observaciones');
+        $columns = array('Centro de Distribución', 'Movil', 'Chofer', 'Corresponde', 'Inicio Jornada', 'Hora Fin', 'TMA Total', 'Causa General', 'Trabajado por', 'Observaciones');
 
         $datos = Array();
         foreach($alertas as $item):
@@ -60,8 +60,8 @@ class TablaTMAGeneral extends Component
                     , $item->recorridos->moviles_id
                     , $item->recorridos->choferes_id
                     , $item->recorridos->viaje)
-                , $item->created_at
-                , $item->fin ? $item->fin : $this->difTime($item->created_at)
+                , $item->recorridos->inicio
+                , $this->difTimeFrom($item->recorridos->inicio, $item->recorridos->TMA)
                 , $item->causa_raizs_id ? $item->causasRaiz->nombre : '-'
                 , $item->causas_id ? $item->causas->nombre : '-'
                 , $item->users_id ? $item->users->name : '-'
