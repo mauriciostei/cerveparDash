@@ -47,7 +47,7 @@ class TablaTMAGeneral extends Component
             ->take(2000)
         ->get();
 
-        $columns = array('Centro de Distribución', 'Movil', 'Chofer', 'Corresponde', 'Inicio Jornada', 'Hora Fin', 'TMA Total', 'Causa General', 'Trabajado por', 'Observaciones');
+        $columns = array('Centro de Distribución', 'Movil', 'Chofer', 'Corresponde', 'Inicio Jornada', 'TMA Total', 'Causa Raíz', 'Causa General', 'Trabajado por', 'Observaciones');
 
         $datos = Array();
         foreach($alertas as $item):
