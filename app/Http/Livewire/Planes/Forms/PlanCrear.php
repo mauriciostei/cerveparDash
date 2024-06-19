@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Planes\Forms;
 use App\Models\Choferes;
 use App\Models\Moviles;
 use App\Models\Planes;
+use App\Models\PlanHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -66,6 +67,12 @@ class PlanCrear extends Component
         $this->plan->save();
 
         $this->plan->moviles()->attach($this->movil, ['choferes_id' => $this->chofer, 'viaje' => $this->viaje, 'hora_esperada' => null, 'ayudantes_id' => $chofer->ayudantes_id]);
+
+        PlanHistory::create([
+            'users_id' => Auth::user()->id,
+            'planes_id' => $this->plan->id,
+            'tipo' => "Agregado Manualmente al TIER $movil->tiers_id"
+        ]);
 
         session()->flash('message', 'Plan guardado!');
         return redirect()->to('/planes/'.$this->plan->id);

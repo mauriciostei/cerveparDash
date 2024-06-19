@@ -43,6 +43,7 @@ use App\Http\Livewire\Usuarios\UsuariosList;
 use App\Http\Livewire\Usuarios\UsuariosMiCuenta;
 use App\Http\Livewire\Dashboards\ControlPuntosT1;
 use App\Http\Livewire\Limites\LimitesList;
+use App\Http\Livewire\Planes\Historial;
 use App\Http\Livewire\Tiers\ViajeForm;
 
 /*
@@ -116,6 +117,7 @@ Route::middleware('auth','web')->group(function(){
 
     Route::get('planes', PlanesList::class)->name('planesList')->can('viewAny', \App\Models\Planes::class);
     Route::get('planes/{id}', PlanesForm::class)->name('planesForm');
+    Route::get('planes/{id}/history', Historial::class)->name('planesHistory');
 
     Route::get('tiers', TiersList::class)->name('tiersList')->can('viewAny', \App\Models\Tiers::class);
     Route::get('tiers/{id}', TiersForm::class)->name('tiersForm');

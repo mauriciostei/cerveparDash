@@ -59,6 +59,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Perfiles::class, 'perfiles_users', 'users_id', 'perfiles_id')->withTimestamps();
     }
 
+    public function planHistory(){
+        return $this->hasMany(PlanHistory::class);
+    }
+
     public function getPermisos($permisos_id){
         return DB::table('roles')->where('users_id', $this->id)->where('permisos_id', $permisos_id)->first();
     }

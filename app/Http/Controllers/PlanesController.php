@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Planes;
+use App\Models\PlanHistory;
 use Illuminate\Support\Facades\DB;
 
 class PlanesController extends Controller
@@ -24,5 +25,11 @@ class PlanesController extends Controller
                 join choferes c on c.id = cmp.choferes_id
             where p.fecha = current_date - 1
         ");
+
+        PlanHistory::create([
+            'users_id' => 1,
+            'planes_id' => $pl->id,
+            'tipo' => 'Generado automáticamente por el sistema'
+        ]);
     }
 }

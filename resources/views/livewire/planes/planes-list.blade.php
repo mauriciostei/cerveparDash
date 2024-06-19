@@ -59,7 +59,7 @@
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Ultima Actualización</th>
-                                        <th class="text-secondary opacity-7"></th>
+                                        <th class="text-secondary opacity-7" colspan="2"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -96,6 +96,11 @@
                                                 </a>
                                                 @endcan
                                             @endif
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="{{ route('planesHistory', ['id' => $plan->id]) }}" class="text-secondary font-weight-bold text-xs">
+                                                Historial de Cambios
+                                            </a>
                                         </td>
                                     </tr>
 

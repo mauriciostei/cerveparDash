@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Planes\Forms;
 use App\Models\Choferes;
 use App\Models\Moviles;
 use App\Models\Planes;
+use App\Models\PlanHistory;
 use App\Models\Tiers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -125,6 +126,12 @@ class PlanImportar extends Component
         $this->plan->users_id = Auth::user()->id;
         $this->plan->ultima_actualizacion = now();
         $this->plan->save();
+
+        PlanHistory::create([
+            'users_id' => Auth::user()->id,
+            'planes_id' => $this->plan->id,
+            'tipo' => 'Importación de archivo'
+        ]);
 
         session()->flash('message', 'Plan Actualizado!');
         return redirect()->to('/planes/'.$this->plan->id);

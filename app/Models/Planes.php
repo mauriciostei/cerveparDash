@@ -27,6 +27,10 @@ class Planes extends Model
         return $res->porcentaje;
     }
 
+    public function planHistory(){
+        return $this->hasMany(PlanHistory::class);
+    }
+
     public function getAccuracyAttribute(){
         $total = 0;
         $captados = 0;
