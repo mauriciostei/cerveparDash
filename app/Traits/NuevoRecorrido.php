@@ -69,7 +69,8 @@ trait NuevoRecorrido{
                         $ultimoRecorrido->fin = $fechaHora;
                         $recorrido->viaje = $ultimoRecorrido->viaje;
                     }elseif($ultimoRecorrido->fin && $ultimoRecorrido->viaje==1){
-                        if(count($planificado)==2){
+                        $totalPlanes = count($planificado) - 1;
+                        if($totalPlanes==1 || ($totalPlanes==0 && $planificado[$totalPlanes]->viaje == 2)){
 
                             $diferencia = $this->difTime($ultimoRecorrido->fin);
                             if($diferencia < '01:00:00' && $recorrido->tiers_id==1){
@@ -78,9 +79,9 @@ trait NuevoRecorrido{
                             }
 
                             $recorrido->viaje = 2;
-                            $recorrido->moviles_id = $planificado[1]->moviles_id;
-                            $recorrido->choferes_id = $planificado[1]->choferes_id;
-                            $recorrido->ayudantes_id = $planificado[1]->ayudantes_id;
+                            $recorrido->moviles_id = $planificado[$totalPlanes]->moviles_id;
+                            $recorrido->choferes_id = $planificado[$totalPlanes]->choferes_id;
+                            $recorrido->ayudantes_id = $planificado[$totalPlanes]->ayudantes_id;
                         }else{
                             Log::info('DATO DESCARTADO');
                             return;
