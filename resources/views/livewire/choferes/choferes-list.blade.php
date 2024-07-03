@@ -22,6 +22,12 @@
                         </div>
                     </div>
                     <div class="card-body px-4 pb-2">
+
+                        <div class="input-group input-group-static mb-3">
+                            <label class="text-muted text-xs">Búsqueda de chofer</label>
+                            <input type="text" wire:model="nombre" placeholder="Nombre del Chofer" class="form-control"/>
+                        </div>
+
                         <div class="table-responsive p-0">
                             <table class="table align-items-center mb-0 table-hover table-sm">
                                 <thead>
