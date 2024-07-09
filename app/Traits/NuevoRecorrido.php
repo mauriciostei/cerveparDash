@@ -91,7 +91,7 @@ trait NuevoRecorrido{
                     }
         
                     if($ultimoRecorrido->estado == 'OutOfTime'){
-                        $a = Alertas::where('recorridos_id', $ultimoRecorrido->id)->first();
+                        $a = Alertas::where('recorridos_id', $ultimoRecorrido->id)->where('tipos_alertas_id', 1)->first();
                         if($a->users_id == null && $a->inicio == null){
                             $a->visible = false;
                             $a->fin = $fechaHora;
