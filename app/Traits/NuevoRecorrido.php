@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\Alertas;
 use App\Models\JornadaAyudantes;
+use App\Models\JornadaWarehouse;
 use App\Models\Planes;
 use App\Models\Recorridos;
 use Illuminate\Support\Facades\DB;
@@ -129,6 +130,18 @@ trait NuevoRecorrido{
 
         $ja = new JornadaAyudantes();
         $ja->ayudantes_id = $ayudante->id;
+        $ja->sensores_id = $sensor->id;
+        $ja->puntos_id = $sensor->puntos_id;
+        $ja->fecha_hora = $fechaHora;
+        $ja->save();
+    }
+
+    public function ingresarJornadaColaboradores($sensor, $colaborador, $fechaHora){
+
+        $fechaHora = $fechaHora ?? date('Y-m-d H:i:s');
+
+        $ja = new JornadaWarehouse();
+        $ja->colaboradores_id = $colaborador->id;
         $ja->sensores_id = $sensor->id;
         $ja->puntos_id = $sensor->puntos_id;
         $ja->fecha_hora = $fechaHora;

@@ -6,6 +6,7 @@ use App\Models\Ayudantes;
 use App\Models\CausaRaiz;
 use App\Models\Causas;
 use App\Models\Choferes;
+use App\Models\Colaboradores;
 use App\Models\Limites;
 use App\Models\Moviles;
 use App\Models\Operadoras;
@@ -21,6 +22,7 @@ use App\Policies\AyudantesPolicy;
 use App\Policies\CausasPolicy;
 use App\Policies\CausasRaizPolicy;
 use App\Policies\ChoferesPolicy;
+use App\Policies\ColaboradoresPolicy;
 use App\Policies\LimitesPolicy;
 use App\Policies\MovilesPolicy;
 use App\Policies\OperadorasPolicy;
@@ -58,6 +60,7 @@ class AuthServiceProvider extends ServiceProvider
         CausaRaiz::class => CausasRaizPolicy::class,
         Limites::class => LimitesPolicy::class,
         Ayudantes::class => AyudantesPolicy::class,
+        Colaboradores::class => ColaboradoresPolicy::class,
     ];
 
     /**
@@ -106,6 +109,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('jornadaAyudante', function($user){
             return $user->getPermisosByLink('jornadaAyudante')->leer;
+        });
+
+        Gate::define('jornadaColaboradores', function($user){
+            return $user->getPermisosByLink('jornadaColaboradores')->leer;
         });
 
         Gate::define('controlPuntos', function($user){

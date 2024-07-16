@@ -18,11 +18,11 @@ class AyudantesForm extends Component
     }
 
     protected $messages = [
-        'chofer.nombre.required' => 'El campo nombre no puede ser nulo',
-        'chofer.nombre.min' => 'El nombre debe contener al menos 5 caracteres',
-        'chofer.cedula.required' => 'El numero de documento es requerido',
-        'chofer.cedula.min' => 'El numero de documento debe contener al menos 3 caracteres',
-        'chofer.cedula.unique' => 'Este numero de documento ya se encuentra registrado',
+        'ayudante.nombre.required' => 'El campo nombre no puede ser nulo',
+        'ayudante.nombre.min' => 'El nombre debe contener al menos 5 caracteres',
+        'ayudante.cedula.required' => 'El numero de documento es requerido',
+        'ayudante.cedula.min' => 'El numero de documento debe contener al menos 3 caracteres',
+        'ayudante.cedula.unique' => 'Este numero de documento ya se encuentra registrado',
     ];
 
     public function updated($property){

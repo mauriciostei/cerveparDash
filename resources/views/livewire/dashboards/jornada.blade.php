@@ -53,6 +53,9 @@
                 @case('jornadaAyudante')
                     @livewire('dashboards.componentes.tabla-jornada-ayudantes', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
                 @break
+                @case('jornadaColaboradores')
+                    @livewire('dashboards.componentes.tabla-jornada-colaboradores', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
+                @break
                 @default
                     @livewire('dashboards.componentes.tabla-jornada', ['desde' => $desde, 'hasta' => $hasta, 'tiers' => $tiers])
                 @break

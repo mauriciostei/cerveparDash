@@ -12,6 +12,8 @@ use App\Http\Livewire\Causas\CausasList;
 use App\Http\Livewire\Causas\CausasRaizForm;
 use App\Http\Livewire\Choferes\ChoferesForm;
 use App\Http\Livewire\Choferes\ChoferesList;
+use App\Http\Livewire\Colaboradores\ColaboradoresForm;
+use App\Http\Livewire\Colaboradores\ColaboradoresList;
 use App\Http\Livewire\Dashboards\AlertasTMA as DashboardsAlertasTMA;
 use App\Http\Livewire\Dashboards\ControlPuntos;
 use App\Http\Livewire\Dashboards\Inicio;
@@ -74,6 +76,7 @@ Route::middleware('auth','web')->group(function(){
     Route::get('jornadaT1', Jornada::class)->name('jornadaT1')->can('jornadaT1');
     Route::get('jornadafa', Jornada::class)->name('jornadafa')->can('jornadafa');
     Route::get('jornadaAyudante', Jornada::class)->name('jornadaAyudante')->can('jornadaAyudante');
+    Route::get('jornadaColaboradores', Jornada::class)->name('jornadaColaboradores')->can('jornadaColaboradores');
     Route::get('controlPuntos', ControlPuntos::class)->name('controlPuntos')->can('controlPuntos');
     Route::get('alertasTMA', DashboardsAlertasTMA::class)->name('alertasTMA')->can('alertasTMA');
 
@@ -114,6 +117,9 @@ Route::middleware('auth','web')->group(function(){
 
     Route::get('ayudantes', AyudantesList::class)->name('ayudantesList')->can('viewAny', \App\Models\Ayudantes::class);
     Route::get('ayudantes/{id}', AyudantesForm::class)->name('ayudantesForm');
+
+    Route::get('colaboradores', ColaboradoresList::class)->name('colaboradoresList')->can('viewAny', \App\Models\Colaboradores::class);
+    Route::get('colaboradores/{id}', ColaboradoresForm::class)->name('colaboradoresForm');
 
     Route::get('planes', PlanesList::class)->name('planesList')->can('viewAny', \App\Models\Planes::class);
     Route::get('planes/{id}', PlanesForm::class)->name('planesForm');

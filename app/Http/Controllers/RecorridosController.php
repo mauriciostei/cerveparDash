@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alertas;
 use App\Models\Ayudantes;
 use App\Models\Choferes;
+use App\Models\Colaboradores;
 use App\Models\Moviles;
 use App\Models\Recorridos;
 use App\Models\Sensores;
@@ -236,6 +237,7 @@ class RecorridosController extends Controller
                 $sensor = Sensores::where('codigo', $item->device_id->id)->where('activo', true)->first();
                 $chofer = Choferes::where('documento', intval($item->user_id->user_id))->where('activo', true)->first();
                 $ayudante = Ayudantes::where('cedula', $item->user_id->user_id)->where('activo', true)->first();
+                $colaborador = Colaboradores::where('cedula', $item->user_id->user_id)->first();
                 $fechaHora = date('Y-m-d H:i:s', strtotime($item->datetime));
 
                 Log::info($chofer);
@@ -249,6 +251,10 @@ class RecorridosController extends Controller
 
                 if($sensor && $ayudante){
                     $this->ingresarJornadaAyudante($sensor, $ayudante, $fechaHora);
+                }
+
+                if($sensor && $colaborador){
+                    $this->ingresarJornadaColaboradores($sensor, $colaborador, $fechaHora);
                 }
     
             endforeach;
