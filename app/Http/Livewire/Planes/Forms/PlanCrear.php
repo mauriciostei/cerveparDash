@@ -26,11 +26,12 @@ class PlanCrear extends Component
     protected $rules = [
         'movil' => 'required|int',
         'chofer' => 'required|int',
-        'viaje' => 'required|int|lte:2',
+        'viaje' => 'required|int|lte:2|gte:1',
     ];
 
     protected $messages = [
         'viaje.lte' => 'El viaje no puede ser superior a 2',
+        'viaje.gte' => 'El viaje no puede ser menor a 1',
     ];
 
     public function updated($property){
