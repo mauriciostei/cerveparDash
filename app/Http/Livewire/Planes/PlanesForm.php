@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Planes;
 
+use App\Models\Ayudantes;
 use App\Models\Choferes;
 use App\Models\Moviles;
 use App\Models\Planes;
@@ -17,10 +18,12 @@ class PlanesForm extends Component
     public $plan;
     public $choferes;
     public $recorridos;
+    public $ayudantes;
 
     public function mount($id){
         $this->plan = Planes::find($id);
         $this->choferes = Choferes::all();
+        $this->ayudantes = Ayudantes::all();
         $this->recorridos = Recorridos::whereDate('inicio', date('Y-m-d'))->get();
     }
 
