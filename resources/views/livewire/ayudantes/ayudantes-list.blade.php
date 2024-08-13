@@ -32,6 +32,9 @@
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Documento</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Chofer Asignado</th>
                                         <th class="text-secondary opacity-7"></th>
                                     </tr>
                                 </thead>
@@ -43,6 +46,9 @@
                                         </td>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0"> {{number_format($item->cedula)}} </p>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0"> {{$item->chofer ? $item->chofer->nombre : '-'}} </p>
                                         </td>
                                         <td class="align-middle">
                                             @can('update', $item)
