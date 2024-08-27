@@ -52,7 +52,7 @@ class TablaTMAGeneral extends Component
         $datos = Array();
         foreach($alertas as $item):
             $datos[] = Array(
-                env('LOCALIDAD')
+                env('SIGLAS')
                 , $item->recorridos->moviles->nombre
                 , $item->recorridos->choferes->nombre
                 , $this->corresponde(
