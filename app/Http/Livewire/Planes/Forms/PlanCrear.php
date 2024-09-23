@@ -15,8 +15,8 @@ class PlanCrear extends Component
     public $plan;
 
     // Form para agregar uno
-    public $movil = 1;
-    public $chofer = 1;
+    public $movil = 0;
+    public $chofer = 0;
     public $viaje = 1;
 
     // Listas necesarias

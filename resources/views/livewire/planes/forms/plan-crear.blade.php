@@ -3,6 +3,7 @@
     <div class="input-group input-group-static mt-3">
         <label>Movil</label>
         <select class="form-control" wire:model="movil">
+            <option value="0" disabled>Seleccione el Movil</option>
             @forelse($moviles as $m)
                 <option value="{{$m->id}}"> {{$m->nombre}} </option>
             @empty
@@ -16,6 +17,7 @@
     <div class="input-group input-group-static mt-3">
         <label>Chofer</label>
         <select class="form-control" wire:model="chofer">
+            <option value="0" disabled>Seleccione el Chofer</option>
             @forelse($choferes as $c)
                 <option value="{{$c->id}}"> {{$c->nombre}} </option>
             @empty
