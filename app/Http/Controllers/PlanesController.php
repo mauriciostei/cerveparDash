@@ -12,7 +12,7 @@ class PlanesController extends Controller
         $planAnterior = Planes::latest()->first();
 
         $pl = new Planes();
-        $pl->fecha = date('Y-m-d');
+        $pl->fecha = date('Y-m-d', strtotime(now().' +1 days'));
         $pl->ultima_actualizacion = $planAnterior->ultima_actualizacion;
         $pl->users_id = 1;
         $pl->save();
@@ -23,7 +23,7 @@ class PlanesController extends Controller
             from planes p
                 join choferes_moviles_planes cmp on p.id = cmp.planes_id
                 join choferes c on c.id = cmp.choferes_id
-            where p.fecha = current_date - 1
+            where p.fecha = current_date
         ");
 
         PlanHistory::create([

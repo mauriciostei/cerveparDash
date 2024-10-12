@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function(){
             $p = new PlanesController();
             $p->clonar();
-        })->dailyAt('00:01');
+        })->dailyAt('20:00');
             
         // Actualizar los recorridos OOT o DIS
         $schedule->call(function(){
@@ -34,10 +34,18 @@ class Kernel extends ConsoleKernel
         $schedule->call(function(){
             $r = new RecorridosController();
             
-            $inicial = date('c', strtotime(now()." +3 hours -1 minute -59 seconds"));
+            $inicial = date('c', strtotime(now().env('DIFF_TIME_BIOSTAR')));
             $final = date('c', strtotime("$inicial +1 minutes"));
             $r->ingresarPersona($inicial, $final);
         })->everyMinute();
+
+        $schedule->call(function(){
+            $r = new RecorridosController();
+
+            $final = date('c', strtotime(now().env('DIFF_TIME_BIOSTAR')));
+            $inicial = date('c', strtotime("$final -24 hours"));
+            $r->barridoDiarioBioStar($inicial, $final);
+        })->dailyAt('23:50');
 
         $schedule->command('logs:clear')->weekly();
     }

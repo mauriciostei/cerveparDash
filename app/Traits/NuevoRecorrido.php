@@ -128,23 +128,33 @@ trait NuevoRecorrido{
 
         $fechaHora = $fechaHora ?? date('Y-m-d H:i:s');
 
-        $ja = new JornadaAyudantes();
-        $ja->ayudantes_id = $ayudante->id;
-        $ja->sensores_id = $sensor->id;
-        $ja->puntos_id = $sensor->puntos_id;
-        $ja->fecha_hora = $fechaHora;
-        $ja->save();
+        $exists = DB::select("select * from jornada_ayudantes where cast(fecha_hora as date) = current_date and sensores_id = $sensor->id and ayudantes_id = $ayudante->id");
+        if($exists){
+            return;
+        }
+
+        $jornadaAyudante = new JornadaAyudantes();
+        $jornadaAyudante->ayudantes_id = $ayudante->id;
+        $jornadaAyudante->sensores_id = $sensor->id;
+        $jornadaAyudante->puntos_id = $sensor->puntos_id;
+        $jornadaAyudante->fecha_hora = $fechaHora;
+        $jornadaAyudante->save();
     }
 
     public function ingresarJornadaColaboradores($sensor, $colaborador, $fechaHora){
 
         $fechaHora = $fechaHora ?? date('Y-m-d H:i:s');
 
-        $ja = new JornadaWarehouse();
-        $ja->colaboradores_id = $colaborador->id;
-        $ja->sensores_id = $sensor->id;
-        $ja->puntos_id = $sensor->puntos_id;
-        $ja->fecha_hora = $fechaHora;
-        $ja->save();
+        $exists = DB::select("select * from jornada_warehouses where cast(fecha_hora as date) = current_date and sensores_id = $sensor->id and colaboradores_id = $colaborador->id");
+        if($exists){
+            return;
+        }
+
+        $jornadaColaborador = new JornadaWarehouse();
+        $jornadaColaborador->colaboradores_id = $colaborador->id;
+        $jornadaColaborador->sensores_id = $sensor->id;
+        $jornadaColaborador->puntos_id = $sensor->puntos_id;
+        $jornadaColaborador->fecha_hora = $fechaHora;
+        $jornadaColaborador->save();
     }
 }

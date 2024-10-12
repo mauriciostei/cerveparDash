@@ -11,6 +11,7 @@ use App\Models\Recorridos;
 use App\Models\Sensores;
 use App\Traits\BioStarData;
 use App\Traits\NuevoRecorrido;
+use App\Traits\RegularizarBioStar;
 use App\Traits\XMLToJSON;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +22,7 @@ class RecorridosController extends Controller
     use BioStarData;
     use XMLToJSON;
     use NuevoRecorrido;
+    use RegularizarBioStar;
 
     public function OutTime(){
         $recorrido = Recorridos::
@@ -258,6 +260,29 @@ class RecorridosController extends Controller
                 }
     
             endforeach;
+        }
+    }
+
+    public function barridoDiarioBioStar($inicio, $fin){
+        $response = $this->getData($inicio, $fin, 1000000);
+
+        if($response){
+            foreach($response as $item):
+
+                $sensor = Sensores::where('codigo', $item->device_id->id)->where('activo', true)->first();
+                $ayudante = Ayudantes::where('cedula', $item->user_id->user_id)->where('activo', true)->first();
+                $colaborador = Colaboradores::where('cedula', $item->user_id->user_id)->first();
+                $fechaHora = date('Y-m-d H:i:s', strtotime($item->datetime));
+                
+                if($sensor && $ayudante){
+                    $this->ingresarJornadaAyudante($sensor, $ayudante, $fechaHora);
+                }
+                
+                if($sensor && $colaborador){
+                    $this->ingresarJornadaColaboradores($sensor, $colaborador, $fechaHora);
+                }
+            endforeach;
+            $this->regularizarData($response);
         }
     }
 }

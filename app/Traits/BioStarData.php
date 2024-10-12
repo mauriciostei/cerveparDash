@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 trait BioStarData{
 
-    public function getData($inicio, $fin){
+    public function getData($inicio, $fin, $limit = 50){
 
         // Captar variables de entorno
         $url = env('SW_URL');
@@ -33,7 +33,7 @@ trait BioStarData{
         withBody('
         {
             "Query": {
-              "limit": 50,
+              "limit": '.$limit.',
               "conditions": [
                 {
                   "column": "datetime",
