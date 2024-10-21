@@ -76,7 +76,6 @@
                                         </td>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0"> 
-                                                {{-- {{round($plan->acuraccy(),0)}} %  --}}
                                                 {{ $plan->Accuracy }}%
                                             </p>
                                         </td>
@@ -87,7 +86,7 @@
                                             <p class="text-xs font-weight-bold mb-0"> {{$plan->ultima_actualizacion}} </p>
                                         </td>
                                         <td class="align-middle">
-                                            @if($plan->fecha >= date('Y-m-d'))
+                                            @if($loop->first)
                                                 @can('update', $plan)
                                                 <a href="{{ route('planesForm', ['id' => $plan->id]) }}"
                                                     class="text-secondary font-weight-bold text-xs"
