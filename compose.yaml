@@ -1,6 +1,6 @@
 services:
   app:
-    container_name: app
+    container_name: app-cerveparV2
     build:
       context: .
       dockerfile: app.dockerfile
@@ -15,12 +15,12 @@ services:
     env_file:
       - .env
     environment:
-      - DB_HOST=postgres
+      - DB_HOST=postgres-cerveparV2
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB_DATABASE=cerveparV2
   web:
-    container_name: nginx
+    container_name: nginx-cerveparV2
     build:
       context: .
       dockerfile: web.dockerfile
@@ -32,7 +32,7 @@ services:
     networks:
       - shared-net
   database:
-    container_name: postgres
+    container_name: postgres-cerveparV2
     image: postgres:alpine
     volumes:
       - postgres_volumen:/var/lib/postgresql/data
