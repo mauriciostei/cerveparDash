@@ -12,12 +12,16 @@ class RecorridosObserver
     public function created(Recorridos $recorridos)
     {
         //Obtiene la fecha y hora para la ejecución
+        $inicio = $recorridos->inicio;
         $hoy = date('Y-m-d');
-        $hora = date('H', strtotime($recorridos->inicio));
+        $hora = date('H', strtotime($inicio));
+        
+        //Si supera los 55 minutos se pasa a la siguiente hora
+        $hora += !(date('i', strtotime($inicio)) < 55) && 1;
 
         //Obtiene el dia esperado para la verificación
         $dias = array('lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo');
-        $dia = $dias[date('N', strtotime($recorridos->inicio)) - 1];
+        $dia = $dias[date('N', strtotime($inicio)) - 1];
 
         //Obtiene el total de móviles esperados en ese dia y ese horario
         $total = Limites::where('tiers_id', $recorridos->tiers_id)->where('rango', $hora)->first();
