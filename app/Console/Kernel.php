@@ -47,6 +47,14 @@ class Kernel extends ConsoleKernel
             $r->barridoDiarioBioStar($inicial, $final);
         })->dailyAt('23:50');
 
+        $schedule->call(function(){
+            $r = new RecorridosController();
+
+            $final = date('c', strtotime(now().env('DIFF_TIME_BIOSTAR')));
+            $inicial = date('c', strtotime("$final -12 hours"));
+            $r->barridoDiarioBioStar($inicial, $final);
+        })->dailyAt('12:01');
+
         $schedule->command('logs:clear')->weekly();
     }
 
