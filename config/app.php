@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'America/Asuncion',
+    'timezone' => 'America/Argentina/Mendoza',
 
     /*
     |--------------------------------------------------------------------------
