@@ -34,6 +34,7 @@ use App\Http\Livewire\Problemas\ProblemasList;
 use App\Http\Livewire\Puntos\PuntosForm;
 use App\Http\Livewire\Puntos\PuntosList;
 use App\Http\Livewire\Recorridos\Cambios;
+use App\Http\Livewire\Recorridos\Binnacle;
 use App\Http\Livewire\Sensores\SensoresForm;
 use App\Http\Livewire\Sensores\SensoresList;
 use App\Http\Livewire\Soluciones\SolucionesForm;
@@ -133,4 +134,7 @@ Route::middleware('auth','web')->group(function(){
     Route::get('alertas/{alerta}/tma', AlertasTma::class)->name('alertasTma');
 
     Route::get('limites', LimitesList::class)->name('limitesList')->can('viewAny', \App\Models\Limites::class);
+
+    Route::get('binnacleT2', Binnacle::class)->name('binnacleT2');
+    Route::get('binnacleT1', Binnacle::class)->name('binnacleT1');
 });

@@ -174,6 +174,22 @@ class PerfilesSeeder extends Seeder
         $per1->save();
         $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
 
+        $per1 = new Permisos();
+        $per1->nombre = 'Bitacora T2';
+        $per1->link = 'binnacleT2';
+        $per1->categoria = 'Ejecución';
+        $per1->icono = 'fa-users';
+        $per1->save();
+        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
+
+        $per1 = new Permisos();
+        $per1->nombre = 'Bitacora T1';
+        $per1->link = 'binnacleT1';
+        $per1->categoria = 'Ejecución';
+        $per1->icono = 'fa-users';
+        $per1->save();
+        $per1->perfiles()->attach($p1, ['leer' => true, 'crear' => true, 'editar' => true]);
+
         $apr = new Aprobables();
         $apr->nombre = 'Cambio de Recorridos';
         $apr->aprobable_type = 'App\Models\CambiosRecorridos';
