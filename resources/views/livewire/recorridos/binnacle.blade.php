@@ -1,4 +1,4 @@
-<div class="container-fluid py-4">
+<div wire:poll.1000ms class="container-fluid py-4">
 
     <div class="card my-4">
         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">

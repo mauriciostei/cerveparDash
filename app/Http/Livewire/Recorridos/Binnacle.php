@@ -13,6 +13,7 @@ class Binnacle extends Component
     public $busqueda;
     public $fecha;
     public $tiers;
+    public $recorridos;
 
     public function eliminarRecorrido($id){
         $this->deleteRecorrido($id);
@@ -25,8 +26,8 @@ class Binnacle extends Component
         $this->tiers = [$tier];
     }
 
-    public function render(){
-        $recorridos = DB::table('recorridos')->select([
+    public function getInfo(){
+        $this->recorridos = DB::table('recorridos')->select([
             'recorridos.id as id'
             , 'moviles.nombre as movil_nombre'
             , 'moviles.chapa as movil_chapa'
@@ -55,7 +56,10 @@ class Binnacle extends Component
             ->orderByRaw('2,4,8 asc')
             ->get()
         ;
-        
-        return view('livewire.recorridos.binnacle', ['recorridos' => $recorridos]);
+    }
+
+    public function render(){
+        $this->getInfo();
+        return view('livewire.recorridos.binnacle');
     }
 }
