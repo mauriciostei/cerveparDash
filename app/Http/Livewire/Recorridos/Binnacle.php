@@ -11,7 +11,6 @@ class Binnacle extends Component
     use DeleteRecorrido;
 
     public $busqueda;
-    public $fecha;
     public $tiers;
     public $recorridos;
 
@@ -20,8 +19,6 @@ class Binnacle extends Component
     }
 
     public function mount(){
-        $this->fecha = date('d-m-Y');
-
         $tier = request()->routeIs('binnacleT1') ? 1 : 2;
         $this->tiers = [$tier];
     }
@@ -42,7 +39,7 @@ class Binnacle extends Component
             ->join('sensores', 'recorridos.sensores_id', '=', 'sensores.id')
             ->join('choferes', 'choferes.id', '=', 'recorridos.choferes_id')
             ->join('moviles', 'moviles.id', '=', 'recorridos.moviles_id')
-            ->whereDate('recorridos.inicio', $this->fecha)
+            ->whereDate('recorridos.inicio', date('Y-m-d'))
             ->whereIn('recorridos.tiers_id', $this->tiers)
             ->when($this->busqueda, function($query) {
                 $busqueda = '%' . $this->busqueda . '%';
