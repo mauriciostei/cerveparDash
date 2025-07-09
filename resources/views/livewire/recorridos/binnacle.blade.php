@@ -55,7 +55,10 @@
                                 {{ $recorrido->inicio }} -> {{ $recorrido->fin }}
                             </td>
                             <td>
-                                <button wire:click.prevent="eliminarRecorrido({{ $recorrido->id }})" onclick="return confirm('¿Seguro que desea eliminar este recorrido?')" class="btn btn-danger m-0">
+                                <button
+                                    onclick="if(confirm('¿Seguro que desea eliminar este recorrido?')) { @this.eliminarRecorrido({{ $recorrido->id }}) }"
+                                    class="btn btn-danger m-0"
+                                >
                                     <i class="fa-solid fa-trash"></i> Eliminar
                                 </button>
                             </td>
