@@ -1,43 +1,36 @@
-
-<aside
-    class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 max-height-vh-100"
-    id="sidenav-main"
-    >
-    <div class="sidenav-header">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu">
+    <div class="offcanvas-header bg-dark">
         <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0 d-flex text-wrap align-items-center" href=" {{ route('inicio') }} ">
-                <img src="{{ asset('assets') }}/img/logo.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="{{ asset('assets') }}/img/logo.png" width="200" alt="main_logo">
             </a>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="w-auto" id="sidenav-collapse-main">
-        <ul class="navbar-nav me-2 ms-2">
-
-            @forelse($subMenu as $s)
-                <li class="nav-item mt-1">
-                    <h6 class="ps-3 ms-2 text-uppercase text-xs font-weight-bolder opacity-8"> {{$s->categoria}} </h6>
-                </li>
-                @forelse($menu as $m)
-                    @if($m->categoria === $s->categoria)
-                        @if($m->leer)
-                        
-                        <li class="nav-item">
-                            <a class="nav-link {{ Route::currentRouteName() == $m->link ? ' active bg-gradient-success' : '' }} "
+    <div class="offcanvas-body bg-dark">
+        @forelse($subMenu as $s)
+            <h6 class="mt-3"> {{$s->categoria}} </h6>
+            @forelse($menu as $m)
+                <ul class="list-group">
+                @if($m->categoria === $s->categoria && $m->leer)
+                        <li class="list-group-item list-group-item-action py-1">
+                            <a class="nav-link {{ Route::currentRouteName() == $m->link ? ' active bg-gradient-warning font-weight-bold' : '' }} "
                                 href="{{ route($m->link) }}">
-                                <div class="text-center me-1 d-flex align-items-center justify-content-center">
-                                    <i class="fa {{$m->icono}} text-white opacity-10"></i>
+                                <div class="d-flex align-items-center gap-3">
+                                    <span class="text-white"> {{$m->nombre}} </span>
+                                    <span class="badge bg-gradient-success rounded-pill shadow-lg">
+                                        <i class="fa {{$m->icono}} text-withe opacity-10"></i>
+                                    </span>
                                 </div>
-                                <span class="nav-link-text text-white ms-1"> {{$m->nombre}} </span>
                             </a>
                         </li>
-                        @endif
-
-                    @endif
-                @empty
-                @endforelse
+                @endif
+                </ul>
             @empty
-                Usuario no tiene permisos
+                <p>Sin permisos en categoria</p>
             @endforelse
-        </ul>
+        @empty
+            <p>Usuario no cuenta con permisos</p>
+        @endforelse
     </div>
-</aside>
+</div>
