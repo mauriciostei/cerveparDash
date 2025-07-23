@@ -1,22 +1,3 @@
-// Ocultar barra del menu
-
-let botonToggle = document.querySelector('#toggleMenu');
-let sidebar = document.querySelector('#sidenav-main');
-let contenido = document.querySelector('.main-content');
-
-botonToggle.addEventListener('click', (event) => {
-    sidebar.toggleAttribute('hidden');
-
-    let show = sidebar.getAttribute("hidden");
-    if(show == null){
-        contenido.style.marginLeft = "274px";
-    }else{
-        contenido.style.marginLeft = "0px";
-    }
-});
-
-botonToggle.click();
-
 // Notificaciones
 Livewire.on('nuevaAlerta', (param) => {
     let caja = document.querySelector("#apartadoParaAlertas");
