@@ -24,8 +24,8 @@ class AlertasTma extends Component
 
     public function mount(Alertas $alerta){
         $this->alerta = $alerta;
-        $this->causas = Causas::all();
-        $this->causaRaiz = CausaRaiz::all();
+        $this->causas = Causas::all()->where('activo', true);
+        $this->causaRaiz = CausaRaiz::all()->where('activo', true);
     }
 
     public function save(){
