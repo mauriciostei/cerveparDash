@@ -202,6 +202,18 @@ class RecorridosController extends Controller
             }else{
                 Log::info('movil con to_string:'.$movil->nombre);
             }
+
+            $rutaEnCurso = Recorridos::where('puntos_id', env('RUTA'))
+                ->where('moviles_id', $movil->id)
+                ->where('fin', null)
+                ->where('inicio', '>=', date('Y-m-d H:i:s', strtotime('-30 minutes')))
+                ->first()
+                ;
+
+            if($rutaEnCurso){
+                Log::info("El movil tiene un recorrido en ruta con menos de 30 minutos");
+                return response()->json(["mensaje" => "El movil tiene un recorrido en ruta con menos de 30 minutos"]);
+            }
     
             if($sensor && $movil){
                 if($movil->tiers_id==1 || (date('H')>=4 && date('H')<=23)){
@@ -247,6 +259,19 @@ class RecorridosController extends Controller
 
                 if($sensor && $chofer){
                     if($chofer->tiers_id==1 || (date('H')>=4 && date('H')<=23)){
+
+                        $rutaEnCurso = Recorridos::where('puntos_id', env('RUTA'))
+                            ->where('choferes_id', $chofer->id)
+                            ->where('fin', null)
+                            ->where('inicio', '>=', date('Y-m-d H:i:s', strtotime('-30 minutes')))
+                            ->first()
+                            ;
+                            
+                        if($rutaEnCurso){
+                            Log::info("El chofer tiene un recorrido en ruta con menos de 30 minutos");
+                            continue;
+                        }
+
                         $this->ingresarRecorrido($sensor, $chofer->tiers_id, 'choferes_id', $chofer->id, $fechaHora);
                     }
                 }
