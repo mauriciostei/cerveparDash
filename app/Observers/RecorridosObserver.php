@@ -17,7 +17,16 @@ class RecorridosObserver
         $hora = date('H', strtotime($inicio));
         
         //Si supera los 55 minutos se pasa a la siguiente hora
-        $hora += !(date('i', strtotime($inicio)) < 55) && 1;
+        $correspondeRoundRaw = env('CORRESPONDE_ROUND', null);
+        if ($correspondeRoundRaw === null) {
+            $correspondeRound = true;
+        } else {
+            $correspondeRound = filter_var($correspondeRoundRaw, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+            $correspondeRound = $correspondeRound === null ? true : $correspondeRound;
+        }
+        if($correspondeRound) {
+            $hora += !(date('i', strtotime($inicio)) < 55) && 1;
+        }
 
         //Obtiene el dia esperado para la verificación
         $dias = array('lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo');
