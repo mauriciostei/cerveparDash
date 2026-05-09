@@ -11,11 +11,13 @@ class AyudantesList extends Component
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
+    public $nombre;
 
     public function render()
     {
+        $nom = strtolower(trim($this->nombre));
         return view('livewire.ayudantes.ayudantes-list', [
-            'ayudantes' => Ayudantes::orderBy('ayudantes.id', 'desc')->paginate(10)
+            'ayudantes' => Ayudantes::whereRaw("lower(nombre) like '%$nom%'")->orderBy('ayudantes.id', 'desc')->paginate(10)
         ]);
     }
 }
