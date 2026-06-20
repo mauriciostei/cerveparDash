@@ -26,6 +26,7 @@ trait NuevoRecorrido{
             $planificado = DB::table('choferes_moviles_planes')->where('planes_id', $plan->id)->where($tipo_id, $id)->orderBy('viaje')->get();
 
             if(count($planificado)){
+                $orden = 0;
                 
                 $tipo_busqueda = $tipo_id;
                 $id_busqueda = $id;
@@ -40,6 +41,10 @@ trait NuevoRecorrido{
                     ->orderByDesc('id')
                     ->first();
                 
+                if($ultimoRecorrido){
+                    $orden = $ultimoRecorrido->orden + 1;
+                }
+
                 $recorrido = new Recorridos();
                 $recorrido->sensores_id = $sensor->id;
                 $recorrido->puntos_id = $sensor->puntos_id;
@@ -53,10 +58,16 @@ trait NuevoRecorrido{
                 Log::info("Ingresó como planificado.Recorrido: $recorrido");
                 Log::info("Ultimo Recorrido es: $ultimoRecorrido");
 
-                $tiempo = DB::table('puntos_tiers')->where('tiers_id', $recorrido->tiers_id)->where('puntos_id', $recorrido->puntos_id)->where('viaje', $recorrido->viaje)->first();
+                $tiempo = DB::table('puntos_tiers')
+                    ->where('tiers_id', $recorrido->tiers_id)
+                    ->where('puntos_id', $recorrido->puntos_id)
+                    ->where('viaje', $recorrido->viaje)
+                    ->where('orden', '>', $orden)
+                    ->first();
                 if($tiempo){
                     $recorrido->target = $this->addTime($tiempo->target, $fechaHora);
                     $recorrido->ponderacion = $this->addTime($tiempo->ponderacion, $recorrido->target);
+                    $recorrido->orden = $tiempo->orden;
                 }else{
                     Log::info('SALIÓ SIN GUARDAR');
                     Log::info("Ultimo recorrido quedó así: $ultimoRecorrido");

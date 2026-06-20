@@ -214,6 +214,17 @@ class RecorridosController extends Controller
                 Log::info("El movil tiene un recorrido en ruta con menos de 30 minutos");
                 return response()->json(["mensaje" => "El movil tiene un recorrido en ruta con menos de 30 minutos"]);
             }
+
+            $marcadoHoy = Recorridos::whereDate('inicio', date('Y-m-d'))
+                ->where('moviles_id', $movil->id)
+                ->where('puntos_id', $sensor->puntos_id)
+                ->where('fin', null)
+                ->orderByDesc('inicio')
+                ->first();
+            if($marcadoHoy){
+                Log::info("El movil ya tiene un recorrido marcado hoy en el punto $sensor->puntos_id");
+                return response()->json(["mensaje" => "El movil ya tiene un recorrido marcado hoy en el punto $sensor->puntos_id"]);
+            }
     
             if($sensor && $movil){
                 if($movil->tiers_id==1 || (date('H')>=4 && date('H')<=23)){
@@ -270,6 +281,17 @@ class RecorridosController extends Controller
                         if($rutaEnCurso){
                             Log::info("El chofer tiene un recorrido en ruta con menos de 30 minutos");
                             continue;
+                        }
+
+                        $marcadoHoy = Recorridos::whereDate('inicio', date('Y-m-d'))
+                            ->where('choferes_id', $chofer->id)
+                            ->where('puntos_id', $sensor->puntos_id)
+                            ->where('fin', null)
+                            ->orderByDesc('inicio')
+                            ->first();
+                        if($marcadoHoy){
+                            Log::info("El Chofer ya tiene un recorrido marcado hoy en el punto $sensor->puntos_id");
+                            return response()->json(["mensaje" => "El Chofer ya tiene un recorrido marcado hoy en el punto $sensor->puntos_id"]);
                         }
 
                         $this->ingresarRecorrido($sensor, $chofer->tiers_id, 'choferes_id', $chofer->id, $fechaHora);

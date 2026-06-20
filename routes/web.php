@@ -74,6 +74,7 @@ Route::middleware('auth','web')->group(function(){
     Route::get('jornada', Jornada::class)->name('jornada')->can('jornada');
     Route::get('jornada-oviedo', Jornada::class)->name('jornada-oviedo');
     Route::get('jornada-guarambare', Jornada::class)->name('jornada-guarambare');
+    Route::get('jornada-asuncion', Jornada::class)->name('jornada-asuncion');
     Route::get('jornadaT1', Jornada::class)->name('jornadaT1')->can('jornadaT1');
     Route::get('jornadafa', Jornada::class)->name('jornadafa')->can('jornadafa');
     Route::get('jornadaAyudante', Jornada::class)->name('jornadaAyudante')->can('jornadaAyudante');
