@@ -42,7 +42,7 @@ trait NuevoRecorrido{
                     ->first();
                 
                 if($ultimoRecorrido){
-                    $orden = $ultimoRecorrido->orden + 1;
+                    $orden = $ultimoRecorrido->orden;
                 }
 
                 $recorrido = new Recorridos();
@@ -63,6 +63,7 @@ trait NuevoRecorrido{
                     ->where('puntos_id', $recorrido->puntos_id)
                     ->where('viaje', $recorrido->viaje)
                     ->where('orden', '>', $orden)
+                    ->orderBy('orden', 'asc')
                     ->first();
                 if($tiempo){
                     $recorrido->target = $this->addTime($tiempo->target, $fechaHora);
